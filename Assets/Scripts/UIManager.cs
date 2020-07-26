@@ -44,4 +44,14 @@ public class UIManager : SingletonBehaviour<UIManager>
         PanelStorage.SetActive(true);
     }
 
+    public void ButtonItemClicked()
+    {
+        print("ButtonItemClicked");
+    }
+
+    public void ButtonCreateClicked()
+    {
+        print("ButtonCreateClicked");
+    }
+
 }
