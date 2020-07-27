@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Diagnostics;
 using UnityEngine;
 
 public class UIManager : SingletonBehaviour<UIManager>
@@ -36,6 +34,7 @@ public class UIManager : SingletonBehaviour<UIManager>
     {
         PanelHome.SetActive(false);
         PanelCrafting.SetActive(true);
+        Debug.Log("1111");
     }
 
     public void ButtonStorageClicked()
