@@ -757,7 +757,6 @@ GameObject:
   - component: {fileID: 308071209}
   - component: {fileID: 308071208}
   - component: {fileID: 308071207}
-  - component: {fileID: 308071206}
   m_Layer: 5
   m_Name: ButtonOption3
   m_TagString: Untagged
@@ -785,18 +784,6 @@ RectTransform:
   m_AnchoredPosition: {x: 370, y: -75}
   m_SizeDelta: {x: 300, y: 110}
   m_Pivot: {x: 1, y: 0.5}
---- !u!114 &308071206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 308071204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d9278101705ea9468f6b0c16a49fc6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &308071207
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -840,8 +827,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 308071206}
-        m_MethodName: Click
+      - m_Target: {fileID: 274087674}
+        m_MethodName: ButtonOption3Clicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1438,7 +1425,6 @@ GameObject:
   - component: {fileID: 579774809}
   - component: {fileID: 579774808}
   - component: {fileID: 579774807}
-  - component: {fileID: 579774806}
   m_Layer: 5
   m_Name: ButtonOption1
   m_TagString: Untagged
@@ -1466,18 +1452,6 @@ RectTransform:
   m_AnchoredPosition: {x: 370, y: 220}
   m_SizeDelta: {x: 300, y: 110}
   m_Pivot: {x: 1, y: 0.5}
---- !u!114 &579774806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 579774804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e455a1e1c5e640e4ca277255cd735eca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &579774807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1521,8 +1495,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 579774806}
-        m_MethodName: Click
+      - m_Target: {fileID: 274087674}
+        m_MethodName: ButtonOption1Clicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3639,7 +3613,6 @@ GameObject:
   - component: {fileID: 1552022726}
   - component: {fileID: 1552022725}
   - component: {fileID: 1552022724}
-  - component: {fileID: 1552022723}
   m_Layer: 5
   m_Name: ButtonOption4
   m_TagString: Untagged
@@ -3667,18 +3640,6 @@ RectTransform:
   m_AnchoredPosition: {x: 370, y: -220}
   m_SizeDelta: {x: 300, y: 110}
   m_Pivot: {x: 1, y: 0.5}
---- !u!114 &1552022723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1552022721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e63ab73d04b7264081669a9b310e6fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1552022724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3722,8 +3683,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1552022723}
-        m_MethodName: Click
+      - m_Target: {fileID: 274087674}
+        m_MethodName: ButtonOption4Clicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4201,7 +4162,6 @@ GameObject:
   - component: {fileID: 1746643101}
   - component: {fileID: 1746643100}
   - component: {fileID: 1746643099}
-  - component: {fileID: 1746643098}
   m_Layer: 5
   m_Name: ButtonOption2
   m_TagString: Untagged
@@ -4229,18 +4189,6 @@ RectTransform:
   m_AnchoredPosition: {x: 370, y: 75}
   m_SizeDelta: {x: 300, y: 110}
   m_Pivot: {x: 1, y: 0.5}
---- !u!114 &1746643098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1746643096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85f4e5cfed53e424a9bee4016906d612, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1746643099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4284,8 +4232,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1746643098}
-        m_MethodName: Click
+      - m_Target: {fileID: 274087674}
+        m_MethodName: ButtonOption2Clicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
