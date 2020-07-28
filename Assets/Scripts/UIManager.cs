@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : SingletonBehaviour<UIManager>
 {
@@ -27,8 +28,8 @@ public class UIManager : SingletonBehaviour<UIManager>
 
     public void ButtonExploreClicked()
     {
-        PanelExploration.SetActive(true);
-        PanelHome.SetActive(false);
+        SceneManager.LoadScene(1);
+
     }
 
     public void ButtonCraftClicked()
