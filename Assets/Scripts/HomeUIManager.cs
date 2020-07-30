@@ -17,6 +17,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public GameObject PanelHome;
     public GameObject PanelExploration;
     public GameObject PanelCrafting;
+    public GameObject PanelAssemble;
     public GameObject PanelStorage;
 
     #region HomePanel methods
@@ -39,6 +40,12 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         Debug.Log("1111");
     }
 
+    public void ButtonAssembleClicked()
+    {
+        PanelHome.SetActive(false);
+        PanelAssemble.SetActive(true);
+    }
+
     public void ButtonStorageClicked()
     {
         PanelHome.SetActive(false);
@@ -56,6 +63,18 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public void ButtonCreateClicked()
     {
         print("ButtonCreateClicked");
+    }
+    #endregion
+
+    #region AssemblePanel methods
+    public void ButtonDeadBodyClicked()
+    {
+        print("ButtonDeadBodyClicked");
+    }
+
+    public void ButtonEquipClicked()
+    {
+        print("ButtonEquipClicked");
     }
     #endregion
 }
