@@ -19,6 +19,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public GameObject PanelCrafting;
     public GameObject PanelStorage;
 
+    // for debugging
+    public void ClickedSendTime()
+    {
+        GameManager.inst.SendTime(1);
+    }
     #region HomePanel methods
     public void ButtonSettingClicked()
     {
