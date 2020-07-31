@@ -32,7 +32,8 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     // Update textTime and textDay
     public void UpdateTextTime(int day, int time)
     {
-
+        textDay.text = "Day" + day.ToString();
+        textTime.text = time.ToString() + "시";
     }
     // for debugging
     public void ClickedSendTime()
