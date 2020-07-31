@@ -53,6 +53,7 @@ public class Player : SingletonBehaviour<Player>
     public void DecayBody(int time)
     {
         Durability = Durability - BodyDecayRate * time;
+        HomeUIManager.Inst.UpdateTextDurability();
     }
     #endregion
 

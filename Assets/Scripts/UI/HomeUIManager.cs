@@ -13,6 +13,9 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     [Header("Energy UI")]
     public Slider sliderEnergy;
 
+    [Header("Durability UI")]
+    public Text textDurabilty;
+
     [Header("Sub Panels")]
     public GameObject panelSetting;
     public GameObject panelHome;
@@ -34,6 +37,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         textDay.text = "Day" + GameManager.Inst.Day.ToString();
         textTime.text = GameManager.Inst.Time.ToString() + "시";
+    }
+
+    public void UpdateTextDurability()
+    {
+        textDurabilty.text = Player.Inst.Durability.ToString() + "%";
     }
     // for debugging
     public void ClickedSendTime()
