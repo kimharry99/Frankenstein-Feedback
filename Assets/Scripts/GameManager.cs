@@ -13,7 +13,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     }
     public bool IsNight { get; private set; }
 
-    private Character _character = Character.inst;
+    private Character _character = Character.Inst;
     public void SendTime(int time)
     {
         _character.SendTime(time);
