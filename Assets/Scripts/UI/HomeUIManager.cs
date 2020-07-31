@@ -24,7 +24,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     // for debugging
     public void ClickedSendTime()
     {
-        GameManager.inst.SendTime(1);
+        GameManager.Inst.SendTime(1);
     }
     #region HomePanel methods
     public void ButtonSettingClicked()
