@@ -13,7 +13,23 @@ public class Player : SingletonBehaviour<Player>
     public BodyPart RightLeg;
 
     #region Player Stat
-    public int Durability { get; private set; }
+    private int _durability;
+    public int Durability 
+    { 
+        get
+        {
+            return _durability;
+        }
+        private set
+        {
+            _durability = value;
+            if (_durability <= 0)
+            {
+                _durability = 0;
+                KillPlayer();
+            }
+        }
+    }
     public int Atk { get; private set; }
     public int Def { get; private set; }
     public int Dex { get; private set; }
@@ -30,6 +46,11 @@ public class Player : SingletonBehaviour<Player>
         Durability = 100;
     }
     
+    public void KillPlayer()
+    {
+
+    }
+
     #region Body decay
     private const int DECAY_RATE_EXPLORATION = 5;
     private const int DECAY_RATE_HOME = 3;
