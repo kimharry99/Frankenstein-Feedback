@@ -16,6 +16,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public GameObject PanelSetting;
     public GameObject PanelHome;
     public GameObject PanelExploration;
+    public GameObject PanelResearch;
     public GameObject PanelDisassemble;
     public GameObject PanelCrafting;
     public GameObject PanelAssemble;
@@ -39,6 +40,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
     }
 
+    public void ButtonResearchClicked()
+    {
+        PanelHome.SetActive(false);
+        PanelResearch.SetActive(true);
+    }
     public void ButtonDisassembleClicked()
     {
         PanelHome.SetActive(false);
@@ -49,7 +55,6 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         PanelHome.SetActive(false);
         PanelCrafting.SetActive(true);
-        Debug.Log("1111");
     }
 
     public void ButtonAssembleClicked()
