@@ -30,10 +30,10 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     }
     #endregion
     // Update textTime and textDay
-    public void UpdateTextTime(int day, int time)
+    public void UpdateTextTime()
     {
-        textDay.text = "Day" + day.ToString();
-        textTime.text = time.ToString() + "시";
+        textDay.text = "Day" + GameManager.Inst.Day.ToString();
+        textTime.text = GameManager.Inst.Time.ToString() + "시";
     }
     // for debugging
     public void ClickedSendTime()

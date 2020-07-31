@@ -58,8 +58,8 @@ public class GameManager : SingletonBehaviour<GameManager>
     // 시간을 time만큼 보내기 위해서 호출된다.
     public void SendTime(int time)
     {
-        _player.DecayBody(time);
+        Player.Inst.DecayBody(time);
         Time = Time + time;
-        HomeUIManager.Inst.UpdateTextTime(Day, Time);
+        HomeUIManager.Inst.UpdateTextTime();
     }
 }
