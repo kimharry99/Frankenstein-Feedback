@@ -30,10 +30,6 @@ public class SingletonBehaviour<T> : MonoBehaviour where T : MonoBehaviour
         if (_inst != null)
             DontDestroyOnLoad(_inst.gameObject);
     }
-    protected virtual void Awake()
-    {
-
-    }
 }
 
 
