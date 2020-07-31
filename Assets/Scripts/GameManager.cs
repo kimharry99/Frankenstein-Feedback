@@ -9,7 +9,17 @@ public class GameManager : SingletonBehaviour<GameManager>
     public int Time
     {
         get { return _time; }
-        set { _time = value; }
+        set 
+        { 
+            _time = value; 
+            if(_time >= 24)
+            {
+                _time = _time - 24;
+                Day = Day + 1;
+            }
+            if (_time < 8 && _time != 0) IsNight = true;
+            else IsNight = true;
+        } 
     }
     public bool IsNight { get; private set; }
 
