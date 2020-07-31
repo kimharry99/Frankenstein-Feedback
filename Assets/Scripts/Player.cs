@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : SingletonBehaviour<Character>
+public class Player : SingletonBehaviour<Player>
 {
     [Header("Body Parts")]
     public BodyPart head;
@@ -22,7 +22,8 @@ public class Character : SingletonBehaviour<Character>
     }
     #endregion
 
-    public void SendTime(int time)
+    // 시간이 흘렀을 때 캐릭터의 변화에 대한 함수이다
+    public void DecayBody(int time)
     {
 
     }

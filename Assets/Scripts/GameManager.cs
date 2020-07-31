@@ -54,11 +54,11 @@ public class GameManager : SingletonBehaviour<GameManager>
         IsHome = true;
     }
 
-    private Character _character = Character.Inst;
+    private Player _player = Player.Inst;
     // 시간을 time만큼 보내기 위해서 호출된다.
     public void SendTime(int time)
     {
-        _character.SendTime(time);
+        _player.DecayBody(time);
         Time = Time + time;
         HomeUIManager.Inst.UpdateTextTime(Day, Time);
     }
