@@ -2576,17 +2576,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d0b1615515489241a28f91e32fcb1c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextDay: {fileID: 384216399}
-  TextTime: {fileID: 1587727338}
-  SliderEnergy: {fileID: 1856275109}
-  PanelSetting: {fileID: 0}
-  PanelHome: {fileID: 1516400055}
-  PanelExploration: {fileID: 775665414}
-  PanelResearch: {fileID: 868011199}
-  PanelDisassemble: {fileID: 1264713807}
-  PanelCrafting: {fileID: 73509011}
-  PanelAssemble: {fileID: 1648239671}
-  PanelStorage: {fileID: 753392657}
+  textDay: {fileID: 384216401}
+  textTime: {fileID: 1587727339}
+  sliderEnergy: {fileID: 1856275110}
+  panelSetting: {fileID: 0}
+  panelHome: {fileID: 1516400055}
+  panelExploration: {fileID: 0}
+  panelResearch: {fileID: 868011199}
+  panelDisassemble: {fileID: 1264713807}
+  panelCrafting: {fileID: 73509011}
+  panelAssemble: {fileID: 1648239671}
+  panelStorage: {fileID: 753392657}
 --- !u!114 &274087675
 MonoBehaviour:
   m_ObjectHideFlags: 0
