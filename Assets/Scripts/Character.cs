@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : SingletonBehaviour<Player>
+public class Character : SingletonBehaviour<Character>
 {
     [Header("Body Parts")]
     public BodyPart head;
@@ -15,15 +15,7 @@ public class Player : SingletonBehaviour<Player>
     // for debugging
     public int forTest = 0;
 
-    #region Unity Functions
-    protected override void Awake()
-    {
-        base.Awake();
-    }
-    #endregion
-
-    // 시간이 흘렀을 때 캐릭터의 변화에 대한 함수이다
-    public void DecayBody(int time)
+    public void SendTime(int time)
     {
 
     }
