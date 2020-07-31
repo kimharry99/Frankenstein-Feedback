@@ -6,21 +6,21 @@ using UnityEngine.SceneManagement;
 public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 {
     [Header("Time UI")]
-    public GameObject TextDay;
-    public GameObject TextTime;
+    public GameObject textDay;
+    public GameObject textTime;
 
     [Header("Energy UI")]
-    public GameObject SliderEnergy;
+    public GameObject sliderEnergy;
 
     [Header("Sub Panels")]
-    public GameObject PanelSetting;
-    public GameObject PanelHome;
-    public GameObject PanelExploration;
-    public GameObject PanelResearch;
-    public GameObject PanelDisassemble;
-    public GameObject PanelCrafting;
-    public GameObject PanelAssemble;
-    public GameObject PanelStorage;
+    public GameObject panelSetting;
+    public GameObject panelHome;
+    public GameObject panelExploration;
+    public GameObject panelResearch;
+    public GameObject panelDisassemble;
+    public GameObject panelCrafting;
+    public GameObject panelAssemble;
+    public GameObject panelStorage;
 
     // for debugging
     public void ClickedSendTime()
@@ -31,8 +31,8 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     #region HomePanel methods
     public void ButtonSettingClicked()
     {
-        PanelHome.SetActive(false);
-        PanelSetting.SetActive(true);
+        panelHome.SetActive(false);
+        panelSetting.SetActive(true);
     }
 
     public void ButtonExploreClicked()
@@ -43,31 +43,31 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
     public void ButtonResearchClicked()
     {
-        PanelHome.SetActive(false);
-        PanelResearch.SetActive(true);
+        panelHome.SetActive(false);
+        panelResearch.SetActive(true);
     }
     public void ButtonDisassembleClicked()
     {
-        PanelHome.SetActive(false);
-        PanelDisassemble.SetActive(true);
+        panelHome.SetActive(false);
+        panelDisassemble.SetActive(true);
     }
 
     public void ButtonCraftClicked()
     {
-        PanelHome.SetActive(false);
-        PanelCrafting.SetActive(true);
+        panelHome.SetActive(false);
+        panelCrafting.SetActive(true);
     }
 
     public void ButtonAssembleClicked()
     {
-        PanelHome.SetActive(false);
-        PanelAssemble.SetActive(true);
+        panelHome.SetActive(false);
+        panelAssemble.SetActive(true);
     }
 
     public void ButtonStorageClicked()
     {
-        PanelHome.SetActive(false);
-        PanelStorage.SetActive(true);
+        panelHome.SetActive(false);
+        panelStorage.SetActive(true);
     }
     #endregion
 
@@ -75,7 +75,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public void ButtonCloseClicked(GameObject panel)
     {
         panel.SetActive(false);
-        PanelHome.SetActive(true);
+        panelHome.SetActive(true);
     }
 
     #region CraftingPanel methods
