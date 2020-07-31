@@ -12,5 +12,12 @@ public class Character : SingletonBehaviour<Character>
     public BodyPart LeftLeg;
     public BodyPart RightLeg;
 
+    // for debugging
+    public int forTest = 0;
+
+    public void SendTime(int time)
+    {
+
+    }
 }
 
