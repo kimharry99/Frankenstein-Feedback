@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 {
     [Header("Time UI")]
-    public GameObject textDay;
-    public GameObject textTime;
+    public Text textDay;
+    public Text textTime;
 
     [Header("Energy UI")]
-    public GameObject sliderEnergy;
+    public Slider sliderEnergy;
 
     [Header("Sub Panels")]
     public GameObject panelSetting;
