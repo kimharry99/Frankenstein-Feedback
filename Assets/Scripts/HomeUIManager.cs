@@ -16,6 +16,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public GameObject PanelSetting;
     public GameObject PanelHome;
     public GameObject PanelExploration;
+    public GameObject PanelDisassemble;
     public GameObject PanelCrafting;
     public GameObject PanelAssemble;
     public GameObject PanelStorage;
@@ -31,6 +32,12 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         SceneManager.LoadScene(1);
 
+    }
+
+    public void ButtonDisassembleClicked()
+    {
+        PanelHome.SetActive(false);
+        PanelDisassemble.SetActive(true);
     }
 
     public void ButtonCraftClicked()
