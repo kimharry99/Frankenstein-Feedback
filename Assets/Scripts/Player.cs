@@ -12,16 +12,24 @@ public class Player : SingletonBehaviour<Player>
     public BodyPart LeftLeg;
     public BodyPart RightLeg;
 
+    #region Player Stat
+    public int Durability { get; private set; }
+    public int Atk { get; private set; }
+    public int Def { get; private set; }
+    public int Dex { get; private set; }
+    public int Mana { get; private set; }
+    public int Endurance { get; private set; }
+    #endregion
+
     // for debugging
     public int forTest = 0;
 
-    #region Unity Functions
-    protected override void Awake()
+    public void InitPlayer()
     {
-        base.Awake();
+        BodyRegenerationRate = 0;
+        Durability = 100;
     }
-    #endregion
-
+    
     #region Body decay
     private const int DECAY_RATE_EXPLORATION = 5;
     private const int DECAY_RATE_HOME = 3;
