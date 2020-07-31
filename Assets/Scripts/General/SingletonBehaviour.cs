@@ -7,7 +7,7 @@ public class SingletonBehaviour<T> : MonoBehaviour where T : MonoBehaviour
     private static T _inst = null;
     public static T Inst { get { return _inst; } private set { _inst = value; } }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         if (_inst != null && _inst != this)
         {

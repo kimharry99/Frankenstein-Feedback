@@ -23,6 +23,12 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public GameObject panelAssemble;
     public GameObject panelStorage;
 
+    #region Unity Functions
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+    #endregion
     // for debugging
     public void ClickedSendTime()
     {

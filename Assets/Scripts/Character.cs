@@ -15,6 +15,13 @@ public class Character : SingletonBehaviour<Character>
     // for debugging
     public int forTest = 0;
 
+    #region Unity Functions
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+    #endregion
+
     public void SendTime(int time)
     {
 
