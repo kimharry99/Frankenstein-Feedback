@@ -32,5 +32,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     public void SendTime(int time)
     {
         _character.SendTime(time);
+        Time = Time + time;
+        HomeUIManager.Inst.UpdateTextTime(Day, Time);
     }
 }

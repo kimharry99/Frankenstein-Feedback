@@ -29,6 +29,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         base.Awake();
     }
     #endregion
+    // Update textTime and textDay
+    public void UpdateTextTime(int day, int time)
+    {
+
+    }
     // for debugging
     public void ClickedSendTime()
     {
