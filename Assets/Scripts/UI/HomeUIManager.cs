@@ -27,6 +27,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         GameManager.Inst.SendTime(1);
     }
+
     #region HomePanel methods
     public void ButtonSettingClicked()
     {
@@ -70,6 +71,12 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     }
     #endregion
 
+    // Parameter panel means a panel to be closed.
+    public void ButtonCloseClicked(GameObject panel)
+    {
+        panel.SetActive(false);
+        PanelHome.SetActive(true);
+    }
 
     #region CraftingPanel methods
     public void ButtonItemClicked()
