@@ -22,10 +22,29 @@ public class Player : SingletonBehaviour<Player>
     }
     #endregion
 
+    #region Body decay
+    private const int DECAY_RATE_EXPLORATION = 5;
+    private const int DECAY_RATE_HOME = 3;
+    public int BodyRegenerationRate {get; private set;}
+    private int BodyDecayRate
+    {
+        get
+        {
+            if(GameManager.Inst.IsHome)
+            {
+                return DECAY_RATE_HOME - BodyRegenerationRate;
+            }
+            else
+            {
+                return DECAY_RATE_EXPLORATION - BodyRegenerationRate;
+            }
+        }
+    }
+    
     // 시간이 흘렀을 때 캐릭터의 변화에 대한 함수이다
     public void DecayBody(int time)
     {
-
     }
+    #endregion
 }
 
