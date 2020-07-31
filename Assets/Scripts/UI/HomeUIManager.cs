@@ -49,8 +49,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
     public void ButtonExploreClicked()
     {
-        SceneManager.LoadScene(1);
-
+        GameManager.Inst.StartExploration();
     }
 
     public void ButtonResearchClicked()
