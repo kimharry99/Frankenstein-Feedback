@@ -52,7 +52,17 @@ public class Player : SingletonBehaviour<Player>
     // 시간이 흘렀을 때 캐릭터의 변화에 대한 함수이다
     public void DecayBody(int time)
     {
+        Durability = Durability - BodyDecayRate * time;
     }
     #endregion
+
+    #region Unity Functions
+    protected override void Awake()
+    {
+        base.Awake();
+        InitPlayer();
+    }
+    #endregion
+
 }
 
