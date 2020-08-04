@@ -55,7 +55,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     // for debugging
     public void ClickedSendTime()
     {
-        GameManager.Inst.SendTurn(1);
+        GameManager.Inst.OnTurnOver(1);
     }
 
     #region HomePanel methods

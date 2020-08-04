@@ -41,12 +41,15 @@ public class GameManager : SingletonBehaviour<GameManager>
 
     public UnityEvent onTurnOver;
     // turn 만큼의 턴을 소모한다.
-    public void SendTurn(int turn)
+    public void OnTurnOver(int turn)
     {
         for(int i=0;i<turn;i++)
         {
-            time.SetTime(time.runtimeTime+1);
             onTurnOver.Invoke();
         }
+    }
+    public void SendTime()
+    {
+        time.SetTime(time.runtimeTime+1);
     }
 }
