@@ -2,69 +2,92 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 {
     [Header("Time UI")]
-    public GameObject TextDay;
-    public GameObject TextTime;
+    public Text textDay;
+    public Text textTime;
 
     [Header("Energy UI")]
-    public GameObject SliderEnergy;
+    public Slider sliderEnergy;
 
     [Header("Sub Panels")]
-    public GameObject PanelSetting;
-    public GameObject PanelHome;
-    public GameObject PanelExploration;
-    public GameObject PanelDisassemble;
-    public GameObject PanelCrafting;
-    public GameObject PanelAssemble;
-    public GameObject PanelStorage;
+    public GameObject panelSetting;
+    public GameObject panelHome;
+    public GameObject panelExploration;
+    public GameObject panelResearch;
+    public GameObject panelDisassemble;
+    public GameObject panelCrafting;
+    public GameObject panelAssemble;
+    public GameObject panelStorage;
 
+    #region Unity Functions
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+    #endregion
+    // Update textTime and textDay
+    public void UpdateTextTime(int day, int time)
+    {
+
+    }
     // for debugging
     public void ClickedSendTime()
     {
-        GameManager.inst.SendTime(1);
+        GameManager.Inst.SendTime(1);
     }
+
     #region HomePanel methods
     public void ButtonSettingClicked()
     {
-        PanelHome.SetActive(false);
-        PanelSetting.SetActive(true);
+        panelHome.SetActive(false);
+        panelSetting.SetActive(true);
     }
 
     public void ButtonExploreClicked()
     {
-        SceneManager.LoadScene(1);
-
+        GameManager.Inst.StartExploration();
     }
 
+    public void ButtonResearchClicked()
+    {
+        panelHome.SetActive(false);
+        panelResearch.SetActive(true);
+    }
     public void ButtonDisassembleClicked()
     {
-        PanelHome.SetActive(false);
-        PanelDisassemble.SetActive(true);
+        panelHome.SetActive(false);
+        panelDisassemble.SetActive(true);
     }
 
     public void ButtonCraftClicked()
     {
-        PanelHome.SetActive(false);
-        PanelCrafting.SetActive(true);
-        Debug.Log("1111");
+        panelHome.SetActive(false);
+        panelCrafting.SetActive(true);
     }
 
     public void ButtonAssembleClicked()
     {
-        PanelHome.SetActive(false);
-        PanelAssemble.SetActive(true);
+        panelHome.SetActive(false);
+        panelAssemble.SetActive(true);
     }
 
     public void ButtonStorageClicked()
     {
-        PanelHome.SetActive(false);
-        PanelStorage.SetActive(true);
+        panelHome.SetActive(false);
+        panelStorage.SetActive(true);
     }
     #endregion
 
+    // Parameter panel means a panel to be closed.
+    public void ButtonCloseClicked(GameObject panel)
+    {
+        panel.SetActive(false);
+        panelHome.SetActive(true);
+    }
 
     #region CraftingPanel methods
     public void ButtonItemClicked()
