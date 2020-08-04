@@ -24,7 +24,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public GameObject panelDisassemble;
     public GameObject panelCrafting;
     public GameObject panelAssemble;
-    public GameObject panelStorage;
+    public GameObject panelChest;
 
     public Time time;
     public IntVariable durability;
@@ -93,10 +93,10 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         panelAssemble.SetActive(true);
     }
 
-    public void ButtonStorageClicked()
+    public void ButtonChestClicked()
     {
         panelHome.SetActive(false);
-        panelStorage.SetActive(true);
+        panelChest.SetActive(true);
     }
     #endregion
 

@@ -2399,7 +2399,7 @@ GameObject:
   - component: {fileID: 5598134401940829476}
   - component: {fileID: 5598134401940829477}
   m_Layer: 5
-  m_Name: PanelStorageSlots
+  m_Name: PanelChestSlots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8790,7 +8790,7 @@ GameObject:
   - component: {fileID: 5598134402522226288}
   - component: {fileID: 5598134402522226289}
   m_Layer: 5
-  m_Name: PanelStorage
+  m_Name: PanelChest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16236,7 +16236,7 @@ MonoBehaviour:
   panelDisassemble: {fileID: 5598134402102949621}
   panelCrafting: {fileID: 5598134401673157543}
   panelAssemble: {fileID: 5598134402770909482}
-  panelStorage: {fileID: 5598134402522226290}
+  panelChest: {fileID: 0}
   time: {fileID: 11400000, guid: 926617181ab5dcd44a050a2611db6c49, type: 2}
   durability: {fileID: 11400000, guid: afbe1a9467f64774dbb9595c7f844950, type: 2}
   energy: {fileID: 11400000, guid: b48f545c1bd604f458611bfec53d253c, type: 2}
@@ -19821,7 +19821,7 @@ GameObject:
   - component: {fileID: 5598134403541437391}
   - component: {fileID: 5598134403541437376}
   m_Layer: 5
-  m_Name: ButtonStorage
+  m_Name: ButtonChest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
