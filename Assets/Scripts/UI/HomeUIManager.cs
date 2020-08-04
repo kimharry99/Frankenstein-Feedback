@@ -13,6 +13,9 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     [Header("Energy UI")]
     public Slider sliderEnergy;
 
+    [Header("Durability UI")]
+    public Text textDurabilty;
+
     [Header("Sub Panels")]
     public GameObject panelSetting;
     public GameObject panelHome;
@@ -21,8 +24,16 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public GameObject panelDisassemble;
     public GameObject panelCrafting;
     public GameObject panelAssemble;
-    public GameObject panelStorage;
+    public GameObject panelChest;
 
+    [Header("Inventory")]
+    public Image[] imageInventory;
+
+    public Time time;
+    public IntVariable durability;
+    public IntVariable energy;
+    public Inventory inventory;
+    public Chest chest;
     #region Unity Functions
     protected override void Awake()
     {
@@ -30,14 +41,40 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     }
     #endregion
     // Update textTime and textDay
-    public void UpdateTextTime(int day, int time)
+    public void UpdateTextTime()
+    {
+        textDay.text = "Day" + time.runtimeDay.ToString();
+        textTime.text = time.runtimeTime.ToString() + "시";
+    }
+
+    public void UpdateTextDurability()
+    {
+        textDurabilty.text = durability.runtimeValue.ToString() + "%";
+    }
+
+    public void UpdateEnergy()
+    {
+        // to implement
+    }
+    public Sprite emptyImage;
+    public void UpdateInventory()
+    {
+        for(int i=0;i<inventory.slotItem.Length;i++)
+        {
+            if (inventory.slotItem[i] != null)
+                imageInventory[i].sprite = inventory.slotItem[i].itemImage;
+            else
+                imageInventory[i].sprite = emptyImage;
+        }
+    }
+    public void UpdateChest(int constraint)
     {
 
     }
     // for debugging
     public void ClickedSendTime()
     {
-        GameManager.Inst.SendTime(1);
+        GameManager.Inst.OnTurnOver(1);
     }
 
     #region HomePanel methods
@@ -75,10 +112,10 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         panelAssemble.SetActive(true);
     }
 
-    public void ButtonStorageClicked()
+    public void ButtonChestClicked()
     {
         panelHome.SetActive(false);
-        panelStorage.SetActive(true);
+        panelChest.SetActive(true);
     }
     #endregion
 

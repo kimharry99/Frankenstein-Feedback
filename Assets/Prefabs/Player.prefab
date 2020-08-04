@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 2878216875430685815}
   - component: {fileID: 4761532643919097233}
   m_Layer: 8
-  m_Name: Characcter
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,12 +143,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6083c0755203424a91943fbf3d533b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  durability: {fileID: 11400000, guid: afbe1a9467f64774dbb9595c7f844950, type: 2}
+  inventory: {fileID: 11400000, guid: 29bd155a658128a48881d6b34a6f79c7, type: 2}
   head: {fileID: 3958663170622242401}
   body: {fileID: 7407616479787523933}
   LeftArm: {fileID: 2868541443990324880}
   RightArm: {fileID: 5718146369199958802}
   LeftLeg: {fileID: 8832546763406321848}
   RightLeg: {fileID: 2224914312295875058}
+  forTest: 0
 --- !u!1 &4260215970024454593
 GameObject:
   m_ObjectHideFlags: 0
