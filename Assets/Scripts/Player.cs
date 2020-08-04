@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : SingletonBehaviour<Player>
 {
+    public IntVariable durability;
     [Header("Body Parts")]
     public BodyPart head;
     public BodyPart body;
@@ -13,23 +14,6 @@ public class Player : SingletonBehaviour<Player>
     public BodyPart RightLeg;
 
     #region Player Stat
-    private int _durability;
-    public int Durability 
-    { 
-        get
-        {
-            return _durability;
-        }
-        private set
-        {
-            _durability = value;
-            if (_durability <= 0)
-            {
-                _durability = 0;
-                KillPlayer();
-            }
-        }
-    }
     public int Atk { get; private set; }
     public int Def { get; private set; }
     public int Dex { get; private set; }
@@ -43,7 +27,7 @@ public class Player : SingletonBehaviour<Player>
     public void InitPlayer()
     {
         BodyRegenerationRate = 0;
-        Durability = 100;
+        durability.runtimeValue = 100;
     }
     
     public void KillPlayer()
@@ -71,10 +55,9 @@ public class Player : SingletonBehaviour<Player>
     }
     
     // 시간이 흘렀을 때 캐릭터의 변화에 대한 함수이다
-    public void DecayBody(int time)
+    public void DecayBody()
     {
-        Durability = Durability - BodyDecayRate * time;
-        HomeUIManager.Inst.UpdateTextDurability();
+        durability.runtimeValue = durability.runtimeValue - BodyDecayRate;
     }
     #endregion
 

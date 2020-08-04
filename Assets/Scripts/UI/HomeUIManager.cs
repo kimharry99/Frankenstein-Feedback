@@ -26,6 +26,8 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public GameObject panelAssemble;
     public GameObject panelStorage;
 
+    public Time time;
+    public IntVariable durability;
     #region Unity Functions
     protected override void Awake()
     {
@@ -35,18 +37,18 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     // Update textTime and textDay
     public void UpdateTextTime()
     {
-        textDay.text = "Day" + GameManager.Inst.Day.ToString();
-        textTime.text = GameManager.Inst.Time.ToString() + "시";
+        textDay.text = "Day" + time.runtimeDay.ToString();
+        textTime.text = time.runtimeTime.ToString() + "시";
     }
 
     public void UpdateTextDurability()
     {
-        textDurabilty.text = Player.Inst.Durability.ToString() + "%";
+        textDurabilty.text = durability.runtimeValue.ToString() + "%";
     }
     // for debugging
     public void ClickedSendTime()
     {
-        GameManager.Inst.SendTime(1);
+        GameManager.Inst.SendTurn(1);
     }
 
     #region HomePanel methods

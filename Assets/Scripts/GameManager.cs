@@ -1,28 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GameManager : SingletonBehaviour<GameManager>
 {
     public int Day { get; private set; }
-    private int _time;
-    public int Time
-    {
-        get { return _time; }
-        set 
-        { 
-            _time = value; 
-            if(_time >= 24)
-            {
-                _time = _time - 24;
-                Day = Day + 1;
-            }
-            if (_time < 8 && _time != 0) IsNight = true;
-            else IsNight = true;
-        } 
-    }
-    public bool IsNight { get; private set; }
+    public Time time;
     public bool IsHome { get; private set; }
     #region Unity Functions
     protected override void Awake()
@@ -35,9 +20,9 @@ public class GameManager : SingletonBehaviour<GameManager>
     // 게임을 초기화 한다.
     private void InitGame()
     {
-        Day = 1;
-        Time = 8;
-        IsHome = true;
+        //time.day = 1;
+        //time.SetTime(8);
+        onTurnOver.Invoke();
     }
 
     // 탐사를 시작할 때 호출하는 함수이다.
@@ -54,12 +39,14 @@ public class GameManager : SingletonBehaviour<GameManager>
         IsHome = true;
     }
 
-    private Player _player = Player.Inst;
-    // 시간을 time만큼 보내기 위해서 호출된다.
-    public void SendTime(int time)
+    public UnityEvent onTurnOver;
+    // turn 만큼의 턴을 소모한다.
+    public void SendTurn(int turn)
     {
-        Player.Inst.DecayBody(time);
-        Time = Time + time;
-        HomeUIManager.Inst.UpdateTextTime();
+        for(int i=0;i<turn;i++)
+        {
+            time.SetTime(time.runtimeTime+1);
+            onTurnOver.Invoke();
+        }
     }
 }
