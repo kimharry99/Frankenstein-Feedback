@@ -9536,6 +9536,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66f16a9b347f314c89e58b2b5ed0602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  time: {fileID: 0}
+  onTurnOver:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &878461546
 Transform:
   m_ObjectHideFlags: 0
@@ -10528,6 +10532,7 @@ MonoBehaviour:
   textDay: {fileID: 1487267985}
   textTime: {fileID: 820343882}
   sliderEnergy: {fileID: 1383037608}
+  textDurabilty: {fileID: 0}
   panelSetting: {fileID: 1831426677}
   panelHome: {fileID: 177184364}
   panelExploration: {fileID: 1948499301}
@@ -10535,7 +10540,14 @@ MonoBehaviour:
   panelDisassemble: {fileID: 154821408}
   panelCrafting: {fileID: 824178833}
   panelAssemble: {fileID: 1202110891}
-  panelStorage: {fileID: 1679344835}
+  panelChest: {fileID: 0}
+  imageInventory: []
+  time: {fileID: 0}
+  durability: {fileID: 0}
+  energy: {fileID: 0}
+  inventory: {fileID: 0}
+  chest: {fileID: 0}
+  emptyImage: {fileID: 0}
 --- !u!114 &999050569
 MonoBehaviour:
   m_ObjectHideFlags: 0
