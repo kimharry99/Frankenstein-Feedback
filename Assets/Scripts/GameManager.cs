@@ -52,4 +52,9 @@ public class GameManager : SingletonBehaviour<GameManager>
     {
         time.SetTime(time.runtimeTime+1);
     }
+
+    public void DisassembleItem(/* some parameters */)
+    {
+        // TODO
+    }
 }

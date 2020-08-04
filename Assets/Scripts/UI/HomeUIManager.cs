@@ -54,7 +54,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
     public void UpdateEnergy()
     {
-        sliderEnergy.value = energy.runtimeValue;
+        // to implement
     }
     public Sprite emptyImage;
     public void UpdateInventory()
