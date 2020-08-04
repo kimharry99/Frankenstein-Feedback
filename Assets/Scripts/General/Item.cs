@@ -20,9 +20,9 @@ public enum Grade
 public class Item : ScriptableObject
 { 
     public int id;
-    public string name;
+    public new string name;
     public string description;
-    public Texture2D itemImage;
+    public Sprite itemImage;
 
     public Type type;
     public Grade grade;
