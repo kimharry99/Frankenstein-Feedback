@@ -28,6 +28,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
     public Time time;
     public IntVariable durability;
+    public IntVariable energy;
     #region Unity Functions
     protected override void Awake()
     {
@@ -45,6 +46,12 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         textDurabilty.text = durability.runtimeValue.ToString() + "%";
     }
+
+    public void UpdateEnergy()
+    {
+        sliderEnergy.value = energy.runtimeValue;
+    }
+
     // for debugging
     public void ClickedSendTime()
     {
