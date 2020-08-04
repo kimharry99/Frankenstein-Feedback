@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f1aa059670bfec4bb97930f1de3197e, type: 3}
   m_Name: SampleItem1
   m_EditorClassIdentifier: 
-  id: 0
-  name: 
-  description: 
-  itemImage: {fileID: 0}
+  id: 1
+  name: "\uC0D8\uD50C\uC0AC\uCCB41"
+  description: "\uB514\uBC84\uAE45\uC6A9 \uC0AC\uCCB4\uC785\uB2C8\uB2E4"
+  itemImage: {fileID: 2800000, guid: 02f05ae49b2e0c1439c541dda62a68ef, type: 3}
   type: 0
   grade: 0
-  energyPotential: 0
+  energyPotential: 200
