@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   durability: {fileID: 11400000, guid: afbe1a9467f64774dbb9595c7f844950, type: 2}
+  inventory: {fileID: 11400000, guid: 29bd155a658128a48881d6b34a6f79c7, type: 2}
   head: {fileID: 3958663170622242401}
   body: {fileID: 7407616479787523933}
   LeftArm: {fileID: 2868541443990324880}

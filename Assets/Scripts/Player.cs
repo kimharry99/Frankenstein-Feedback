@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : SingletonBehaviour<Player>
 {
     public IntVariable durability;
+    public Inventory inventory;
     [Header("Body Parts")]
     public BodyPart head;
     public BodyPart body;

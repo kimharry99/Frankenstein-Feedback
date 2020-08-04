@@ -26,9 +26,14 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public GameObject panelAssemble;
     public GameObject panelChest;
 
+    [Header("Inventory")]
+    public Image[] imageInventory;
+
     public Time time;
     public IntVariable durability;
     public IntVariable energy;
+    public Inventory inventory;
+    public Chest chest;
     #region Unity Functions
     protected override void Awake()
     {
@@ -51,7 +56,21 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         sliderEnergy.value = energy.runtimeValue;
     }
+    public Sprite emptyImage;
+    public void UpdateInventory()
+    {
+        for(int i=0;i<inventory.slotItem.Length;i++)
+        {
+            if (inventory.slotItem[i] != null)
+                imageInventory[i].sprite = inventory.slotItem[i].itemImage;
+            else
+                imageInventory[i].sprite = emptyImage;
+        }
+    }
+    public void UpdateChest(int constraint)
+    {
 
+    }
     // for debugging
     public void ClickedSendTime()
     {
