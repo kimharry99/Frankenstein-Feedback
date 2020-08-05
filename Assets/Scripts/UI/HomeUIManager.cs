@@ -34,7 +34,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public Image[] imageDisassembleUsing;
     public GameObject[] slotDisassembleHolding;
     public Image[] imageDisassembleHolding;
-    
+    public Text textDisassembleEnergy;
 
     public Time time;
     public IntVariable durability;
@@ -101,6 +101,8 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         panelHome.SetActive(false);
         panelResearch.SetActive(true);
     }
+
+    public int disassembleEnergy;
     public void ButtonDisassembleClicked()
     {
         panelHome.SetActive(false);
@@ -113,6 +115,8 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
             else
                 imageDisassembleHolding[i].sprite = emptyImage;
         }
+
+        textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
     }
 
     public void ButtonCraftClicked()
@@ -146,25 +150,34 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     #region DisassemblePanel methods
     public void DisassembleButtonItemClicked(int i)
     {
-        Image imgslt = slotDisassembleHolding[i].GetComponent<Image>();
-        Image imgimg = imageDisassembleHolding[i].GetComponent<Image>();
+        Image imgslot = slotDisassembleHolding[i].GetComponent<Image>();
+        Image imgitem = imageDisassembleHolding[i].GetComponent<Image>();
 
-        if (imgslt.sprite == noneImage && imgimg.sprite != emptyImage)
+        if (imgitem.sprite != chest.slotItem[i].itemImage)
+            return;
+
+        if (imgslot.sprite == noneImage && imgitem.sprite != emptyImage)
         {
-            imgslt.sprite = checkImage;
+            imgslot.sprite = checkImage;
 
             int j = 0;
             while (imageDisassembleUsing[j].sprite != emptyImage)
                 j++;
+
             if (j < 6)
-                imageDisassembleUsing[j].sprite = imgimg.sprite;
+            {
+                imageDisassembleUsing[j].sprite = imgitem.sprite;
+                disassembleEnergy += chest.slotItem[i].energyPotential;
+                textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
+            }
+
             else
                 Debug.Log("Full");
         }
 
-        else if (imgslt.sprite == checkImage)
+        else if (imgslot.sprite == checkImage)
         {
-            //should complete
+            // Should complete
         }
     }
 

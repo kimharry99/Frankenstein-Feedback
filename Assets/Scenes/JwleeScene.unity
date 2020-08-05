@@ -1297,6 +1297,11 @@ PrefabInstance:
       propertyPath: imageDisassembleHolding.Array.data[8]
       value: 
       objectReference: {fileID: 1261661565}
+    - target: {fileID: 5598134403201767622, guid: a4d3d70b55dccec409d2f303525dffdd,
+        type: 3}
+      propertyPath: textDisassembleEnergy
+      value: 
+      objectReference: {fileID: 2033076615}
     - target: {fileID: 5598134403201767623, guid: a4d3d70b55dccec409d2f303525dffdd,
         type: 3}
       propertyPath: m_Name
@@ -1775,6 +1780,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2033076615 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5598134403399385600, guid: a4d3d70b55dccec409d2f303525dffdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1096655786}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2063412593 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5598134402589275271, guid: a4d3d70b55dccec409d2f303525dffdd,
