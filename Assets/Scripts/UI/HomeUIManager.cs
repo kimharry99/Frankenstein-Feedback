@@ -29,6 +29,13 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     [Header("Inventory")]
     public Image[] imageInventory;
 
+    [Header("Disassemble UI")]
+    public GameObject[] slotDisassembleUsing;
+    public Image[] imageDisassembleUsing;
+    public GameObject[] slotDisassembleHolding;
+    public Image[] imageDisassembleHolding;
+    
+
     public Time time;
     public IntVariable durability;
     public IntVariable energy;
@@ -98,6 +105,14 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         panelHome.SetActive(false);
         panelDisassemble.SetActive(true);
+
+        for (int i = 0; i < chest.slotItem.Length; i++)
+        {
+            if (chest.slotItem[i] != null && chest.slotItem[i].type == 0)
+                imageDisassembleHolding[i].sprite = chest.slotItem[i].itemImage;
+            else
+                imageDisassembleHolding[i].sprite = emptyImage;
+        }
     }
 
     public void ButtonCraftClicked()
@@ -126,13 +141,46 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         panelHome.SetActive(true);
     }
 
+    public Sprite noneImage;
+    public Sprite checkImage;
+    #region DisassemblePanel methods
+    public void DisassembleButtonItemClicked(int i)
+    {
+        Image imgslt = slotDisassembleHolding[i].GetComponent<Image>();
+        Image imgimg = imageDisassembleHolding[i].GetComponent<Image>();
+
+        if (imgslt.sprite == noneImage && imgimg.sprite != emptyImage)
+        {
+            imgslt.sprite = checkImage;
+
+            int j = 0;
+            while (imageDisassembleUsing[j].sprite != emptyImage)
+                j++;
+            if (j < 6)
+                imageDisassembleUsing[j].sprite = imgimg.sprite;
+            else
+                Debug.Log("Full");
+        }
+
+        else if (imgslt.sprite == checkImage)
+        {
+            //should complete
+        }
+    }
+
+    public void DisassembleButtonCreateClicked()
+    {
+        print("ButtonCreateClicked");
+    }
+    #endregion
+
     #region CraftingPanel methods
-    public void ButtonItemClicked()
+    public void CraftingButtonItemClicked()
     {
         print("ButtonItemClicked");
     }
 
-    public void ButtonCreateClicked()
+    public void CraftingButtonCreateClicked()
     {
         print("ButtonCreateClicked");
     }

@@ -12,5 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87048cb850212104baf905398e28c58f, type: 3}
   m_Name: New Chest
   m_EditorClassIdentifier: 
-  slotItem: []
-  slotItemNumber: 
+  slotItem:
+  - {fileID: 11400000, guid: 68781c060c1f01b43950c9d60e378cc7, type: 2}
+  - {fileID: 11400000, guid: d846e29caa9d8ad4a92856c307fb6498, type: 2}
+  - {fileID: 11400000, guid: 9a4f7299e2434524c937adfe0723f844, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  slotItemNumber: 0e0000000400000010000000000000000000000000000000000000000000000000000000
