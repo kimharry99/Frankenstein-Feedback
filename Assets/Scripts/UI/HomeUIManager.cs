@@ -35,6 +35,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public GameObject[] slotDisassembleHolding;
     public Image[] imageDisassembleHolding;
     public Text textDisassembleEnergy;
+    public int[] slotIndex;
 
     public Time time;
     public IntVariable durability;
@@ -78,6 +79,28 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
 
     }
+
+    public int disassembleEnergy = 0;
+    public void UpdateDisassemble()
+    {
+        int j = 0;
+        for (int i = 0; i < chest.slotItem.Length; i++)
+        {
+            if (chest.slotItem[i] != null && chest.slotItem[i].type == 0)
+            {
+                imageDisassembleHolding[j].sprite = chest.slotItem[i].itemImage;
+                slotIndex[j++] = i;
+            }
+
+            if (j > 8)
+                break;
+        }
+
+        while (j <= 8)
+            imageDisassembleHolding[j++].sprite = emptyImage;
+
+        textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
+    }
     // for debugging
     public void ClickedSendTime()
     {
@@ -102,26 +125,12 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         panelResearch.SetActive(true);
     }
 
-    public int disassembleEnergy;
     public void ButtonDisassembleClicked()
     {
         panelHome.SetActive(false);
         panelDisassemble.SetActive(true);
 
-        int j = 0;
-        for (int i = 0; i < chest.slotItem.Length; i++)
-        {
-            if (chest.slotItem[i] != null && chest.slotItem[i].type == 0)
-                imageDisassembleHolding[j++].sprite = chest.slotItem[i].itemImage;
-
-            if (j > 8)
-                break;
-        }
-
-        while (j <= 8)
-            imageDisassembleHolding[j++].sprite = emptyImage;
-
-        textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
+        UpdateDisassemble();
     }
 
     public void ButtonCraftClicked()
@@ -162,21 +171,14 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         {
             imgslot.sprite = checkImage;
 
-            int itemnumber = 0;
-            for (; itemnumber < chest.slotItem.Length; itemnumber++)
-            {
-                if (imgitem.sprite == chest.slotItem[itemnumber].itemImage)
-                    break;
-            }
-
             int i = 0;
             while (imageDisassembleUsing[i].sprite != emptyImage)
                 i++;
 
             if (i < 6)
             {
-                imageDisassembleUsing[i].sprite = chest.slotItem[itemnumber].itemImage;
-                disassembleEnergy += chest.slotItem[itemnumber].energyPotential;
+                imageDisassembleUsing[i].sprite = chest.slotItem[slotIndex[slotnumber]].itemImage;
+                disassembleEnergy += chest.slotItem[slotIndex[slotnumber]].energyPotential;
                 textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
             }
             else
