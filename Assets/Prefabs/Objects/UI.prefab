@@ -16634,8 +16634,8 @@ MonoBehaviour:
   time: {fileID: 11400000, guid: 926617181ab5dcd44a050a2611db6c49, type: 2}
   durability: {fileID: 11400000, guid: afbe1a9467f64774dbb9595c7f844950, type: 2}
   energy: {fileID: 11400000, guid: b48f545c1bd604f458611bfec53d253c, type: 2}
-  inventory: {fileID: 11400000, guid: 29bd155a658128a48881d6b34a6f79c7, type: 2}
-  chest: {fileID: 11400000, guid: 3e0fe493c96923449932afe84ecbd33c, type: 2}
+  inventory: {fileID: 0}
+  chest: {fileID: 0}
   emptyImage: {fileID: 21300000, guid: 9afc85d8617e9a849a6d3dcefefd9bc1, type: 3}
 --- !u!1 &5598134403204625317
 GameObject:
@@ -19267,7 +19267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5598134403456446651
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19369,12 +19369,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_MethodName: SendTurn
-        m_Mode: 3
+        m_MethodName: Foo
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -20380,7 +20380,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5598134403201767622}
-        m_MethodName: ButtonStorageClicked
+        m_MethodName: ButtonChestClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
