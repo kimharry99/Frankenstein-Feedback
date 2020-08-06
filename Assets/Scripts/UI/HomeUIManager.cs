@@ -30,12 +30,12 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public Image[] imageInventory;
 
     [Header("Disassemble UI")]
-    public GameObject[] slotDisassembleUsing;
+    public Image[] slotDisassembleUsing;
     public Image[] imageDisassembleUsing;
-    public GameObject[] slotDisassembleHolding;
+    public Image[] slotDisassembleHolding;
     public Image[] imageDisassembleHolding;
     public Text textDisassembleEnergy;
-    public int[] slotIndex;
+    public int[] itemIndex;
 
     public Time time;
     public IntVariable durability;
@@ -65,6 +65,8 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         // to implement
     }
     public Sprite emptyImage;
+    public Sprite noneImage;
+    public Sprite checkImage;
     public void UpdateInventory()
     {
         for(int i=0;i<inventory.slotItem.Length;i++)
@@ -83,13 +85,18 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public int disassembleEnergy = 0;
     public void UpdateDisassemble()
     {
-        int j = 0;
-        for (int i = 0; i < chest.slotItem.Length; i++)
+        disassembleEnergy = 0;
+
+        int i = 0, j = 0;
+        for (; i < chest.slotItem.Length; i++)
         {
             if (chest.slotItem[i] != null && chest.slotItem[i].type == 0)
             {
                 imageDisassembleHolding[j].sprite = chest.slotItem[i].itemImage;
-                slotIndex[j++] = i;
+                slotDisassembleHolding[j].sprite = noneImage;
+                if (j < 6)
+                    imageDisassembleUsing[j].sprite = emptyImage;
+                itemIndex[j++] = i;
             }
 
             if (j > 8)
@@ -97,7 +104,13 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         }
 
         while (j <= 8)
-            imageDisassembleHolding[j++].sprite = emptyImage;
+        {
+            imageDisassembleHolding[j].sprite = emptyImage;
+            slotDisassembleHolding[j].sprite = noneImage;
+            if (j < 6)
+                imageDisassembleUsing[j].sprite = emptyImage;
+            itemIndex[j++] = -1;
+        }
 
         textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
     }
@@ -159,26 +172,24 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         panelHome.SetActive(true);
     }
 
-    public Sprite noneImage;
-    public Sprite checkImage;
     #region DisassemblePanel methods
-    public void DisassembleButtonItemClicked(int slotnumber)
+    public void DisassembleButtonItemClicked(int slotNumber)
     {
-        Image imgslot = slotDisassembleHolding[slotnumber].GetComponent<Image>();
-        Image imgitem = imageDisassembleHolding[slotnumber].GetComponent<Image>();
+        Image imgslot = slotDisassembleHolding[slotNumber];
+        Image imgitem = imageDisassembleHolding[slotNumber];
 
         if (imgslot.sprite == noneImage && imgitem.sprite != emptyImage)
         {
-            imgslot.sprite = checkImage;
-
             int i = 0;
             while (imageDisassembleUsing[i].sprite != emptyImage)
                 i++;
 
             if (i < 6)
             {
-                imageDisassembleUsing[i].sprite = chest.slotItem[slotIndex[slotnumber]].itemImage;
-                disassembleEnergy += chest.slotItem[slotIndex[slotnumber]].energyPotential;
+                imgslot.sprite = checkImage;
+
+                imageDisassembleUsing[i].sprite = chest.slotItem[itemIndex[slotNumber]].itemImage;
+                disassembleEnergy += chest.slotItem[itemIndex[slotNumber]].energyPotential;
                 textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
             }
             else
@@ -187,13 +198,13 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
         else if (imgslot.sprite == checkImage)
         {
-            // Should complete
+            // TODO
         }
     }
 
     public void DisassembleButtonCreateClicked()
     {
-        print("ButtonCreateClicked");
+        GameManager.Inst.DisassembleItem();
     }
     #endregion
 

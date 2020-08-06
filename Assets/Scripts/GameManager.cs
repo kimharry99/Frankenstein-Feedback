@@ -56,5 +56,8 @@ public class GameManager : SingletonBehaviour<GameManager>
     public void DisassembleItem(/* some parameters */)
     {
         // TODO
+        HomeUIManager.Inst.energy.runtimeValue += HomeUIManager.Inst.disassembleEnergy;
+        HomeUIManager.Inst.UpdateEnergy();
+        HomeUIManager.Inst.UpdateDisassemble();
     }
 }
