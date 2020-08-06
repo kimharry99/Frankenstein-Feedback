@@ -15,15 +15,18 @@ public class Player : SingletonBehaviour<Player>
     public BodyPart RightLeg;
 
     #region Player Stat
-    public int Atk { get; private set; }
-    public int Def { get; private set; }
-    public int Dex { get; private set; }
-    public int Mana { get; private set; }
-    public int Endurance { get; private set; }
+    //public int Atk { get; private set; }
+    //public int Def { get; private set; }
+    //public int Dex { get; private set; }
+    //public int Mana { get; private set; }
+    //public int Endurance { get; private set; }
+    [Header("Body Parts")]
+    public IntVariable atk;
+    public IntVariable def;
+    public IntVariable dex;
+    public IntVariable mana;
+    public IntVariable endurance;
     #endregion
-
-    // for debugging
-    public int forTest = 0;
 
     public void InitPlayer()
     {

@@ -145,13 +145,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durability: {fileID: 11400000, guid: afbe1a9467f64774dbb9595c7f844950, type: 2}
   inventory: {fileID: 11400000, guid: 29bd155a658128a48881d6b34a6f79c7, type: 2}
-  head: {fileID: 3958663170622242401}
-  body: {fileID: 7407616479787523933}
-  LeftArm: {fileID: 2868541443990324880}
-  RightArm: {fileID: 5718146369199958802}
-  LeftLeg: {fileID: 8832546763406321848}
-  RightLeg: {fileID: 2224914312295875058}
-  forTest: 0
+  head: {fileID: 0}
+  body: {fileID: 0}
+  LeftArm: {fileID: 0}
+  RightArm: {fileID: 0}
+  LeftLeg: {fileID: 0}
+  RightLeg: {fileID: 0}
+  atk: {fileID: 11400000, guid: d00d8f4f1b8b34e40b1c3c2b7b85c2dd, type: 2}
+  def: {fileID: 11400000, guid: 86e302acddefb754c8d4d07b7867c881, type: 2}
+  dex: {fileID: 11400000, guid: 10f00bdb8468c2b439fa464542cf7e4a, type: 2}
+  mana: {fileID: 11400000, guid: bdae3e619dc4e1e4c8124d18efb88ebd, type: 2}
+  endurance: {fileID: 11400000, guid: 3ff9fa948ea23c348a495ca70958aa80, type: 2}
 --- !u!1 &4260215970024454593
 GameObject:
   m_ObjectHideFlags: 0
