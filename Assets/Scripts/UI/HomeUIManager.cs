@@ -108,13 +108,18 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         panelHome.SetActive(false);
         panelDisassemble.SetActive(true);
 
+        int j = 0;
         for (int i = 0; i < chest.slotItem.Length; i++)
         {
             if (chest.slotItem[i] != null && chest.slotItem[i].type == 0)
-                imageDisassembleHolding[i].sprite = chest.slotItem[i].itemImage;
-            else
-                imageDisassembleHolding[i].sprite = emptyImage;
+                imageDisassembleHolding[j++].sprite = chest.slotItem[i].itemImage;
+
+            if (j > 8)
+                break;
         }
+
+        while (j <= 8)
+            imageDisassembleHolding[j++].sprite = emptyImage;
 
         textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
     }
@@ -148,29 +153,32 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public Sprite noneImage;
     public Sprite checkImage;
     #region DisassemblePanel methods
-    public void DisassembleButtonItemClicked(int i)
+    public void DisassembleButtonItemClicked(int slotnumber)
     {
-        Image imgslot = slotDisassembleHolding[i].GetComponent<Image>();
-        Image imgitem = imageDisassembleHolding[i].GetComponent<Image>();
-
-        if (imgitem.sprite != chest.slotItem[i].itemImage)
-            return;
+        Image imgslot = slotDisassembleHolding[slotnumber].GetComponent<Image>();
+        Image imgitem = imageDisassembleHolding[slotnumber].GetComponent<Image>();
 
         if (imgslot.sprite == noneImage && imgitem.sprite != emptyImage)
         {
             imgslot.sprite = checkImage;
 
-            int j = 0;
-            while (imageDisassembleUsing[j].sprite != emptyImage)
-                j++;
-
-            if (j < 6)
+            int itemnumber = 0;
+            for (; itemnumber < chest.slotItem.Length; itemnumber++)
             {
-                imageDisassembleUsing[j].sprite = imgitem.sprite;
-                disassembleEnergy += chest.slotItem[i].energyPotential;
-                textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
+                if (imgitem.sprite == chest.slotItem[itemnumber].itemImage)
+                    break;
             }
 
+            int i = 0;
+            while (imageDisassembleUsing[i].sprite != emptyImage)
+                i++;
+
+            if (i < 6)
+            {
+                imageDisassembleUsing[i].sprite = chest.slotItem[itemnumber].itemImage;
+                disassembleEnergy += chest.slotItem[itemnumber].energyPotential;
+                textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
+            }
             else
                 Debug.Log("Full");
         }
