@@ -72,4 +72,47 @@ public class StorageManager : SingletonBehaviour<StorageManager>
     {
         // to implement
     }
+    
+    // 인벤토리에 장착된 도구의 스텟 효과를 반환한다. 매개변수는 소문자를 사용한다.
+    public int GetInventoryItemStat(string stat)
+    {
+        int itemStatToReturn = 0;
+        for (int i = 0; i < inventory.slotItem.Length; i++)
+        {
+            if (inventory.slotItem[i].type == Type.Tool)
+            {
+                Tool tool = (Tool)inventory.slotItem[i];
+                switch (stat)
+                {
+                    case "str":
+                        itemStatToReturn += tool.str;
+                        break;
+                    case "def":
+                        itemStatToReturn += tool.def;
+                        break;
+                    case "dex":
+                        itemStatToReturn += tool.dex;
+                        break;
+                    case "mana":
+                        itemStatToReturn += tool.mana;
+                        break;
+                    case "endurance":
+                        itemStatToReturn += tool.endurance;
+                        break;
+                    default:
+                        Debug.Log(stat + " : wrong stat name");
+                        return -1;
+                }
+            }
+        }
+        return itemStatToReturn;
+    }
+
+    // for debugging
+    public void Foo()
+    {
+        Debug.Log("inven str : " + GetInventoryItemStat("str"));
+        Debug.Log("inven def : " + GetInventoryItemStat("def"));
+        Debug.Log("inven dex : " + GetInventoryItemStat("dex"));
+    }
 }

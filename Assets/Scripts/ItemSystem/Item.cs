@@ -9,6 +9,17 @@ public enum Type
     Tool,
     Ingredient
 }
+
+public enum Race
+{
+    All,
+    Human,
+    Goblin,
+    Elf,
+    Oak,
+    Machine,
+    Null
+}
 public enum Grade
 {
     A,
@@ -19,11 +30,12 @@ public enum Grade
 [CreateAssetMenu]
 public class Item : ScriptableObject
 { 
+    [Header("")]
     public int id;
-    public new string name;
+    public string itemName;
     public string description;
     public Sprite itemImage;
-
+    [Header("")]
     public Type type;
     public Grade grade;
     public int energyPotential;

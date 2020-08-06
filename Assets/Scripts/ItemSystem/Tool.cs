@@ -1,0 +1,14 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu]
+public class Tool : Item
+{
+    [Header("Item Stat")]
+    public int str;
+    public int def;
+    public int dex;
+    public int mana;
+    public int endurance;
+}
