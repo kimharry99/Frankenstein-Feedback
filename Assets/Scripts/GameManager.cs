@@ -55,9 +55,20 @@ public class GameManager : SingletonBehaviour<GameManager>
 
     public void DisassembleItem(/* some parameters */)
     {
-        // TODO
         HomeUIManager.Inst.energy.runtimeValue += HomeUIManager.Inst.disassembleEnergy;
         HomeUIManager.Inst.UpdateEnergy();
+
+        for (int i = 0; i < 9; i++)
+        {
+            if (HomeUIManager.Inst.slotDisassembleHolding[i].sprite == HomeUIManager.Inst.checkImage)
+            {
+                int slotNumber = HomeUIManager.Inst.itemIndex[i];
+                StorageManager.Inst.DeleteItem(slotNumber, HomeUIManager.Inst.chest);
+            }
+        }
+
         HomeUIManager.Inst.UpdateDisassemble();
+
+        OnTurnOver(1);
     }
 }
