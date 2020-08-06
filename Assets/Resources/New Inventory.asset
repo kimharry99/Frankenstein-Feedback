@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotItem:
   - {fileID: 11400000, guid: 68781c060c1f01b43950c9d60e378cc7, type: 2}
-  - {fileID: 11400000, guid: 68781c060c1f01b43950c9d60e378cc7, type: 2}
   - {fileID: 11400000, guid: d846e29caa9d8ad4a92856c307fb6498, type: 2}
   - {fileID: 11400000, guid: 9a4f7299e2434524c937adfe0723f844, type: 2}
+  - {fileID: 11400000, guid: 68781c060c1f01b43950c9d60e378cc7, type: 2}
   - {fileID: 0}
-  slotItemNumber: 7700000047000000270000002100000000000000
+  slotItemNumber: 3a00000032000000320000002800000000000000

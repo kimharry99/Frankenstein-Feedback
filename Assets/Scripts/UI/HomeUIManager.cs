@@ -28,7 +28,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
     [Header("Inventory")]
     public Image[] imageInventory;
-
+    public Button[] imageChest;
     public Time time;
     public IntVariable durability;
     public IntVariable energy;
@@ -67,10 +67,9 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
                 imageInventory[i].sprite = emptyImage;
         }
     }
-    public void UpdateChest(int constraint)
-    {
 
-    }
+
+  
     // for debugging
     public void ClickedSendTime()
     {
