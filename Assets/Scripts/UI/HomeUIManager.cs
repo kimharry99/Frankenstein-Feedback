@@ -181,7 +181,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         if (imgslot.sprite == noneImage && imgitem.sprite != emptyImage)
         {
             int i = 0;
-            while (imageDisassembleUsing[i].sprite != emptyImage)
+            while (i < 6 && imageDisassembleUsing[i].sprite != emptyImage)
                 i++;
 
             if (i < 6)
