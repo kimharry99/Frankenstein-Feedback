@@ -69,7 +69,8 @@ public class GameManager : SingletonBehaviour<GameManager>
 
         if (count == 0)
         {
-            Debug.Log("Select Corpse!");
+            HomeUIManager.Inst.panelNotice.SetActive(true);
+            HomeUIManager.Inst.textNotice.text = "분해할 사체를 선택하세요.";
             return;
         }
 

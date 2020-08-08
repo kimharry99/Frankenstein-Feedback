@@ -25,6 +25,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public GameObject panelCrafting;
     public GameObject panelAssemble;
     public GameObject panelChest;
+    public GameObject panelNotice;
 
     [Header("Inventory")]
     public Image[] imageInventory;
@@ -36,6 +37,9 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public Image[] imageDisassembleHolding;
     public Text textDisassembleEnergy;
     public int[] itemIndex;
+
+    [Header("Notice")]
+    public Text textNotice;
 
     public Time time;
     public IntVariable durability;
@@ -62,7 +66,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
     public void UpdateEnergy()
     {
-        // to implement
+        sliderEnergy.value = energy.runtimeValue;
     }
     public Sprite emptyImage;
     public Sprite noneImage;
@@ -172,6 +176,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         panelHome.SetActive(true);
     }
 
+    public void PanelNoticeClicked()
+    {
+        panelNotice.SetActive(false);
+    }
+
     #region DisassemblePanel methods
     public void DisassembleButtonItemClicked(int slotNumber)
     {
@@ -193,7 +202,10 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
                 textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
             }
             else
-                Debug.Log("Full");
+            {
+                panelNotice.SetActive(true);
+                textNotice.text = "분해 슬롯이 가득 찼습니다.";
+            }
         }
 
         else if (imgslot.sprite == checkImage)
