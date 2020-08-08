@@ -59,10 +59,10 @@ public class GameManager : SingletonBehaviour<GameManager>
 
         for (int i = 0; i < 9; i++)
         {
-            if (HomeUIManager.Inst.slotDisassembleHolding[i].sprite == HomeUIManager.Inst.checkImage)
+            if (HomeUIManager.Inst.imageCheck[i].activeSelf == true)
             {
                 count++;
-                int slotNumber = HomeUIManager.Inst.itemIndex[i];
+                int slotNumber = HomeUIManager.Inst.indexHoldingChest[i];
                 StorageManager.Inst.DeleteItem(slotNumber, HomeUIManager.Inst.chest);
             }
         }

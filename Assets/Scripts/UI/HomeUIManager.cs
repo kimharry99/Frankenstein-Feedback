@@ -33,10 +33,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     [Header("Disassemble UI")]
     public Image[] slotDisassembleUsing;
     public Image[] imageDisassembleUsing;
-    public Image[] slotDisassembleHolding;
     public Image[] imageDisassembleHolding;
+    public GameObject[] imageCheck;
     public Text textDisassembleEnergy;
-    public int[] itemIndex;
+    public int[] indexHoldingChest;
+    public int[] indexUsingHolding;
 
     [Header("Notice")]
     public Text textNotice;
@@ -69,8 +70,6 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         sliderEnergy.value = energy.runtimeValue;
     }
     public Sprite emptyImage;
-    public Sprite noneImage;
-    public Sprite checkImage;
     public void UpdateInventory()
     {
         for(int i=0;i<inventory.slotItem.Length;i++)
@@ -97,10 +96,13 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
             if (chest.slotItem[i] != null && chest.slotItem[i].type == 0)
             {
                 imageDisassembleHolding[j].sprite = chest.slotItem[i].itemImage;
-                slotDisassembleHolding[j].sprite = noneImage;
+                imageCheck[j].SetActive(false);
                 if (j < 6)
+                {
                     imageDisassembleUsing[j].sprite = emptyImage;
-                itemIndex[j++] = i;
+                    indexUsingHolding[j] = -1;
+                }
+                indexHoldingChest[j++] = i;
             }
 
             if (j > 8)
@@ -110,10 +112,13 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         while (j <= 8)
         {
             imageDisassembleHolding[j].sprite = emptyImage;
-            slotDisassembleHolding[j].sprite = noneImage;
+            imageCheck[j].SetActive(false);
             if (j < 6)
+            {
                 imageDisassembleUsing[j].sprite = emptyImage;
-            itemIndex[j++] = -1;
+                indexUsingHolding[j] = -1;
+            }
+            indexHoldingChest[j++] = -1;
         }
 
         textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
@@ -182,12 +187,9 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     }
 
     #region DisassemblePanel methods
-    public void DisassembleButtonItemClicked(int slotNumber)
+    public void DisassembleButtonHoldingClicked(int slotNumber)
     {
-        Image imgslot = slotDisassembleHolding[slotNumber];
-        Image imgitem = imageDisassembleHolding[slotNumber];
-
-        if (imgslot.sprite == noneImage && imgitem.sprite != emptyImage)
+        if (imageCheck[slotNumber].activeSelf == false && imageDisassembleHolding[slotNumber].sprite != emptyImage)
         {
             int i = 0;
             while (i < 6 && imageDisassembleUsing[i].sprite != emptyImage)
@@ -195,10 +197,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
             if (i < 6)
             {
-                imgslot.sprite = checkImage;
+                imageCheck[slotNumber].SetActive(true);
 
-                imageDisassembleUsing[i].sprite = chest.slotItem[itemIndex[slotNumber]].itemImage;
-                disassembleEnergy += chest.slotItem[itemIndex[slotNumber]].energyPotential;
+                indexUsingHolding[i] = slotNumber;
+                imageDisassembleUsing[i].sprite = chest.slotItem[indexHoldingChest[slotNumber]].itemImage;
+                disassembleEnergy += chest.slotItem[indexHoldingChest[slotNumber]].energyPotential;
                 textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
             }
             else
@@ -208,9 +211,36 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
             }
         }
 
-        else if (imgslot.sprite == checkImage)
+        else if (imageCheck[slotNumber].activeSelf == true)
         {
-            // TODO
+            imageCheck[slotNumber].SetActive(false);
+
+            int i = 0;
+            for (; i < 6; i++)
+            {
+                if (indexUsingHolding[i] == slotNumber)
+                    break;
+            }
+
+            indexUsingHolding[i] = -1;
+            imageDisassembleUsing[i].sprite = emptyImage;
+            disassembleEnergy -= chest.slotItem[indexHoldingChest[slotNumber]].energyPotential;
+            textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
+        }
+    }
+
+    public void DisassembleButtonUsingClicked(int slotNumber)
+    {
+        if (imageDisassembleUsing[slotNumber].sprite != emptyImage)
+        {
+            int indexHolding = indexUsingHolding[slotNumber];
+
+            imageCheck[indexHolding].SetActive(false);
+
+            indexUsingHolding[slotNumber] = -1;
+            imageDisassembleUsing[slotNumber].sprite = emptyImage;
+            disassembleEnergy -= chest.slotItem[indexHoldingChest[indexHolding]].energyPotential;
+            textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
         }
     }
 
