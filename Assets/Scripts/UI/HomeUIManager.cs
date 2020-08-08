@@ -31,11 +31,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public Image[] imageInventory;
 
     [Header("Disassemble UI")]
-    public Image[] slotDisassembleUsing;
     public Image[] imageDisassembleUsing;
     public Image[] imageDisassembleHolding;
     public GameObject[] imageCheck;
     public Text textDisassembleEnergy;
+    public Scrollbar scrollbarDisassemble;
     public int[] indexHoldingChest;
     public int[] indexUsingHolding;
 
@@ -105,11 +105,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
                 indexHoldingChest[j++] = i;
             }
 
-            if (j > 8)
+            if (j > 29)
                 break;
         }
 
-        while (j <= 8)
+        while (j <= 29)
         {
             imageDisassembleHolding[j].sprite = emptyImage;
             imageCheck[j].SetActive(false);
@@ -153,6 +153,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         panelDisassemble.SetActive(true);
 
         UpdateDisassemble();
+        scrollbarDisassemble.value = 1;
     }
 
     public void ButtonCraftClicked()
