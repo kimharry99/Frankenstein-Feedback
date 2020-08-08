@@ -88,39 +88,48 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public int disassembleEnergy = 0;
     public void UpdateDisassemble()
     {
-        disassembleEnergy = 0;
-
         int i = 0, j = 0;
+
         for (; i < chest.slotItem.Length; i++)
         {
             if (chest.slotItem[i] != null && chest.slotItem[i].type == 0)
             {
-                imageDisassembleHolding[j].sprite = chest.slotItem[i].itemImage;
+                imageDisassembleHolding[j].sprite = chest.slotItem[i].itemImage; // Update Corpse at the jth Holding Slot
+                indexHoldingChest[j] = i; // Record the Index of Corpse (Holding Slot to Chest Slot)
+
                 imageCheck[j].SetActive(false);
-                if (j < 6)
+
+                if (j < 6) // Reset the jth Using Slot
                 {
                     imageDisassembleUsing[j].sprite = emptyImage;
                     indexUsingHolding[j] = -1;
                 }
-                indexHoldingChest[j++] = i;
+
+                j++;
             }
 
-            if (j > 29)
+            if (j > 29) // Prevent the Overflow (Now It's not Needed)
                 break;
         }
+        // Done Updating Corpse
 
-        while (j <= 29)
+        while (j <= 29) // Reset the Remaining Slots
         {
             imageDisassembleHolding[j].sprite = emptyImage;
+            indexHoldingChest[j] = -1;
+
             imageCheck[j].SetActive(false);
+
             if (j < 6)
             {
                 imageDisassembleUsing[j].sprite = emptyImage;
                 indexUsingHolding[j] = -1;
             }
-            indexHoldingChest[j++] = -1;
+
+            j++;
         }
 
+        disassembleEnergy = 0;
         textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
     }
     // for debugging
@@ -190,21 +199,23 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     #region DisassemblePanel methods
     public void DisassembleButtonHoldingClicked(int slotNumber)
     {
-        if (imageCheck[slotNumber].activeSelf == false && imageDisassembleHolding[slotNumber].sprite != emptyImage)
+        if (imageCheck[slotNumber].activeSelf == false && imageDisassembleHolding[slotNumber].sprite != emptyImage) // The Case that Slot not been Selected Before
         {
             int i = 0;
-            while (i < 6 && imageDisassembleUsing[i].sprite != emptyImage)
+            while (i < 6 && imageDisassembleUsing[i].sprite != emptyImage) // Find Empty Slot in 'Panel Using Items'
                 i++;
 
             if (i < 6)
             {
-                imageCheck[slotNumber].SetActive(true);
+                imageCheck[slotNumber].SetActive(true); // Mark the Selected Slot
 
-                indexUsingHolding[i] = slotNumber;
-                imageDisassembleUsing[i].sprite = chest.slotItem[indexHoldingChest[slotNumber]].itemImage;
+                imageDisassembleUsing[i].sprite = chest.slotItem[indexHoldingChest[slotNumber]].itemImage; // Update Corpse at the Using Slot
+                indexUsingHolding[i] = slotNumber; // Record the Index of Corpse (Using Slot to Holding Slot)
+
                 disassembleEnergy += chest.slotItem[indexHoldingChest[slotNumber]].energyPotential;
                 textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
             }
+
             else
             {
                 panelNotice.SetActive(true);
@@ -212,19 +223,20 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
             }
         }
 
-        else if (imageCheck[slotNumber].activeSelf == true)
+        else if (imageCheck[slotNumber].activeSelf == true) // The Case that Slot has been Selected Before
         {
-            imageCheck[slotNumber].SetActive(false);
+            imageCheck[slotNumber].SetActive(false); // Unmark the Selected Slot
 
             int i = 0;
-            for (; i < 6; i++)
+            for (; i < 6; i++) // Find the Corpse's Index in Using Slot
             {
                 if (indexUsingHolding[i] == slotNumber)
                     break;
             }
 
-            indexUsingHolding[i] = -1;
-            imageDisassembleUsing[i].sprite = emptyImage;
+            imageDisassembleUsing[i].sprite = emptyImage; // Remove Corpse in the Using Slot
+            indexUsingHolding[i] = -1; // Initialize
+
             disassembleEnergy -= chest.slotItem[indexHoldingChest[slotNumber]].energyPotential;
             textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
         }
@@ -236,10 +248,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         {
             int indexHolding = indexUsingHolding[slotNumber];
 
-            imageCheck[indexHolding].SetActive(false);
+            imageCheck[indexHolding].SetActive(false); // Unmark the Holding Slot where Selected Corpse is
 
-            indexUsingHolding[slotNumber] = -1;
-            imageDisassembleUsing[slotNumber].sprite = emptyImage;
+            imageDisassembleUsing[slotNumber].sprite = emptyImage; // Remove Corpse in the Using Slot
+            indexUsingHolding[slotNumber] = -1; // Initialize
+
             disassembleEnergy -= chest.slotItem[indexHoldingChest[indexHolding]].energyPotential;
             textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
         }
