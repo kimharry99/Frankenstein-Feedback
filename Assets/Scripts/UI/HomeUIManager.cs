@@ -52,8 +52,9 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         base.Awake();
         // TODO inventory 와 chest private 변수로 변경
-        inventory = StorageManager.Inst.inventory;
-        chest = StorageManager.Inst.chest;
+        // inventory = 
+        // chest = StorageManager.Inst.chest;
+        UpdateInventory();
     }
     #endregion
     // Update textTime and textDay
