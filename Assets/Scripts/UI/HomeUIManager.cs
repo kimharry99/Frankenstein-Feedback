@@ -214,6 +214,10 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
                 disassembleEnergy += chest.slotItem[indexHoldingChest[slotNumber]].energyPotential;
                 textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
+
+                Debug.Log(slotNumber + "select;"+
+                          "    +" + chest.slotItem[indexHoldingChest[slotNumber]].energyPotential + "energy"+"" +
+                          "\ntotal:" + disassembleEnergy.ToString());
             }
 
             else
@@ -227,6 +231,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         {
             imageCheck[slotNumber].SetActive(false); // Unmark the Selected Slot
 
+
             int i = 0;
             for (; i < 6; i++) // Find the Corpse's Index in Using Slot
             {
@@ -239,6 +244,10 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
             disassembleEnergy -= chest.slotItem[indexHoldingChest[slotNumber]].energyPotential;
             textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
+
+            Debug.Log(slotNumber + "select cancel;"+
+                      "    -"+ chest.slotItem[indexHoldingChest[slotNumber]].energyPotential+"energy"+
+                      "\ntotal:"+ disassembleEnergy.ToString());
         }
     }
 
