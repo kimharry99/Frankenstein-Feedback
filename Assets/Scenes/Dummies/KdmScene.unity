@@ -375,18 +375,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d0b1615515489241a28f91e32fcb1c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1964345325 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4496653149735789406, guid: 67032a8892c6fbc41a201638db5eb41c,
-    type: 3}
-  m_PrefabInstance: {fileID: 4496653150491583667}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b66f16a9b347f314c89e58b2b5ed0602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2878216876629291086
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1055,7 +1043,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1964345325}
+      objectReference: {fileID: 1059896773}
     - target: {fileID: 5598134403541437377, guid: a4d3d70b55dccec409d2f303525dffdd,
         type: 3}
       propertyPath: m_AnchorMin.y
