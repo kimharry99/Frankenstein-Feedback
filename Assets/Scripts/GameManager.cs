@@ -55,6 +55,30 @@ public class GameManager : SingletonBehaviour<GameManager>
 
     public void DisassembleItem(/* some parameters */)
     {
-        // TODO
+        int count = 0;
+
+        for (int i = 0; i < 30; i++)
+        {
+            if (HomeUIManager.Inst.imageCheck[i].activeSelf == true)
+            {
+                count++;
+                int slotNumber = HomeUIManager.Inst.indexHoldingChest[i];
+                StorageManager.Inst.DeleteItem(slotNumber, HomeUIManager.Inst.chest);
+            }
+        }
+
+        if (count == 0)
+        {
+            HomeUIManager.Inst.panelNotice.SetActive(true);
+            HomeUIManager.Inst.textNotice.text = "분해할 사체를 선택하세요.";
+            return;
+        }
+
+        HomeUIManager.Inst.energy.runtimeValue += HomeUIManager.Inst.disassembleEnergy;
+        HomeUIManager.Inst.UpdateEnergy();
+
+        HomeUIManager.Inst.UpdateDisassemble();
+
+        OnTurnOver(1);
     }
 }
