@@ -29,8 +29,9 @@ public class GameManager : SingletonBehaviour<GameManager>
     public void StartExploration()
     {
         SceneManager.LoadScene(1);
-        HomeUIManager.Inst.panelHome.SetActive(false);
-        HomeUIManager.Inst.panelExploration.SetActive(true);
+        
+        //HomeUIManager.Inst.panelHome.SetActive(false);
+        //HomeUIManager.Inst.panelExploration.SetActive(true);
         IsHome = false;
     }
     // Home으로 복귀하도록 하는 함수이다.
@@ -75,8 +76,8 @@ public class GameManager : SingletonBehaviour<GameManager>
             return;
         }
 
-        HomeUIManager.Inst.energy.value += HomeUIManager.Inst.disassembleEnergy;
-        HomeUIManager.Inst.UpdateEnergy();
+        GeneralUIManager.Inst.energy.value += HomeUIManager.Inst.disassembleEnergy;
+        GeneralUIManager.Inst.UpdateEnergy();
 
         HomeUIManager.Inst.UpdateDisassemble();
 
