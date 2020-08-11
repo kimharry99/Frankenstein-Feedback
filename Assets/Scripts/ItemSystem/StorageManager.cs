@@ -84,8 +84,8 @@ public class StorageManager : SingletonBehaviour<StorageManager>
                 Tool tool = (Tool)inventory.slotItem[i];
                 switch (stat)
                 {
-                    case "str":
-                        itemStatToReturn += tool.str;
+                    case "atk":
+                        itemStatToReturn += tool.atk;
                         break;
                     case "def":
                         itemStatToReturn += tool.def;
@@ -107,6 +107,7 @@ public class StorageManager : SingletonBehaviour<StorageManager>
         }
         return itemStatToReturn;
     }
+
 
     public void AddItemToChest(Item item)
     {
