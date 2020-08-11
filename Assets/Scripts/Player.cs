@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : SingletonBehaviour<Player>
 {
-    public IntVariable durability;
+    public FloatVariable durability;
     public Inventory inventory;
     [Header("Body Parts")]
     public BodyPart head;
@@ -15,17 +15,49 @@ public class Player : SingletonBehaviour<Player>
     public BodyPart RightLeg;
 
     #region Player Stat
-    //public int Atk { get; private set; }
-    //public int Def { get; private set; }
-    //public int Dex { get; private set; }
-    //public int Mana { get; private set; }
-    //public int Endurance { get; private set; }
-    [Header("Body Parts")]
-    public IntVariable atk;
-    public IntVariable def;
-    public IntVariable dex;
-    public IntVariable mana;
-    public IntVariable endurance;
+    //public IntVariable atk;
+    //public IntVariable def;
+    //public IntVariable dex;
+    //public IntVariable mana;
+    //public IntVariable endurance;
+    [Header("Status")]
+    public Status toolStat;
+    public Status bodyPartStat;
+    public int Atk
+    {
+        get
+        {
+            return toolStat.atk + bodyPartStat.atk;
+        }
+    }
+    public int Def
+    {
+        get
+        {
+            return toolStat.def + bodyPartStat.def;
+        }
+    }
+    public int Dex
+    {
+        get
+        {
+            return toolStat.dex + bodyPartStat.dex;
+        }
+    }
+    public int Mana
+    {
+        get
+        {
+            return toolStat.mana + bodyPartStat.mana;
+        }
+    }
+    public int Endurance
+    {
+        get
+        {
+            return toolStat.endurance + bodyPartStat.endurance;
+        }
+    }
     #endregion
 
     public void InitPlayer()

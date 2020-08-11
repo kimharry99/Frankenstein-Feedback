@@ -63,6 +63,7 @@ public class GameManager : SingletonBehaviour<GameManager>
             {
                 count++;
                 int slotNumber = HomeUIManager.Inst.indexHoldingChest[i];
+                // TODO : dest를 StorageManager로 수정
                 StorageManager.Inst.DeleteItem(slotNumber, HomeUIManager.Inst.chest);
             }
         }

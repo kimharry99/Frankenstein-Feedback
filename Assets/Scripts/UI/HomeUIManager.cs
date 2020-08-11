@@ -43,7 +43,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public Text textNotice;
 
     public Time time;
-    public IntVariable durability;
+    public FloatVariable durability;
     public IntVariable energy;
     public Inventory inventory;
     public Chest chest;

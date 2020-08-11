@@ -21697,7 +21697,7 @@ MonoBehaviour:
   indexUsingHolding: ffffffffffffffffffffffffffffffffffffffffffffffff
   textNotice: {fileID: 3497873558301397695}
   time: {fileID: 11400000, guid: 926617181ab5dcd44a050a2611db6c49, type: 2}
-  durability: {fileID: 11400000, guid: afbe1a9467f64774dbb9595c7f844950, type: 2}
+  durability: {fileID: 11400000, guid: 0f322d544fce00a498795d7394764a5c, type: 2}
   energy: {fileID: 11400000, guid: b48f545c1bd604f458611bfec53d253c, type: 2}
   inventory: {fileID: 11400000, guid: 29bd155a658128a48881d6b34a6f79c7, type: 2}
   chest: {fileID: 11400000, guid: 3e0fe493c96923449932afe84ecbd33c, type: 2}

@@ -108,6 +108,18 @@ public class StorageManager : SingletonBehaviour<StorageManager>
         return itemStatToReturn;
     }
 
+    public void AddItemToChest(Item item)
+    {
+        AddItem(item, chest);
+    }
+    public void AddItemToInven(Item item)
+    {
+        AddItem(item, inventory);
+    }
+
+    // TODO : 아래 두 함수 구현
+    //public Item DeleteFromChest(Item item);
+    //public Item DeleteFromInven(Item item);
     // for debugging
     public void Foo()
     {
