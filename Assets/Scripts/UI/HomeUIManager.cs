@@ -6,20 +6,8 @@ using UnityEngine.UI;
 
 public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 {
-    [Header("Time UI")]
-    public Text textDay;
-    public Text textTime;
-
-    [Header("Energy UI")]
-    public Slider sliderEnergy;
-
-    [Header("Durability UI")]
-    public Text textDurabilty;
-
     [Header("Sub Panels")]
-    public GameObject panelSetting;
     public GameObject panelHome;
-    public GameObject panelExploration;
     public GameObject panelResearch;
     public GameObject panelDisassemble;
     public GameObject panelCrafting;
@@ -28,8 +16,8 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public GameObject panelNotice;
 
     [Header("Inventory")]
-    public Image[] imageInventory;
     public Button[] imageChest;
+    public Sprite emptyImage;
 
     [Header("Disassemble UI")]
     public Image[] imageDisassembleUsing;
@@ -43,48 +31,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     [Header("Notice")]
     public Text textNotice;
 
-    public Time time;
-    public FloatVariable durability;
-    public IntVariable energy;
-    public Inventory inventory;
-    public Chest chest;
-    #region Unity Functions
-    protected override void Awake()
-    {
-        base.Awake();
-        // TODO inventory 와 chest private 변수로 변경
-        // inventory = 
-        // chest = StorageManager.Inst.chest;
-        UpdateInventory();
-    }
-    #endregion
-    // Update textTime and textDay
-    public void UpdateTextTime()
-    {
-        textDay.text = "Day" + time.runtimeDay.ToString();
-        textTime.text = time.runtimeTime.ToString() + "시";
-    }
 
-    public void UpdateTextDurability()
-    {
-        textDurabilty.text = durability.value.ToString() + "%";
-    }
-
-    public void UpdateEnergy()
-    {
-        sliderEnergy.value = energy.value;
-    }
-    public Sprite emptyImage;
-    public void UpdateInventory()
-    {
-        for(int i=0;i<inventory.slotItem.Length;i++)
-        {
-            if (inventory.slotItem[i] != null)
-                imageInventory[i].sprite = inventory.slotItem[i].itemImage;
-            else
-                imageInventory[i].sprite = emptyImage;
-        }
-    }
     public void UpdateChest(int constraint)
     {
 
@@ -137,18 +84,9 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         disassembleEnergy = 0;
         textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
     }
-    // for debugging
-    public void ClickedSendTime()
-    {
-        GameManager.Inst.OnTurnOver(1);
-    }
 
+    public Chest chest;
     #region HomePanel methods
-    public void ButtonSettingClicked()
-    {
-        panelHome.SetActive(false);
-        panelSetting.SetActive(true);
-    }
 
     public void ButtonExploreClicked()
     {
@@ -220,8 +158,8 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
                 disassembleEnergy += chest.slotItem[indexHoldingChest[slotNumber]].energyPotential;
                 textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
 
-                Debug.Log(slotNumber + "select;"+
-                          "    +" + chest.slotItem[indexHoldingChest[slotNumber]].energyPotential + "energy"+"" +
+                Debug.Log(slotNumber + "select;" +
+                          "    +" + chest.slotItem[indexHoldingChest[slotNumber]].energyPotential + "energy" + "" +
                           "\ntotal:" + disassembleEnergy.ToString());
             }
 
@@ -250,9 +188,9 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
             disassembleEnergy -= chest.slotItem[indexHoldingChest[slotNumber]].energyPotential;
             textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
 
-            Debug.Log(slotNumber + "select cancel;"+
-                      "    -"+ chest.slotItem[indexHoldingChest[slotNumber]].energyPotential+"energy"+
-                      "\ntotal:"+ disassembleEnergy.ToString());
+            Debug.Log(slotNumber + "select cancel;" +
+                      "    -" + chest.slotItem[indexHoldingChest[slotNumber]].energyPotential + "energy" +
+                      "\ntotal:" + disassembleEnergy.ToString());
         }
     }
 

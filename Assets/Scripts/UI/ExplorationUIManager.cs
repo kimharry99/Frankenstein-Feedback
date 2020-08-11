@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
 {
+    public GameObject panelExploration;
     #region ExplorationPanel methods
     public void ButtonOption1Clicked()
     {
