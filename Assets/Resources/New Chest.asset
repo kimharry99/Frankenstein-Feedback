@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87048cb850212104baf905398e28c58f, type: 3}
+  m_Name: New Chest
+  m_EditorClassIdentifier: 
+  slotItem:
+  - {fileID: 11400000, guid: d846e29caa9d8ad4a92856c307fb6498, type: 2}
+  - {fileID: 11400000, guid: 9a4f7299e2434524c937adfe0723f844, type: 2}
+  - {fileID: 11400000, guid: 68781c060c1f01b43950c9d60e378cc7, type: 2}
+  - {fileID: 11400000, guid: 8ea4404773e3d5d4cb3b62cd2ec5c626, type: 2}
+  - {fileID: 11400000, guid: 9e4c893d5183c6d4a82619327259787a, type: 2}
+  - {fileID: 11400000, guid: a62a2870b34be494ebb7ab5bc407d6c4, type: 2}
+  - {fileID: 11400000, guid: 1d217146ee853fd4392a03ff3849c417, type: 2}
+  - {fileID: 11400000, guid: fa8101261fb6db344acfe795e053064b, type: 2}
+  - {fileID: 11400000, guid: 42e1302862cbf6a4986f37b4d77ef5c1, type: 2}
+  - {fileID: 11400000, guid: e1e375241a3f74742983093490c6caa4, type: 2}
+  - {fileID: 11400000, guid: 7624c49fe35d26945aad1cad3f602c34, type: 2}
+  - {fileID: 0}
+  slotItemNumber: 3200000013000000180000001d00000028000000310000001c000000160000000d000000140000002a00000000000000

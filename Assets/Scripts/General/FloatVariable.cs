@@ -3,11 +3,11 @@ using UnityEngine;
 
 
 [CreateAssetMenu]
-public class IntVariable : ScriptableObject, ISerializationCallbackReceiver
+public class FloatVariable : ScriptableObject, ISerializationCallbackReceiver
 {
-	public int initialValue;
+	public float initialValue;
 	[NonSerialized]
-	public int value;
+	public float value;
 
 	public void OnAfterDeserialize()
 	{

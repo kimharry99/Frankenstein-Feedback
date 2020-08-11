@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3339899579608164780
+--- !u!1 &4007704499547552572
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,42 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3339899579608164782}
-  - component: {fileID: 3339899579608164781}
+  - component: {fileID: 4007704499547552570}
+  - component: {fileID: 4007704499547552571}
   m_Layer: 0
-  m_Name: StorageManager
+  m_Name: BodyAssembly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3339899579608164782
+--- !u!4 &4007704499547552570
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3339899579608164780}
+  m_GameObject: {fileID: 4007704499547552572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 954.0824, y: 504.88196, z: -16.380651}
+  m_LocalPosition: {x: 1152.9446, y: 573.2239, z: -187.17769}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3339899579608164781
+--- !u!114 &4007704499547552571
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3339899579608164780}
+  m_GameObject: {fileID: 4007704499547552572}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01364e59f648a3c43abf49c7ec523c67, type: 3}
+  m_Script: {fileID: 11500000, guid: 2431feef218ac8c499064350a2f7590a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  none: {fileID: 11400000, guid: 73d4cbc396f19814191281bf179df974, type: 2}
-  inventory: {fileID: 11400000, guid: 29bd155a658128a48881d6b34a6f79c7, type: 2}
-  chest: {fileID: 11400000, guid: 3e0fe493c96923449932afe84ecbd33c, type: 2}
-  toolStat: {fileID: 11400000, guid: d35f7f5c57a326344bcb915cac826d85, type: 2}
+  energy: {fileID: 11400000, guid: b48f545c1bd604f458611bfec53d253c, type: 2}
+  _bodyPartStatus: {fileID: 11400000, guid: e15282c3b66f9c94ca849c7076c39fca, type: 2}

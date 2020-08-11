@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : SingletonBehaviour<Player>
 {
-    public IntVariable durability;
+    public FloatVariable durability;
     public Inventory inventory;
     [Header("Body Parts")]
     public BodyPart head;
@@ -15,20 +15,55 @@ public class Player : SingletonBehaviour<Player>
     public BodyPart RightLeg;
 
     #region Player Stat
-    public int Atk { get; private set; }
-    public int Def { get; private set; }
-    public int Dex { get; private set; }
-    public int Mana { get; private set; }
-    public int Endurance { get; private set; }
+    //public IntVariable atk;
+    //public IntVariable def;
+    //public IntVariable dex;
+    //public IntVariable mana;
+    //public IntVariable endurance;
+    [Header("Status")]
+    public Status toolStat;
+    public Status bodyPartStat;
+    public int Atk
+    {
+        get
+        {
+            return toolStat.atk + bodyPartStat.atk;
+        }
+    }
+    public int Def
+    {
+        get
+        {
+            return toolStat.def + bodyPartStat.def;
+        }
+    }
+    public int Dex
+    {
+        get
+        {
+            return toolStat.dex + bodyPartStat.dex;
+        }
+    }
+    public int Mana
+    {
+        get
+        {
+            return toolStat.mana + bodyPartStat.mana;
+        }
+    }
+    public int Endurance
+    {
+        get
+        {
+            return toolStat.endurance + bodyPartStat.endurance;
+        }
+    }
     #endregion
-
-    // for debugging
-    public int forTest = 0;
 
     public void InitPlayer()
     {
         BodyRegenerationRate = 0;
-        durability.runtimeValue = 100;
+        durability.value = 100;
     }
     
     public void KillPlayer()
@@ -58,7 +93,7 @@ public class Player : SingletonBehaviour<Player>
     // 시간이 흘렀을 때 캐릭터의 변화에 대한 함수이다
     public void DecayBody()
     {
-        durability.runtimeValue = durability.runtimeValue - BodyDecayRate;
+        durability.value = durability.value - BodyDecayRate;
     }
     #endregion
 
