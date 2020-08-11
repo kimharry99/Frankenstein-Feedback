@@ -66,12 +66,12 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
     public void UpdateTextDurability()
     {
-        textDurabilty.text = durability.runtimeValue.ToString() + "%";
+        textDurabilty.text = durability.value.ToString() + "%";
     }
 
     public void UpdateEnergy()
     {
-        sliderEnergy.value = energy.runtimeValue;
+        sliderEnergy.value = energy.value;
     }
     public Sprite emptyImage;
     public void UpdateInventory()

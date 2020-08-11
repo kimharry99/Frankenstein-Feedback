@@ -75,7 +75,7 @@ public class GameManager : SingletonBehaviour<GameManager>
             return;
         }
 
-        HomeUIManager.Inst.energy.runtimeValue += HomeUIManager.Inst.disassembleEnergy;
+        HomeUIManager.Inst.energy.value += HomeUIManager.Inst.disassembleEnergy;
         HomeUIManager.Inst.UpdateEnergy();
 
         HomeUIManager.Inst.UpdateDisassemble();

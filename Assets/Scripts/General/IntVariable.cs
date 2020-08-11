@@ -7,11 +7,11 @@ public class IntVariable : ScriptableObject, ISerializationCallbackReceiver
 {
 	public int initialValue;
 	[NonSerialized]
-	public int runtimeValue;
+	public int value;
 
 	public void OnAfterDeserialize()
 	{
-		runtimeValue = initialValue;
+		value = initialValue;
 	}
 
 	public void OnBeforeSerialize() { }
