@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum Type
 {
-    Corpse,
+    BodyPart,
     Consumable,
     Tool,
     Ingredient

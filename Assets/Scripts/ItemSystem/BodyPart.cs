@@ -13,17 +13,10 @@ public enum BodyPartType
     None = -1
 }
 
-public class BodyPart : MonoBehaviour
+[CreateAssetMenu]
+public class BodyPart : Item
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("Body Part Member")]
+    public BodyPartType bodyPartType;
+    public Sprite bodyPartSprite;
 }
