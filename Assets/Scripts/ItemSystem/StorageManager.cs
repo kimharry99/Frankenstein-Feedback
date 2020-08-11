@@ -64,7 +64,10 @@ public class StorageManager : SingletonBehaviour<StorageManager>
         if (_item == null)
             return;
         if (AddItem(_item, chest))
+        {
+            UpdateToolStat();
             return;
+        }
         return ;
     }
 
@@ -79,6 +82,8 @@ public class StorageManager : SingletonBehaviour<StorageManager>
         int itemStatToReturn = 0;
         for (int i = 0; i < inventory.slotItem.Length; i++)
         {
+            if (inventory.slotItem[i] == null)
+                continue;
             if (inventory.slotItem[i].type == Type.Tool)
             {
                 Tool tool = (Tool)inventory.slotItem[i];
@@ -108,6 +113,16 @@ public class StorageManager : SingletonBehaviour<StorageManager>
         return itemStatToReturn;
     }
 
+    public Status toolStat;
+    // 인벤토리에 변화가 있을 때마다 호출해서 장비의 스텟효과를 갱신한다. 
+    private void UpdateToolStat()
+    {
+        toolStat.atk = GetInventoryItemStat("atk");
+        toolStat.def = GetInventoryItemStat("def");
+        toolStat.dex = GetInventoryItemStat("dex");
+        toolStat.mana = GetInventoryItemStat("mana");
+        toolStat.endurance = GetInventoryItemStat("endurance");
+    }
 
     public void AddItemToChest(Item item)
     {
