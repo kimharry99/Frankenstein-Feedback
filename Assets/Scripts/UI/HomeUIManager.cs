@@ -290,14 +290,25 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     #endregion
 
     #region AssemblePanel methods
-    public void ButtonDeadBodyClicked()
+    //public void ButtonDeadBodyClicked()
+    //{
+    //    print("ButtonDeadBodyClicked");
+    //}
+
+    //public void ButtonEquipClicked()
+    //{
+    //    print("ButtonEquipClicked");
+    //}
+    // chest에서 BodyPart에 해당하는 아이템의 이미지를 BodyAssemble 패널에 업데이트한다. 
+    public void UpdateBodyAsswemblyHoldingImages()
     {
-        print("ButtonDeadBodyClicked");
+
     }
 
-    public void ButtonEquipClicked()
+    // 해당 slot의 아이템이 선택되었는지 표시한다. 다른 slot의 아이템이 선택 해제되었음을 표시한다.
+    public void DisplayIsSelected(int slotNumber)
     {
-        print("ButtonEquipClicked");
+
     }
     #endregion
 }
