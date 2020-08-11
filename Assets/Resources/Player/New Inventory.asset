@@ -17,5 +17,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 68781c060c1f01b43950c9d60e378cc7, type: 2}
   - {fileID: 11400000, guid: d846e29caa9d8ad4a92856c307fb6498, type: 2}
   - {fileID: 11400000, guid: 9a4f7299e2434524c937adfe0723f844, type: 2}
-  - {fileID: 0}
-  slotItemNumber: 7700000047000000270000002100000000000000
+  - {fileID: 11400000, guid: 988ae2d790f9ddf41b8a63835e9d2c8b, type: 2}
+  slotItemNumber: 7600000044000000240000001500000001000000
