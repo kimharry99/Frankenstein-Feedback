@@ -44,6 +44,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   none: {fileID: 11400000, guid: 73d4cbc396f19814191281bf179df974, type: 2}
+  chests:
+  - {fileID: 11400000, guid: be59dd3154e439c4aa38460079ac4db4, type: 2}
+  - {fileID: 11400000, guid: c09955bf55b8a4541b66065e77564cda, type: 2}
+  - {fileID: 11400000, guid: 0e84a02d222ff0644aae573f2afb3b83, type: 2}
+  - {fileID: 11400000, guid: f13b45192f99bc84590620da0c330f4b, type: 2}
+  - {fileID: 11400000, guid: aebba74b73f8e844ba0478b66cf9b894, type: 2}
+  emptyImage: {fileID: 21300000, guid: 9afc85d8617e9a849a6d3dcefefd9bc1, type: 3}
+  homeUIManager: {fileID: 0}
   inventory: {fileID: 11400000, guid: 29bd155a658128a48881d6b34a6f79c7, type: 2}
   chest: {fileID: 11400000, guid: 3e0fe493c96923449932afe84ecbd33c, type: 2}
   toolStat: {fileID: 11400000, guid: d35f7f5c57a326344bcb915cac826d85, type: 2}
