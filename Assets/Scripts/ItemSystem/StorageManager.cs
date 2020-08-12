@@ -7,7 +7,7 @@ public class StorageManager : SingletonBehaviour<StorageManager>
     public Item none;
     public Chest[] chests;
     public Sprite emptyImage;
-    public HomeUIManager homeUIManager;
+    private HomeUIManager _homeUIManager = HomeUIManager.Inst;
 
     public Inventory inventory;
     public Chest chest;
@@ -77,14 +77,6 @@ public class StorageManager : SingletonBehaviour<StorageManager>
         }
         return;
     }
-    public void UpdateChest(int constraint)
-    {
-        homeUIManager = GameObject.Find("UI").GetComponent<HomeUIManager>();
-        if (chest.slotItem[constraint] != null)
-            homeUIManager.imageChest[constraint].image.sprite = chest.slotItem[constraint].itemImage;
-        else
-            homeUIManager.imageChest[constraint].image.sprite = emptyImage;
-    }
     public void MoveItemToChest(int slotNumber)
     {
         Item _item = DeleteItem(slotNumber, inventory);
@@ -113,30 +105,36 @@ public class StorageManager : SingletonBehaviour<StorageManager>
             return;
         return;
     }
-    public void InitialUpdateChest()
-    {
-        chest = chests[0];
-        homeUIManager = GameObject.Find("UI").GetComponent<HomeUIManager>();
-        for (int i = 0; i < chest.slotItem.Length; i++)
-        {
-            if (chest.slotItem[i] != null)
-                homeUIManager.imageChest[i].image.sprite = chest.slotItem[i].itemImage;
-            else
-                homeUIManager.imageChest[i].image.sprite = emptyImage;
-        }
-    }
-    public void SortItem(int num)
-    {
-        homeUIManager = GameObject.Find("UI").GetComponent<HomeUIManager>();
-        chest = chests[num];
-        for (int i = 0; i < chest.slotItem.Length; i++)
-        {
-            if (chest.slotItem[i] != null)
-                homeUIManager.imageChest[i].image.sprite = chest.slotItem[i].itemImage;
-            else
-                homeUIManager.imageChest[i].image.sprite = emptyImage;
-        }
-    }
+    //public void UpdateChest(int constraint)
+    //{
+    //    if (chest.slotItem[constraint] != null)
+    //        _homeUIManager.imageChest[constraint].image.sprite = chest.slotItem[constraint].itemImage;
+    //    else
+    //        _homeUIManager.imageChest[constraint].image.sprite = emptyImage;
+    //}
+    //public void InitialUpdateChest()
+    //{
+    //    chest = chests[0];
+    //    for (int i = 0; i < chest.slotItem.Length; i++)
+    //    {
+    //        if (chest.slotItem[i] != null)
+    //            _homeUIManager.imageChest[i].image.sprite = chest.slotItem[i].itemImage;
+    //        else
+    //            _homeUIManager.imageChest[i].image.sprite = emptyImage;
+    //    }
+    //}
+    //public void SortItem(int num)
+    //{
+    //    homeUIManager = GameObject.Find("UI").GetComponent<HomeUIManager>();
+    //    chest = chests[num];
+    //    for (int i = 0; i < chest.slotItem.Length; i++)
+    //    {
+    //        if (chest.slotItem[i] != null)
+    //            homeUIManager.imageChest[i].image.sprite = chest.slotItem[i].itemImage;
+    //        else
+    //            homeUIManager.imageChest[i].image.sprite = emptyImage;
+    //    }
+    //}
 
     // 인벤토리에 장착된 도구의 스텟 효과를 반환한다. 매개변수는 소문자를 사용한다.
     public int GetInventoryItemStat(string stat)

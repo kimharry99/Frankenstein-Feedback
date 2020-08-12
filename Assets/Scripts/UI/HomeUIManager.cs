@@ -16,8 +16,10 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public GameObject panelNotice;
 
     [Header("Inventory")]
-    public Button[] imageChest;
+    public Button[] imageChestSlot;
     public Sprite emptyImage;
+
+    public Chest chest;
 
     [Header("Disassemble UI")]
     public Image[] imageDisassembleUsing;
@@ -31,12 +33,94 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     [Header("Notice")]
     public Text textNotice;
 
-
-    public void UpdateChest(int constraint)
+    #region chest methods
+    public void UpdateChest(int slotNumber)
     {
-
+        if (chest.slotItem[slotNumber] != null)
+            imageChestSlot[slotNumber].image.sprite = chest.slotItem[slotNumber].itemImage;
+        else
+            imageChestSlot[slotNumber].image.sprite = emptyImage;
     }
 
+    public void InitialUpdateChest()
+    {
+        chest = StorageManager.Inst.chests[0];
+        for (int i = 0; i < chest.slotItem.Length; i++)
+        {
+            if (chest.slotItem[i] != null)
+                imageChestSlot[i].image.sprite = chest.slotItem[i].itemImage;
+            else
+                imageChestSlot[i].image.sprite = emptyImage;
+        }
+    }
+    public void SortItem(int num)
+    {
+        chest = StorageManager.Inst.chests[num];
+        for (int i = 0; i < chest.slotItem.Length; i++)
+        {
+            if (chest.slotItem[i] != null)
+                imageChestSlot[i].image.sprite = chest.slotItem[i].itemImage;
+            else
+                imageChestSlot[i].image.sprite = emptyImage;
+        }
+    }
+    #endregion
+
+    #region HomePanel methods
+
+    public void ButtonExploreClicked()
+    {
+        GameManager.Inst.StartExploration();
+    }
+
+    public void ButtonResearchClicked()
+    {
+        panelHome.SetActive(false);
+        panelResearch.SetActive(true);
+    }
+
+    public void ButtonDisassembleClicked()
+    {
+        panelHome.SetActive(false);
+        panelDisassemble.SetActive(true);
+
+        UpdateDisassemble();
+        scrollbarDisassemble.value = 1;
+    }
+
+    public void ButtonCraftClicked()
+    {
+        panelHome.SetActive(false);
+        panelCrafting.SetActive(true);
+    }
+
+    public void ButtonAssembleClicked()
+    {
+        panelHome.SetActive(false);
+        panelAssemble.SetActive(true);
+    }
+
+    public void ButtonChestClicked()
+    {
+        panelHome.SetActive(false);
+        panelChest.SetActive(true);
+    } 
+    // Parameter panel means a panel to be closed.
+    public void ButtonCloseClicked(GameObject panel)
+    {
+        panel.SetActive(false);
+        panelHome.SetActive(true);
+    }
+
+    #endregion
+
+
+    public void PanelNoticeClicked()
+    {
+        panelNotice.SetActive(false);
+    }
+
+    #region DisassemblePanel methods
     public int disassembleEnergy = 0;
     public void UpdateDisassemble()
     {
@@ -85,61 +169,6 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
     }
 
-    public Chest chest;
-    #region HomePanel methods
-
-    public void ButtonExploreClicked()
-    {
-        GameManager.Inst.StartExploration();
-    }
-
-    public void ButtonResearchClicked()
-    {
-        panelHome.SetActive(false);
-        panelResearch.SetActive(true);
-    }
-
-    public void ButtonDisassembleClicked()
-    {
-        panelHome.SetActive(false);
-        panelDisassemble.SetActive(true);
-
-        UpdateDisassemble();
-        scrollbarDisassemble.value = 1;
-    }
-
-    public void ButtonCraftClicked()
-    {
-        panelHome.SetActive(false);
-        panelCrafting.SetActive(true);
-    }
-
-    public void ButtonAssembleClicked()
-    {
-        panelHome.SetActive(false);
-        panelAssemble.SetActive(true);
-    }
-
-    public void ButtonChestClicked()
-    {
-        panelHome.SetActive(false);
-        panelChest.SetActive(true);
-    }
-    #endregion
-
-    // Parameter panel means a panel to be closed.
-    public void ButtonCloseClicked(GameObject panel)
-    {
-        panel.SetActive(false);
-        panelHome.SetActive(true);
-    }
-
-    public void PanelNoticeClicked()
-    {
-        panelNotice.SetActive(false);
-    }
-
-    #region DisassemblePanel methods
     public void DisassembleButtonHoldingClicked(int slotNumber)
     {
         if (imageCheck[slotNumber].activeSelf == false && imageDisassembleHolding[slotNumber].sprite != emptyImage) // The Case that Slot not been Selected Before

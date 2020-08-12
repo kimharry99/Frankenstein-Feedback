@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 819799195444701924}
   - component: {fileID: 6246241726156651051}
   m_Layer: 5
-  m_Name: ItemSlot1
+  m_Name: InvenItmeSlot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,8 +197,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: MoveItemToChest
+      - m_Target: {fileID: 2022649851617676812}
+        m_MethodName: ButtonInvenItemClicked
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -912,6 +912,7 @@ GameObject:
   - component: {fileID: 5043387842682540678}
   - component: {fileID: 6629913739476257242}
   - component: {fileID: 8977666780607279273}
+  - component: {fileID: 2022649851617676812}
   m_Layer: 5
   m_Name: GeneralUI
   m_TagString: Untagged
@@ -1004,6 +1005,34 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2022649851617676812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4323410309225755390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbeddaec176028f419798523a4fe7a94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textDay: {fileID: 2456275377764915897}
+  textTime: {fileID: 8989460140264431637}
+  sliderEnergy: {fileID: 1267107427741539500}
+  textDurabilty: {fileID: 6540720906518896429}
+  imageInventory:
+  - {fileID: 189693042927971148}
+  - {fileID: 1845438110766228272}
+  - {fileID: 40851149159233699}
+  - {fileID: 8895983628043457230}
+  - {fileID: 2928459777444480413}
+  panelSetting: {fileID: 810444220633392932}
+  time: {fileID: 11400000, guid: 926617181ab5dcd44a050a2611db6c49, type: 2}
+  durability: {fileID: 11400000, guid: 0f322d544fce00a498795d7394764a5c, type: 2}
+  energy: {fileID: 11400000, guid: b48f545c1bd604f458611bfec53d253c, type: 2}
+  inventory: {fileID: 11400000, guid: 29bd155a658128a48881d6b34a6f79c7, type: 2}
+  emptyImage: {fileID: 21300000, guid: 9afc85d8617e9a849a6d3dcefefd9bc1, type: 3}
 --- !u!1 &4414498174783479665
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,7 +1046,7 @@ GameObject:
   - component: {fileID: 6532099911302763817}
   - component: {fileID: 9068741037768247745}
   m_Layer: 5
-  m_Name: ItemSlot3
+  m_Name: InvenItmeSlot3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1123,8 +1152,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: MoveItemToChest
+      - m_Target: {fileID: 2022649851617676812}
+        m_MethodName: ButtonInvenItemClicked
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1600,7 +1629,7 @@ GameObject:
   - component: {fileID: 7326309841654993491}
   - component: {fileID: 4031292569548333943}
   m_Layer: 5
-  m_Name: ItemSlot4
+  m_Name: InvenItmeSlot4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1706,8 +1735,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: MoveItemToChest
+      - m_Target: {fileID: 2022649851617676812}
+        m_MethodName: ButtonInvenItemClicked
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1775,11 +1804,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.9728101, g: 1, b: 0.1462264, a: 1}
+    m_NormalColor: {r: 0.9607844, g: 0.9607844, b: 0.9607844, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.9725491, g: 1, b: 0.14509805, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1793,15 +1822,15 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 3127918092793337561}
   m_FillRect: {fileID: 5715627527908172131}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 1000
   m_WholeNumbers: 1
-  m_Value: 100
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1922,7 +1951,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8604165481251930680}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2022649851617676812}
+        m_MethodName: ButtonSettingClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7270802210629231332
 GameObject:
   m_ObjectHideFlags: 0
@@ -1936,7 +1976,7 @@ GameObject:
   - component: {fileID: 1790571511727971609}
   - component: {fileID: 1968697970290009286}
   m_Layer: 5
-  m_Name: ItemSlot0
+  m_Name: InvenItmeSlot0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2042,20 +2082,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: MoveItemToChest
+      - m_Target: {fileID: 2022649851617676812}
+        m_MethodName: ButtonInvenItemClicked
         m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: UpdateInventory
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2151,7 +2180,7 @@ GameObject:
   - component: {fileID: 941968439841406413}
   - component: {fileID: 1724582697172077575}
   m_Layer: 5
-  m_Name: ItemSlot2
+  m_Name: InvenItmeSlot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2257,8 +2286,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: MoveItemToChest
+      - m_Target: {fileID: 2022649851617676812}
+        m_MethodName: ButtonInvenItemClicked
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

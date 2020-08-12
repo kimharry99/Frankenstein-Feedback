@@ -49,6 +49,7 @@ public class GeneralUIManager : SingletonBehaviour<GeneralUIManager>
     {
         sliderEnergy.value = energy.value;
     }
+    #region Inventory
     public Sprite emptyImage;
     public void UpdateInventory()
     {
@@ -60,6 +61,20 @@ public class GeneralUIManager : SingletonBehaviour<GeneralUIManager>
                 imageInventory[i].sprite = emptyImage;
         }
     }
+
+    public void ButtonInvenItemClicked(int slotNumber)
+    {
+        if (HomeUIManager.Inst.panelChest.activeSelf)
+        {
+            Debug.Log("chest");
+            StorageManager.Inst.MoveItemToChest(slotNumber);
+        }
+        else
+        {
+            Debug.Log("nothing");
+        }
+    }
+    #endregion
     public void ButtonSettingClicked()
     {
         panelSetting.SetActive(true);
