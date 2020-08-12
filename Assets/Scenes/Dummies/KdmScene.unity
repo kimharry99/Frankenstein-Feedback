@@ -900,6 +900,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b7f68a00e3e450479a51bdea6b95e73, type: 3}
+--- !u!114 &4007704499490289720 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4007704499547552571, guid: 0b7f68a00e3e450479a51bdea6b95e73,
+    type: 3}
+  m_PrefabInstance: {fileID: 4007704499490289719}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2431feef218ac8c499064350a2f7590a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4496653150491583667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -964,24 +976,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4496653149735789406, guid: 67032a8892c6fbc41a201638db5eb41c,
         type: 3}
+      propertyPath: bodyAssembly
+      value: 
+      objectReference: {fileID: 4007704499490289720}
+    - target: {fileID: 4496653149735789406, guid: 67032a8892c6fbc41a201638db5eb41c,
+        type: 3}
       propertyPath: onTurnOver.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5468435958745473717}
     - target: {fileID: 4496653149735789406, guid: 67032a8892c6fbc41a201638db5eb41c,
         type: 3}
       propertyPath: onTurnOver.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4496653149735789406, guid: 67032a8892c6fbc41a201638db5eb41c,
-        type: 3}
-      propertyPath: onTurnOver.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: UpdateTextTime
-      objectReference: {fileID: 0}
-    - target: {fileID: 4496653149735789406, guid: 67032a8892c6fbc41a201638db5eb41c,
-        type: 3}
-      propertyPath: onTurnOver.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: UpdateTextDurability
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5468435958745473717}
     - target: {fileID: 4496653149735789407, guid: 67032a8892c6fbc41a201638db5eb41c,
         type: 3}
       propertyPath: m_Name
@@ -1449,3 +1456,15 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1181408416501464637, guid: ee0ad5a58c04fa449b76628d214fcd70, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ee0ad5a58c04fa449b76628d214fcd70, type: 3}
+--- !u!114 &5468435958745473717 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 374568129879677068, guid: ee0ad5a58c04fa449b76628d214fcd70,
+    type: 3}
+  m_PrefabInstance: {fileID: 5468435958745473716}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbeddaec176028f419798523a4fe7a94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

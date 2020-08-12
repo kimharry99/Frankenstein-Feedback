@@ -160,6 +160,8 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         panelHome.SetActive(false);
         panelAssemble.SetActive(true);
+        GameManager.Inst.bodyAssembly.HoldBodyPartsFromChest();
+        UpdateBodyAsswemblyHoldingImages();
     }
 
     public void ButtonChestClicked()
@@ -321,25 +323,36 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     #endregion
 
     #region AssemblePanel methods
-    //public void ButtonDeadBodyClicked()
-    //{
-    //    print("ButtonDeadBodyClicked");
-    //}
-
-    //public void ButtonEquipClicked()
-    //{
-    //    print("ButtonEquipClicked");
-    //}
-    // chest에서 BodyPart에 해당하는 아이템의 이미지를 BodyAssemble 패널에 업데이트한다. 
+    // 진웅 TODO : 메소드 구현, chest methods의 UpdateChestImage 참고
+    /// <summary>
+    /// chest에서 BodyPart에 해당하는 아이템의 이미지를 BodyAssemble 패널에 업데이트한다.
+    /// </summary>
     public void UpdateBodyAsswemblyHoldingImages()
     {
 
     }
 
-    // 해당 slot의 아이템이 선택되었는지 표시한다. 다른 slot의 아이템이 선택 해제되었음을 표시한다.
-    public void DisplayIsSelected(int slotNumber)
+    // 진웅 TODO : 메소드 구현, image check를 사용하거나, slot의 이미지를 흐리게 표현
+    /// <summary>
+    /// slotNumber번째의 slot의 아이템이 선택되었는지 표시한다. 
+    /// 동시에 다른 slot의 아이템이 선택 해제되었음을 표시한다.
+    /// </summary>
+    /// <param name="slotNumber"></param>
+    private void DisplayIsSelected(int slotNumber)
     {
 
+    }
+
+    public void ButtonAssemblyHoldingItemClicked(int slotNumber)
+    {
+        DisplayIsSelected(slotNumber);
+        GameManager.Inst.bodyAssembly.SelectBodyPart(slotNumber);
+    }
+
+    // TODO : 이름변경해야 함
+    public void ButtonDoAssembleyClicked()
+    {
+        GameManager.Inst.bodyAssembly.AssemleBody();
     }
     #endregion
 }

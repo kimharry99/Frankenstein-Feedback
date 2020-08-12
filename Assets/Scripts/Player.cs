@@ -97,6 +97,14 @@ public class Player : SingletonBehaviour<Player>
     }
     #endregion
 
+    /// <summary>
+    /// 플레이어의 신체 스프라이트를 업데이트한다.
+    /// </summary>
+    public void UpdateCharacterBody()
+    {
+
+    }
+
     #region Unity Functions
     protected override void Awake()
     {

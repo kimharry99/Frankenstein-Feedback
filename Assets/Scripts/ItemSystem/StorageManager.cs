@@ -18,7 +18,7 @@ public class StorageManager : SingletonBehaviour<StorageManager>
     }
     #region Chest Indexes
     // UI에서 참조하기 위한 index
-    public int[] _indexTableBodypart = new int[Chest.CAPACITY];
+    private int[] _indexTableBodypart = new int[Chest.CAPACITY];
     private int[] _indexTableConsumable = new int[Chest.CAPACITY];
     private int[] _indexTableTool = new int[Chest.CAPACITY];
     private int[] _indexTableIngredient = new int[Chest.CAPACITY];

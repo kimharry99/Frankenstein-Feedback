@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: {fileID: 11400000, guid: 926617181ab5dcd44a050a2611db6c49, type: 2}
+  bodyAssembly: {fileID: 0}
   onTurnOver:
     m_PersistentCalls:
       m_Calls:
@@ -59,7 +60,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_MethodName: UpdateTextDurability
+        m_MethodName: UpdateEnergy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -70,7 +71,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_MethodName: UpdateTextTime
+        m_MethodName: UpdateTextDurability
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

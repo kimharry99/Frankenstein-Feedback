@@ -9,6 +9,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     public int Day { get; private set; }
     public Time time;
     public bool IsHome { get; private set; }
+    public BodyAssembly bodyAssembly;
     #region Unity Functions
     protected override void Awake()
     {
