@@ -12,6 +12,54 @@ public class StorageManager : SingletonBehaviour<StorageManager>
     public Inventory inventory;
     public Chest chest;
 
+    // UI에서 참조하기 위한 index
+    public int[] _indexTableBodypart = new int[30];
+    public int GetIndexBodyPart(int uiIndex)
+    {
+        return _indexTableBodypart[uiIndex];
+    }
+    public int[] _indexTableConsumable = new int[30];
+    public int GetIndexConsumable(int uiIndex)
+    {
+        return _indexTableConsumable[uiIndex];
+    }
+    public int[] _indexTableTool = new int[30];
+    public int GetIndexTool(int uiIndex)
+    {
+        return _indexTableTool[uiIndex];
+    }
+    public int[] _indexTableIngredient = new int[30];
+    public int GetIndexIngredient(int uiIndex)
+    {
+        return _indexTableIngredient[uiIndex];
+    }
+
+    private void UpdateChestIndexes()
+    {
+        int indexBodyPart=0, indexConsumable=0, indexTool=0, indexIngredient = 0;
+        for (int i = 0; i < chest.slotItem.Length; i++)
+        {
+            if(chest.slotItem[i] != null)
+                switch (chest.slotItem[i].type)
+                {
+                    case Type.BodyPart:
+                        _indexTableBodypart[indexBodyPart++] = i;
+                        break;
+                    case Type.Consumable:
+                        _indexTableConsumable[indexConsumable++] = i;
+                        break;
+                    case Type.Ingredient:
+                        _indexTableIngredient[indexIngredient++] = i;
+                        break;
+                    case Type.Tool:
+                        _indexTableTool[indexTool++] = i;
+                        break;
+                    default:
+                        Debug.Log("wrong!");
+                        return;
+                }
+        }
+    }
     public bool AddItem(Item item, Storage dest)
     {
         for (int i = 0; i < dest.slotItem.Length; i++)
@@ -91,6 +139,7 @@ public class StorageManager : SingletonBehaviour<StorageManager>
         return ;
     }
 
+    // chest의 slotNumber번째 아이템을 인벤 마지막 자리로 이동한다.
     public void MoveItemToInven(int slotNumber)
     {
         // to implement
@@ -199,8 +248,6 @@ public class StorageManager : SingletonBehaviour<StorageManager>
     // for debugging
     public void Foo()
     {
-        Debug.Log("inven str : " + GetInventoryItemStat("str"));
-        Debug.Log("inven def : " + GetInventoryItemStat("def"));
-        Debug.Log("inven dex : " + GetInventoryItemStat("dex"));
+        UpdateChestIndexes();
     }
 }

@@ -927,9 +927,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3339899579608164781, guid: d3cc296ffcbbe0645a973cd1d2319945,
-          type: 3}
-        m_MethodName: SortItem
+      - m_Target: {fileID: 5598134403201767622}
+        m_MethodName: ButtonChestCategoryClicked
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2064,9 +2063,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3339899579608164781, guid: d3cc296ffcbbe0645a973cd1d2319945,
-          type: 3}
-        m_MethodName: SortItem
+      - m_Target: {fileID: 5598134403201767622}
+        m_MethodName: ButtonChestCategoryClicked
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2889,9 +2887,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3339899579608164781, guid: d3cc296ffcbbe0645a973cd1d2319945,
-          type: 3}
-        m_MethodName: SortItem
+      - m_Target: {fileID: 5598134403201767622}
+        m_MethodName: ButtonChestCategoryClicked
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6126,9 +6123,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3339899579608164781, guid: d3cc296ffcbbe0645a973cd1d2319945,
-          type: 3}
-        m_MethodName: SortItem
+      - m_Target: {fileID: 5598134403201767622}
+        m_MethodName: ButtonChestCategoryClicked
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8011,9 +8007,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3339899579608164781, guid: d3cc296ffcbbe0645a973cd1d2319945,
-          type: 3}
-        m_MethodName: SortItem
+      - m_Target: {fileID: 5598134403201767622}
+        m_MethodName: ButtonChestCategoryClicked
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18396,7 +18391,7 @@ MonoBehaviour:
   panelAssemble: {fileID: 5598134402770909482}
   panelChest: {fileID: 5909870149488862778}
   panelNotice: {fileID: 3101923039464477571}
-  imageChest:
+  imageChestSlot:
   - {fileID: 6409655301988982792}
   - {fileID: 4488367182028623171}
   - {fileID: 1542452589374171336}
@@ -18416,6 +18411,7 @@ MonoBehaviour:
   - {fileID: 4823380977124674753}
   - {fileID: 4700395556689230152}
   emptyImage: {fileID: 21300000, guid: 9afc85d8617e9a849a6d3dcefefd9bc1, type: 3}
+  chest: {fileID: 11400000, guid: 3e0fe493c96923449932afe84ecbd33c, type: 2}
   imageDisassembleUsing:
   - {fileID: 5598134402714739211}
   - {fileID: 5598134401776615095}
@@ -18491,7 +18487,6 @@ MonoBehaviour:
   indexUsingHolding: ffffffffffffffffffffffffffffffffffffffffffffffff
   textNotice: {fileID: 3497873558301397695}
   disassembleEnergy: 0
-  chest: {fileID: 11400000, guid: 3e0fe493c96923449932afe84ecbd33c, type: 2}
 --- !u!1 &5598134403204625317
 GameObject:
   m_ObjectHideFlags: 0
