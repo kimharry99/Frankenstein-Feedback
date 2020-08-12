@@ -34,12 +34,44 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public Text textNotice;
 
     #region chest methods
-    public void UpdateChest(int slotNumber)
+    public void UpdateChestSlot(int slotNumber)
     {
         if (chest.slotItem[slotNumber] != null)
             imageChestSlot[slotNumber].image.sprite = chest.slotItem[slotNumber].itemImage;
         else
             imageChestSlot[slotNumber].image.sprite = emptyImage;
+    }
+    // 창고 정렬, 창고 패널 표시에서 호출되는 함수이다. 창고 패널의 이미지를 업데이트한다.
+    // ui에서의 번호와 실제 창고의 slot Number를 매칭한다.
+    // TODO : If, else 깔끔하게
+    public void UpdateChest(Type itemType)
+    {
+        for (int i = 0, imageIndex = 0; imageIndex < imageChestSlot.Length; i++)
+        {
+            if (i < chest.slotItem.Length)
+            {
+                if (chest.slotItem[i] != null)
+                {
+                    if (chest.slotItem[i].type == itemType || itemType == Type.All)
+                    {
+                        imageChestSlot[imageIndex++].image.sprite = chest.slotItem[i].itemImage;
+                    }
+                }
+                else
+                {
+                    imageChestSlot[imageIndex++].image.sprite = null;
+                }
+            }
+            // 창고의 모든 아이템을 load한 경우
+            else
+            {
+                imageChestSlot[imageIndex++].image.sprite = null;
+            }
+        }
+    }
+    public void ButtonChestCategoryClicked(int intItemType)
+    {
+        UpdateChest((Type)intItemType);
     }
 
     public void InitialUpdateChest()
