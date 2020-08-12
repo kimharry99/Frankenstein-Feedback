@@ -766,6 +766,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3339899579608164781, guid: d3cc296ffcbbe0645a973cd1d2319945,
         type: 3}
+      propertyPath: _indexTableBodypart.Array.size
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339899579608164781, guid: d3cc296ffcbbe0645a973cd1d2319945,
+        type: 3}
       propertyPath: homeUIManager
       value: 
       objectReference: {fileID: 1849072223}
@@ -1095,6 +1100,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -243
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460384507653840414, guid: ee0ad5a58c04fa449b76628d214fcd70,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5474737282648280696, guid: ee0ad5a58c04fa449b76628d214fcd70,
         type: 3}

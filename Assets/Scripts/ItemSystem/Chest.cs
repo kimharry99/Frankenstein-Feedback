@@ -4,5 +4,5 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Chest : Storage
 {
-
+    public const int CAPACITY = 18;
 }

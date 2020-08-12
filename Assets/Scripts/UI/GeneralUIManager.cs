@@ -34,6 +34,7 @@ public class GeneralUIManager : SingletonBehaviour<GeneralUIManager>
         UpdateInventory();
     }
     #endregion
+    
     public void UpdateTextTime()
     {
         textDay.text = "Day" + time.runtimeDay.ToString();
@@ -49,9 +50,16 @@ public class GeneralUIManager : SingletonBehaviour<GeneralUIManager>
     {
         sliderEnergy.value = energy.value;
     }
+
     #region Inventory
     public Sprite emptyImage;
     public void UpdateInventory()
+    {
+        UpdateInventoryImage();
+        UpdateInventoryText();
+    }
+
+    private void UpdateInventoryImage()
     {
         for (int i = 0; i < inventory.slotItem.Length; i++)
         {
@@ -75,8 +83,19 @@ public class GeneralUIManager : SingletonBehaviour<GeneralUIManager>
         }
     }
     #endregion
+
     public void ButtonSettingClicked()
     {
         panelSetting.SetActive(true);
+
+    }
+
+    // 승윤 TODO : 메소드 구현, inventory region안에 옮겨놓기
+    /// <summary>
+    /// 인벤토리의 아이템 개수를 업데이트 한다. 
+    /// </summary>
+    private void UpdateInventoryText()
+    {
+
     }
 }

@@ -16,7 +16,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public GameObject panelNotice;
 
     [Header("Inventory")]
-    public Button[] imageChestSlot;
+    public Button[] imageChestSlot = new Button[Chest.CAPACITY];
     public Sprite emptyImage;
 
     public Chest chest;
@@ -34,69 +34,99 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public Text textNotice;
 
     #region chest methods
-    public void UpdateChestSlot(int slotNumber)
+    //public void UpdateChestSlot(int slotNumber)
+    //{
+    //    if (chest.slotItem[slotNumber] != null)
+    //        imageChestSlot[slotNumber].image.sprite = chest.slotItem[slotNumber].itemImage;
+    //    else
+    //        imageChestSlot[slotNumber].image.sprite = emptyImage;
+    //}
+
+    /// <summary>
+    /// 창고 정렬, 창고 패널 표시에서 호출되는 함수이다. 
+    /// </summary>
+    public void UpdateChest()
     {
-        if (chest.slotItem[slotNumber] != null)
-            imageChestSlot[slotNumber].image.sprite = chest.slotItem[slotNumber].itemImage;
-        else
-            imageChestSlot[slotNumber].image.sprite = emptyImage;
-    }
-    // 창고 정렬, 창고 패널 표시에서 호출되는 함수이다. 창고 패널의 이미지를 업데이트한다.
-    // ui에서의 번호와 실제 창고의 slot Number를 매칭한다.
-    // TODO : If, else 깔끔하게
-    public void UpdateChest(Type itemType)
-    {
-        for (int i = 0, imageIndex = 0; imageIndex < imageChestSlot.Length; i++)
-        {
-            if (i < chest.slotItem.Length)
-            {
-                if (chest.slotItem[i] != null)
-                {
-                    if (chest.slotItem[i].type == itemType || itemType == Type.All)
-                    {
-                        imageChestSlot[imageIndex++].image.sprite = chest.slotItem[i].itemImage;
-                    }
-                }
-                else
-                {
-                    imageChestSlot[imageIndex++].image.sprite = null;
-                }
-            }
-            // 창고의 모든 아이템을 load한 경우
-            else
-            {
-                imageChestSlot[imageIndex++].image.sprite = null;
-            }
-        }
-    }
-    public void ButtonChestCategoryClicked(int intItemType)
-    {
-        UpdateChest((Type)intItemType);
+        UpdateChestImage();
+        UpdateChestText();
     }
 
-    public void InitialUpdateChest()
+    /// <summary>
+    /// 창고 패널의 이미지를 업데이트한다.
+    /// TODO : If, else 깔끔하게
+    /// </summary>
+    private void UpdateChestImage()
     {
-        chest = StorageManager.Inst.chests[0];
-        for (int i = 0; i < chest.slotItem.Length; i++)
+        for(int i=0;i<imageChestSlot.Length;i++)
         {
-            if (chest.slotItem[i] != null)
-                imageChestSlot[i].image.sprite = chest.slotItem[i].itemImage;
-            else
-                imageChestSlot[i].image.sprite = emptyImage;
+            int indexItem = StorageManager.Inst.GetIndexTable(_currentChestType, i);
+            if (indexItem != -1)
+            {
+                if (chest.slotItem[indexItem] != null)
+                {
+                    imageChestSlot[i].image.sprite = chest.slotItem[indexItem].itemImage;
+                    continue;
+                }
+            }
+            imageChestSlot[i].image.sprite = null;
         }
     }
-    public void SortItem(int num)
+
+    private Type _currentChestType = Type.All;
+    public void ButtonChestCategoryClicked(int intItemType)
     {
-        chest = StorageManager.Inst.chests[num];
-        for (int i = 0; i < chest.slotItem.Length; i++)
-        {
-            if (chest.slotItem[i] != null)
-                imageChestSlot[i].image.sprite = chest.slotItem[i].itemImage;
-            else
-                imageChestSlot[i].image.sprite = emptyImage;
-        }
+        _currentChestType = (Type)intItemType;
+        HighlightCategoryButton();
+        UpdateChest();
+
     }
+    public void ButtonChestSlotClidked(int uiSlot)
+    {
+        int itemSlot = StorageManager.Inst.GetIndexTable(_currentChestType, uiSlot);
+        StorageManager.Inst.MoveItemToInven(itemSlot);
+    }
+
+    //public void InitialUpdateChest()
+    //{
+    //    chest = StorageManager.Inst.chests[0];
+    //    for (int i = 0; i < chest.slotItem.Length; i++)
+    //    {
+    //        if (chest.slotItem[i] != null)
+    //            imageChestSlot[i].image.sprite = chest.slotItem[i].itemImage;
+    //        else
+    //            imageChestSlot[i].image.sprite = emptyImage;
+    //    }
+    //}
+    //public void SortItem(int num)
+    //{
+    //    chest = StorageManager.Inst.chests[num];
+    //    for (int i = 0; i < chest.slotItem.Length; i++)
+    //    {
+    //        if (chest.slotItem[i] != null)
+    //            imageChestSlot[i].image.sprite = chest.slotItem[i].itemImage;
+    //        else
+    //            imageChestSlot[i].image.sprite = emptyImage;
+    //    }
+    //}
     #endregion
+
+    // 승윤 TODO : 메소드 구현, chest mehtods region안에 옮겨놓기
+    /// <summary>
+    /// 창고의 아이템 개수를 Update한다.
+    /// </summary>
+    private void UpdateChestText()
+    {
+
+    }
+
+    // 승윤 TODO : 메소드 구현, chest methods region안에 옮겨놓기
+    /// <summary>
+    /// 창고가 어떤 카테고리의 아이템을 display하고 있는지 표시하기 위해 카테고리 버튼의 색을 변경한다.
+    /// </summary>
+    private void HighlightCategoryButton()
+    {
+
+    }
 
     #region HomePanel methods
 
@@ -136,6 +166,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         panelHome.SetActive(false);
         panelChest.SetActive(true);
+        UpdateChest();
     } 
     // Parameter panel means a panel to be closed.
     public void ButtonCloseClicked(GameObject panel)

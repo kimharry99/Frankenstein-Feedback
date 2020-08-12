@@ -5,84 +5,96 @@ using UnityEngine;
 public class StorageManager : SingletonBehaviour<StorageManager>
 {
     public Item none;
-    public Chest[] chests;
+    //public Chest[] chests;
     public Sprite emptyImage;
-    private HomeUIManager _homeUIManager = HomeUIManager.Inst;
 
     public Inventory inventory;
     public Chest chest;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        UpdateChestIndexes();
+    }
+    #region Chest Indexes
     // UI에서 참조하기 위한 index
-    public int[] _indexTableBodypart = new int[30];
-    public int GetIndexBodyPart(int uiIndex)
+    public int[] _indexTableBodypart = new int[Chest.CAPACITY];
+    private int[] _indexTableConsumable = new int[Chest.CAPACITY];
+    private int[] _indexTableTool = new int[Chest.CAPACITY];
+    private int[] _indexTableIngredient = new int[Chest.CAPACITY];
+    public int GetIndexTable(Type itemType, int uiIndex)
     {
-        return _indexTableBodypart[uiIndex];
+        switch (itemType)
+        {
+            case Type.All:
+                return uiIndex;
+            case Type.BodyPart:
+                return _indexTableBodypart[uiIndex];
+            case Type.Consumable:
+                return _indexTableConsumable[uiIndex];
+            case Type.Ingredient:
+                return _indexTableIngredient[uiIndex];
+            case Type.Tool:
+                return _indexTableTool[uiIndex];
+            default:
+                Debug.Log("wrong item Type");
+                return -1;
+        }
     }
-    public int[] _indexTableConsumable = new int[30];
-    public int GetIndexConsumable(int uiIndex)
-    {
-        return _indexTableConsumable[uiIndex];
-    }
-    public int[] _indexTableTool = new int[30];
-    public int GetIndexTool(int uiIndex)
-    {
-        return _indexTableTool[uiIndex];
-    }
-    public int[] _indexTableIngredient = new int[30];
-    public int GetIndexIngredient(int uiIndex)
-    {
-        return _indexTableIngredient[uiIndex];
-    }
-
     private void UpdateChestIndexes()
     {
-        int indexBodyPart=0, indexConsumable=0, indexTool=0, indexIngredient = 0;
-        for (int i = 0; i < chest.slotItem.Length; i++)
+        int indexBodyPart = 0, indexConsumable = 0, indexTool = 0, indexIngredient = 0;
+        for (int indexChest = 0; indexChest < chest.slotItem.Length; indexChest++)
         {
-            if(chest.slotItem[i] != null)
-                switch (chest.slotItem[i].type)
+            if (chest.slotItem[indexChest] != null)
+            {
+                switch (chest.slotItem[indexChest].type)
                 {
                     case Type.BodyPart:
-                        _indexTableBodypart[indexBodyPart++] = i;
+                        _indexTableBodypart[indexBodyPart++] = indexChest;
                         break;
                     case Type.Consumable:
-                        _indexTableConsumable[indexConsumable++] = i;
+                        _indexTableConsumable[indexConsumable++] = indexChest;
                         break;
                     case Type.Ingredient:
-                        _indexTableIngredient[indexIngredient++] = i;
+                        _indexTableIngredient[indexIngredient++] = indexChest;
                         break;
                     case Type.Tool:
-                        _indexTableTool[indexTool++] = i;
+                        _indexTableTool[indexTool++] = indexChest;
                         break;
                     default:
                         Debug.Log("wrong!");
                         return;
                 }
-        }
-    }
-    public bool AddItem(Item item, Storage dest)
-    {
-        for (int i = 0; i < dest.slotItem.Length; i++)
-        {
-            if (dest.slotItem[i] != null)
-            {
-                if (dest.slotItem[i].id == item.id)
-                {
-                    dest.slotItemNumber[i]++;
-                    return true;
-                }
             }
         }
-        int emptySlot = dest.GetFirstEmptySlot();
-        if (emptySlot != -1)
+        while(indexBodyPart<_indexTableBodypart.Length)
         {
-            dest.slotItem[emptySlot] = item;
-            dest.slotItemNumber[emptySlot]++;
-            return true;
+            _indexTableBodypart[indexBodyPart++] = -1;
         }
-        return false;
+        while (indexConsumable < _indexTableConsumable.Length)
+        {
+            _indexTableConsumable[indexConsumable++] = -1;
+        }
+        while (indexIngredient < _indexTableIngredient.Length)
+        {
+            _indexTableIngredient[indexIngredient++] = -1;
+        }
+        while (indexTool < _indexTableTool.Length)
+        {
+            _indexTableTool[indexTool++] = -1;
+        }
     }
-    public Item DeleteItem(int slotNumber, Storage dest)
+    #endregion
+
+    #region Delete Methods
+    /// <summary>
+    /// Storage dest의 slotNumber번째 아이템을 하나 삭제한다.
+    /// </summary>
+    /// <param name="slotNumber"></param>
+    /// <param name="dest"></param>
+    /// <returns></returns>
+    private Item DeleteItem(int slotNumber, Storage dest)
     {
         if (slotNumber < 0 || slotNumber >= dest.slotItem.Length)
             return null;
@@ -109,6 +121,7 @@ public class StorageManager : SingletonBehaviour<StorageManager>
             return null;
         }
     }
+
     public void DeleteItemById(int itemId, Storage dest)
     {
         for (int i = 0; i < dest.slotItem.Length; i++)
@@ -125,35 +138,101 @@ public class StorageManager : SingletonBehaviour<StorageManager>
         }
         return;
     }
-    public void MoveItemToChest(int slotNumber)
+
+    public Item DeleteFromChest(int slotNumber)
     {
-        Item _item = DeleteItem(slotNumber, inventory);
-        if (_item == null)
-            return;
-        AddItem(_item, chests[(int)_item.type + 1]);
-        if (AddItem(_item, chests[0]))
+        Item item = DeleteItem(slotNumber, chest);
+        SortChestItem();
+        UpdateChestIndexes();
+        if (HomeUIManager.Inst.panelChest)
         {
-            UpdateToolStat();
-            return;
+            HomeUIManager.Inst.UpdateChest();
         }
-        return ;
+        return item;
+    }
+    public Item DeleteFromInven(int slotNumber)
+    {
+        Item item = DeleteItem(slotNumber, inventory);
+        UpdateToolStat();
+        GeneralUIManager.Inst.UpdateInventory();
+        return item;
+    }
+    #endregion
+
+    #region Add Methods
+    /// <summary>
+    /// dest Stroage의 item을 추가한다. item이 dest에 존재하지 않으면, 마지막 slot에 추가한다.
+    /// </summary>
+    private bool AddItem(Item item, Storage dest)
+    {
+        for (int i = 0; i < dest.slotItem.Length; i++)
+        {
+            if (dest.slotItem[i] != null)
+            {
+                if (dest.slotItem[i].id == item.id)
+                {
+                    dest.slotItemNumber[i]++;
+                    return true;
+                }
+            }
+        }
+        int emptySlot = dest.GetFirstEmptySlot();
+        if (emptySlot != -1)
+        {
+            dest.slotItem[emptySlot] = item;
+            dest.slotItemNumber[emptySlot]++;
+            return true;
+        }
+        return false;
     }
 
-    // chest의 slotNumber번째 아이템을 인벤 마지막 자리로 이동한다.
-    public void MoveItemToInven(int slotNumber)
+    public bool AddItemToChest(Item item)
     {
-        // to implement
-        Item _item = DeleteItem(slotNumber, chest);
+        bool isSuccess = AddItem(item, chest);
+        UpdateChestIndexes();
+        if (HomeUIManager.Inst.panelChest)
+        {
+            HomeUIManager.Inst.UpdateChest();
+        }
+        return isSuccess;
+    }
+
+    public bool AddItemToInven(Item item)
+    {
+        bool isSuccess = AddItem(item, inventory);
+        UpdateToolStat();
+        GeneralUIManager.Inst.UpdateInventory();
+        return isSuccess;
+    }
+
+    #endregion
+
+    #region Move Methods
+    /// <summary>
+    /// 인벤토리의 slotNumber번째 아이템을 창고로 이동한다.
+    /// </summary>
+    /// <param name="slotNumber"></param>
+    public void MoveItemToChest(int slotNumber)
+    {
+        Item _item = DeleteFromInven(slotNumber);
         if (_item == null)
             return;
-        if (chest == chests[0])
-            DeleteItemById(_item.id, chests[(int)_item.type + 1]);
-        else
-            DeleteItemById(_item.id, chests[0]);
-        if (AddItem(_item, inventory))
-            return;
-        return;
+        AddItemToChest(_item);
     }
+
+    /// <summary>
+    /// chest의 slotNumber번째 아이템을 인벤으로 이동한다.
+    /// </summary>
+    public void MoveItemToInven(int slotNumber)
+    {
+        Item _item = DeleteFromChest(slotNumber);
+        if (_item == null)
+            return;
+        AddItemToInven(_item);
+    }
+
+    #endregion
+
     //public void UpdateChest(int constraint)
     //{
     //    if (chest.slotItem[constraint] != null)
@@ -185,8 +264,14 @@ public class StorageManager : SingletonBehaviour<StorageManager>
     //    }
     //}
 
-    // 인벤토리에 장착된 도구의 스텟 효과를 반환한다. 매개변수는 소문자를 사용한다.
-    public int GetInventoryItemStat(string stat)
+    #region Inventory Status Methods
+    public Status toolStat;
+    /// <summary>
+    /// 인벤토리에 장착된 도구의 스텟 효과를 반환한다. 매개변수는 소문자를 사용한다.
+    /// </summary>
+    /// <param name="stat"></param>
+    /// <returns></returns>
+    private int GetInventoryItemStat(string stat)
     {
         int itemStatToReturn = 0;
         for (int i = 0; i < inventory.slotItem.Length; i++)
@@ -222,8 +307,9 @@ public class StorageManager : SingletonBehaviour<StorageManager>
         return itemStatToReturn;
     }
 
-    public Status toolStat;
-    // 인벤토리에 변화가 있을 때마다 호출해서 장비의 스텟효과를 갱신한다. 
+    /// <summary>
+    /// 인벤토리에 변화가 있을 때마다 호출해서 장비의 스텟효과를 갱신한다. 
+    /// </summary>
     private void UpdateToolStat()
     {
         toolStat.atk = GetInventoryItemStat("atk");
@@ -232,19 +318,26 @@ public class StorageManager : SingletonBehaviour<StorageManager>
         toolStat.mana = GetInventoryItemStat("mana");
         toolStat.endurance = GetInventoryItemStat("endurance");
     }
-
-    public void AddItemToChest(Item item)
+    #endregion
+    
+    // 승윤 TODO
+    /// <summary>
+    /// Storage dest에서 item을 찾아서 그 아이템의 slotNumber를 반환한다.
+    /// </summary>
+    private int FindSlotNumberById(Item item, Storage dest)
     {
-        AddItem(item, chest);
-    }
-    public void AddItemToInven(Item item)
-    {
-        AddItem(item, inventory);
+        return 0;
     }
 
-    // TODO : 아래 두 함수 구현
-    //public Item DeleteFromChest(Item item);
-    //public Item DeleteFromInven(Item item);
+    // 승윤 TODO : 메소드 구현
+    /// <summary>
+    /// chest의 아이템을 빈 칸이 없도록 정렬한다.
+    /// </summary>
+    private void SortChestItem()
+    {
+
+    }
+
     // for debugging
     public void Foo()
     {
