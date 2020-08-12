@@ -16,10 +16,10 @@ MonoBehaviour:
   itemName: 
   description: 
   itemImage: {fileID: 0}
-  type: 0
+  type: 3
   grade: 0
   energyPotential: 0
-  str: 0
+  atk: 0
   def: 0
   dex: 0
   mana: 0

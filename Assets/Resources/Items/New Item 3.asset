@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: New Item 3
   m_EditorClassIdentifier: 
   id: 10
-  name: 10
+  itemName: 
   description: 10
   itemImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  type: 0
+  type: 1
   grade: 0
   energyPotential: 5

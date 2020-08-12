@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Leather
   m_EditorClassIdentifier: 
   id: 4001
-  name: "\uAC00\uC8FD"
+  itemName: 
   description: "\uC544\uB9C8\uB3C4 \uB3D9\uBB3C\uC758 \uD53C\uBD80\uC77C \uAC83\uC774\uB2E4."
   itemImage: {fileID: 21300000, guid: eb27ec20149554e43b31a05a98a32ee9, type: 3}
-  type: 3
+  type: 4
   grade: 0
   energyPotential: 0

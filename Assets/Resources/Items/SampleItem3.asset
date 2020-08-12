@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SampleItem3
   m_EditorClassIdentifier: 
   id: 3
-  name: "\uC0D8\uD50C\uC0AC\uCCB43"
+  itemName: 
   description: "\uC0D8\uD50C\uC0AC\uCCB43"
   itemImage: {fileID: 21300000, guid: 09a68885657d26443b0dd65167b5b5b3, type: 3}
-  type: 0
+  type: 1
   grade: 0
   energyPotential: 50
