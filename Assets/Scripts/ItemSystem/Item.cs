@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum Type
 {
+    All,
     BodyPart,
     Consumable,
     Tool,
