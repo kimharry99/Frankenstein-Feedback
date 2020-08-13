@@ -16,7 +16,16 @@ public class GameManager : SingletonBehaviour<GameManager>
     protected override void Awake()
     {
         base.Awake();
+        SceneManager.sceneLoaded += OnSceneLoaded;
         InitGame();
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "HomeScene")
+        {
+            bodyAssembly = GameObject.Find("BodyAssembly").GetComponent<BodyAssembly>();
+            bodyDisassembly = GameObject.Find("BodyDisassembly").GetComponent<BodyDisassembly>();
+        }
     }
     #endregion
 
