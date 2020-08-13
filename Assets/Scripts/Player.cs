@@ -100,7 +100,7 @@ public class Player : SingletonBehaviour<Player>
     /// <summary>
     /// 플레이어의 신체 스프라이트를 업데이트한다.
     /// </summary>
-    public void UpdateCharacterBody(BodyPart bodyPart, int index)
+    public BodyPart UpdateCharacterBody(BodyPart bodyPart, int index)
     {
         BodyPart equiping;
 
@@ -138,11 +138,13 @@ public class Player : SingletonBehaviour<Player>
                 break;
             default:
                 Debug.Log("wrong item Type");
-                return;
+                return null;
         }
 
         StorageManager.Inst.DeleteFromChest(index);
         StorageManager.Inst.AddItemToChest(equiping);
+
+        return equiping;
     }
 
     #region Unity Functions

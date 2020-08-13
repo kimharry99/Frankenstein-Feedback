@@ -377,7 +377,13 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     // TODO : 이름변경해야 함
     public void ButtonDoAssembleyClicked()
     {
-        GameManager.Inst.bodyAssembly.AssemleBody();
+        if (imageAssembleUsing.sprite != null)
+            GameManager.Inst.bodyAssembly.AssemleBody();
+        else
+        {
+            panelNotice.SetActive(true);
+            textNotice.text = "장착할 사체를 선택하세요.";
+        }
     }
     #endregion
 }
