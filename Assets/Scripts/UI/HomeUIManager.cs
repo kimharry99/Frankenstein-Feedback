@@ -189,7 +189,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public int disassembleEnergy = 0;
     public void UpdateDisassemble()
     {
-        int indexItem = 0, indexHoldingItem = 0;
+        int indexHoldingItem = 0;
         indexHoldingItem = UpdateImageBodyPart();
         ResetRemainingSlots(indexHoldingItem);
 

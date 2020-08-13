@@ -33,13 +33,14 @@ public class GameManager : SingletonBehaviour<GameManager>
     {
         SceneManager.LoadScene(1);
         
-        //HomeUIManager.Inst.panelHome.SetActive(false);
-        //HomeUIManager.Inst.panelExploration.SetActive(true);
+        HomeUIManager.Inst.panelHome.SetActive(false);
+        ExplorationUIManager.Inst.panelExploration.SetActive(true);
         IsHome = false;
     }
     // Home으로 복귀하도록 하는 함수이다.
     public void ReturnHome()
     {
+        SceneManager.LoadScene(0);
         IsHome = true;
     }
 
