@@ -30,6 +30,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public int[] indexHoldingChest;
     public int[] indexUsingHolding;
 
+    [Header("Assemble UI")]
+    public Image imageAssembleUsing;
+    public GameObject[] buttonAssembleHolding;
+    public Scrollbar scrollbarAssemble;
+
     [Header("Notice")]
     public Text textNotice;
 
@@ -161,7 +166,8 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         panelHome.SetActive(false);
         panelAssemble.SetActive(true);
         GameManager.Inst.bodyAssembly.HoldBodyPartsFromChest();
-        UpdateBodyAsswemblyHoldingImages();
+        UpdateBodyAssemblyHoldingImages();
+        scrollbarAssemble.value = 1;
     }
 
     public void ButtonChestClicked()
@@ -327,20 +333,39 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     /// <summary>
     /// chest에서 BodyPart에 해당하는 아이템의 이미지를 BodyAssemble 패널에 업데이트한다.
     /// </summary>
-    public void UpdateBodyAsswemblyHoldingImages()
+    public void UpdateBodyAssemblyHoldingImages() // 완료
     {
+        for (int i = 0; i < Chest.CAPACITY; i++)
+        {
+            int indexItem = StorageManager.Inst.GetIndexTable(Type.BodyPart, i);
+            Image imageAssembleHolding = buttonAssembleHolding[i].transform.GetChild(0).GetComponent<Image>();
+            if (indexItem != -1)
+            {
+                imageAssembleHolding.sprite = chest.slotItem[indexItem].itemImage;
+                continue;
+            }
+            imageAssembleHolding.sprite = null;
+        }
 
+        imageAssembleUsing.sprite = null;
+        buttonAssembleHolding[_lastSlotNumber].transform.GetChild(1).gameObject.SetActive(false);
+        _lastSlotNumber = 0;
     }
 
     // 진웅 TODO : 메소드 구현, image check를 사용하거나, slot의 이미지를 흐리게 표현
+    private int _lastSlotNumber = 0;
     /// <summary>
     /// slotNumber번째의 slot의 아이템이 선택되었는지 표시한다. 
     /// 동시에 다른 slot의 아이템이 선택 해제되었음을 표시한다.
     /// </summary>
     /// <param name="slotNumber"></param>
-    private void DisplayIsSelected(int slotNumber)
+    private void DisplayIsSelected(int slotNumber) // 완료
     {
-
+        imageAssembleUsing.sprite = buttonAssembleHolding[slotNumber].transform.GetChild(0).GetComponent<Image>().sprite;
+        buttonAssembleHolding[_lastSlotNumber].transform.GetChild(1).gameObject.SetActive(false);
+        if (imageAssembleUsing.sprite != null)
+            buttonAssembleHolding[slotNumber].transform.GetChild(1).gameObject.SetActive(true);
+        _lastSlotNumber = slotNumber;
     }
 
     public void ButtonAssemblyHoldingItemClicked(int slotNumber)

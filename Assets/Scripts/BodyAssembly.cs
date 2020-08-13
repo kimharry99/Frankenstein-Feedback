@@ -14,7 +14,16 @@ public class BodyAssembly : MonoBehaviour
     // StorageManager.GetIndexTable()을 사용하여 구현
     public void HoldBodyPartsFromChest()
     {
-
+        for (int i = 0; i < Chest.CAPACITY; i++)
+        {
+            _index[i] = StorageManager.Inst.GetIndexTable(Type.BodyPart, i);
+            if (_index[i] != -1)
+            {
+                _holdingBodyParts[i] = (BodyPart)HomeUIManager.Inst.chest.slotItem[_index[i]];
+                continue;
+            }
+            _holdingBodyParts[i] = null;
+        }
     }
 
     private int _selectedSlotOfChest;
@@ -22,7 +31,8 @@ public class BodyAssembly : MonoBehaviour
     // selectedBodyPart를 업데이트 한다.
     public void SelectBodyPart(int holdingSlotNumber)
     {
-
+        _selectedSlotOfChest = _index[holdingSlotNumber];
+        _selectedBodyPart = _holdingBodyParts[holdingSlotNumber];
     }
 
     [SerializeField]
@@ -34,10 +44,11 @@ public class BodyAssembly : MonoBehaviour
         // 선택된 신체가 창고에서 이동되어 플레이어에게 장착된다. 
         // Player가 장착하고 있던 신체는 창고로 이동한다.
         // 에너지를 소비한다.
-
+        Player.Inst.UpdateCharacterBody(_selectedBodyPart, _selectedSlotOfChest);
+        HomeUIManager.Inst.UpdateBodyAssemblyHoldingImages();
+        SpendEnergy(100);
 
         UpdateBodyStat();
-        Player.Inst.UpdateCharacterBody();
         GameManager.Inst.OnTurnOver(1);
         GeneralUIManager.Inst.UpdateEnergy();
     }
@@ -45,6 +56,7 @@ public class BodyAssembly : MonoBehaviour
     private void SpendEnergy(int energyCost)
     {
         // energy UI는 구현하지 않는다.
+        energy.value -= energyCost;
     }
 
     [SerializeField]
