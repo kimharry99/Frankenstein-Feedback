@@ -10,6 +10,8 @@ public class GameManager : SingletonBehaviour<GameManager>
     public Time time;
     public bool IsHome { get; private set; }
     public BodyAssembly bodyAssembly;
+    public BodyDisassembly bodyDisassembly;
+
     #region Unity Functions
     protected override void Awake()
     {
@@ -41,6 +43,7 @@ public class GameManager : SingletonBehaviour<GameManager>
         IsHome = true;
     }
 
+    // TODO : onTurnOver를 Script내에서 구현
     public UnityEvent onTurnOver;
     // turn 만큼의 턴을 소모한다.
     public void OnTurnOver(int turn)
@@ -55,33 +58,39 @@ public class GameManager : SingletonBehaviour<GameManager>
         time.SetTime(time.runtimeTime+1);
     }
 
-    public void DisassembleItem(/* some parameters */)
+    //public void DisassembleItem(/* some parameters */)
+    //{
+    //    int count = 0;
+
+    //    for (int i = 0; i < 30; i++)
+    //    {
+    //        if (HomeUIManager.Inst.imageCheck[i].activeSelf == true)
+    //        {
+    //            count++;
+    //            int slotNumber = HomeUIManager.Inst.indexHoldingChest[i];
+    //            // TODO : dest를 StorageManager로 수정
+    //            StorageManager.Inst.DeleteFromChest(slotNumber);
+    //        }
+    //    }
+
+    //    if (count == 0)
+    //    {
+    //        HomeUIManager.Inst.panelNotice.SetActive(true);
+    //        HomeUIManager.Inst.textNotice.text = "분해할 사체를 선택하세요.";
+    //        return;
+    //    }
+
+    //    GeneralUIManager.Inst.energy.value += HomeUIManager.Inst.disassembleEnergy;
+    //    GeneralUIManager.Inst.UpdateEnergy();
+
+    //    HomeUIManager.Inst.UpdateDisassemble();
+
+    //    OnTurnOver(1);
+    //}
+
+    // for debugging
+    public void Foo()
     {
-        int count = 0;
-
-        for (int i = 0; i < 30; i++)
-        {
-            if (HomeUIManager.Inst.imageCheck[i].activeSelf == true)
-            {
-                count++;
-                int slotNumber = HomeUIManager.Inst.indexHoldingChest[i];
-                // TODO : dest를 StorageManager로 수정
-                StorageManager.Inst.DeleteFromChest(slotNumber);
-            }
-        }
-
-        if (count == 0)
-        {
-            HomeUIManager.Inst.panelNotice.SetActive(true);
-            HomeUIManager.Inst.textNotice.text = "분해할 사체를 선택하세요.";
-            return;
-        }
-
-        GeneralUIManager.Inst.energy.value += HomeUIManager.Inst.disassembleEnergy;
-        GeneralUIManager.Inst.UpdateEnergy();
-
-        HomeUIManager.Inst.UpdateDisassemble();
-
-        OnTurnOver(1);
+        int index = StorageManager.Inst.GetIndexTable(Type.BodyPart, 0);
     }
 }

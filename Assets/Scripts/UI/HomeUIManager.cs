@@ -189,50 +189,60 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public int disassembleEnergy = 0;
     public void UpdateDisassemble()
     {
-        int i = 0, j = 0;
-
-        for (; i < chest.slotItem.Length; i++)
-        {
-            if (chest.slotItem[i] != null && chest.slotItem[i].type == 0)
-            {
-                imageDisassembleHolding[j].sprite = chest.slotItem[i].itemImage; // Update Corpse at the jth Holding Slot
-                indexHoldingChest[j] = i; // Record the Index of Corpse (Holding Slot to Chest Slot)
-
-                imageCheck[j].SetActive(false);
-
-                if (j < 6) // Reset the jth Using Slot
-                {
-                    imageDisassembleUsing[j].sprite = emptyImage;
-                    indexUsingHolding[j] = -1;
-                }
-
-                j++;
-            }
-
-            if (j > 29) // Prevent the Overflow (Now It's not Needed)
-                break;
-        }
-        // Done Updating Corpse
-
-        while (j <= 29) // Reset the Remaining Slots
-        {
-            imageDisassembleHolding[j].sprite = emptyImage;
-            indexHoldingChest[j] = -1;
-
-            imageCheck[j].SetActive(false);
-
-            if (j < 6)
-            {
-                imageDisassembleUsing[j].sprite = emptyImage;
-                indexUsingHolding[j] = -1;
-            }
-
-            j++;
-        }
+        int indexItem = 0, indexHoldingItem = 0;
+        indexHoldingItem = UpdateImageBodyPart();
+        ResetRemainingSlots(indexHoldingItem);
 
         disassembleEnergy = 0;
         textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
     }
+    private int UpdateImageBodyPart()
+    {
+        int indexItem = 0, indexHoldingItem = 0;
+
+        for (; indexItem < chest.slotItem.Length; indexItem++)
+        {
+            if (chest.slotItem[indexItem] != null && chest.slotItem[indexItem].type == Type.BodyPart)
+            {
+                imageDisassembleHolding[indexHoldingItem].sprite = chest.slotItem[indexItem].itemImage; // Update Corpse at the jth Holding Slot
+                indexHoldingChest[indexHoldingItem] = indexItem; // Record the Index of Corpse (Holding Slot to Chest Slot)
+
+                imageCheck[indexHoldingItem].SetActive(false);
+
+                if (indexHoldingItem < 6) // Reset the jth Using Slot
+                {
+                    imageDisassembleUsing[indexHoldingItem].sprite = emptyImage;
+                    indexUsingHolding[indexHoldingItem] = -1;
+                }
+
+                indexHoldingItem++;
+            }
+
+            if (indexHoldingItem > 29) // Prevent the Overflow (Now It's not Needed)
+                break;
+        }
+        return indexHoldingItem;
+    }
+
+    private void ResetRemainingSlots(int indexHoldingItem)
+    {
+        while (indexHoldingItem < chest.slotItem.Length) // Reset the Remaining Slots
+        {
+            imageDisassembleHolding[indexHoldingItem].sprite = emptyImage;
+            indexHoldingChest[indexHoldingItem] = -1;
+
+            imageCheck[indexHoldingItem].SetActive(false);
+
+            if (indexHoldingItem < 6)
+            {
+                imageDisassembleUsing[indexHoldingItem].sprite = emptyImage;
+                indexUsingHolding[indexHoldingItem] = -1;
+            }
+
+            indexHoldingItem++;
+        }
+    }
+
 
     public void DisassembleButtonHoldingClicked(int slotNumber)
     {
@@ -306,7 +316,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
     public void DisassembleButtonCreateClicked()
     {
-        GameManager.Inst.DisassembleItem();
+        GameManager.Inst.bodyDisassembly.DisassembleItem();
     }
     #endregion
 
