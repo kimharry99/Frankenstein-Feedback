@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: {fileID: 11400000, guid: 926617181ab5dcd44a050a2611db6c49, type: 2}
   bodyAssembly: {fileID: 0}
+  bodyDisassembly: {fileID: 0}
   onTurnOver:
     m_PersistentCalls:
       m_Calls:
