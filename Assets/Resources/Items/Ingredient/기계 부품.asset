@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f1aa059670bfec4bb97930f1de3197e, type: 3}
-  m_Name: Leather
+  m_Name: "\uAE30\uACC4 \uBD80\uD488"
   m_EditorClassIdentifier: 
-  id: 4001
-  itemName: 
-  description: "\uC544\uB9C8\uB3C4 \uB3D9\uBB3C\uC758 \uD53C\uBD80\uC77C \uAC83\uC774\uB2E4."
-  itemImage: {fileID: 21300000, guid: eb27ec20149554e43b31a05a98a32ee9, type: 3}
+  id: 4501
+  itemName: "\uAE30\uACC4 \uBD80\uD488"
+  description: "\uD1B1\uB2C8\uBC14\uD034\uAC00 \uBAA8\uC774\uBA74 \uC0DD\uAC01\uC744
+    \uD560 \uC218 \uC788\uC744\uAE4C?"
+  itemImage: {fileID: 21300000, guid: 7698ba4a052b00445b584b0b660081ef, type: 3}
   type: 4
-  grade: 0
+  race: 5
   energyPotential: 0

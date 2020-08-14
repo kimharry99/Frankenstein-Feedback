@@ -21,13 +21,7 @@ public enum Race
     Machine,
     Null
 }
-public enum Grade
-{
-    A,
-    B,
-    C,
-    D
-}
+
 [CreateAssetMenu]
 public class Item : ScriptableObject
 { 
@@ -38,6 +32,6 @@ public class Item : ScriptableObject
     public Sprite itemImage;
     [Header("")]
     public Type type;
-    public Grade grade;
+    public Race race;
     public int energyPotential;
 }

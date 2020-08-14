@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2022161675532031462}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6, y: -3.2, z: 0}
+  m_LocalPosition: {x: 0.6, y: -3.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2878216875430685815}
@@ -110,9 +110,9 @@ Transform:
   m_LocalScale: {x: 0.67767006, y: 0.74513465, z: 1}
   m_Children:
   - {fileID: 2923301905776173346}
-  - {fileID: 7188823460260356279}
-  - {fileID: 914537239533571523}
   - {fileID: 1246844675566775303}
+  - {fileID: 914537239533571523}
+  - {fileID: 7188823460260356279}
   - {fileID: 100948004507217583}
   - {fileID: 9132380819770583062}
   m_Father: {fileID: 0}
@@ -132,12 +132,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durability: {fileID: 11400000, guid: 0f322d544fce00a498795d7394764a5c, type: 2}
   inventory: {fileID: 11400000, guid: 29bd155a658128a48881d6b34a6f79c7, type: 2}
-  head: {fileID: 0}
-  body: {fileID: 11400000, guid: 207bf90584b858b4ea9df707fcad68a6, type: 2}
-  leftArm: {fileID: 0}
-  rightArm: {fileID: 0}
-  leftLeg: {fileID: 0}
-  rightLeg: {fileID: 0}
+  head: {fileID: 11400000, guid: 2e3921dbf567fe6419a94bce9bdc642b, type: 2}
+  body: {fileID: 11400000, guid: 62245c6705ecda14f9e255824f3aa56d, type: 2}
+  leftArm: {fileID: 11400000, guid: 059beb8366ba1c746b9836176da64254, type: 2}
+  rightArm: {fileID: 11400000, guid: 94a71b1d5a9867440b5a3f30be8c4688, type: 2}
+  leftLeg: {fileID: 11400000, guid: bf3c74fe68236ba4e9bcda07aa8c7896, type: 2}
+  rightLeg: {fileID: 11400000, guid: 1edac494c2cbeef40b51958056a0cf65, type: 2}
   toolStat: {fileID: 11400000, guid: d35f7f5c57a326344bcb915cac826d85, type: 2}
   bodyPartStat: {fileID: 11400000, guid: e15282c3b66f9c94ca849c7076c39fca, type: 2}
 --- !u!1 &4260215970024454593
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 7188823460260356279}
   - component: {fileID: 2492631138718488318}
   m_Layer: 8
-  m_Name: LeftArm
+  m_Name: RightArm
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,13 +164,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4260215970024454593}
-  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: -0.13052624, w: 0.9914449}
   m_LocalPosition: {x: -2, y: 0.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2878216875430685815}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -15}
 --- !u!212 &2492631138718488318
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -246,7 +246,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4659016557139270345}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6, y: -3.2, z: 0}
+  m_LocalPosition: {x: -0.6, y: -3.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2878216875430685815}
@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 914537239533571523}
   - component: {fileID: 1128652469083910792}
   m_Layer: 8
-  m_Name: RightArm
+  m_Name: LeftArm
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -407,13 +407,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8227299492789325510}
-  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: 0.13052616, w: 0.9914449}
   m_LocalPosition: {x: 2, y: 0.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2878216875430685815}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15}
 --- !u!212 &1128652469083910792
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -493,7 +493,7 @@ Transform:
   m_LocalScale: {x: 0.8375, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2878216875430685815}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8752635054354685599
 SpriteRenderer:
