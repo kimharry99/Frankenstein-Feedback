@@ -3652,14 +3652,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4761532643919097233, guid: 4a1068866b9190e41ac1a0bd63abf736,
-        type: 3}
-      propertyPath: body
-      value: 
-      objectReference: {fileID: 11400000, guid: 207bf90584b858b4ea9df707fcad68a6,
-        type: 2}
-    m_RemovedComponents:
-    - {fileID: 3958663170622242401, guid: 4a1068866b9190e41ac1a0bd63abf736, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a1068866b9190e41ac1a0bd63abf736, type: 3}
 --- !u!1 &1033377609
 GameObject:
@@ -10248,8 +10241,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 78dcef2bd1a27c3488b56e76164694bb, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -13071,7 +13064,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 78dcef2bd1a27c3488b56e76164694bb, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15514,7 +15507,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1000
   m_WholeNumbers: 1
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -17800,7 +17793,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9afc85d8617e9a849a6d3dcefefd9bc1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 391c3381f9be26d43ba5020a8fff23e7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
