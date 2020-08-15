@@ -404,17 +404,19 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         for (int i = 0; i < Chest.CAPACITY; i++)
         {
             if (indexHoldingChest[i] != -1)
-            {
                 itemHoldingCount[i] = chest.slotItemNumber[indexHoldingChest[i]];
-                Text textHoldingCount = buttonCraftHolding[i].transform.GetChild(1).GetComponent<Text>();
-                textHoldingCount.text = itemHoldingCount[i].ToString();
 
-                if (i < 6)
-                {
-                    itemUsingCount[i] = 0;
-                    Text textUsingCount = buttonCraftUsing[i].transform.GetChild(1).GetComponent<Text>();
-                    textUsingCount.text = itemUsingCount[i].ToString();
-                }
+            else
+                itemHoldingCount[i] = 0;
+
+            Text textHoldingCount = buttonCraftHolding[i].transform.GetChild(1).GetComponent<Text>();
+            textHoldingCount.text = itemHoldingCount[i].ToString();
+
+            if (i < 6)
+            {
+                itemUsingCount[i] = 0;
+                Text textUsingCount = buttonCraftUsing[i].transform.GetChild(1).GetComponent<Text>();
+                textUsingCount.text = itemUsingCount[i].ToString();
             }
         }
     }
