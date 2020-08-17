@@ -72,6 +72,7 @@ public class Player : SingletonBehaviour<Player>
         durability.value = 100;
         ResetBodyAffinity();
         UpdateAllPlayerBodyStatus(_raceAffinity, _equippedBodyPart.bodyParts, _bodyPartStat);
+        UpdateAllPlayerSprites();
     }
     
     public void KillPlayer()
@@ -106,6 +107,8 @@ public class Player : SingletonBehaviour<Player>
     }
 
     #endregion
+
+    #region Change Player Body Methods
 
     /// <summary>
     /// 플레이어의 신체를 교환한다.
@@ -201,7 +204,20 @@ public class Player : SingletonBehaviour<Player>
         UpdateBodyAffinity(raceAffinity, playerBodyPart, returnedBodyPart);
     }
 
-    #region Update Player Status Methods
+    #endregion
+
+    #region Update Player Methods
+
+    /// <summary>
+    /// 모든 신체의 Sprite를 Update한다.
+    /// </summary>
+    private void UpdateAllPlayerSprites()
+    {
+        for(int indexBody = 0; indexBody < _equippedBodyPart.bodyParts.Length; indexBody++)
+        {
+            ChangePlayerBodyPartSprite((BodyPartType)indexBody);
+        }
+    }
 
     // Player의 신체에 해당하는 스텟과 종족동화율을 업데이트한다.
     // StorageManager의 inventory status methods region을 참고
