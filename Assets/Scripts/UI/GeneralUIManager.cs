@@ -32,6 +32,9 @@ public class GeneralUIManager : SingletonBehaviour<GeneralUIManager>
         // inventory = 
         // chest = StorageManager.Inst.chest;
         UpdateInventory();
+        UpdateTextDurability();
+        UpdateTextTime();
+        UpdateEnergy();
     }
     #endregion
     
