@@ -43,9 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66f16a9b347f314c89e58b2b5ed0602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: {fileID: 11400000, guid: 926617181ab5dcd44a050a2611db6c49, type: 2}
+  _time: {fileID: 11400000, guid: 926617181ab5dcd44a050a2611db6c49, type: 2}
   bodyAssembly: {fileID: 0}
   bodyDisassembly: {fileID: 0}
-  onTurnOver:
-    m_PersistentCalls:
-      m_Calls: []
+  energy: {fileID: 11400000, guid: b48f545c1bd604f458611bfec53d253c, type: 2}
+  durability: {fileID: 11400000, guid: 0f322d544fce00a498795d7394764a5c, type: 2}
