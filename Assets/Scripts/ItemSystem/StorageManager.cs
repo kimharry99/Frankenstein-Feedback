@@ -307,16 +307,41 @@ public class StorageManager : SingletonBehaviour<StorageManager>
         return itemStatToReturn;
     }
 
+    private void GetInventoryItemStat(Status toolStat)
+    {
+        toolStat.ResetStatus();
+        for (int i = 0; i < inventory.slotItem.Length; i++)
+        {
+            if (inventory.slotItem[i] == null)
+                continue;
+            if (inventory.slotItem[i].type == Type.Tool)
+            {
+                Tool tool = (Tool)inventory.slotItem[i];
+                toolStat.atk += tool.atk * Player.Inst.GetRaceAffinity(tool.race);
+                toolStat.def += tool.def * Player.Inst.GetRaceAffinity(tool.race);
+                toolStat.dex += tool.dex * Player.Inst.GetRaceAffinity(tool.race); ;
+                toolStat.mana += tool.mana * Player.Inst.GetRaceAffinity(tool.race); ;
+                toolStat.endurance += tool.endurance * Player.Inst.GetRaceAffinity(tool.race); ;
+            }
+        }
+    }
+
+    private void GetStatWithRaceAffinity(Tool tool)
+    {
+
+    }
+
     /// <summary>
     /// 인벤토리에 변화가 있을 때마다 호출해서 장비의 스텟효과를 갱신한다. 
     /// </summary>
-    private void UpdateToolStat()
+    public void UpdateToolStat()
     {
-        toolStat.atk = GetInventoryItemStat("atk");
-        toolStat.def = GetInventoryItemStat("def");
-        toolStat.dex = GetInventoryItemStat("dex");
-        toolStat.mana = GetInventoryItemStat("mana");
-        toolStat.endurance = GetInventoryItemStat("endurance");
+        //toolStat.atk = GetInventoryItemStat("atk");
+        //toolStat.def = GetInventoryItemStat("def");
+        //toolStat.dex = GetInventoryItemStat("dex");
+        //toolStat.mana = GetInventoryItemStat("mana");
+        //toolStat.endurance = GetInventoryItemStat("endurance");
+        GetInventoryItemStat(toolStat);
     }
     #endregion
     

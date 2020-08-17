@@ -5,18 +5,19 @@ using UnityEngine;
 public class Player : SingletonBehaviour<Player>
 {
     public FloatVariable durability;
-    private int[] _raceAffinity = new int[6];
     public Inventory inventory;
     [Header("Body Parts")]
     [SerializeField]
     private EquippedBodyPart _equippedBodyPart = null;
 
     #region Player Stat
-    //public IntVariable atk;
-    //public IntVariable def;
-    //public IntVariable dex;
-    //public IntVariable mana;
-    //public IntVariable endurance;
+    private int[] _raceAffinity = new int[6];
+    public int GetRaceAffinity(Race race)
+    {
+        if (_raceAffinity[(int)race] == 0)
+            return 1;
+        return _raceAffinity[(int)race];
+    }
     [Header("Status")]
     public Status toolStat;
     [SerializeField]
@@ -70,7 +71,6 @@ public class Player : SingletonBehaviour<Player>
     {
         BodyRegenerationRate = 0;
         durability.value = 100;
-        ResetBodyAffinity();
         UpdateAllPlayerBodyStatus(_raceAffinity, _equippedBodyPart.bodyParts, _bodyPartStat);
         UpdateAllPlayerSprites();
     }
@@ -270,6 +270,13 @@ public class Player : SingletonBehaviour<Player>
             default:
                 Debug.Log("wrong item type");
                 break;
+        }
+        if(returnedBodyPart != null)
+        {
+            if(playerBodyPart.race != returnedBodyPart.race)
+            {
+                StorageManager.Inst.UpdateToolStat();
+            }
         }
     }
 
