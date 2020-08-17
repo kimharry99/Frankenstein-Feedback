@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -113,15 +116,30 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     //            imageChestSlot[i].image.sprite = emptyImage;
     //    }
     //}
-    #endregion
-
     // 승윤 TODO : 메소드 구현, chest mehtods region안에 옮겨놓기
     /// <summary>
     /// 창고의 아이템 개수를 Update한다.
     /// </summary>
     private void UpdateChestText()
     {
-
+        Text txt;
+        for(int i = 0; i < Chest.CAPACITY; i++)
+        {
+            int indexItem = StorageManager.Inst.GetIndexTable(_currentChestType, i);
+            if (indexItem != -1)
+            {
+                if (chest.slotItem[indexItem] != null)
+                {
+                    txt = panelChest.transform.GetChild(1).GetChild(i).GetChild(0).GetChild(0).GetComponent<Text>();
+                    txt.text = chest.slotItemNumber[indexItem].ToString();
+                }
+                else
+                {
+                    txt = panelChest.transform.GetChild(1).GetChild(i).GetChild(0).GetChild(0).GetComponent<Text>();
+                    txt.text = "";
+                }
+            }
+        }
     }
 
     // 승윤 TODO : 메소드 구현, chest methods region안에 옮겨놓기
@@ -130,8 +148,18 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     /// </summary>
     private void HighlightCategoryButton()
     {
-
+        Image selectorButton;
+        for (int i = 0; i < 5; i++)
+        {
+            selectorButton = panelChest.transform.GetChild(0).GetChild(i).GetComponent<Image>();
+            selectorButton.color = Color.white;
+        }
+        selectorButton = EventSystem.current.currentSelectedGameObject.GetComponent<Image>();
+        selectorButton.color = Color.grey;
     }
+    #endregion
+
+  
 
     #region HomePanel methods
 
