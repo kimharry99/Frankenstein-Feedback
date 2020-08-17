@@ -44,12 +44,10 @@ public class BodyAssembly : MonoBehaviour
         // 선택된 신체가 창고에서 이동되어 플레이어에게 장착된다. 
         // Player가 장착하고 있던 신체는 창고로 이동한다.
         // 에너지를 소비한다.
-        BodyPart returnedBodyPart = Player.Inst.ExchangePlayerBody(_selectedBodyPart, _selectedSlotOfChest);
+        Player.Inst.ExchangePlayerBody(_selectedBodyPart, _selectedSlotOfChest);
         SpendEnergy(100);
         HomeUIManager.Inst.UpdateBodyAssemblyHoldingImages();
 
-        //UpdateBodyStat(returnedBodyPart);
-        UpdatePlayerBodyStatus(Player.Inst.raceAffinity, Player.Inst.equippedBodyPart.bodyParts, _bodyPartStatus);
         GameManager.Inst.OnTurnOver(1);
         GeneralUIManager.Inst.UpdateEnergy();
     }
@@ -60,86 +58,7 @@ public class BodyAssembly : MonoBehaviour
         energy.value -= energyCost;
     }
 
-    [SerializeField]
-    private Status _bodyPartStatus = null;
-    // Player의 신체에 해당하는 스텟을 업데이트한다.
-    // StorageManager의 inventory status methods region을 참고
-    public void UpdatePlayerBodyStatus(int[] raceAffinity, BodyPart[] bodyParts, Status bodyPartStatus)
-    {
-        UpdatePlayerBodyAffinity(raceAffinity, bodyParts);
-        UpdatePlayerBodyStat(_bodyPartStatus, bodyParts);
-    }
-
-    /// <summary>
-    /// 플레이어의 모든 신체(bodyParts)를 참조하여 종족 동화율을 Update한다.
-    /// </summary>
-    /// <param name="raceAffinity"></param>
-    /// <param name="bodyParts">플레이어가 장착한 모든 신체의 배열</param>
-    private void UpdatePlayerBodyAffinity(int[] raceAffinity, BodyPart[] bodyParts)
-    {
-        // TODO : bodyAffinity를 reset하는 메소드를 Player와 관련없도록 분리하자.
-        Player.Inst.ResetBodyAffinity();
-        for (int bodyIndex = 0; bodyIndex < bodyParts.Length; bodyIndex++)
-        {
-            BodyPart playerBodyPart = bodyParts[bodyIndex];
-            UpdateBodyPartAffinity(raceAffinity, playerBodyPart);
-        }
-    }
-
-    /// <summary>
-    /// playerBodyPart의 종족동화율을 raceAffinity에 Update한다. 단, raceAffinity가
-    /// 최소한 한번 초기화된 상태여야 한다.
-    /// </summary>
-    /// <param name="raceAffinity"></param>
-    /// <param name="playerBodyPart"></param>
-    private void UpdateBodyPartAffinity(int[] raceAffinity, BodyPart playerBodyPart)
-    {
-        switch (playerBodyPart.bodyPartType)
-        {
-            case BodyPartType.Head:
-            case BodyPartType.Body:
-                raceAffinity[(int)playerBodyPart.race] += 3;
-                break;
-            case BodyPartType.LeftArm:
-            case BodyPartType.RightArm:
-            case BodyPartType.LeftLeg:
-            case BodyPartType.RightLeg:
-                raceAffinity[(int)playerBodyPart.race] += 1;
-                break;
-            default:
-                Debug.Log("wrong item type");
-                break;
-        }
-    }
-
-    /// <summary>
-    /// 플레이어의 모든 신체를 참조하여 플레이어의 bodyPartStatus를 업데이트한다.
-    /// </summary>
-    /// <param name="bodyPartStatus"> = this._bodyPartStatus </param>
-    /// <param name="bodyParts"></param>
-    private void UpdatePlayerBodyStat(Status bodyPartStatus, BodyPart[] bodyParts)
-    {
-        bodyPartStatus.ResetStatus();
-        for (int bodyIndex =0; bodyIndex < bodyParts.Length; bodyIndex++)
-        {
-            BodyPart playerBodyPart = bodyParts[bodyIndex];
-            UpdateBodyPartStat(bodyPartStatus, playerBodyPart);
-        }
-    }
-
-    /// <summary>
-    /// playerBodyPart의 stat을 bodyPartStatus에 반영한다. 
-    /// </summary>
-    /// <param name="bodyPartStatus"></param>
-    /// <param name="playerBodyPart"></param>
-    private void UpdateBodyPartStat(Status bodyPartStatus, BodyPart playerBodyPart)
-    {
-        bodyPartStatus.atk += playerBodyPart.atk;
-        bodyPartStatus.def += playerBodyPart.def;
-        bodyPartStatus.dex += playerBodyPart.dex;
-        bodyPartStatus.mana += playerBodyPart.mana;
-        bodyPartStatus.endurance += playerBodyPart.endurance;
-    }
+    #region legacy
     //private void UpdateBodyStat(BodyPart bodyPart)
     //{
     //    switch (bodyPart.bodyPartType)
@@ -173,5 +92,5 @@ public class BodyAssembly : MonoBehaviour
     //    _bodyPartStatus.mana -= bodyPart.mana;
     //    _bodyPartStatus.endurance -= bodyPart.endurance;
     //}
-
+    #endregion
 }
