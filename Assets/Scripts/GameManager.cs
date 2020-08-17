@@ -29,12 +29,12 @@ public class GameManager : SingletonBehaviour<GameManager>
     }
     #endregion
 
-    // 게임을 초기화 한다.
+    /// <summary>
+    /// 게임을 초기화 한다. 
+    /// </summary>
     private void InitGame()
     {
-        //time.day = 1;
-        //time.SetTime(8);
-        onTurnOver.Invoke();
+        time.SetTime(8);
     }
 
     // 탐사를 시작할 때 호출하는 함수이다.
@@ -46,6 +46,7 @@ public class GameManager : SingletonBehaviour<GameManager>
         ExplorationUIManager.Inst.panelExploration.SetActive(true);
         IsHome = false;
     }
+
     // Home으로 복귀하도록 하는 함수이다.
     public void ReturnHome()
     {
@@ -53,19 +54,36 @@ public class GameManager : SingletonBehaviour<GameManager>
         IsHome = true;
     }
 
-    // TODO : onTurnOver를 Script내에서 구현
-    public UnityEvent onTurnOver;
     // turn 만큼의 턴을 소모한다.
     public void OnTurnOver(int turn)
     {
-        for(int i=0;i<turn;i++)
+        SendTime(turn);
+        Player.Inst.DecayBody(turn);
+        GeneralUIManager.Inst.UpdateTextDurability();
+        GeneralUIManager.Inst.UpdateTextTime();
+
+        if(time.isNight && IsHome)
         {
-            onTurnOver.Invoke();
+            SendToSleep();
         }
     }
-    public void SendTime()
+    public void SendTime(int turn)
     {
-        time.SetTime(time.runtimeTime+1);
+        time.SetTime(time.runtimeTime+turn);
+    }
+
+    /// <summary>
+    /// 플레이어가 잠을 잘 때 호출, 
+    /// </summary>
+    public void SendToSleep()
+    {
+        RegenBody();
+        HomeUIManager.Inst.NoticeEnergyChange();
+    }
+
+    public void RegenBody()
+    {
+
     }
 
     //public void DisassembleItem(/* some parameters */)
@@ -99,8 +117,19 @@ public class GameManager : SingletonBehaviour<GameManager>
     //}
 
     // for debugging
-    public void Foo()
+    public void Foo(int a)
     {
-        int index = StorageManager.Inst.GetIndexTable(Type.BodyPart, 0);
+        switch (a)
+        {
+            default:
+                Debug.Log("Default");
+                break;
+            case 0:
+                Debug.Log("0");
+                break;
+            case 1:
+                Debug.Log("1");
+                break;
+        }
     }
 }

@@ -82,8 +82,8 @@ public class Player : SingletonBehaviour<Player>
 
     #region Body decay
 
-    private const int DECAY_RATE_EXPLORATION = 5;
-    private const int DECAY_RATE_HOME = 3;
+    private int decayRateExploration = 5;
+    private int decayRateHome = 3;
     public int BodyRegenerationRate {get; private set;}
     private int BodyDecayRate
     {
@@ -91,20 +91,24 @@ public class Player : SingletonBehaviour<Player>
         {
             if(GameManager.Inst.IsHome)
             {
-                return DECAY_RATE_HOME - BodyRegenerationRate;
+                return decayRateHome - BodyRegenerationRate;
             }
             else
             {
-                return DECAY_RATE_EXPLORATION - BodyRegenerationRate;
+                return decayRateExploration - BodyRegenerationRate;
             }
         }
     }
     
-    // 시간이 흘렀을 때 캐릭터의 변화에 대한 함수이다
-    public void DecayBody()
+    /// <summary>
+    /// turn만큼 신체의 부패를 진행한다.
+    /// </summary>
+    /// <param name="turn"></param>
+    public void DecayBody(int turn)
     {
-        durability.value = durability.value - BodyDecayRate;
+        durability.value = durability.value - BodyDecayRate * turn;
     }
+
 
     #endregion
 

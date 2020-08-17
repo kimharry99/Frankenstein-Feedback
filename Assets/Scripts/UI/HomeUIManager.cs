@@ -396,4 +396,12 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         }
     }
     #endregion
+
+    /// <summary>
+    /// 수면에 대한 에너지 변화를 안내한다.
+    /// </summary>
+    public void NoticeEnergyChange()
+    {
+
+    }
 }
