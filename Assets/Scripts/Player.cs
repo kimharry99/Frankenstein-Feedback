@@ -73,6 +73,7 @@ public class Player : SingletonBehaviour<Player>
     {
         BodyRegenerationRate = 0;
         durability.value = 100;
+        ResetBodyAffinity();
     }
     
     public void KillPlayer()
