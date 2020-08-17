@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: New Chest
   m_EditorClassIdentifier: 
   slotItem:
-  - {fileID: 11400000, guid: 4df5238ee130ae44b891c8fcfdd6e28d, type: 2}
+  - {fileID: 11400000, guid: 65a533e66ae4a5e4788141f925b7a88d, type: 2}
   - {fileID: 11400000, guid: 68781c060c1f01b43950c9d60e378cc7, type: 2}
-  - {fileID: 11400000, guid: 207bf90584b858b4ea9df707fcad68a6, type: 2}
+  - {fileID: 11400000, guid: 4b3b2cefeb56191488b98eb1c3034cdb, type: 2}
+  - {fileID: 11400000, guid: f57fc78516d341643a0ae78cbebd751c, type: 2}
+  - {fileID: 11400000, guid: 4df5238ee130ae44b891c8fcfdd6e28d, type: 2}
+  - {fileID: 11400000, guid: 733c1b99ba5f3f449839a17a53552538, type: 2}
+  - {fileID: 11400000, guid: 2e3921dbf567fe6419a94bce9bdc642b, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -27,8 +31,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  slotItemNumber: 010000001900000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  slotItemNumber: 030000001900000006000000090000000100000001000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000

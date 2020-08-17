@@ -9,12 +9,7 @@ public class Player : SingletonBehaviour<Player>
     public Inventory inventory;
     [Header("Body Parts")]
     public EquippedBodyPart equippedBodyPart;
-    public BodyPart head;
-    public BodyPart body;
-    public BodyPart leftArm;
-    public BodyPart rightArm;
-    public BodyPart leftLeg;
-    public BodyPart rightLeg;
+
     #region Player Stat
     //public IntVariable atk;
     //public IntVariable def;
@@ -110,59 +105,81 @@ public class Player : SingletonBehaviour<Player>
     #endregion
 
     /// <summary>
-    /// 플레이어의 신체 스프라이트를 업데이트한다.
+    /// 플레이어의 신체를 교환한다.
     /// </summary>
-    public BodyPart UpdateCharacterBody(BodyPart bodyPart, int index)
+    /// <param name="bodyPart">플레이어가 장착할 BodyPart</param>
+    /// <param name="chestIndex">Player가 장착할 BodyPart의 chest Index</param>
+    /// <returns>플레이어가 장착하고 있던 BodyPart</returns>
+    public BodyPart ExchangePlayerBody(BodyPart bodyPart, int chestIndex)
     {
-        BodyPart equiping;
+        BodyPart equipping;
 
-        switch (bodyPart.bodyPartType)
-        {
-            case BodyPartType.Head:
-                equiping = head;
-                head = bodyPart;
-                equippedBodyPart.Head = bodyPart;
-                transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = head.bodyPartSprite;
-                break;
-            case BodyPartType.Body:
-                equiping = body;
-                body = bodyPart;
-                equippedBodyPart.Body = bodyPart;
-                transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().sprite = body.bodyPartSprite;
-                break;
-            case BodyPartType.LeftArm:
-                equiping = leftArm;
-                leftArm = bodyPart;
-                equippedBodyPart.LeftArm = bodyPart;
-                transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().sprite = leftArm.bodyPartSprite;
-                break;
-            case BodyPartType.RightArm:
-                equiping = rightArm;
-                rightArm = bodyPart;
-                equippedBodyPart.RightArm = bodyPart;
-                transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().sprite = rightArm.bodyPartSprite;
-                break;
-            case BodyPartType.LeftLeg:
-                equiping = leftLeg;
-                leftLeg = bodyPart;
-                equippedBodyPart.LeftLeg = bodyPart;
-                transform.GetChild(4).gameObject.GetComponent<SpriteRenderer>().sprite = leftLeg.bodyPartSprite;
-                break;
-            case BodyPartType.RightLeg:
-                equiping = rightLeg;
-                rightLeg = bodyPart;
-                equippedBodyPart.RightLeg = bodyPart;
-                transform.GetChild(5).gameObject.GetComponent<SpriteRenderer>().sprite = rightLeg.bodyPartSprite;
-                break;
-            default:
-                Debug.Log("wrong item Type");
-                return null;
-        }
+        equipping = ExchangePlayerBodyObject(bodyPart, chestIndex);
+        UpdatePlayerBodyPartSprite(bodyPart.bodyPartType);
 
-        StorageManager.Inst.DeleteFromChest(index);
-        StorageManager.Inst.AddItemToChest(equiping);
+        //switch (bodyPart.bodyPartType)
+        //{
+        //    case BodyPartType.Head:
+        //        equipping = equippedBodyPart.Head;
+        //        equippedBodyPart.Head = bodyPart;
+        //        transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = head.bodyPartSprite;
+        //        break;
+        //    case BodyPartType.Body:
+        //        equipping = body;
+        //        body = bodyPart;
+        //        equippedBodyPart.Body = bodyPart;
+        //        transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().sprite = body.bodyPartSprite;
+        //        break;
+        //    case BodyPartType.LeftArm:
+        //        equipping = leftArm;
+        //        leftArm = bodyPart;
+        //        equippedBodyPart.LeftArm = bodyPart;
+        //        transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().sprite = leftArm.bodyPartSprite;
+        //        break;
+        //    case BodyPartType.RightArm:
+        //        equipping = rightArm;
+        //        rightArm = bodyPart;
+        //        equippedBodyPart.RightArm = bodyPart;
+        //        transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().sprite = rightArm.bodyPartSprite;
+        //        break;
+        //    case BodyPartType.LeftLeg:
+        //        equipping = leftLeg;
+        //        leftLeg = bodyPart;
+        //        equippedBodyPart.LeftLeg = bodyPart;
+        //        transform.GetChild(4).gameObject.GetComponent<SpriteRenderer>().sprite = leftLeg.bodyPartSprite;
+        //        break;
+        //    case BodyPartType.RightLeg:
+        //        equipping = rightLeg;
+        //        rightLeg = bodyPart;
+        //        equippedBodyPart.RightLeg = bodyPart;
+        //        transform.GetChild(5).gameObject.GetComponent<SpriteRenderer>().sprite = rightLeg.bodyPartSprite;
+        //        break;
+        //    default:
+        //        Debug.Log("wrong item Type");
+        //        return null;
+        //}
 
-        return equiping;
+        return equipping;
+    }
+
+    private BodyPart ExchangePlayerBodyObject(BodyPart bodyPart, int chestIndex)
+    {
+        BodyPart equipping;
+        equipping = equippedBodyPart.bodyParts[(int)bodyPart.bodyPartType];
+        equippedBodyPart.bodyParts[(int)bodyPart.bodyPartType] = bodyPart;
+
+        StorageManager.Inst.DeleteFromChest(chestIndex);
+        StorageManager.Inst.AddItemToChest(equipping);
+        return equipping;
+    }
+
+    /// <summary>
+    /// bodyPartType에 해당하는 플레이어 신체 스프라이트를 업데이트한다.
+    /// </summary>
+    /// <param name="bodyPartType"></param>
+    private void UpdatePlayerBodyPartSprite(BodyPartType bodyPartType)
+    { 
+        Player.Inst.transform.GetChild((int)bodyPartType).gameObject.GetComponent<SpriteRenderer>().sprite = equippedBodyPart.bodyParts[(int)bodyPartType].bodyPartSprite;
     }
 
     #region Unity Functions

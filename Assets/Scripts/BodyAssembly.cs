@@ -36,7 +36,7 @@ public class BodyAssembly : MonoBehaviour
     }
 
     [SerializeField]
-    private IntVariable energy;
+    private IntVariable energy = null;
     // 신체 조립을 실행한다.
     // StorageManager의 아이템 Add함수, Delete함수를 사용하여 구현
     public void AssemleBody()
@@ -44,7 +44,7 @@ public class BodyAssembly : MonoBehaviour
         // 선택된 신체가 창고에서 이동되어 플레이어에게 장착된다. 
         // Player가 장착하고 있던 신체는 창고로 이동한다.
         // 에너지를 소비한다.
-        BodyPart returnedBodyPart = Player.Inst.UpdateCharacterBody(_selectedBodyPart, _selectedSlotOfChest);
+        BodyPart returnedBodyPart = Player.Inst.ExchangePlayerBody(_selectedBodyPart, _selectedSlotOfChest);
         SpendEnergy(100);
         HomeUIManager.Inst.UpdateBodyAssemblyHoldingImages();
 
