@@ -100,32 +100,33 @@ public class BodyAssembly : MonoBehaviour
     
     private void UpdateBodyPartStat(BodyPart playerBodyPart)
     {
-        _bodyPartStatus.atk += playerBodyPart.atk;
-        _bodyPartStatus.def += playerBodyPart.def;
-        _bodyPartStatus.dex += playerBodyPart.dex;
-        _bodyPartStatus.mana += playerBodyPart.mana;
-        _bodyPartStatus.endurance += playerBodyPart.endurance;
-        switch(playerBodyPart.bodyPartType)
+        switch (playerBodyPart.bodyPartType)
         {
             case BodyPartType.Head:
             case BodyPartType.Body:
-                _bodyPartStatus.raceAffinity[(int)playerBodyPart.race] += 3;
+                Player.Inst.raceAffinity[(int)playerBodyPart.race] += 3;
                 break;
             case BodyPartType.LeftArm:
             case BodyPartType.RightArm:
             case BodyPartType.LeftLeg:
             case BodyPartType.RightLeg:
-                _bodyPartStatus.raceAffinity[(int)playerBodyPart.race] += 1;
+                Player.Inst.raceAffinity[(int)playerBodyPart.race] += 1;
                 break;
             default:
                 Debug.Log("wrong item type");
                 break;
         }
+        _bodyPartStatus.atk += playerBodyPart.atk;
+        _bodyPartStatus.def += playerBodyPart.def;
+        _bodyPartStatus.dex += playerBodyPart.dex;
+        _bodyPartStatus.mana += playerBodyPart.mana;
+        _bodyPartStatus.endurance += playerBodyPart.endurance;
     }
 
     private void UpdateBodyStatAll()
     {
         _bodyPartStatus.ResetStatus();
+        Player.Inst.ResetBodyAffinity();
         UpdateBodyPartStat(Player.Inst.head);
         UpdateBodyPartStat(Player.Inst.body);
         UpdateBodyPartStat(Player.Inst.leftArm);

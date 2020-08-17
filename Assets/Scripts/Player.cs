@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : SingletonBehaviour<Player>
 {
     public FloatVariable durability;
+    public int[] raceAffinity = new int[6];
     public Inventory inventory;
     [Header("Body Parts")]
     public BodyPart head;
@@ -23,6 +24,14 @@ public class Player : SingletonBehaviour<Player>
     [Header("Status")]
     public Status toolStat;
     public Status bodyPartStat;
+    public void ResetBodyAffinity()
+    {
+        raceAffinity[(int)Race.All] = 1;
+        for(int i=1;i<raceAffinity.Length;i++)
+        {
+            raceAffinity[i] = 0;
+        }
+    }
     public int Atk
     {
         get
@@ -72,6 +81,7 @@ public class Player : SingletonBehaviour<Player>
     }
 
     #region Body decay
+
     private const int DECAY_RATE_EXPLORATION = 5;
     private const int DECAY_RATE_HOME = 3;
     public int BodyRegenerationRate {get; private set;}
@@ -95,6 +105,7 @@ public class Player : SingletonBehaviour<Player>
     {
         durability.value = durability.value - BodyDecayRate;
     }
+
     #endregion
 
     /// <summary>
