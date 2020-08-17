@@ -49,7 +49,7 @@ public class BodyAssembly : MonoBehaviour
         HomeUIManager.Inst.UpdateBodyAssemblyHoldingImages();
 
         //UpdateBodyStat(returnedBodyPart);
-        UpdateBodyStatAll();
+        UpdatePlayerBodyStatus(Player.Inst.raceAffinity, Player.Inst.equippedBodyPart.bodyParts, _bodyPartStatus);
         GameManager.Inst.OnTurnOver(1);
         GeneralUIManager.Inst.UpdateEnergy();
     }
@@ -61,26 +61,37 @@ public class BodyAssembly : MonoBehaviour
     }
 
     [SerializeField]
-    private Status _bodyPartStatus;
+    private Status _bodyPartStatus = null;
     // Player의 신체에 해당하는 스텟을 업데이트한다.
     // StorageManager의 inventory status methods region을 참고
-    private void UpdateBodyStatAll()
+    public void UpdatePlayerBodyStatus(int[] raceAffinity, BodyPart[] bodyParts, Status bodyPartStatus)
     {
-        _bodyPartStatus.ResetStatus();
-        Player.Inst.ResetBodyAffinity();
-        UpdateBodyPart(Player.Inst.head);
-        UpdateBodyPart(Player.Inst.body);
-        UpdateBodyPart(Player.Inst.leftArm);
-        UpdateBodyPart(Player.Inst.rightArm);
-        UpdateBodyPart(Player.Inst.leftLeg);
-        UpdateBodyPart(Player.Inst.rightLeg);
+        UpdatePlayerBodyAffinity(raceAffinity, bodyParts);
+        UpdatePlayerBodyStat(_bodyPartStatus, bodyParts);
     }
 
-    private void UpdateBodyPart(BodyPart playerBodyPart)
+    /// <summary>
+    /// 플레이어의 모든 신체(bodyParts)를 참조하여 종족 동화율을 Update한다.
+    /// </summary>
+    /// <param name="raceAffinity"></param>
+    /// <param name="bodyParts">플레이어가 장착한 모든 신체의 배열</param>
+    private void UpdatePlayerBodyAffinity(int[] raceAffinity, BodyPart[] bodyParts)
     {
-        UpdateBodyPartAffinity(Player.Inst.raceAffinity, playerBodyPart);
-        UpdateBodyPartStat(_bodyPartStatus, playerBodyPart);
+        // TODO : bodyAffinity를 reset하는 메소드를 Player와 관련없도록 분리하자.
+        Player.Inst.ResetBodyAffinity();
+        for (int bodyIndex = 0; bodyIndex < bodyParts.Length; bodyIndex++)
+        {
+            BodyPart playerBodyPart = bodyParts[bodyIndex];
+            UpdateBodyPartAffinity(raceAffinity, playerBodyPart);
+        }
     }
+
+    /// <summary>
+    /// playerBodyPart의 종족동화율을 raceAffinity에 Update한다. 단, raceAffinity가
+    /// 최소한 한번 초기화된 상태여야 한다.
+    /// </summary>
+    /// <param name="raceAffinity"></param>
+    /// <param name="playerBodyPart"></param>
     private void UpdateBodyPartAffinity(int[] raceAffinity, BodyPart playerBodyPart)
     {
         switch (playerBodyPart.bodyPartType)
@@ -100,6 +111,27 @@ public class BodyAssembly : MonoBehaviour
                 break;
         }
     }
+
+    /// <summary>
+    /// 플레이어의 모든 신체를 참조하여 플레이어의 bodyPartStatus를 업데이트한다.
+    /// </summary>
+    /// <param name="bodyPartStatus"> = this._bodyPartStatus </param>
+    /// <param name="bodyParts"></param>
+    private void UpdatePlayerBodyStat(Status bodyPartStatus, BodyPart[] bodyParts)
+    {
+        bodyPartStatus.ResetStatus();
+        for (int bodyIndex =0; bodyIndex < bodyParts.Length; bodyIndex++)
+        {
+            BodyPart playerBodyPart = bodyParts[bodyIndex];
+            UpdateBodyPartStat(bodyPartStatus, playerBodyPart);
+        }
+    }
+
+    /// <summary>
+    /// playerBodyPart의 stat을 bodyPartStatus에 반영한다. 
+    /// </summary>
+    /// <param name="bodyPartStatus"></param>
+    /// <param name="playerBodyPart"></param>
     private void UpdateBodyPartStat(Status bodyPartStatus, BodyPart playerBodyPart)
     {
         bodyPartStatus.atk += playerBodyPart.atk;

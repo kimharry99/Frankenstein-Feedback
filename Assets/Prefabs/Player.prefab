@@ -131,13 +131,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   durability: {fileID: 11400000, guid: 0f322d544fce00a498795d7394764a5c, type: 2}
+  raceAffinity: 000000000000000000000000000000000000000000000000
   inventory: {fileID: 11400000, guid: 29bd155a658128a48881d6b34a6f79c7, type: 2}
-  head: {fileID: 0}
-  body: {fileID: 11400000, guid: 207bf90584b858b4ea9df707fcad68a6, type: 2}
-  leftArm: {fileID: 0}
-  rightArm: {fileID: 0}
-  leftLeg: {fileID: 0}
-  rightLeg: {fileID: 0}
+  equippedBodyPart: {fileID: 11400000, guid: f200f60ddd578224e8a401f83ea95480, type: 2}
+  head: {fileID: 11400000, guid: 2e3921dbf567fe6419a94bce9bdc642b, type: 2}
+  body: {fileID: 11400000, guid: 62245c6705ecda14f9e255824f3aa56d, type: 2}
+  leftArm: {fileID: 11400000, guid: 059beb8366ba1c746b9836176da64254, type: 2}
+  rightArm: {fileID: 11400000, guid: 94a71b1d5a9867440b5a3f30be8c4688, type: 2}
+  leftLeg: {fileID: 11400000, guid: bf3c74fe68236ba4e9bcda07aa8c7896, type: 2}
+  rightLeg: {fileID: 11400000, guid: 1edac494c2cbeef40b51958056a0cf65, type: 2}
   toolStat: {fileID: 11400000, guid: d35f7f5c57a326344bcb915cac826d85, type: 2}
   bodyPartStat: {fileID: 11400000, guid: e15282c3b66f9c94ca849c7076c39fca, type: 2}
 --- !u!1 &4260215970024454593
@@ -533,7 +535,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9a9d926a756b01441833586999c55c28, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

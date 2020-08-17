@@ -8,13 +8,13 @@ public class Player : SingletonBehaviour<Player>
     public int[] raceAffinity = new int[6];
     public Inventory inventory;
     [Header("Body Parts")]
+    public EquippedBodyPart equippedBodyPart;
     public BodyPart head;
     public BodyPart body;
     public BodyPart leftArm;
     public BodyPart rightArm;
     public BodyPart leftLeg;
     public BodyPart rightLeg;
-
     #region Player Stat
     //public IntVariable atk;
     //public IntVariable def;
@@ -121,31 +121,37 @@ public class Player : SingletonBehaviour<Player>
             case BodyPartType.Head:
                 equiping = head;
                 head = bodyPart;
+                equippedBodyPart.Head = bodyPart;
                 transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = head.bodyPartSprite;
                 break;
             case BodyPartType.Body:
                 equiping = body;
                 body = bodyPart;
+                equippedBodyPart.Body = bodyPart;
                 transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().sprite = body.bodyPartSprite;
                 break;
             case BodyPartType.LeftArm:
                 equiping = leftArm;
                 leftArm = bodyPart;
+                equippedBodyPart.LeftArm = bodyPart;
                 transform.GetChild(2).gameObject.GetComponent<SpriteRenderer>().sprite = leftArm.bodyPartSprite;
                 break;
             case BodyPartType.RightArm:
                 equiping = rightArm;
                 rightArm = bodyPart;
+                equippedBodyPart.RightArm = bodyPart;
                 transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().sprite = rightArm.bodyPartSprite;
                 break;
             case BodyPartType.LeftLeg:
                 equiping = leftLeg;
                 leftLeg = bodyPart;
+                equippedBodyPart.LeftLeg = bodyPart;
                 transform.GetChild(4).gameObject.GetComponent<SpriteRenderer>().sprite = leftLeg.bodyPartSprite;
                 break;
             case BodyPartType.RightLeg:
                 equiping = rightLeg;
                 rightLeg = bodyPart;
+                equippedBodyPart.RightLeg = bodyPart;
                 transform.GetChild(5).gameObject.GetComponent<SpriteRenderer>().sprite = rightLeg.bodyPartSprite;
                 break;
             default:
