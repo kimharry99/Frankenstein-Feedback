@@ -39,5 +39,6 @@ public class Item : ScriptableObject
     [Header("")]
     public Type type;
     public Grade grade;
+    public Race race;
     public int energyPotential;
 }
