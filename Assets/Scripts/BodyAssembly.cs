@@ -48,7 +48,8 @@ public class BodyAssembly : MonoBehaviour
         SpendEnergy(100);
         HomeUIManager.Inst.UpdateBodyAssemblyHoldingImages();
 
-        UpdateBodyStat(returnedBodyPart);
+        //UpdateBodyStat(returnedBodyPart);
+        UpdateBodyStatAll();
         GameManager.Inst.OnTurnOver(1);
         GeneralUIManager.Inst.UpdateEnergy();
     }
@@ -68,46 +69,22 @@ public class BodyAssembly : MonoBehaviour
         switch (bodyPart.bodyPartType)
         {
             case BodyPartType.Head:
-                _bodyPartStatus.atk += Player.Inst.head.atk;
-                _bodyPartStatus.def += Player.Inst.head.def;
-                _bodyPartStatus.dex += Player.Inst.head.dex;
-                _bodyPartStatus.mana += Player.Inst.head.mana;
-                _bodyPartStatus.endurance += Player.Inst.head.endurance;
+                UpdateBodyPartStat(Player.Inst.head);
                 break;
             case BodyPartType.Body:
-                _bodyPartStatus.atk += Player.Inst.body.atk;
-                _bodyPartStatus.def += Player.Inst.body.def;
-                _bodyPartStatus.dex += Player.Inst.body.dex;
-                _bodyPartStatus.mana += Player.Inst.body.mana;
-                _bodyPartStatus.endurance += Player.Inst.body.endurance;
+                UpdateBodyPartStat(Player.Inst.body);
                 break;
             case BodyPartType.LeftArm:
-                _bodyPartStatus.atk += Player.Inst.leftArm.atk;
-                _bodyPartStatus.def += Player.Inst.leftArm.def;
-                _bodyPartStatus.dex += Player.Inst.leftArm.dex;
-                _bodyPartStatus.mana += Player.Inst.leftArm.mana;
-                _bodyPartStatus.endurance += Player.Inst.leftArm.endurance;
+                UpdateBodyPartStat(Player.Inst.leftArm);
                 break;
             case BodyPartType.RightArm:
-                _bodyPartStatus.atk += Player.Inst.rightArm.atk;
-                _bodyPartStatus.def += Player.Inst.rightArm.def;
-                _bodyPartStatus.dex += Player.Inst.rightArm.dex;
-                _bodyPartStatus.mana += Player.Inst.rightArm.mana;
-                _bodyPartStatus.endurance += Player.Inst.rightArm.endurance;
+                UpdateBodyPartStat(Player.Inst.rightArm);
                 break;
             case BodyPartType.LeftLeg:
-                _bodyPartStatus.atk += Player.Inst.leftLeg.atk;
-                _bodyPartStatus.def += Player.Inst.leftLeg.def;
-                _bodyPartStatus.dex += Player.Inst.leftLeg.dex;
-                _bodyPartStatus.mana += Player.Inst.leftLeg.mana;
-                _bodyPartStatus.endurance += Player.Inst.leftLeg.endurance;
+                UpdateBodyPartStat(Player.Inst.leftLeg);
                 break;
             case BodyPartType.RightLeg:
-                _bodyPartStatus.atk += Player.Inst.rightLeg.atk;
-                _bodyPartStatus.def += Player.Inst.rightLeg.def;
-                _bodyPartStatus.dex += Player.Inst.rightLeg.dex;
-                _bodyPartStatus.mana += Player.Inst.rightLeg.mana;
-                _bodyPartStatus.endurance += Player.Inst.rightLeg.endurance;
+                UpdateBodyPartStat(Player.Inst.rightLeg);
                 break;
             default:
                 Debug.Log("wrong item Type");
@@ -119,5 +96,41 @@ public class BodyAssembly : MonoBehaviour
         _bodyPartStatus.dex -= bodyPart.dex;
         _bodyPartStatus.mana -= bodyPart.mana;
         _bodyPartStatus.endurance -= bodyPart.endurance;
+    }
+    
+    private void UpdateBodyPartStat(BodyPart playerBodyPart)
+    {
+        _bodyPartStatus.atk += playerBodyPart.atk;
+        _bodyPartStatus.def += playerBodyPart.def;
+        _bodyPartStatus.dex += playerBodyPart.dex;
+        _bodyPartStatus.mana += playerBodyPart.mana;
+        _bodyPartStatus.endurance += playerBodyPart.endurance;
+        switch(playerBodyPart.bodyPartType)
+        {
+            case BodyPartType.Head:
+            case BodyPartType.Body:
+                _bodyPartStatus.raceAffinity[(int)playerBodyPart.race] += 3;
+                break;
+            case BodyPartType.LeftArm:
+            case BodyPartType.RightArm:
+            case BodyPartType.LeftLeg:
+            case BodyPartType.RightLeg:
+                _bodyPartStatus.raceAffinity[(int)playerBodyPart.race] += 1;
+                break;
+            default:
+                Debug.Log("wrong item type");
+                break;
+        }
+    }
+
+    private void UpdateBodyStatAll()
+    {
+        _bodyPartStatus.ResetStatus();
+        UpdateBodyPartStat(Player.Inst.head);
+        UpdateBodyPartStat(Player.Inst.body);
+        UpdateBodyPartStat(Player.Inst.leftArm);
+        UpdateBodyPartStat(Player.Inst.rightArm);
+        UpdateBodyPartStat(Player.Inst.leftLeg);
+        UpdateBodyPartStat(Player.Inst.rightLeg);
     }
 }
