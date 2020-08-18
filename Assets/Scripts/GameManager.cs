@@ -86,28 +86,40 @@ public class GameManager : SingletonBehaviour<GameManager>
     public void SendToSleep(int time)
     {
         Debug.Log("now sleeping...");
-        RegenBody(time);
+        int spendEnergy = 0, regenDurability = 0;
+        RegenBody(time, ref spendEnergy, ref regenDurability);
         if(_time.runtimeTime < 8)
             _time.SetTime(8);
         GeneralUIManager.Inst.UpdateTextDurability();
         GeneralUIManager.Inst.UpdateTextTime();
         GeneralUIManager.Inst.UpdateEnergy();
-        HomeUIManager.Inst.NoticeEnergyChange();
+        HomeUIManager.Inst.NoticeEnergyChange(spendEnergy, regenDurability);
     }
 
-    public void RegenBody(int time)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="time">잠이 든 시각</param>
+    /// <param name="energy">수면에 사용한 에너지</param>
+    /// <param name="durability">수면으로 회복한 내구도</param>
+    public void RegenBody(int time, ref int spendEnergy, ref int regenDurability)
     {
         // 에너지를 통한 힐
-        int cost = GetEnergyCost(_time.runtimeDay);
+        int cost = Mathf.CeilToInt((100 - durability.value) / 100.0f * GetEnergyCost(_time.runtimeDay));
         if (cost <= energy.value)
         {
             energy.value -= cost;
+            spendEnergy = cost;
+            regenDurability = 100 - durability.value;
             durability.value = 100;
             Debug.Log("내구도 전부 회복, 소모한 에너지 : " + cost);
         }
         else
         {
-            Debug.Log("내구도 일부 회복\n소모한 에너지 : " + energy.value+"\n회복한 내구도 : "+ 100.0f * energy.value / cost);
+            cost = GetEnergyCost(_time.runtimeDay);
+            Debug.Log("내구도 일부 회복\n소모한 에너지 : " + energy.value + "\n회복한 내구도 : " + 100.0f * energy.value / cost);
+            spendEnergy = energy.value;
+            regenDurability = Mathf.CeilToInt(100.0f * energy.value / cost);
             durability.value += Mathf.CeilToInt(100.0f * energy.value / cost);
             energy.value = 0;
         }

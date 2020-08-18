@@ -400,8 +400,10 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     /// <summary>
     /// 수면에 대한 에너지 변화를 안내한다.
     /// </summary>
-    public void NoticeEnergyChange()
+    public void NoticeEnergyChange(int energy, int durablity)
     {
-
+        Debug.Log("안내 패널 출력");
+        panelNotice.SetActive(true);
+        textNotice.text = "에너지를 " + energy + "소모하여\n내구도를 " + durablity + "% 회복했습니다.";
     }
 }
