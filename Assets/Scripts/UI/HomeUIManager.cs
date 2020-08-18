@@ -618,4 +618,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         panelNotice.SetActive(true);
         textNotice.text = "에너지를 " + energy + "소모하여\n내구도를 " + durablity + "% 회복했습니다.";
     }
+
+
+    public void ButtonDebugClicked()
+    {
+        Debug.Log("atk:" + Player.Inst.Atk + "  def:"+Player.Inst.Def+"   dex:"+Player.Inst.Dex+"   mana:"+Player.Inst.Mana+"   endurance:"+Player.Inst.Endurance);
+
+    }
 }
