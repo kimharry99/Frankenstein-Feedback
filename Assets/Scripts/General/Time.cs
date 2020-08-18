@@ -21,7 +21,7 @@ public class Time : ScriptableObject, ISerializationCallbackReceiver
             runtimeTime -= 24;
             runtimeDay++;
         }
-        if (runtimeTime != 0 && runtimeTime < 8) 
+        if (runtimeTime < 8) 
             isNight = true;
         else
             isNight = false;

@@ -124,9 +124,9 @@ public class GameManager : SingletonBehaviour<GameManager>
             energy.value = 0;
         }
         // 비수면 페널티
-        if(time > 1)
+        if(time > 0)
         {
-            durability.value -= 5 * (time - 1);
+            durability.value -= 5 * (time);
             Debug.Log("비수면 페널티 : " + 5 * time);
         }
     }
