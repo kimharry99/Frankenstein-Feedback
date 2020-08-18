@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : SingletonBehaviour<Player>
 {
-    public FloatVariable durability;
+    public IntVariable durability;
     public Inventory inventory;
     [Header("Body Parts")]
     [SerializeField]

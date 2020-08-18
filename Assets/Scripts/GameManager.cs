@@ -13,7 +13,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     public BodyAssembly bodyAssembly;
     public BodyDisassembly bodyDisassembly;
     public IntVariable energy;
-    public FloatVariable durability;
+    public IntVariable durability;
 
     #region Unity Functions
     protected override void Awake()
@@ -102,20 +102,20 @@ public class GameManager : SingletonBehaviour<GameManager>
         if (cost <= energy.value)
         {
             energy.value -= cost;
-            durability.value = 100.0f;
+            durability.value = 100;
             Debug.Log("내구도 전부 회복, 소모한 에너지 : " + cost);
         }
         else
         {
             Debug.Log("내구도 일부 회복\n소모한 에너지 : " + energy.value+"\n회복한 내구도 : "+ 100.0f * energy.value / cost);
-            durability.value += 100.0f * energy.value / cost;
+            durability.value += Mathf.CeilToInt(100.0f * energy.value / cost);
             energy.value = 0;
         }
         // 비수면 페널티
         if(time > 1)
         {
-            durability.value -= 5.0f * (time - 1);
-            Debug.Log("비수면 페널티 : " + 5.0f * time);
+            durability.value -= 5 * (time - 1);
+            Debug.Log("비수면 페널티 : " + 5 * time);
         }
     }
     private int GetEnergyCost(int day)

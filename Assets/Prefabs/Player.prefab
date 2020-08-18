@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6083c0755203424a91943fbf3d533b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: {fileID: 11400000, guid: 0f322d544fce00a498795d7394764a5c, type: 2}
+  durability: {fileID: 11400000, guid: d1bc28ca26e780344bda0c008e745541, type: 2}
   inventory: {fileID: 11400000, guid: 29bd155a658128a48881d6b34a6f79c7, type: 2}
   _equippedBodyPart: {fileID: 11400000, guid: f200f60ddd578224e8a401f83ea95480, type: 2}
   toolStat: {fileID: 11400000, guid: d35f7f5c57a326344bcb915cac826d85, type: 2}

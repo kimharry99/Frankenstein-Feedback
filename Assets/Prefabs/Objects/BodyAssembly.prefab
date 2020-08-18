@@ -44,4 +44,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energy: {fileID: 11400000, guid: b48f545c1bd604f458611bfec53d253c, type: 2}
-  _bodyPartStatus: {fileID: 11400000, guid: e15282c3b66f9c94ca849c7076c39fca, type: 2}

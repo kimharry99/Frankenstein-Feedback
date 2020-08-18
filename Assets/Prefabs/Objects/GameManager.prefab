@@ -47,4 +47,4 @@ MonoBehaviour:
   bodyAssembly: {fileID: 0}
   bodyDisassembly: {fileID: 0}
   energy: {fileID: 11400000, guid: b48f545c1bd604f458611bfec53d253c, type: 2}
-  durability: {fileID: 11400000, guid: 0f322d544fce00a498795d7394764a5c, type: 2}
+  durability: {fileID: 11400000, guid: d1bc28ca26e780344bda0c008e745541, type: 2}

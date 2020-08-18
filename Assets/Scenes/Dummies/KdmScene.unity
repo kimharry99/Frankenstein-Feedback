@@ -9234,16 +9234,6 @@ PrefabInstance:
       objectReference: {fileID: 69245583}
     - target: {fileID: 4496653149735789406, guid: 67032a8892c6fbc41a201638db5eb41c,
         type: 3}
-      propertyPath: onTurnOver.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 601918033}
-    - target: {fileID: 4496653149735789406, guid: 67032a8892c6fbc41a201638db5eb41c,
-        type: 3}
-      propertyPath: onTurnOver.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 601918033}
-    - target: {fileID: 4496653149735789406, guid: 67032a8892c6fbc41a201638db5eb41c,
-        type: 3}
       propertyPath: bodyDisassembly
       value: 
       objectReference: {fileID: 1599155495}
@@ -11688,7 +11678,7 @@ MonoBehaviour:
   - {fileID: 129288078}
   panelSetting: {fileID: 349207897}
   time: {fileID: 11400000, guid: 926617181ab5dcd44a050a2611db6c49, type: 2}
-  durability: {fileID: 11400000, guid: 0f322d544fce00a498795d7394764a5c, type: 2}
+  durability: {fileID: 11400000, guid: d1bc28ca26e780344bda0c008e745541, type: 2}
   energy: {fileID: 11400000, guid: b48f545c1bd604f458611bfec53d253c, type: 2}
   inventory: {fileID: 11400000, guid: 29bd155a658128a48881d6b34a6f79c7, type: 2}
   emptyImage: {fileID: 21300000, guid: 9afc85d8617e9a849a6d3dcefefd9bc1, type: 3}
@@ -16316,16 +16306,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: StorageManager
       objectReference: {fileID: 0}
-    - target: {fileID: 3339899579608164781, guid: d3cc296ffcbbe0645a973cd1d2319945,
-        type: 3}
-      propertyPath: _indexTableBodypart.Array.size
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 3339899579608164781, guid: d3cc296ffcbbe0645a973cd1d2319945,
-        type: 3}
-      propertyPath: homeUIManager
-      value: 
-      objectReference: {fileID: 130610782}
     - target: {fileID: 3339899579608164782, guid: d3cc296ffcbbe0645a973cd1d2319945,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24469,6 +24449,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1398286065}
   m_CullTransparentMesh: 0
+--- !u!114 &1407966568 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4496653149735789406, guid: 67032a8892c6fbc41a201638db5eb41c,
+    type: 3}
+  m_PrefabInstance: {fileID: 476043993}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66f16a9b347f314c89e58b2b5ed0602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1408836387
 GameObject:
   m_ObjectHideFlags: 0
@@ -30245,13 +30237,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Foo
+      - m_Target: {fileID: 1407966568}
+        m_MethodName: OnTurnOver
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

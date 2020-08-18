@@ -17,7 +17,6 @@ public enum BodyPartType
 public class BodyPart : Tool
 {
     [Header("Body Part Member")]
-    public FloatVariable durability;
     public BodyPartType bodyPartType;
     public Sprite bodyPartSprite;
 }
