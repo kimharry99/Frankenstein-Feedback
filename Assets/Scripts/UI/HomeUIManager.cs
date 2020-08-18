@@ -625,4 +625,24 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         Debug.Log("atk:" + Player.Inst.Atk + "  def:"+Player.Inst.Def+"   dex:"+Player.Inst.Dex+"   mana:"+Player.Inst.Mana+"   endurance:"+Player.Inst.Endurance);
 
     }
+    // for debugging
+    public void ButtonSetTimePanelClicked(GameObject panel)
+    {
+        panel.SetActive(true);
+    }
+    /// <summary>
+    /// for debugging, 가장 가까운 time 시각 까지 게임을 진행시킨다.
+    /// </summary>
+    /// <param name="time"></param>
+    public void ButtonSetTimeClicked(int time)
+    {
+        if(GeneralUIManager.Inst.time.runtimeTime < time)
+        {
+            GameManager.Inst.OnTurnOver(time - GeneralUIManager.Inst.time.runtimeTime);
+        }
+        else
+        {
+            GameManager.Inst.OnTurnOver(24 + time - GeneralUIManager.Inst.time.runtimeTime);
+        }
+    }
 }
