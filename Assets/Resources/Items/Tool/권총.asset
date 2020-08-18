@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97c0b83b52c780408a24bc905d332b0, type: 3}
+  m_Name: "\uAD8C\uCD1D"
+  m_EditorClassIdentifier: 
+  id: 3021
+  itemName: "\uAD8C"
+  description: "\"\uC544\uC9C1 \uD55C \uBC1C \uB0A8\uC558\uB2E4\u2026\""
+  itemImage: {fileID: 21300000, guid: 95229a67d841fbf4cb1493346fc056ea, type: 3}
+  type: 3
+  race: 0
+  energyPotential: 0
+  atk: 10
+  def: 0
+  dex: 5
+  mana: 0
+  endurance: 0

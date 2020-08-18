@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: New Inventory
   m_EditorClassIdentifier: 
   slotItem:
-  - {fileID: 11400000, guid: 68781c060c1f01b43950c9d60e378cc7, type: 2}
-  - {fileID: 11400000, guid: 9a4f7299e2434524c937adfe0723f844, type: 2}
-  - {fileID: 11400000, guid: d846e29caa9d8ad4a92856c307fb6498, type: 2}
-  - {fileID: 11400000, guid: 9e4c893d5183c6d4a82619327259787a, type: 2}
+  - {fileID: 11400000, guid: 74bf7538549802d48886536f42faddd9, type: 2}
   - {fileID: 0}
-  slotItemNumber: 0300000003000000010000000100000000000000
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  slotItemNumber: 0500000000000000000000000000000000000000

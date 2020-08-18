@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -27,8 +30,14 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public GameObject[] imageCheck;
     public Text textDisassembleEnergy;
     public Scrollbar scrollbarDisassemble;
-    public int[] indexHoldingChest;
-    public int[] indexUsingHolding;
+    public int[] indexHoldingChest = new int[Chest.CAPACITY];
+    public int[] indexUsingHolding = new int[6];
+
+    [Header("Crafting UI")]
+    public GameObject[] buttonCraftUsing;
+    public GameObject[] buttonCraftHolding;
+    public Text textCraftEnergy;
+    public Scrollbar scrollbarCraft;
 
     [Header("Assemble UI")]
     public Image imageAssembleUsing;
@@ -62,7 +71,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     /// </summary>
     private void UpdateChestImage()
     {
-        for(int i=0;i<imageChestSlot.Length;i++)
+        for (int i = 0; i < imageChestSlot.Length; i++)
         {
             int indexItem = StorageManager.Inst.GetIndexTable(_currentChestType, i);
             if (indexItem != -1)
@@ -113,15 +122,30 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     //            imageChestSlot[i].image.sprite = emptyImage;
     //    }
     //}
-    #endregion
-
     // 승윤 TODO : 메소드 구현, chest mehtods region안에 옮겨놓기
     /// <summary>
     /// 창고의 아이템 개수를 Update한다.
     /// </summary>
     private void UpdateChestText()
     {
-
+        Text txt;
+        for(int i = 0; i < Chest.CAPACITY; i++)
+        {
+            int indexItem = StorageManager.Inst.GetIndexTable(_currentChestType, i);
+            if (indexItem != -1)
+            {
+                if (chest.slotItem[indexItem] != null)
+                {
+                    txt = panelChest.transform.GetChild(1).GetChild(i).GetChild(0).GetChild(0).GetComponent<Text>();
+                    txt.text = chest.slotItemNumber[indexItem].ToString();
+                }
+                else
+                {
+                    txt = panelChest.transform.GetChild(1).GetChild(i).GetChild(0).GetChild(0).GetComponent<Text>();
+                    txt.text = "";
+                }
+            }
+        }
     }
 
     // 승윤 TODO : 메소드 구현, chest methods region안에 옮겨놓기
@@ -130,8 +154,18 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     /// </summary>
     private void HighlightCategoryButton()
     {
-
+        Image selectorButton;
+        for (int i = 0; i < 5; i++)
+        {
+            selectorButton = panelChest.transform.GetChild(0).GetChild(i).GetComponent<Image>();
+            selectorButton.color = Color.white;
+        }
+        selectorButton = EventSystem.current.currentSelectedGameObject.GetComponent<Image>();
+        selectorButton.color = Color.grey;
     }
+    #endregion
+
+  
 
     #region HomePanel methods
 
@@ -159,6 +193,9 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         panelHome.SetActive(false);
         panelCrafting.SetActive(true);
+
+        UpdateCrafting();
+        scrollbarCraft.value = 1;
     }
 
     public void ButtonAssembleClicked()
@@ -175,7 +212,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         panelHome.SetActive(false);
         panelChest.SetActive(true);
         UpdateChest();
-    } 
+    }
     // Parameter panel means a panel to be closed.
     public void ButtonCloseClicked(GameObject panel)
     {
@@ -224,7 +261,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
                 indexHoldingItem++;
             }
 
-            if (indexHoldingItem > 29) // Prevent the Overflow (Now It's not Needed)
+            if (indexHoldingItem >= Chest.CAPACITY) // Prevent the Overflow (Now It's not Needed)
                 break;
         }
         return indexHoldingItem;
@@ -327,14 +364,189 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     #endregion
 
     #region CraftingPanel methods
-    public void CraftingButtonItemClicked()
+
+    public int craftEnergy = 0;
+    public int[] itemHoldingCount = new int[Chest.CAPACITY];
+    public int[] itemUsingCount = new int[6];
+
+    public void UpdateCrafting()
     {
-        print("ButtonItemClicked");
+        int indexHoldingItem = 0;
+        indexHoldingItem = UpdateImageItem();
+        ResetRemainingCraftSlots(indexHoldingItem);
+        UpdateItemCount();
+
+        craftEnergy = 0;
+        textCraftEnergy.text = "필요 에너지 [ " + craftEnergy.ToString() + " ]";
+    }
+    private int UpdateImageItem()
+    {
+        int indexItem = 0, indexHoldingItem = 0;
+
+        for (; indexItem < chest.slotItem.Length; indexItem++)
+        {
+            if (chest.slotItem[indexItem] != null && chest.slotItem[indexItem].type == Type.Ingredient)
+            {
+                Image imageCraftHolding = buttonCraftHolding[indexHoldingItem].transform.GetChild(0).GetComponent<Image>();
+                imageCraftHolding.sprite = chest.slotItem[indexItem].itemImage; // Update Item
+                indexHoldingChest[indexHoldingItem] = indexItem; // Record the Index of Item (Holding Slot to Chest Slot)
+
+                if (indexHoldingItem < 6) // Reset the Using Slot
+                {
+                    Image imageCraftUsing = buttonCraftUsing[indexHoldingItem].transform.GetChild(0).GetComponent<Image>();
+                    imageCraftUsing.sprite = emptyImage;
+                    indexUsingHolding[indexHoldingItem] = -1;
+                }
+
+                indexHoldingItem++;
+            }
+
+            if (indexHoldingItem >= Chest.CAPACITY) // Prevent the Overflow (Now It's not Needed)
+                break;
+        }
+        return indexHoldingItem;
     }
 
-    public void CraftingButtonCreateClicked()
+    private void ResetRemainingCraftSlots(int indexHoldingItem)
     {
-        print("ButtonCreateClicked");
+        while (indexHoldingItem < chest.slotItem.Length) // Reset the Remaining Slots
+        {
+            Image imageCraftHolding = buttonCraftHolding[indexHoldingItem].transform.GetChild(0).GetComponent<Image>();
+            imageCraftHolding.sprite = emptyImage;
+            indexHoldingChest[indexHoldingItem] = -1;
+
+            if (indexHoldingItem < 6)
+            {
+                Image imageCraftUsing = buttonCraftUsing[indexHoldingItem].transform.GetChild(0).GetComponent<Image>();
+                imageCraftUsing.sprite = emptyImage;
+                indexUsingHolding[indexHoldingItem] = -1;
+            }
+
+            indexHoldingItem++;
+        }
+    }
+
+
+    private void UpdateItemCount()
+    {
+        for (int i = 0; i < Chest.CAPACITY; i++)
+        {
+            if (indexHoldingChest[i] != -1)
+                itemHoldingCount[i] = chest.slotItemNumber[indexHoldingChest[i]];
+
+            else
+                itemHoldingCount[i] = 0;
+
+            Text textHoldingCount = buttonCraftHolding[i].transform.GetChild(1).GetComponent<Text>();
+            textHoldingCount.text = itemHoldingCount[i].ToString();
+
+            if (i < 6)
+            {
+                itemUsingCount[i] = 0;
+                Text textUsingCount = buttonCraftUsing[i].transform.GetChild(1).GetComponent<Text>();
+                textUsingCount.text = itemUsingCount[i].ToString();
+            }
+        }
+    }
+
+    public void CraftButtonHoldingClicked(int slotNumber)
+    {
+        if (itemHoldingCount[slotNumber] > 0) // If Clicked Slot is not Empty Slot
+        {
+            int i = 0;
+            for (; i < 6; i++)
+            {
+                if (indexUsingHolding[i] == slotNumber)
+                    break;
+            }
+
+            if (i < 6)
+            {
+                itemHoldingCount[slotNumber]--;
+                Text textHoldingCount = buttonCraftHolding[slotNumber].transform.GetChild(1).GetComponent<Text>();
+                textHoldingCount.text = itemHoldingCount[slotNumber].ToString();
+
+                itemUsingCount[i]++;
+                Text textUsingCount = buttonCraftUsing[i].transform.GetChild(1).GetComponent<Text>();
+                textUsingCount.text = itemUsingCount[i].ToString();
+
+                craftEnergy += chest.slotItem[indexHoldingChest[slotNumber]].energyPotential;
+                textCraftEnergy.text = "필요 에너지 [ " + craftEnergy.ToString() + " ]";
+
+                Debug.Log(slotNumber + "select;" +
+                          "    +" + chest.slotItem[indexHoldingChest[slotNumber]].energyPotential + "energy" + "" +
+                          "\ntotal:" + craftEnergy.ToString());
+            }
+
+            else
+            {
+                for (i = 0; i < 6; i++)
+                {
+                    if (itemUsingCount[i] == 0)
+                        break;
+                }
+
+                if (i < 6)
+                {
+                    itemHoldingCount[slotNumber]--;
+                    Text textHoldingCount = buttonCraftHolding[slotNumber].transform.GetChild(1).GetComponent<Text>();
+                    textHoldingCount.text = itemHoldingCount[slotNumber].ToString();
+
+                    itemUsingCount[i]++;
+                    Text textUsingCount = buttonCraftUsing[i].transform.GetChild(1).GetComponent<Text>();
+                    textUsingCount.text = itemUsingCount[i].ToString();
+
+                    Image imageCraftUsing = buttonCraftUsing[i].transform.GetChild(0).GetComponent<Image>();
+                    imageCraftUsing.sprite = chest.slotItem[indexHoldingChest[slotNumber]].itemImage; // Update Item at the Using Slot
+                    indexUsingHolding[i] = slotNumber; // Record the Index of Item (Using Slot to Holding Slot)
+
+                    craftEnergy += chest.slotItem[indexHoldingChest[slotNumber]].energyPotential;
+                    textCraftEnergy.text = "필요 에너지 [ " + craftEnergy.ToString() + " ]";
+
+                    Debug.Log(slotNumber + "select;" +
+                              "    +" + chest.slotItem[indexHoldingChest[slotNumber]].energyPotential + "energy" + "" +
+                              "\ntotal:" + craftEnergy.ToString());
+                }
+
+                else
+                {
+                    panelNotice.SetActive(true);
+                    textNotice.text = "제작 슬롯이 가득 찼습니다.";
+                }
+            }
+        }
+    }
+
+    public void CraftButtonUsingClicked(int slotNumber)
+    {
+        if (itemUsingCount[slotNumber] > 0)
+        {
+            int indexHolding = indexUsingHolding[slotNumber];
+
+            itemUsingCount[slotNumber]--;
+            Text textUsingCount = buttonCraftUsing[slotNumber].transform.GetChild(1).GetComponent<Text>();
+            textUsingCount.text = itemUsingCount[slotNumber].ToString();
+
+            if (itemUsingCount[slotNumber] == 0)
+            {
+                Image imageCraftUsing = buttonCraftUsing[slotNumber].transform.GetChild(0).GetComponent<Image>();
+                imageCraftUsing.sprite = emptyImage; // Remove Item in the Using Slot
+                indexUsingHolding[slotNumber] = -1; // Initialize
+            }
+
+            itemHoldingCount[indexHolding]++;
+            Text textHoldingCount = buttonCraftHolding[indexHolding].transform.GetChild(1).GetComponent<Text>();
+            textHoldingCount.text = itemHoldingCount[indexHolding].ToString();
+
+            craftEnergy -= chest.slotItem[indexHoldingChest[indexHolding]].energyPotential;
+            textCraftEnergy.text = "필요 에너지 [ " + craftEnergy.ToString() + " ]";
+        }
+    }
+    
+    public void CraftButtonCreateClicked()
+    {
+        panelNotice.SetActive(true);
+        textNotice.text = "공사 중...";
     }
     #endregion
 
@@ -396,4 +608,14 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         }
     }
     #endregion
+
+    /// <summary>
+    /// 수면에 대한 에너지 변화를 안내한다.
+    /// </summary>
+    public void NoticeEnergyChange(int energy, int durablity)
+    {
+        Debug.Log("안내 패널 출력");
+        panelNotice.SetActive(true);
+        textNotice.text = "에너지를 " + energy + "소모하여\n내구도를 " + durablity + "% 회복했습니다.";
+    }
 }

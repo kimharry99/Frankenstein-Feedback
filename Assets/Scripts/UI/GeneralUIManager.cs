@@ -20,7 +20,7 @@ public class GeneralUIManager : SingletonBehaviour<GeneralUIManager>
 
     public GameObject panelSetting;
     public Time time;
-    public FloatVariable durability;
+    public IntVariable durability;
     public IntVariable energy;
     public Inventory inventory;
 
@@ -32,6 +32,9 @@ public class GeneralUIManager : SingletonBehaviour<GeneralUIManager>
         // inventory = 
         // chest = StorageManager.Inst.chest;
         UpdateInventory();
+        UpdateTextDurability();
+        UpdateTextTime();
+        UpdateEnergy();
     }
     #endregion
     

@@ -36,7 +36,7 @@ public class BodyAssembly : MonoBehaviour
     }
 
     [SerializeField]
-    private IntVariable energy;
+    private IntVariable energy = null;
     // 신체 조립을 실행한다.
     // StorageManager의 아이템 Add함수, Delete함수를 사용하여 구현
     public void AssemleBody()
@@ -44,11 +44,10 @@ public class BodyAssembly : MonoBehaviour
         // 선택된 신체가 창고에서 이동되어 플레이어에게 장착된다. 
         // Player가 장착하고 있던 신체는 창고로 이동한다.
         // 에너지를 소비한다.
-        BodyPart returnedBodyPart = Player.Inst.UpdateCharacterBody(_selectedBodyPart, _selectedSlotOfChest);
+        Player.Inst.ExchangePlayerBody(_selectedBodyPart, _selectedSlotOfChest);
         SpendEnergy(100);
         HomeUIManager.Inst.UpdateBodyAssemblyHoldingImages();
 
-        UpdateBodyStat(returnedBodyPart);
         GameManager.Inst.OnTurnOver(1);
         GeneralUIManager.Inst.UpdateEnergy();
     }
@@ -59,65 +58,39 @@ public class BodyAssembly : MonoBehaviour
         energy.value -= energyCost;
     }
 
-    [SerializeField]
-    private Status _bodyPartStatus;
-    // Player의 신체에 해당하는 스텟을 업데이트한다.
-    // StorageManager의 inventory status methods region을 참고
-    private void UpdateBodyStat(BodyPart bodyPart)
-    {
-        switch (bodyPart.bodyPartType)
-        {
-            case BodyPartType.Head:
-                _bodyPartStatus.atk += Player.Inst.head.atk;
-                _bodyPartStatus.def += Player.Inst.head.def;
-                _bodyPartStatus.dex += Player.Inst.head.dex;
-                _bodyPartStatus.mana += Player.Inst.head.mana;
-                _bodyPartStatus.endurance += Player.Inst.head.endurance;
-                break;
-            case BodyPartType.Body:
-                _bodyPartStatus.atk += Player.Inst.body.atk;
-                _bodyPartStatus.def += Player.Inst.body.def;
-                _bodyPartStatus.dex += Player.Inst.body.dex;
-                _bodyPartStatus.mana += Player.Inst.body.mana;
-                _bodyPartStatus.endurance += Player.Inst.body.endurance;
-                break;
-            case BodyPartType.LeftArm:
-                _bodyPartStatus.atk += Player.Inst.leftArm.atk;
-                _bodyPartStatus.def += Player.Inst.leftArm.def;
-                _bodyPartStatus.dex += Player.Inst.leftArm.dex;
-                _bodyPartStatus.mana += Player.Inst.leftArm.mana;
-                _bodyPartStatus.endurance += Player.Inst.leftArm.endurance;
-                break;
-            case BodyPartType.RightArm:
-                _bodyPartStatus.atk += Player.Inst.rightArm.atk;
-                _bodyPartStatus.def += Player.Inst.rightArm.def;
-                _bodyPartStatus.dex += Player.Inst.rightArm.dex;
-                _bodyPartStatus.mana += Player.Inst.rightArm.mana;
-                _bodyPartStatus.endurance += Player.Inst.rightArm.endurance;
-                break;
-            case BodyPartType.LeftLeg:
-                _bodyPartStatus.atk += Player.Inst.leftLeg.atk;
-                _bodyPartStatus.def += Player.Inst.leftLeg.def;
-                _bodyPartStatus.dex += Player.Inst.leftLeg.dex;
-                _bodyPartStatus.mana += Player.Inst.leftLeg.mana;
-                _bodyPartStatus.endurance += Player.Inst.leftLeg.endurance;
-                break;
-            case BodyPartType.RightLeg:
-                _bodyPartStatus.atk += Player.Inst.rightLeg.atk;
-                _bodyPartStatus.def += Player.Inst.rightLeg.def;
-                _bodyPartStatus.dex += Player.Inst.rightLeg.dex;
-                _bodyPartStatus.mana += Player.Inst.rightLeg.mana;
-                _bodyPartStatus.endurance += Player.Inst.rightLeg.endurance;
-                break;
-            default:
-                Debug.Log("wrong item Type");
-                return;
-        }
+    #region legacy
+    //private void UpdateBodyStat(BodyPart bodyPart)
+    //{
+    //    switch (bodyPart.bodyPartType)
+    //    {
+    //        case BodyPartType.Head:
+    //            UpdateBodyPartStat(Player.Inst.head);
+    //            break;
+    //        case BodyPartType.Body:
+    //            UpdateBodyPartStat(Player.Inst.body);
+    //            break;
+    //        case BodyPartType.LeftArm:
+    //            UpdateBodyPartStat(Player.Inst.leftArm);
+    //            break;
+    //        case BodyPartType.RightArm:
+    //            UpdateBodyPartStat(Player.Inst.rightArm);
+    //            break;
+    //        case BodyPartType.LeftLeg:
+    //            UpdateBodyPartStat(Player.Inst.leftLeg);
+    //            break;
+    //        case BodyPartType.RightLeg:
+    //            UpdateBodyPartStat(Player.Inst.rightLeg);
+    //            break;
+    //        default:
+    //            Debug.Log("wrong item Type");
+    //            return;
+    //    }
 
-        _bodyPartStatus.atk -= bodyPart.atk;
-        _bodyPartStatus.def -= bodyPart.def;
-        _bodyPartStatus.dex -= bodyPart.dex;
-        _bodyPartStatus.mana -= bodyPart.mana;
-        _bodyPartStatus.endurance -= bodyPart.endurance;
-    }
+    //    _bodyPartStatus.atk -= bodyPart.atk;
+    //    _bodyPartStatus.def -= bodyPart.def;
+    //    _bodyPartStatus.dex -= bodyPart.dex;
+    //    _bodyPartStatus.mana -= bodyPart.mana;
+    //    _bodyPartStatus.endurance -= bodyPart.endurance;
+    //}
+    #endregion
 }
