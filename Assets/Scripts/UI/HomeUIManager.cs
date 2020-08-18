@@ -514,7 +514,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
             textCraftEnergy.text = "필요 에너지 [ " + craftEnergy.ToString() + " ]";
         }
     }
-
+    
     public void CraftButtonCreateClicked()
     {
         panelNotice.SetActive(true);
