@@ -351,7 +351,14 @@ public class StorageManager : SingletonBehaviour<StorageManager>
     /// </summary>
     private int FindSlotNumberById(Item item, Storage dest)
     {
-        return 0;
+        for(int i=0;i<dest.slotItem.Length; i++)
+        {
+            if(item.id == dest.slotItem[i].id)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
     // 승윤 TODO : 메소드 구현
@@ -360,7 +367,29 @@ public class StorageManager : SingletonBehaviour<StorageManager>
     /// </summary>
     private void SortChestItem()
     {
-
+        int j;
+        int temp;
+        Item tmp;
+         for(int i = 0; i < Chest.CAPACITY; i++)
+        {
+            if (chest.slotItem[i] == null)
+            {
+                j = i;
+                while (chest.slotItem[++j] == null)
+                {
+                    if (j == Chest.CAPACITY - 1)
+                    {
+                        return;
+                    }
+                }
+                temp = chest.slotItemNumber[j];
+                chest.slotItemNumber[j] = chest.slotItemNumber[i];
+                chest.slotItemNumber[i] = temp; 
+                tmp = chest.slotItem[j];
+                chest.slotItem[j] = chest.slotItem[i];
+                chest.slotItem[i] = tmp;
+            }
+        }
     }
 
     // for debugging
