@@ -557,12 +557,9 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     
     public void CraftButtonCreateClicked()
     {
-        for(int i=0;i<6 && chest.slotItem[indexHoldingChest[indexUsingHolding[i]]] != null; i++)
-        {
-            Debug.Log(chest.slotItem[indexHoldingChest[i]].itemName + " " + itemUsingCount[i] + "개");
-        }
-        panelNotice.SetActive(true);
-        textNotice.text = "공사 중...";
+        //panelNotice.SetActive(true);
+        //textNotice.text = "공사 중...";
+        GameManager.Inst.craftingTable.CraftItem();
     }
     #endregion
 
