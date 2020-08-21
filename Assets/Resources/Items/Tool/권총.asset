@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: "\uAD8C\uCD1D"
   m_EditorClassIdentifier: 
   id: 3021
-  itemName: "\uAD8C"
+  itemName: "\uAD8C\uCD1D"
   description: "\"\uC544\uC9C1 \uD55C \uBC1C \uB0A8\uC558\uB2E4\u2026\""
   itemImage: {fileID: 21300000, guid: 569d8d874eacf654d810cfa418f59da3, type: 3}
   type: 3
