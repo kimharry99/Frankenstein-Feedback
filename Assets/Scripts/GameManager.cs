@@ -12,6 +12,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     public bool IsHome { get; private set; }
     public BodyAssembly bodyAssembly;
     public BodyDisassembly bodyDisassembly;
+    public CraftingTable craftingTable;
     public IntVariable energy;
     public IntVariable durability;
 
@@ -28,6 +29,7 @@ public class GameManager : SingletonBehaviour<GameManager>
         {
             bodyAssembly = GameObject.Find("BodyAssembly").GetComponent<BodyAssembly>();
             bodyDisassembly = GameObject.Find("BodyDisassembly").GetComponent<BodyDisassembly>();
+            craftingTable = GameObject.Find("CraftingTable").GetComponent<CraftingTable>();
         }
     }
     #endregion

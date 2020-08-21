@@ -165,8 +165,6 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     }
     #endregion
 
-  
-
     #region HomePanel methods
 
     public void ButtonExploreClicked()
@@ -229,6 +227,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     }
 
     #region DisassemblePanel methods
+
     public int disassembleEnergy = 0;
     public void UpdateDisassemble()
     {
@@ -379,6 +378,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         craftEnergy = 0;
         textCraftEnergy.text = "필요 에너지 [ " + craftEnergy.ToString() + " ]";
     }
+
+    /// <summary>
+    /// 창고의 아이템 목록을 갱신한다.
+    /// </summary>
+    /// <returns></returns>
     private int UpdateImageItem()
     {
         int indexItem = 0, indexHoldingItem = 0;
@@ -396,6 +400,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
                     Image imageCraftUsing = buttonCraftUsing[indexHoldingItem].transform.GetChild(0).GetComponent<Image>();
                     imageCraftUsing.sprite = emptyImage;
                     indexUsingHolding[indexHoldingItem] = -1;
+                    GameManager.Inst.craftingTable.SetIndexUsingChest(indexHoldingItem, -1);
                 }
 
                 indexHoldingItem++;
@@ -420,6 +425,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
                 Image imageCraftUsing = buttonCraftUsing[indexHoldingItem].transform.GetChild(0).GetComponent<Image>();
                 imageCraftUsing.sprite = emptyImage;
                 indexUsingHolding[indexHoldingItem] = -1;
+                GameManager.Inst.craftingTable.SetIndexUsingChest(indexHoldingItem, -1);
             }
 
             indexHoldingItem++;
@@ -443,6 +449,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
             if (i < 6)
             {
                 itemUsingCount[i] = 0;
+                GameManager.Inst.craftingTable.SetUsingItemCount(i, 0);
                 Text textUsingCount = buttonCraftUsing[i].transform.GetChild(1).GetComponent<Text>();
                 textUsingCount.text = itemUsingCount[i].ToString();
             }
@@ -467,6 +474,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
                 textHoldingCount.text = itemHoldingCount[slotNumber].ToString();
 
                 itemUsingCount[i]++;
+                GameManager.Inst.craftingTable.AddUsingItemCount(i, 1);
                 Text textUsingCount = buttonCraftUsing[i].transform.GetChild(1).GetComponent<Text>();
                 textUsingCount.text = itemUsingCount[i].ToString();
 
@@ -493,12 +501,14 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
                     textHoldingCount.text = itemHoldingCount[slotNumber].ToString();
 
                     itemUsingCount[i]++;
+                    GameManager.Inst.craftingTable.AddUsingItemCount(i, 1);
                     Text textUsingCount = buttonCraftUsing[i].transform.GetChild(1).GetComponent<Text>();
                     textUsingCount.text = itemUsingCount[i].ToString();
 
                     Image imageCraftUsing = buttonCraftUsing[i].transform.GetChild(0).GetComponent<Image>();
                     imageCraftUsing.sprite = chest.slotItem[indexHoldingChest[slotNumber]].itemImage; // Update Item at the Using Slot
                     indexUsingHolding[i] = slotNumber; // Record the Index of Item (Using Slot to Holding Slot)
+                    GameManager.Inst.craftingTable.SetIndexUsingChest(i, indexHoldingChest[slotNumber]);
 
                     craftEnergy += chest.slotItem[indexHoldingChest[slotNumber]].energyPotential;
                     textCraftEnergy.text = "필요 에너지 [ " + craftEnergy.ToString() + " ]";
@@ -524,6 +534,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
             int indexHolding = indexUsingHolding[slotNumber];
 
             itemUsingCount[slotNumber]--;
+            GameManager.Inst.craftingTable.AddUsingItemCount(slotNumber, -1);
             Text textUsingCount = buttonCraftUsing[slotNumber].transform.GetChild(1).GetComponent<Text>();
             textUsingCount.text = itemUsingCount[slotNumber].ToString();
 
@@ -532,6 +543,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
                 Image imageCraftUsing = buttonCraftUsing[slotNumber].transform.GetChild(0).GetComponent<Image>();
                 imageCraftUsing.sprite = emptyImage; // Remove Item in the Using Slot
                 indexUsingHolding[slotNumber] = -1; // Initialize
+                GameManager.Inst.craftingTable.SetIndexUsingChest(slotNumber, -1);
             }
 
             itemHoldingCount[indexHolding]++;
@@ -545,6 +557,10 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     
     public void CraftButtonCreateClicked()
     {
+        for(int i=0;i<6 && chest.slotItem[indexHoldingChest[indexUsingHolding[i]]] != null; i++)
+        {
+            Debug.Log(chest.slotItem[indexHoldingChest[i]].itemName + " " + itemUsingCount[i] + "개");
+        }
         panelNotice.SetActive(true);
         textNotice.text = "공사 중...";
     }
@@ -607,6 +623,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
             textNotice.text = "장착할 사체를 선택하세요.";
         }
     }
+
     #endregion
 
     /// <summary>
