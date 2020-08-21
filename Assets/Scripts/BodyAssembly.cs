@@ -19,7 +19,7 @@ public class BodyAssembly : MonoBehaviour
             _index[i] = StorageManager.Inst.GetIndexTable(Type.BodyPart, i);
             if (_index[i] != -1)
             {
-                _holdingBodyParts[i] = (BodyPart)HomeUIManager.Inst.chest.slotItem[_index[i]];
+                _holdingBodyParts[i] = (BodyPart)StorageManager.Inst.chest.slotItem[_index[i]];
                 continue;
             }
             _holdingBodyParts[i] = null;
