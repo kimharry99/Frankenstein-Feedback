@@ -46,5 +46,6 @@ MonoBehaviour:
   _time: {fileID: 11400000, guid: 926617181ab5dcd44a050a2611db6c49, type: 2}
   bodyAssembly: {fileID: 0}
   bodyDisassembly: {fileID: 0}
+  craftingTable: {fileID: 0}
   energy: {fileID: 11400000, guid: b48f545c1bd604f458611bfec53d253c, type: 2}
   durability: {fileID: 11400000, guid: 6580257239b0a354db5f697e862bdc9d, type: 2}
