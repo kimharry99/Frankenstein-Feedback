@@ -47,6 +47,7 @@ public class BodyDisassembly : MonoBehaviour
     // 승윤 TODO : 
     /// <summary>
     /// 다음의 확률대로 값을 반환한다. 50% : 0, 30% : 1, 15% : 2, 5% : 3
+    /// Random.Range 프로퍼티를 사용
     /// </summary>
     /// <returns></returns>
     private int GetRandomIndex()
