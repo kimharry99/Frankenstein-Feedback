@@ -169,7 +169,7 @@ public class StorageManager : SingletonBehaviour<StorageManager>
         {
             if (dest.slotItem[i] != null)
             {
-                if (dest.slotItem[i].id == item.id)
+                if (item.type != Type.Tool && item.type != Type.BodyPart && dest.slotItem[i].id == item.id)
                 {
                     dest.slotItemNumber[i]++;
                     return true;
