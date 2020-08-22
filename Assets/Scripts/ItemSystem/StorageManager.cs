@@ -197,6 +197,19 @@ public class StorageManager : SingletonBehaviour<StorageManager>
         return isSuccess;
     }
 
+    /// <summary>
+    /// 창고에 item n개를 추가한다. 창고가 가득 찼다면, 가득 차기 직전까지 아이템을 넣는다.
+    /// </summary>
+    public bool AddItemsToChest(Item item, int n)
+    {
+        for(int i=0; i<n;i++)
+        {
+            if (!AddItemToChest(item))
+                return false;
+        }
+        return true;
+    }
+
     public bool AddItemToInven(Item item)
     {
         bool isSuccess = AddItem(item, inventory);
