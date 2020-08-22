@@ -3,19 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-struct UsingItem
-{
-    public Item usingItem;
-    /// <summary>
-    /// 작업에 사용된 아이템과 창고내의 아이템 번호를 연결하는 index
-    /// </summary>
-    public int indexUsingChest;
-    public int itemUsingCount;
-}
 
 public class CraftingTable : MonoBehaviour
 {
+    [Serializable]
+    struct UsingItem
+    {
+        public Item usingItem;
+        /// <summary>
+        /// 작업에 사용된 아이템과 창고내의 아이템 번호를 연결하는 index
+        /// </summary>
+        public int indexUsingChest;
+        public int itemUsingCount;
+    }
+
     private UsingItem[] _usingItems = new UsingItem[6];
     /// <summary>
     /// 제작 레시피에 대한 객체
