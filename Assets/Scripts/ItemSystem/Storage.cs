@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[SerializeField]
+public struct Slot
+{
+    public Item slotItem;
+    public int slotItemNumber;
+}
+
 [CreateAssetMenu]
 public class Storage : ScriptableObject
 {
