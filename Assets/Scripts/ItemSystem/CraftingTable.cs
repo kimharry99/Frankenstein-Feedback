@@ -88,6 +88,7 @@ public class CraftingTable : MonoBehaviour
         debuggingIngredientItemIds.Clear();
         string ingredientItemIds = sortUsingItemsById(_usingItems);
         _resultItem = _craftingDirectory.FindItem(ingredientItemIds);
+        //Debug.Log("제작된 아이템 : " + _resultItem.itemName);
     }
 
     /// <summary>
@@ -100,8 +101,11 @@ public class CraftingTable : MonoBehaviour
         List<int> itemIdList = new List<int>();
         for(int i=0;usingItems[i].indexUsingChest >= 0; i++)
         {
-            itemIdList.Add(usingItems[i].usingItem.id);
-            debuggingIngredientItemIds.Add(usingItems[i].usingItem.id);
+            for (int j = 0; j < usingItems[i].itemUsingCount; j++)
+            {
+                itemIdList.Add(usingItems[i].usingItem.id);
+                debuggingIngredientItemIds.Add(usingItems[i].usingItem.id);
+            }
         }
         itemIdList.Sort();
         debuggingIngredientItemIds.Sort();
