@@ -46,7 +46,7 @@ public class CraftingDirectory
         //Debug.Log(JsonUtility.ToJson(new Serialization<Recipie>(_recipies), true));
 
         string loadPath = "Assets/Data";
-        string fileName = "123";
+        string fileName = "CraftingRecipies";
         _recipies = LoadJsonFile<Serialization<Recipie>>(loadPath, fileName).ToList();
         //AddRecipieToDictionary(_recipies, dicItemRecipie);
     }
