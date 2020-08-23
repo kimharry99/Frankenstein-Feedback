@@ -1,48 +1,48 @@
 {
   "target": [
     {
-      "itemName": "»ıÃ¼Å×ÀÌÇÁ",
+      "itemName": "ìƒì²´í…Œì´í”„",
       "ingredientItemIds": "40014001",
       "resultItemId": 2001
     },
     {
-      "itemName": "µµ³¢",
+      "itemName": "ë„ë¼",
       "ingredientItemIds": "400240024003",
       "resultItemId": 3011
     },
     {
-      "itemName": "±ÇÃÑ",
+      "itemName": "ê¶Œì´",
       "ingredientItemIds": "400245014501",
       "resultItemId": 3021
     },
     {
-      "itemName": "¼¦°Ç",
+      "itemName": "ìƒ·ê±´",
       "ingredientItemIds": "4002400240034003450145014501",
       "resultItemId": 3022
     },
     {
-      "itemName": "¼ÕÀüµî",
+      "itemName": "ì†ì „ë“±",
       "ingredientItemIds": "40024501",
       "resultItemId": 3041
     },
     {
-      "itemName": "´Ü°Ë",
-      "ingredientItemIds": "40024501",
+      "itemName": "ë‹¨ê²€",
+      "ingredientItemIds": "400240024003",
       "resultItemId": 3211
     },
     {
-      "itemName": "¸¶¹ıºÀ",
-      "ingredientItemIds": "40024501",
+      "itemName": "ë§ˆë²•ë´‰",
+      "ingredientItemIds": "40034003430143014301",
       "resultItemId": 3331
     },
     {
-      "itemName": "ÇöÀÚÀÇ ÁöÆÎÀÌ",
-      "ingredientItemIds": "40024501",
+      "itemName": "í˜„ìì˜ ì§€íŒ¡ì´",
+      "ingredientItemIds": "40034003400340034003430143014301430143014201",
       "resultItemId": 3332
     },
     {
-      "itemName": "´ë°Ë",
-      "ingredientItemIds": "40024501",
+      "itemName": "ëŒ€ê²€",
+      "ingredientItemIds": "40024002400240024002400240024002",
       "resultItemId": 3411
     }
   ]
