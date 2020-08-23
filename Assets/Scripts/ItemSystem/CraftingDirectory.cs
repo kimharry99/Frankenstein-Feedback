@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 
-public class CraftingDirectory
+public class CraftingDirectory : MonoBehaviour
 {
     [Serializable]
     public struct Recipie
@@ -48,16 +48,22 @@ public class CraftingDirectory
         string loadPath = "Assets/Data";
         string fileName = "CraftingRecipies";
         _recipies = LoadJsonFile<Serialization<Recipie>>(loadPath, fileName).ToList();
-        //AddRecipieToDictionary(_recipies, dicItemRecipie);
+        AddRecipieToDictionary(_recipies, dicItemRecipie);
     }
+
+    /// <summary>
+    /// ingreditnItemIDs으로 제작할 수 있는 아이템을 반환한다.
+    /// </summary>
+    /// <param name="ingredientItemIDs"></param>
+    /// <returns></returns>
     public Item FindItem(string ingredientItemIDs)
     {
-        if(itemRecipe.ContainsKey(ingredientItemIDs))
+        if(dicItemRecipie.ContainsKey(ingredientItemIDs))
         {
-            Debug.Log(itemRecipe.ContainsKey(ingredientItemIDs));
-            return itemRecipe[ingredientItemIDs];
+            Debug.Log(dicItemRecipie.ContainsKey(ingredientItemIDs));
+            return dicItemRecipie[ingredientItemIDs];
         }
-        Debug.Log(itemRecipe.ContainsKey(ingredientItemIDs));
+        Debug.Log(dicItemRecipie.ContainsKey(ingredientItemIDs));
         return null;
     }
 
@@ -69,5 +75,26 @@ public class CraftingDirectory
         fileStream.Close();
         string jsonData = Encoding.UTF8.GetString(data);
         return JsonUtility.FromJson<T>(jsonData);
+    }
+
+    private void AddRecipieToDictionary(List<Recipie> recipies, Dictionary<string, Item> _itemRecipie)
+    {
+        Debug.Log(recipies.Count);
+        foreach(Recipie r in recipies)
+        {
+            int itemId = r.resultItemId;
+            Item item = FindItemByID(itemId);
+            Debug.Log(r.ingredientItemIds);
+            if (!_itemRecipie.ContainsKey(r.ingredientItemIds))
+                _itemRecipie.Add(r.ingredientItemIds, item);
+            else
+                Debug.LogError("key is already exist, key : " + r.ingredientItemIds);
+        }
+    }
+
+    private Item FindItemByID(int itemId)
+    {
+        ItemLoader itemLoader = ItemLoader.Inst;
+        return itemLoader.GetItemById(itemId);
     }
 }

@@ -21,7 +21,7 @@ public class CraftingTable : MonoBehaviour
     /// <summary>
     /// 제작 레시피에 대한 객체
     /// </summary>
-    private CraftingDirectory _craftingDirectory = new CraftingDirectory();
+    private CraftingDirectory _craftingDirectory;
     /// <summary>
     /// 제작결과 아이템
     /// </summary>
@@ -33,10 +33,7 @@ public class CraftingTable : MonoBehaviour
 
     private void Start()
     {
-        // 아이템 레시피는 Dictionary로 이루어어져 있으며, Key로 아이템 id가 연결되어있는 string을 사용한다.
-        // id는 오름차순정렬
-        // 디버깅 할 때 itemRecpie에 원하는 조합법을 추가하면 된다.
-        _craftingDirectory.itemRecipe.Add("40014201", item[0]);
+        _craftingDirectory = gameObject.AddComponent<CraftingDirectory>();
     }
 
     #region usingItems Property

@@ -21,9 +21,12 @@ public class ItemLoader : SingletonBehaviour<ItemLoader>
 
     public Item GetItemById(int id)
     {
-        Item loadedItem;
-        Item originItem = dicIdItem[id];
-        loadedItem = Resources.Load<Item>("Items/" + originItem.type.ToString() + "/" + originItem.itemName);
+        Item loadedItem = null;
+        if (dicIdItem.ContainsKey(id))
+            loadedItem = dicIdItem[id];
+        else
+            Debug.LogError("key is not contained");
+        //loadedItem = Resources.Load<Item>("Items/" + originItem.type.ToString() + "/" + originItem.itemName);
         return loadedItem;
     }
 }
