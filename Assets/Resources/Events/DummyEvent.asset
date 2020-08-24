@@ -17,5 +17,5 @@ MonoBehaviour:
   eventName: "\uB354\uBBF8 \uC774\uBCA4\uD2B8"
   titleText: "\uB514\uBC84\uAE45\uC6A9 \uB354\uBBF8 \uC774\uBCA4\uD2B8\uC774\uB2E4."
   content: "\uB354\uBBF8 \uC774\uBCA4\uD2B8\uAC00 \uB4F1\uC7A5\uD588\uB2E4. \uD68D\uB4DD\uD55C
-    \uC544\uC774\uD15C\uC744 \uD655\uC778\uD558\uC790."
+    \uC544\uC774\uD15C, \"\uAC00\uC8FD\"\uC744 \uD655\uC778\uD558\uC790."
   foundedItem: {fileID: 11400000, guid: 74bf7538549802d48886536f42faddd9, type: 2}

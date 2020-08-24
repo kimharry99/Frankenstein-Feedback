@@ -8,12 +8,13 @@ public abstract class ExplorationEvent : ScriptableObject
 {
     public enum EventPhase
     {
+        None = -1,
         RandomEncounter,
         SearchingItem,
-        None = -1
     }
     public enum EventType
     { 
+        None = -1,
         RegionDiscovery,
         ItemDiscovery,
         /// <summary>
@@ -25,6 +26,7 @@ public abstract class ExplorationEvent : ScriptableObject
 
 
     public EventPhase phase;
+    public EventType type;
     public int id;
     public string eventName;
     public string titleText;
