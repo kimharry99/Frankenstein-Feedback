@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,7 +6,7 @@ using UnityEngine.UI;
 
 public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
 {
-    [Serializable]
+    [System.Serializable]
     private struct ContentSlot
     {
         public Text eventText;
@@ -48,6 +47,8 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
 
 
     #region ExplorationPanel methods
+
+    #region Notice Event Methods
     /// <summary>
     /// UI에 @event에 관련한 텍스트, 이미지를 출력한다.
     /// </summary>
@@ -143,8 +144,11 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
         contentsEvent[contentsEvent.Count - 1].eventImage.sprite = null;
         contentsEvent[contentsEvent.Count - 1].eventImage.gameObject.SetActive(false);
         contentsEvent[contentsEvent.Count - 1].eventText.text = null;
-    }   
-    
+    }
+    #endregion
+
+    #region Option Event Methods
+
     /// <summary>
     /// @event의 option을 선택했을 때 일어나는 일을 Button에 등록한다.
     /// </summary>
@@ -212,21 +216,17 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
         }
     }
 
-    public void ButtonOption1Clicked()
-    {
-        Debug.Log("버튼 1을 클릭했습니다.");
-    }
-    public void ButtonOption2Clicked()
-    {
-        Debug.Log("버튼 2를 클릭했습니다.");
-    }
-    public void ButtonOption3Clicked()
-    {
-        Debug.Log("버튼 3을 클릭했습니다.");
-    }
-    public void ButtonOption4Clicked()
-    {
-        Debug.Log("버튼 4를 클릭했습니다.");
-    }
     #endregion
+
+    public IEnumerator WaitforEncounter()
+    {
+        NoticeEventText("탐사중.");
+        yield return new WaitForSeconds(1.0f);
+        contentsEvent[contentsEvent.Count - 1].eventText.text += ".";
+        yield return new WaitForSeconds(1.0f);
+        contentsEvent[contentsEvent.Count - 1].eventText.text += ".";
+    }
+
+    #endregion
+
 }
