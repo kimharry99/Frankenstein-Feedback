@@ -54,6 +54,11 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     public void NoticeEvent(ExplorationEvent @event)
     {
         NoticeEventText(@event.titleText);
+        if(@event.type == ExplorationEvent.EventType.ItemDiscovery)
+        {
+            ItemDiscoveryEvent itemDiscoveryEvent = (ItemDiscoveryEvent)@event;
+            NoticeEventItemImage(itemDiscoveryEvent.foundedItem.itemImage);
+        }
         NoticeEventText(@event.content);
         NoticeOptions(@event.optionTexts);
     }
@@ -70,7 +75,25 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
         }
         else
         {
-            Debug.LogError("eventTexts[" + (eventContents.Count - 1) + "] is null");
+            Debug.LogError("eventContents[" + (eventContents.Count - 1) + "].eventText is null");
+        }
+    }
+
+    /// <summary>
+    /// 아이템 발견 이벤트의 발견한 아이템 이미지를 마지막 줄에 출력한다. 
+    /// </summary>
+    /// <param name="itemImage"></param>
+    private void NoticeEventItemImage(Sprite itemImage)
+    {
+        ShiftEventContents();
+        if(eventContents[eventContents.Count - 1].eventImage != null)
+        {
+            eventContents[eventContents.Count - 1].eventImage.gameObject.SetActive(true);
+            eventContents[eventContents.Count - 1].eventImage.sprite = itemImage;
+        }
+        else
+        {
+            Debug.LogError("eventContents[" + (eventContents.Count - 1) + "].eventImage is null");
         }
     }
 
@@ -107,8 +130,13 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
                 eventContents[i].eventImage.sprite = eventContents[i + 1].eventImage.sprite;
                 eventContents[i + 1].eventImage.gameObject.SetActive(false);
             }
+            else
+            {
+                eventContents[i].eventImage.gameObject.SetActive(false);
+            }
         }
         eventContents[eventContents.Count - 1].eventImage.sprite = null;
+        eventContents[eventContents.Count - 1].eventImage.gameObject.SetActive(false);
         eventContents[eventContents.Count - 1].eventText.text = null;
     }   
 
