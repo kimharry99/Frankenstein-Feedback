@@ -9,6 +9,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ItemDiscoveryEvent : ExplorationEvent
 {
+    [Header("ItemDIscoveryEvent Field")]
     public Item foundedItem;
 
     public override void Option0()

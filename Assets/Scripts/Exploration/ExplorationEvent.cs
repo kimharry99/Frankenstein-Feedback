@@ -12,6 +12,7 @@ public abstract class ExplorationEvent : ScriptableObject
         RandomEncounter,
         SearchingItem,
     }
+
     public enum EventType
     { 
         None = -1,
@@ -24,15 +25,18 @@ public abstract class ExplorationEvent : ScriptableObject
         DurabilityDamage,
     }
 
-
-    public EventPhase phase;
-    public EventType type;
+    [Header("Event Info")]
     public int id;
     public string eventName;
+    public EventPhase phase;
+    public EventType type;
+
+    [Header("Event Content")]
     public string titleText;
     public string content;
 
     public int OptionNumber { get { return optionTexts.Count; } }
+    [Header("Option Field")]
     public List<string> optionTexts = new List<string>();
 
     public abstract void Option0();
