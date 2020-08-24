@@ -19,7 +19,7 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 95229a67d841fbf4cb1493346fc056ea, type: 3}
   type: 3
   race: 4
-  energyPotential: 0
+  energyPotential: 30000
   atk: 8
   def: 5
   dex: 1
