@@ -13,11 +13,20 @@ public enum BodyPartType
     None = -1
 }
 
+public enum Grade
+{
+    S,
+    A,
+    B,
+    C,
+    D
+}
+
 [CreateAssetMenu]
 public class BodyPart : Tool
 {
     [Header("Body Part Member")]
-    public FloatVariable durability;
     public BodyPartType bodyPartType;
+    public Grade grade;
     public Sprite bodyPartSprite;
 }

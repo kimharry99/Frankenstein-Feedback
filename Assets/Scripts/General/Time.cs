@@ -6,6 +6,7 @@ public class Time : ScriptableObject, ISerializationCallbackReceiver
 {
     public int initialTime;
     [NonSerialized]
+    // 0 ~ 23
     public int runtimeTime;
     public int initialDay;
     [NonSerialized]
@@ -20,7 +21,7 @@ public class Time : ScriptableObject, ISerializationCallbackReceiver
             runtimeTime -= 24;
             runtimeDay++;
         }
-        if (runtimeTime != 0 && runtimeTime < 8) 
+        if (runtimeTime < 8) 
             isNight = true;
         else
             isNight = false;

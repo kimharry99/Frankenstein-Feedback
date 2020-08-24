@@ -1,0 +1,49 @@
+{
+  "target": [
+    {
+      "itemName": "생체테이프",
+      "ingredientItemIds": "40014001",
+      "resultItemId": 2001
+    },
+    {
+      "itemName": "도끼",
+      "ingredientItemIds": "400240024003",
+      "resultItemId": 3011
+    },
+    {
+      "itemName": "권총",
+      "ingredientItemIds": "400245014501",
+      "resultItemId": 3021
+    },
+    {
+      "itemName": "샷건",
+      "ingredientItemIds": "4002400240034003450145014501",
+      "resultItemId": 3022
+    },
+    {
+      "itemName": "손전등",
+      "ingredientItemIds": "40024501",
+      "resultItemId": 3041
+    },
+    {
+      "itemName": "단검",
+      "ingredientItemIds": "400240024003",
+      "resultItemId": 3211
+    },
+    {
+      "itemName": "마법봉",
+      "ingredientItemIds": "40034003430143014301",
+      "resultItemId": 3331
+    },
+    {
+      "itemName": "현자의 지팡이",
+      "ingredientItemIds": "40034003400340034003430143014301430143014201",
+      "resultItemId": 3332
+    },
+    {
+      "itemName": "대검",
+      "ingredientItemIds": "40024002400240024002400240024002",
+      "resultItemId": 3411
+    }
+  ]
+}

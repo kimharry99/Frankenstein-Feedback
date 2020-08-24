@@ -169,7 +169,7 @@ public class StorageManager : SingletonBehaviour<StorageManager>
         {
             if (dest.slotItem[i] != null)
             {
-                if (dest.slotItem[i].id == item.id)
+                if (item.type != Type.Tool && item.type != Type.BodyPart && dest.slotItem[i].id == item.id)
                 {
                     dest.slotItemNumber[i]++;
                     return true;
@@ -195,6 +195,19 @@ public class StorageManager : SingletonBehaviour<StorageManager>
             HomeUIManager.Inst.UpdateChest();
         }
         return isSuccess;
+    }
+
+    /// <summary>
+    /// 창고에 item n개를 추가한다. 창고가 가득 찼다면, 가득 차기 직전까지 아이템을 넣는다.
+    /// </summary>
+    public bool AddItemsToChest(Item item, int n)
+    {
+        for(int i=0; i<n;i++)
+        {
+            if (!AddItemToChest(item))
+                return false;
+        }
+        return true;
     }
 
     public bool AddItemToInven(Item item)
@@ -307,16 +320,41 @@ public class StorageManager : SingletonBehaviour<StorageManager>
         return itemStatToReturn;
     }
 
+    private void GetInventoryItemStat(Status toolStat)
+    {
+        toolStat.ResetStatus();
+        for (int i = 0; i < inventory.slotItem.Length; i++)
+        {
+            if (inventory.slotItem[i] == null)
+                continue;
+            if (inventory.slotItem[i].type == Type.Tool)
+            {
+                Tool tool = (Tool)inventory.slotItem[i];
+                toolStat.atk += tool.atk * Player.Inst.GetRaceAffinity(tool.race);
+                toolStat.def += tool.def * Player.Inst.GetRaceAffinity(tool.race);
+                toolStat.dex += tool.dex * Player.Inst.GetRaceAffinity(tool.race); ;
+                toolStat.mana += tool.mana * Player.Inst.GetRaceAffinity(tool.race); ;
+                toolStat.endurance += tool.endurance * Player.Inst.GetRaceAffinity(tool.race); ;
+            }
+        }
+    }
+
+    private void GetStatWithRaceAffinity(Tool tool)
+    {
+
+    }
+
     /// <summary>
     /// 인벤토리에 변화가 있을 때마다 호출해서 장비의 스텟효과를 갱신한다. 
     /// </summary>
-    private void UpdateToolStat()
+    public void UpdateToolStat()
     {
-        toolStat.atk = GetInventoryItemStat("atk");
-        toolStat.def = GetInventoryItemStat("def");
-        toolStat.dex = GetInventoryItemStat("dex");
-        toolStat.mana = GetInventoryItemStat("mana");
-        toolStat.endurance = GetInventoryItemStat("endurance");
+        //toolStat.atk = GetInventoryItemStat("atk");
+        //toolStat.def = GetInventoryItemStat("def");
+        //toolStat.dex = GetInventoryItemStat("dex");
+        //toolStat.mana = GetInventoryItemStat("mana");
+        //toolStat.endurance = GetInventoryItemStat("endurance");
+        GetInventoryItemStat(toolStat);
     }
     #endregion
     
