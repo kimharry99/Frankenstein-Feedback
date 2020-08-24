@@ -557,8 +557,6 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     
     public void CraftButtonCreateClicked()
     {
-        //panelNotice.SetActive(true);
-        //textNotice.text = "공사 중...";
         GameManager.Inst.craftingTable.CraftItem();
     }
     #endregion

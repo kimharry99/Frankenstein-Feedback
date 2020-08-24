@@ -88,7 +88,31 @@ public class CraftingTable : MonoBehaviour
         debuggingIngredientItemIds.Clear();
         string ingredientItemIds = sortUsingItemsById(_usingItems);
         _resultItem = _craftingDirectory.FindItem(ingredientItemIds);
-        //Debug.Log("제작된 아이템 : " + _resultItem.itemName);
+
+        if (_resultItem)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                while (_usingItems[i].itemUsingCount > 0)
+                {
+                    _usingItems[i].itemUsingCount--;
+                    StorageManager.Inst.DeleteFromChest(_usingItems[i].indexUsingChest);
+                }
+            }
+
+            StorageManager.Inst.AddItemToChest(_resultItem);
+
+            HomeUIManager.Inst.panelNotice.SetActive(true);
+            HomeUIManager.Inst.textNotice.text = _resultItem.itemName + " 아이템을 제작하였습니다.";
+
+            HomeUIManager.Inst.UpdateCrafting();
+        }
+
+        else
+        {
+            HomeUIManager.Inst.panelNotice.SetActive(true);
+            HomeUIManager.Inst.textNotice.text = "해당하는 레시피가 없습니다.";
+        }
     }
 
     /// <summary>
