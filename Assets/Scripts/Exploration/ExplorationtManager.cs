@@ -51,7 +51,9 @@ public class ExplorationtManager : SingletonBehaviour<ExplorationtManager>
         ExplorationUIManager.Inst.RemoveEventsFromButton();
         _currentEvent = null;
         objectState = ObjectState.SearchNextEvent;
-        StartCoroutine(ExplorationUIManager.Inst.WaitForEncounter(_timeInterval));
+        StartCoroutine(ExplorationUIManager.Inst.WaitForEncounter(_timeInterval)); 
+        int temp = (int) (UnityEngine.Time.time * 100.0f);
+        Random.InitState(temp);
         _nextEvent = _events[Random.Range(0, _events.Count)];
     }
 
