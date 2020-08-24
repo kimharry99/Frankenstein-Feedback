@@ -53,21 +53,23 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     /// </summary>
     public void NoticeEvent(ExplorationEvent @event)
     {
-        NoticeEventTitle(@event.titleText);
+        NoticeEventText(@event.titleText);
+        NoticeEventText(@event.content);
     }
 
     /// <summary>
-    /// EventTitle을 UI에 출력한다.
+    /// eventText를 UI의 마지막 줄에 출력한다.
     /// </summary>
-    private void NoticeEventTitle(string titleText)
+    private void NoticeEventText(string eventText)
     {
-        if(eventContents[0].eventText != null)
+        ShiftEventContents();
+        if(eventContents[eventContents.Count - 1].eventText != null)
         {
-            eventContents[0].eventText.text = titleText;
+            eventContents[eventContents.Count - 1].eventText.text = eventText;
         }
         else
         {
-            Debug.LogError("eventTexts[0] is null");
+            Debug.LogError("eventTexts[" + (eventContents.Count - 1) + "] is null");
         }
     }
 
