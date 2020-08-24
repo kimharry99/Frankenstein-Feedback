@@ -141,15 +141,24 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     }   
     
     /// <summary>
-    /// @event의 option을 선택했을 때 발생하는 상황을 Button에 등록한다.
+    /// @event의 option을 선택했을 때 일어나는 일을 Button에 등록한다.
     /// </summary>
     /// <param name="event"></param>
-    public void AddEventsToButton(ExplorationEvent @event)
+    public void AddResultOptionsToButton(ExplorationEvent @event)
     {
-        if(@event.OptionNumber >= 0)
+        AddResultEventsToButton(@event);
+        AddResultTextsToButton(@event);
+    }
+    
+    /// <summary>
+    /// option을 선택했을 때 event의 결과를 Button에 등록한다.
+    /// </summary>
+    private void AddResultEventsToButton(ExplorationEvent @event)
+    {
+        if (@event.OptionNumber >= 0)
         {
             buttonOptions[0].onClick.AddListener(@event.Option0);
-            if(@event.OptionNumber >= 1)
+            if (@event.OptionNumber >= 1)
             {
                 buttonOptions[1].onClick.AddListener(@event.Option1);
                 if (@event.OptionNumber >= 2)
@@ -158,6 +167,29 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
                     if (@event.OptionNumber >= 3)
                     {
                         buttonOptions[3].onClick.AddListener(@event.Option3);
+                    }
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// 선택지가 선택되었을 때 발생하는 결과 텍스트 출력 이벤트를 버튼에 등록한다.
+    /// </summary>
+    private void AddResultTextsToButton(ExplorationEvent @event)
+    {
+        if (@event.OptionNumber >= 0)
+        {
+            buttonOptions[0].onClick.AddListener(() => NoticeEventText(@event.optionResultTexts[0]));
+            if (@event.OptionNumber >= 1)
+            {
+                buttonOptions[1].onClick.AddListener(() => NoticeEventText(@event.optionResultTexts[1]));
+                if (@event.OptionNumber >= 2)
+                {
+                    buttonOptions[2].onClick.AddListener(() => NoticeEventText(@event.optionResultTexts[2]));
+                    if (@event.OptionNumber >= 3)
+                    {
+                        buttonOptions[3].onClick.AddListener(() => NoticeEventText(@event.optionResultTexts[3]));
                     }
                 }
             }

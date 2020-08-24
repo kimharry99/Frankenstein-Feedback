@@ -26,7 +26,7 @@ public class ExplorationtManager : SingletonBehaviour<ExplorationtManager>
         ExplorationUIManager.Inst.RemoveEventsFromButton();
         currentEvent = @event;
         ExplorationUIManager.Inst.NoticeEvent(currentEvent);
-        ExplorationUIManager.Inst.AddEventsToButton(@event);
+        ExplorationUIManager.Inst.AddResultOptionsToButton(@event);
     }
 
 }

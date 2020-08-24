@@ -14,7 +14,7 @@ public class ItemDiscoveryEvent : ExplorationEvent
 
     public override void Option0()
     {
-        Debug.Log(optionTexts[0] + "이 선택됨");
+        GetItem();
     }
 
     public override void Option1()
@@ -30,5 +30,10 @@ public class ItemDiscoveryEvent : ExplorationEvent
     public override void Option3()
     {
         Debug.Log(optionTexts[3] + "이 선택됨");
+    }
+
+    private void GetItem()
+    {
+        StorageManager.Inst.AddItemToInven(foundedItem);
     }
 }

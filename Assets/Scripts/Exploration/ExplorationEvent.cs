@@ -38,6 +38,7 @@ public abstract class ExplorationEvent : ScriptableObject
     public int OptionNumber { get { return optionTexts.Count; } }
     [Header("Option Field")]
     public List<string> optionTexts = new List<string>();
+    public List<string> optionResultTexts = new List<string>();
 
     public abstract void Option0();
     public abstract void Option1();
