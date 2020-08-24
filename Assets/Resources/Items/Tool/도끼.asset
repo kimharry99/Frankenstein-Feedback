@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97c0b83b52c780408a24bc905d332b0, type: 3}
+  m_Name: "\uB3C4\uB07C"
+  m_EditorClassIdentifier: 
+  id: 3011
+  itemName: "\uB3C4\uB07C"
+  description: "\uC774\uAC78 \uB9CC\uB4E4\uC5B4\uC57C \uC0DD\uC874\uC744 \uC2DC\uC791\uD588\uB2E4\uACE0
+    \uD560 \uC218 \uC788\uB2E4."
+  itemImage: {fileID: 21300000, guid: 62da31907b29cbb40ac5067f9939d429, type: 3}
+  type: 3
+  race: 0
+  energyPotential: 3000
+  atk: 5
+  def: 3
+  dex: 3
+  mana: 0
+  endurance: 0
