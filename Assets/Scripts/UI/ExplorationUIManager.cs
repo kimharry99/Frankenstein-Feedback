@@ -74,9 +74,22 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     /// <summary>
     /// UI에 표시된 이벤트 텍스트와 이미지를 한 칸 위로 올린다.
     /// </summary>
-    private void ShiftEventContents()
+    /// for debugging public을 private으로 변경
+    public void ShiftEventContents()
     {
-    }
+        for(int i=0; i<eventContents.Count - 1;i++)
+        {
+            eventContents[i].eventText.text = eventContents[i + 1].eventText.text;
+            if(eventContents[i + 1].eventImage.IsActive())
+            {
+                eventContents[i].eventImage.gameObject.SetActive(true);
+                eventContents[i].eventImage.sprite = eventContents[i + 1].eventImage.sprite;
+                eventContents[i + 1].eventImage.gameObject.SetActive(false);
+            }
+        }
+        eventContents[eventContents.Count - 1].eventImage.sprite = null;
+        eventContents[eventContents.Count - 1].eventText.text = null;
+    }   
 
     public void ButtonOption1Clicked()
     {
