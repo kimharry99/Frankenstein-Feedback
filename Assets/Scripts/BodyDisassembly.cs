@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
 
 public class BodyDisassembly : MonoBehaviour
@@ -52,7 +53,22 @@ public class BodyDisassembly : MonoBehaviour
     /// <returns></returns>
     private int GetRandomIndex()
     {
-        return 0;
+        int ran = Random.Range(0, 20);
+        if (ran < 10)
+        {
+            return 0;
+        }
+        else if (ran < 16)
+        {
+            return 1;
+        }
+        else if (ran < 19)
+        {
+            return 2;
+        }
+        else
+        {
+            return 3;
+        }
     }
-
 }
