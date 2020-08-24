@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EventManager : SingletonBehaviour<EventManager>
+public class ExplorationtManager : SingletonBehaviour<ExplorationtManager>
 {
     [SerializeField] // for debugging
     private List<ExplorationEvent> events;
