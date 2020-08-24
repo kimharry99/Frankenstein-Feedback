@@ -15,11 +15,12 @@ public class ItemDiscoveryEvent : ExplorationEvent
     public override void Option0()
     {
         GetItem();
+        ExplorationtManager.Inst.SelectNextEvent();
     }
 
     public override void Option1()
     {
-        Debug.Log(optionTexts[1] + "이 선택됨");
+        ExplorationtManager.Inst.SelectNextEvent();
     }
 
     public override void Option2()

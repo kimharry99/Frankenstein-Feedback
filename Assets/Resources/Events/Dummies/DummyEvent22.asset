@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1564c065bac2eab4585b0cd500196910, type: 3}
+  m_Name: DummyEvent22
+  m_EditorClassIdentifier: 
+  id: 54321
+  eventName: "\uB514\uBC84\uAE45\uC6A9 \uC774\uBCA4\uD2B8 2"
+  phase: 1
+  type: 1
+  titleText: "\uB514\uBC84\uAE45\uC6A9 \uC774\uBCA4\uD2B8 2\uAC00 \uBC1C\uC0DD\uD588\uC2B5\uB2C8\uB2E4!"
+  content: "\uB514\uBC84\uAE45\uC6A9 \uC774\uBCA4\uD2B82\uC758 \uB0B4\uC6A9 \uD14D\uC2A4\uD2B8\uC785\uB2C8\uB2E4."
+  optionTexts:
+  - "\uCC59\uAE34\uB2E4"
+  - "\uADF8\uB0E5 \uC9C0\uB098\uAC04\uB2E4"
+  optionResultTexts:
+  - "\uAD8C\uCD1D\uC744 \uCC59\uACBC\uC2B5\uB2C8\uB2E4"
+  - "\uC9C0\uB098\uCCE4\uC2B5\uB2C8\uB2E4."
+  foundedItem: {fileID: 11400000, guid: 733c1b99ba5f3f449839a17a53552538, type: 2}

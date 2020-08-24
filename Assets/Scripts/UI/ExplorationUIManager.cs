@@ -146,8 +146,8 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     /// <param name="event"></param>
     public void AddResultOptionsToButton(ExplorationEvent @event)
     {
-        AddResultEventsToButton(@event);
         AddResultTextsToButton(@event);
+        AddResultEventsToButton(@event);
     }
     
     /// <summary>
