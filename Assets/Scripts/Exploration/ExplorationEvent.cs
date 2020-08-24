@@ -32,5 +32,7 @@ public abstract class ExplorationEvent : ScriptableObject
     public string titleText;
     public string content;
 
+    public List<string> optionTexts = new List<string>();
+
     public abstract void Foo();
 }

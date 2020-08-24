@@ -55,6 +55,7 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     {
         NoticeEventText(@event.titleText);
         NoticeEventText(@event.content);
+        NoticeOptions(@event.optionTexts);
     }
 
     /// <summary>
@@ -70,6 +71,24 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
         else
         {
             Debug.LogError("eventTexts[" + (eventContents.Count - 1) + "] is null");
+        }
+    }
+
+    /// <summary>
+    /// event의 optionTexts를 option 버튼에 표시한다.
+    /// </summary>
+    /// <param name="optionTexts"></param>
+    private void NoticeOptions(List<string> optionTexts)
+    {
+        for(int i=0;i<optionTexts.Count;i++)
+        {
+            buttonOptions[i].interactable = true;
+            buttonOptions[i].transform.GetChild(0).GetComponent<Text>().text = optionTexts[i];
+        }
+        for(int i=optionTexts.Count;i<4;i++)
+        {
+            buttonOptions[i].interactable = false;
+            buttonOptions[i].transform.GetChild(0).GetComponent<Text>().text = null;
         }
     }
 
