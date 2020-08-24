@@ -35,6 +35,7 @@ public class ItemDiscoveryEvent : ExplorationEvent
 
     private void GetItem()
     {
-        StorageManager.Inst.AddItemToInven(foundedItem);
+        if(foundedItem != null)
+            StorageManager.Inst.AddItemToInven(foundedItem);
     }
 }

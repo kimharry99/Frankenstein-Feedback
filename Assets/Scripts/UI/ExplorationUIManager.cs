@@ -15,7 +15,7 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     }
 
     public GameObject panelExploration;
-    private List<ContentSlot> eventContents = new List<ContentSlot>();
+    private List<ContentSlot> contentsEvent = new List<ContentSlot>();
     [SerializeField]
     private Button[] buttonOptions = new Button[4];
 
@@ -27,7 +27,7 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
             ContentSlot contentSlot;
             contentSlot.eventText = panelExploration.transform.GetChild(0).GetChild(i).GetComponent<Text>();
             contentSlot.eventImage = panelExploration.transform.GetChild(0).GetChild(5 + i).GetComponent<Image>();
-            eventContents.Add(contentSlot);
+            contentsEvent.Add(contentSlot);
         }
     }
 
@@ -53,11 +53,13 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     /// </summary>
     public void NoticeEvent(ExplorationEvent @event)
     {
+        Debug.Log(@event.titleText);
         NoticeEventText(@event.titleText);
         if(@event.type == ExplorationEvent.EventType.ItemDiscovery)
         {
             ItemDiscoveryEvent itemDiscoveryEvent = (ItemDiscoveryEvent)@event;
-            NoticeEventItemImage(itemDiscoveryEvent.foundedItem.itemImage);
+            if(itemDiscoveryEvent.foundedItem != null)
+                NoticeEventItemImage(itemDiscoveryEvent.foundedItem.itemImage);
         }
         NoticeEventText(@event.content);
         NoticeOptions(@event.optionTexts);
@@ -68,14 +70,17 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     /// </summary>
     private void NoticeEventText(string eventText)
     {
-        ShiftEventContents();
-        if(eventContents[eventContents.Count - 1].eventText != null)
+        if(eventText != "")
         {
-            eventContents[eventContents.Count - 1].eventText.text = eventText;
-        }
-        else
-        {
-            Debug.LogError("eventContents[" + (eventContents.Count - 1) + "].eventText is null");
+            ShiftEventContents();
+            if (contentsEvent[contentsEvent.Count - 1].eventText != null)
+            {
+                contentsEvent[contentsEvent.Count - 1].eventText.text = eventText;
+            }
+            else
+            {
+                Debug.LogError("eventContents[" + (contentsEvent.Count - 1) + "].eventText is null");
+            }
         }
     }
 
@@ -86,14 +91,14 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     private void NoticeEventItemImage(Sprite itemImage)
     {
         ShiftEventContents();
-        if(eventContents[eventContents.Count - 1].eventImage != null)
+        if(contentsEvent[contentsEvent.Count - 1].eventImage != null)
         {
-            eventContents[eventContents.Count - 1].eventImage.gameObject.SetActive(true);
-            eventContents[eventContents.Count - 1].eventImage.sprite = itemImage;
+            contentsEvent[contentsEvent.Count - 1].eventImage.gameObject.SetActive(true);
+            contentsEvent[contentsEvent.Count - 1].eventImage.sprite = itemImage;
         }
         else
         {
-            Debug.LogError("eventContents[" + (eventContents.Count - 1) + "].eventImage is null");
+            Debug.LogError("eventContents[" + (contentsEvent.Count - 1) + "].eventImage is null");
         }
     }
 
@@ -121,23 +126,23 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     /// for debugging public을 private으로 변경
     public void ShiftEventContents()
     {
-        for(int i=0; i<eventContents.Count - 1;i++)
+        for(int i=0; i<contentsEvent.Count - 1;i++)
         {
-            eventContents[i].eventText.text = eventContents[i + 1].eventText.text;
-            if(eventContents[i + 1].eventImage.IsActive())
+            contentsEvent[i].eventText.text = contentsEvent[i + 1].eventText.text;
+            if(contentsEvent[i + 1].eventImage.IsActive())
             {
-                eventContents[i].eventImage.gameObject.SetActive(true);
-                eventContents[i].eventImage.sprite = eventContents[i + 1].eventImage.sprite;
-                eventContents[i + 1].eventImage.gameObject.SetActive(false);
+                contentsEvent[i].eventImage.gameObject.SetActive(true);
+                contentsEvent[i].eventImage.sprite = contentsEvent[i + 1].eventImage.sprite;
+                contentsEvent[i + 1].eventImage.gameObject.SetActive(false);
             }
             else
             {
-                eventContents[i].eventImage.gameObject.SetActive(false);
+                contentsEvent[i].eventImage.gameObject.SetActive(false);
             }
         }
-        eventContents[eventContents.Count - 1].eventImage.sprite = null;
-        eventContents[eventContents.Count - 1].eventImage.gameObject.SetActive(false);
-        eventContents[eventContents.Count - 1].eventText.text = null;
+        contentsEvent[contentsEvent.Count - 1].eventImage.sprite = null;
+        contentsEvent[contentsEvent.Count - 1].eventImage.gameObject.SetActive(false);
+        contentsEvent[contentsEvent.Count - 1].eventText.text = null;
     }   
     
     /// <summary>
