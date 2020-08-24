@@ -28,7 +28,7 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
             contentSlot.eventText = panelExploration.transform.GetChild(0).GetChild(i).GetComponent<Text>();
             contentSlot.eventImage = panelExploration.transform.GetChild(0).GetChild(5 + i).GetComponent<Image>();
             eventContents.Add(contentSlot);
-    }
+        }
     }
 
     // for prototype
@@ -139,6 +139,41 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
         eventContents[eventContents.Count - 1].eventImage.gameObject.SetActive(false);
         eventContents[eventContents.Count - 1].eventText.text = null;
     }   
+    
+    /// <summary>
+    /// @event의 option을 선택했을 때 발생하는 상황을 Button에 등록한다.
+    /// </summary>
+    /// <param name="event"></param>
+    public void AddEventsToButton(ExplorationEvent @event)
+    {
+        if(@event.OptionNumber >= 0)
+        {
+            buttonOptions[0].onClick.AddListener(@event.Option0);
+            if(@event.OptionNumber >= 1)
+            {
+                buttonOptions[1].onClick.AddListener(@event.Option1);
+                if (@event.OptionNumber >= 2)
+                {
+                    buttonOptions[2].onClick.AddListener(@event.Option2);
+                    if (@event.OptionNumber >= 3)
+                    {
+                        buttonOptions[3].onClick.AddListener(@event.Option3);
+                    }
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// option 버튼에 등록되어 있는 모든 이벤트를 제거한다.
+    /// </summary>
+    public void RemoveEventsFromButton()
+    {
+        for(int i=0;i<buttonOptions.Length;i++)
+        {
+            buttonOptions[i].onClick.RemoveAllListeners();
+        }
+    }
 
     public void ButtonOption1Clicked()
     {

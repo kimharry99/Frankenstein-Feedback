@@ -32,7 +32,11 @@ public abstract class ExplorationEvent : ScriptableObject
     public string titleText;
     public string content;
 
+    public int OptionNumber { get { return optionTexts.Count; } }
     public List<string> optionTexts = new List<string>();
 
-    public abstract void Foo();
+    public abstract void Option0();
+    public abstract void Option1();
+    public abstract void Option2();
+    public abstract void Option3();
 }

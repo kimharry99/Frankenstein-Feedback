@@ -23,12 +23,10 @@ public class ExplorationtManager : SingletonBehaviour<ExplorationtManager>
     /// <param name="event"></param>
     private void AppearEvent(ExplorationEvent @event)
     {
+        ExplorationUIManager.Inst.RemoveEventsFromButton();
         currentEvent = @event;
         ExplorationUIManager.Inst.NoticeEvent(currentEvent);
+        ExplorationUIManager.Inst.AddEventsToButton(@event);
     }
 
-    private void Foo()
-    {
-        Debug.Log("foo");
-    }
 }
