@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,17 +7,27 @@ using UnityEngine.UI;
 
 public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
 {
+    [Serializable]
+    private struct ContentSlot
+    {
+        public Text eventText;
+        public Image eventImage;
+    }
+
     public GameObject panelExploration;
-    private List<Text> eventTexts = new List<Text>();
-    private List<Image> eventImages = new List<Image>();
+    private List<ContentSlot> eventContents = new List<ContentSlot>();
+    [SerializeField]
+    private Button[] buttonOptions = new Button[4];
 
     protected override void Awake()
     {
         base.Awake();
         for(int i=0;i<5;i++)
         {
-            eventTexts.Add(panelExploration.transform.GetChild(0).GetChild(i).GetComponent<Text>());
-            eventImages.Add(panelExploration.transform.GetChild(0).GetChild(5 + i).GetComponent<Image>());
+            ContentSlot contentSlot;
+            contentSlot.eventText = panelExploration.transform.GetChild(0).GetChild(i).GetComponent<Text>();
+            contentSlot.eventImage = panelExploration.transform.GetChild(0).GetChild(5 + i).GetComponent<Image>();
+            eventContents.Add(contentSlot);
     }
     }
 
@@ -50,14 +61,21 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     /// </summary>
     private void NoticeEventTitle(string titleText)
     {
-        if(eventTexts[0] != null)
+        if(eventContents[0].eventText != null)
         {
-            eventTexts[0].text = titleText;
+            eventContents[0].eventText.text = titleText;
         }
         else
         {
             Debug.LogError("eventTexts[0] is null");
         }
+    }
+
+    /// <summary>
+    /// UI에 표시된 이벤트 텍스트와 이미지를 한 칸 위로 올린다.
+    /// </summary>
+    private void ShiftEventContents()
+    {
     }
 
     public void ButtonOption1Clicked()
