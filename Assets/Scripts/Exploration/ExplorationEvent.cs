@@ -40,6 +40,15 @@ public abstract class ExplorationEvent : ScriptableObject
     public List<string> optionTexts = new List<string>();
     public List<string> optionResultTexts = new List<string>();
 
+    /// <summary>
+    /// 이벤트가 종료되었을 때 해야하는 작업을 명시한다.
+    /// SelectNextEvent가 마지막에 와야 한다.
+    /// </summary>
+    protected void FinishEvent()
+    {
+        GameManager.Inst.OnTurnOver(1);
+        ExplorationtManager.Inst.SelectNextEvent();
+    }
     public abstract void Option0();
     public abstract void Option1();
     public abstract void Option2();
