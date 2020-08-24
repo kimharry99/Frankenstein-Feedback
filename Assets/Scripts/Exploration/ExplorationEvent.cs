@@ -46,8 +46,7 @@ public abstract class ExplorationEvent : ScriptableObject
     /// </summary>
     protected void FinishEvent()
     {
-        GameManager.Inst.OnTurnOver(1);
-        ExplorationtManager.Inst.SelectNextEvent();
+        ExplorationtManager.Inst.FinishEvent();
     }
     public abstract void Option0();
     public abstract void Option1();

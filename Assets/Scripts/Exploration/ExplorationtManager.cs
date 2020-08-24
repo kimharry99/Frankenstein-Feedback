@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class ExplorationtManager : SingletonBehaviour<ExplorationtManager>
 {
-    // for debugging
     private enum ObjectState
     {
         None = -1,
@@ -26,6 +25,20 @@ public class ExplorationtManager : SingletonBehaviour<ExplorationtManager>
         AppearEvent(_events[1]);
     }
 
+    private float _time = 0.0f;
+    private void Update()
+    {
+        if (objectState == ObjectState.SearchNextEvent)
+        {
+            _time += UnityEngine.Time.deltaTime;
+            if (_time > _timeInterval)
+            {
+                SelectNextEvent();
+                _time = 0.0f;
+            }
+        }
+    }
+
     /// <summary>
     /// @event를 등장시킨다.
     /// </summary>
@@ -38,7 +51,6 @@ public class ExplorationtManager : SingletonBehaviour<ExplorationtManager>
         ExplorationUIManager.Inst.AddResultOptionsToButton(_currentEvent);
     }
 
-    private float _time = 0.0f;
     [Header("Debugging Field")]
     [SerializeField]
     private float _timeInterval = 3.0f;
@@ -48,25 +60,19 @@ public class ExplorationtManager : SingletonBehaviour<ExplorationtManager>
     /// </summary>
     public void SelectNextEvent()
     {
-        ExplorationUIManager.Inst.RemoveEventsFromButton();
-        _currentEvent = null;
-        objectState = ObjectState.SearchNextEvent;
-        StartCoroutine(ExplorationUIManager.Inst.WaitForEncounter(_timeInterval)); 
         int temp = (int) (UnityEngine.Time.time * 100.0f);
         Random.InitState(temp);
         _nextEvent = _events[Random.Range(0, _events.Count)];
+        AppearEvent(_nextEvent);
     }
 
-    private void Update()
+    public void FinishEvent()
     {
-        if(objectState == ObjectState.SearchNextEvent)
-        {
-            _time += UnityEngine.Time.deltaTime;
-            if (_time > _timeInterval)
-            {
-                AppearEvent(_nextEvent);
-                _time = 0.0f;
-            }
-        }
+        GameManager.Inst.OnTurnOver(1);
+
+        ExplorationUIManager.Inst.RemoveEventsFromButton();
+        _currentEvent = null;
+        StartCoroutine(ExplorationUIManager.Inst.WaitForEncounter(_timeInterval));
+        objectState = ObjectState.SearchNextEvent;
     }
 }
