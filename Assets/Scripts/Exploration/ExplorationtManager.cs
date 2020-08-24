@@ -8,6 +8,14 @@ public class ExplorationtManager : SingletonBehaviour<ExplorationtManager>
     [SerializeField] // for debugging
     private List<ExplorationEvent> events;
 
+    private ExplorationEvent currentEvent;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        // for debugging
+        AppearEvent(events[0]);
+    }
 
     /// <summary>
     /// @event를 등장시킨다.
@@ -15,7 +23,8 @@ public class ExplorationtManager : SingletonBehaviour<ExplorationtManager>
     /// <param name="event"></param>
     private void AppearEvent(ExplorationEvent @event)
     {
-        
+        currentEvent = @event;
+        ExplorationUIManager.Inst.NoticeEvent(currentEvent);
     }
 
     private void Foo()

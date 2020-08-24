@@ -7,6 +7,18 @@ using UnityEngine.UI;
 public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
 {
     public GameObject panelExploration;
+    private List<Text> eventTexts = new List<Text>();
+    private List<Image> eventImages = new List<Image>();
+
+    protected override void Awake()
+    {
+        base.Awake();
+        for(int i=0;i<5;i++)
+        {
+            eventTexts.Add(panelExploration.transform.GetChild(0).GetChild(i).GetComponent<Text>());
+            eventImages.Add(panelExploration.transform.GetChild(0).GetChild(5 + i).GetComponent<Image>());
+    }
+    }
 
     // for prototype
     public Image panelError;
@@ -23,7 +35,31 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
         panelError.gameObject.SetActive(true);
     }
 
+
     #region ExplorationPanel methods
+    /// <summary>
+    /// UI에 @event에 관련한 텍스트, 이미지를 출력한다.
+    /// </summary>
+    public void NoticeEvent(ExplorationEvent @event)
+    {
+        NoticeEventTitle(@event.titleText);
+    }
+
+    /// <summary>
+    /// EventTitle을 UI에 출력한다.
+    /// </summary>
+    private void NoticeEventTitle(string titleText)
+    {
+        if(eventTexts[0] != null)
+        {
+            eventTexts[0].text = titleText;
+        }
+        else
+        {
+            Debug.LogError("eventTexts[0] is null");
+        }
+    }
+
     public void ButtonOption1Clicked()
     {
         Debug.Log("버튼 1을 클릭했습니다.");
