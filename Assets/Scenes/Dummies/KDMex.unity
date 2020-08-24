@@ -640,6 +640,8 @@ MonoBehaviour:
   _events:
   - {fileID: 11400000, guid: 25e20a313caf01042aba44289e050250, type: 2}
   - {fileID: 11400000, guid: 61a1aac8d0ad7e34b98710f4cde2ecd7, type: 2}
+  - {fileID: 11400000, guid: d9ad02a9b6e375942a1e5c8e73764703, type: 2}
+  _timeInterval: 1
 --- !u!1 &1833259443
 GameObject:
   m_ObjectHideFlags: 0

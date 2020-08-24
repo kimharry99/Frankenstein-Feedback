@@ -206,24 +206,25 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     }
 
     /// <summary>
-    /// option 버튼에 등록되어 있는 모든 이벤트를 제거한다.
+    /// option 버튼에 등록되어 있는 모든 이벤트를 제거한다. 버튼을 비활성화 한다.
     /// </summary>
     public void RemoveEventsFromButton()
     {
         for(int i=0;i<buttonOptions.Length;i++)
         {
+            buttonOptions[i].interactable = false;
             buttonOptions[i].onClick.RemoveAllListeners();
         }
     }
 
     #endregion
 
-    public IEnumerator WaitforEncounter()
+    public IEnumerator WaitForEncounter(float timeInterval)
     {
         NoticeEventText("탐사중.");
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(timeInterval / 3);
         contentsEvent[contentsEvent.Count - 1].eventText.text += ".";
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(timeInterval / 3);
         contentsEvent[contentsEvent.Count - 1].eventText.text += ".";
     }
 

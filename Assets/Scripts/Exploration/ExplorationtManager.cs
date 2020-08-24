@@ -33,21 +33,25 @@ public class ExplorationtManager : SingletonBehaviour<ExplorationtManager>
     private void AppearEvent(ExplorationEvent @event)
     {
         objectState = ObjectState.EventIsAppeared;
-        ExplorationUIManager.Inst.RemoveEventsFromButton();
         _currentEvent = @event;
         ExplorationUIManager.Inst.NoticeEvent(_currentEvent);
         ExplorationUIManager.Inst.AddResultOptionsToButton(_currentEvent);
     }
 
-    private float time = 0.0f;
+    private float _time = 0.0f;
+    [Header("Debugging Field")]
+    [SerializeField]
+    private float _timeInterval = 3.0f;
     private ExplorationEvent _nextEvent;
     /// <summary>
     /// 다음으로 등장할 Event를 선택하고 등장시킨다.
     /// </summary>
     public void SelectNextEvent()
     {
+        ExplorationUIManager.Inst.RemoveEventsFromButton();
+        _currentEvent = null;
         objectState = ObjectState.SearchNextEvent;
-        StartCoroutine(ExplorationUIManager.Inst.WaitforEncounter());
+        StartCoroutine(ExplorationUIManager.Inst.WaitForEncounter(_timeInterval));
         _nextEvent = _events[Random.Range(0, _events.Count)];
     }
 
@@ -55,11 +59,11 @@ public class ExplorationtManager : SingletonBehaviour<ExplorationtManager>
     {
         if(objectState == ObjectState.SearchNextEvent)
         {
-            time += UnityEngine.Time.deltaTime;
-            if (time > 3.0f)
+            _time += UnityEngine.Time.deltaTime;
+            if (_time > _timeInterval)
             {
                 AppearEvent(_nextEvent);
-                time = 0.0f;
+                _time = 0.0f;
             }
         }
     }
