@@ -6,8 +6,10 @@ public class Time : ScriptableObject, ISerializationCallbackReceiver
 {
     public int initialTime;
     // 0 ~ 23
+    [NonSerialized]
     public int runtimeTime;
     public int initialDay;
+    [NonSerialized]
     public int runtimeDay;
     public bool isNight;
     
