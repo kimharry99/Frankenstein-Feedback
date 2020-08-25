@@ -2,7 +2,6 @@
 using UnityEngine;
 
 
-[CreateAssetMenu]
 public class FloatVariable : ScriptableObject, ISerializationCallbackReceiver
 {
 	public float initialValue;

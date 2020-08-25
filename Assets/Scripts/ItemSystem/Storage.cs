@@ -9,7 +9,6 @@ public struct Slot
     public int slotItemNumber;
 }
 
-[CreateAssetMenu]
 public class Storage : ScriptableObject
 {
     public Item[] slotItem;
