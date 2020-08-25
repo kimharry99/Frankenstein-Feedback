@@ -9,7 +9,7 @@ public class BodyDisassembly : MonoBehaviour
     {
         int count = 0;
 
-        for (int i = 0; i < 30; i++)
+        for (int i = 29; i >= 0; i--)
         {
             if (HomeUIManager.Inst.imageCheck[i].activeSelf == true)
             {
@@ -17,7 +17,12 @@ public class BodyDisassembly : MonoBehaviour
                 int slotNumber = HomeUIManager.Inst.indexHoldingChest[i];
                 // TODO : dest를 StorageManager로 수정
                 BodyPart dissassembled = (BodyPart)StorageManager.Inst.DeleteFromChest(slotNumber);
-                GetBonusItem(dissassembled);
+                if(dissassembled == null)
+                {
+                    Debug.LogError("dissassembled is null");
+                }
+                else
+                    GetBonusItem(dissassembled);
             }
         }
 
@@ -38,6 +43,10 @@ public class BodyDisassembly : MonoBehaviour
 
     private void GetBonusItem(BodyPart item)
     {
+        if (item == null)
+        {
+            Debug.LogError("item is null");
+        }
         BonusItemTable bonusItemTable = new BonusItemTable();
         int probabilityIndex = GetRandomIndex();
         Slot[] rewardItems = bonusItemTable.GetTableData(item.race, item.grade, probabilityIndex);
