@@ -54,5 +54,8 @@ public class FinishExplorationEvent : ExplorationEvent
     {
     }
 
-
+    public override bool GetOptionEnable(int optionIndex)
+    {
+        return true;
+    }
 }

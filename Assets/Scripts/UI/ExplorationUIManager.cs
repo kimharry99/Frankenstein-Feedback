@@ -63,7 +63,7 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
                 NoticeEventItemImage(itemDiscoveryEvent.foundItem.itemImage);
         }
         NoticeEventText(@event.content);
-        NoticeOptions(@event.optionTexts);
+        NoticeOptions(@event);
     }
 
     /// <summary>
@@ -107,11 +107,12 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     /// event의 optionTexts를 option 버튼에 표시한다.
     /// </summary>
     /// <param name="optionTexts"></param>
-    private void NoticeOptions(List<string> optionTexts)
+    private void NoticeOptions(ExplorationEvent @event)
     {
+        List<string> optionTexts = @event.optionTexts;
         for(int i=0;i<optionTexts.Count;i++)
         {
-            buttonOptions[i].interactable = true;
+            buttonOptions[i].interactable = @event.GetOptionEnable(i);
             buttonOptions[i].transform.GetChild(0).GetComponent<Text>().text = optionTexts[i];
         }
         for(int i=optionTexts.Count;i<4;i++)

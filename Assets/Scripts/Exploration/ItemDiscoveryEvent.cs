@@ -12,10 +12,24 @@ public class ItemDiscoveryEvent : ExplorationEvent
     [Header("ItemDIscoveryEvent Field")]
     public Item foundItem;
 
+    public override bool GetOptionEnable(int optionIndex)
+    {
+        if(optionIndex == 0)
+        {
+            if(foundItem != null)
+                return StorageManager.Inst.inventory.GetFirstEmptySlot() != -1;
+            return true;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     public override void Option0()
     {
-        GetItem();
-        FinishEvent();
+        if(GetItem())
+            FinishEvent();
     }
 
     public override void Option1()
@@ -35,9 +49,13 @@ public class ItemDiscoveryEvent : ExplorationEvent
         FinishEvent();
     }
 
-    private void GetItem()
+    private bool GetItem()
     {
         if(foundItem != null)
-            StorageManager.Inst.AddItemToInven(foundItem);
+        {
+            return StorageManager.Inst.AddItemToInven(foundItem);
+        }
+        // 아이템 발견을 실패한 경우
+        return true;
     }
 }

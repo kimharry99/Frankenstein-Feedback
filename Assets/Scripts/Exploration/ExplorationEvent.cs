@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 [System.Serializable]
 public abstract class ExplorationEvent : ScriptableObject
 {
@@ -15,7 +16,7 @@ public abstract class ExplorationEvent : ScriptableObject
     }
 
     public enum EventType
-    { 
+    {
         None = -1,
         RegionDiscovery,
         ItemDiscovery,
@@ -51,14 +52,16 @@ public abstract class ExplorationEvent : ScriptableObject
     public List<string> optionTexts = new List<string>();
     public List<string> optionResultTexts = new List<string>();
 
+
     /// <summary>
     /// 이벤트가 종료되었을 때 해야하는 작업을 명시한다.
     /// SelectNextEvent가 마지막에 와야 한다.
     /// </summary>
     protected void FinishEvent(bool isReturnHome = false)
     {
-        ExplorationManager.Inst.FinishEvent(isReturnHome);
+        ExplorationManager.Inst.FinishEvent(isReturnHome); 
     }
+    public abstract bool GetOptionEnable(int optionIndex);
     public abstract void Option0();
     public abstract void Option1();
     public abstract void Option2();
