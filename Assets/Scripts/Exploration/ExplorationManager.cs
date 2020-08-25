@@ -50,8 +50,6 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
             _time += UnityEngine.Time.deltaTime;
             if (_time > _timeInterval)
             {
-                if (phaseState != PhaseState.ItemDiscovery1)
-                    GameManager.Inst.OnTurnOver(1);
                 AppearEvent(_currentEvent);
                 _time = 0.0f;
             }
@@ -64,6 +62,8 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     /// <param name="event"></param>
     private void AppearEvent(ExplorationEvent @event)
     {
+        if (phaseState != PhaseState.ItemDiscovery1 && phaseState != PhaseState.FinishingExploration)
+            GameManager.Inst.OnTurnOver(1);
         objectState = ObjectState.EventIsAppeared;
         ExplorationUIManager.Inst.NoticeEvent(@event);
         ExplorationUIManager.Inst.AddResultOptionsToButton(@event);
@@ -107,15 +107,11 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
             }
             else
             {
-                _time = 5.0f;
+                _time = _timeInterval + 2.0f;
             }
             objectState = ObjectState.SearchNextEvent;
             ChangeToFollowingState();
             SelectEvent();
-        }
-        else
-        {
-            GameManager.Inst.ReturnHome();
         }
     }
 

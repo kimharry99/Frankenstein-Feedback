@@ -44,6 +44,8 @@ public class FinishExplorationEvent : ExplorationEvent
     private void ReturnHome()
     {
         FinishEvent(true);
+        GameManager.Inst.ReturnHome();
+        GameManager.Inst.OnTurnOver(1);
     }
 
     public override void Option3()
