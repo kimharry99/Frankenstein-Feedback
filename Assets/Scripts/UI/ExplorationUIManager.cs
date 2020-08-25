@@ -54,7 +54,7 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     /// </summary>
     public void NoticeEvent(ExplorationEvent @event)
     {
-        Debug.Log(@event.titleText);
+        Debug.Log("발생한 이벤트 : " + @event.titleText);
         NoticeEventText(@event.titleText);
         if(@event.type == ExplorationEvent.EventType.ItemDiscovery)
         {

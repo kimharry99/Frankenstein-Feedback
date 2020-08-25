@@ -84,7 +84,6 @@ public class CraftingDirectory : MonoBehaviour
         {
             int itemId = r.resultItemId;
             Item item = FindItemByID(itemId);
-            Debug.Log(r.ingredientItemIds);
             if (!_itemRecipie.ContainsKey(r.ingredientItemIds))
                 _itemRecipie.Add(r.ingredientItemIds, item);
             else

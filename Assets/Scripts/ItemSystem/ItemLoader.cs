@@ -25,7 +25,7 @@ public class ItemLoader : SingletonBehaviour<ItemLoader>
         if (dicIdItem.ContainsKey(id))
             loadedItem = dicIdItem[id];
         else
-            Debug.LogError("key is not contained");
+            Debug.LogError("key is not contained, key : " + id);
         //loadedItem = Resources.Load<Item>("Items/" + originItem.type.ToString() + "/" + originItem.itemName);
         return loadedItem;
     }

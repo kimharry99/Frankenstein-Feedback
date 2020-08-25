@@ -96,7 +96,6 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     /// <param name="isReturnHome"></param>
     public void FinishEvent(bool isReturnHome = false)
     {
-        Debug.Log("이벤트 종료");
         ExplorationUIManager.Inst.RemoveEventsFromButton();
         _currentEvent = null;
         if (!isReturnHome)
