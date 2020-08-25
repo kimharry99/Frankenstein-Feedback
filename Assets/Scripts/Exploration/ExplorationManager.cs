@@ -89,6 +89,22 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
         _randomEncounterEvents = _currentRegion.possibleRandomEncounterEvents;
     }
 
+    /// <summary>
+    /// 다른 지역으로 이동한다.
+    /// </summary>
+    public void MoveToAnotherRegion()
+    {
+        Random.InitState((int)UnityEngine.Time.time);
+        Region nextRegion = _currentRegion;
+        for(int i=0;i<100;i++)
+        {
+            int random = Random.Range(0, unlockedRegions.Count);
+            nextRegion = unlockedRegions[random];
+            if (nextRegion.regionId != _currentRegion.regionId)
+                break;
+        }
+        ChangeRegion(nextRegion);
+    }
 
     /// <summary>
     /// @event를 등장시킨다.

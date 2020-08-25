@@ -17,7 +17,7 @@ public class FinishExplorationEvent : ExplorationEvent
 
     private void ExploreAnother()
     {
-
+        ExplorationManager.Inst.MoveToAnotherRegion();
     }
 
     /// <summary>
