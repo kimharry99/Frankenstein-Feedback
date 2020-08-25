@@ -27,16 +27,6 @@ public abstract class ExplorationEvent : ScriptableObject
         DurabilityDamage,
     }
 
-    /// <summary>
-    /// 이벤트가 등장할 수 있는 지역
-    /// </summary>
-    public enum Region
-    {
-        None = -1,
-        City,
-
-    }
-
     [Header("Event Info")]
     public int id;
     public string eventName;
