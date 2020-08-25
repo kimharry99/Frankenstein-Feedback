@@ -16,6 +16,8 @@ MonoBehaviour:
   eventName: "\uC950"
   phase: 1
   type: 3
+  encounterProbabilty: 0
+  isFleeting: 0
   titleText: "\uB208 \uC55E\uC5D0\uC11C \uBB34\uC5B8\uAC00 \uD719 \uC6C0\uC9C1\uC600\uB2E4.
     \uC950..? "
   content: "\uC57C\uC0DD\uC758 \uC950\uB5BC\uAC00 \uB098\uD0C0\uB0AC\uB2E4! "

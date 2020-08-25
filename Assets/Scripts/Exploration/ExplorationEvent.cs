@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -44,8 +45,8 @@ public abstract class ExplorationEvent : ScriptableObject
 
     public int OptionNumber { get { return optionTexts.Count; } }
     [Header("Option Field")]
-    public List<string> optionTexts = new List<string>();
-    public List<string> optionResultTexts = new List<string>();
+    public List<string> optionTexts;
+    public List<string> optionResultTexts;
 
 
     /// <summary>
