@@ -42,6 +42,7 @@ public abstract class ExplorationEvent : ScriptableObject
     public string eventName;
     public EventPhase phase;
     public EventType type;
+    public float encounterProbabilty;
 
     [Header("Event Content")]
     public string titleText;
