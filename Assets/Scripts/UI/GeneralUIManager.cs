@@ -17,6 +17,7 @@ public class GeneralUIManager : SingletonBehaviour<GeneralUIManager>
 
     [Header("Inventory")]
     public Image[] imageInventory = new Image[5];
+    public GameObject panelInven;
 
     public GameObject panelSetting;
     public Time time;
@@ -99,6 +100,19 @@ public class GeneralUIManager : SingletonBehaviour<GeneralUIManager>
     /// </summary>
     private void UpdateInventoryText()
     {
+        Text txt;
 
+        for (int i = 0; i < 5; i++)
+        {
+            txt = panelInven.transform.GetChild(1).GetChild(i).GetChild(1).GetComponent<Text>();
+            if (inventory.slotItem[i] != null)
+            {
+                txt.text = inventory.slotItemNumber[i].ToString();
+            }
+            else
+            {
+                txt.text = "";
+            }
+        }
     }
 }

@@ -129,21 +129,26 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     private void UpdateChestText()
     {
         Text txt;
+
         for(int i = 0; i < Chest.CAPACITY; i++)
         {
+            txt = panelChest.transform.GetChild(1).GetChild(i).GetChild(0).GetChild(0).GetComponent<Text>();
             int indexItem = StorageManager.Inst.GetIndexTable(_currentChestType, i);
             if (indexItem != -1)
             {
                 if (chest.slotItem[indexItem] != null)
-                {
-                    txt = panelChest.transform.GetChild(1).GetChild(i).GetChild(0).GetChild(0).GetComponent<Text>();
+                { 
                     txt.text = chest.slotItemNumber[indexItem].ToString();
+                    
                 }
                 else
                 {
-                    txt = panelChest.transform.GetChild(1).GetChild(i).GetChild(0).GetChild(0).GetComponent<Text>();
                     txt.text = "";
                 }
+            }
+            else
+            {
+                txt.text = "";
             }
         }
     }

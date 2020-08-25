@@ -45,7 +45,7 @@ public class BonusItemTable
         Item naturalEssence = Resources.Load("Items/Ingredient/자연의 정수") as Item;
         Item toughLeather = Resources.Load("Items/Ingredient/질긴 가죽") as Item;
         Item scrap = Resources.Load("Items/Ingredient/고철") as Item;
-        Item part = Resources.Load("Items/Ingredient/기계부품") as Item;
+        Item part = Resources.Load("Items/Ingredient/기계 부품") as Item;
         raceItem[(int)Race.Human][0] = leather;
         raceItem[(int)Race.Goblin][0] = gold;
         raceItem[(int)Race.Goblin][1] = leather;
