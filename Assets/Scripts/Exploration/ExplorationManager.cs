@@ -21,7 +21,8 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     }
 
     [SerializeField] // for debugging
-    private List<ExplorationEvent> _events;
+    private ItemDiscoveryEvent[] _itemDiscoveryEvents;
+    private ExplorationEvent[] _randomEncounterEvents;
     [SerializeField]
     private FinishExplorationEvent _finishExplorationEvent;
     [SerializeField]
@@ -48,7 +49,7 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     {
         Debug.Log("탐사 초기화");
         phaseState = PhaseState.ItemDiscovery1;
-        AppearEvent(_events[1]);
+        AppearEvent(_itemDiscoveryEvents[1]);
     }
 
     private float _time = 0.0f;
@@ -84,7 +85,7 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
                 _curentRegion = region;
             }
         }
-        _events = _curentRegion.possibleEvents;
+        _itemDiscoveryEvents = _curentRegion.possibleItemDiscoveryEvents;
     }
 
     /// <summary>
@@ -116,10 +117,41 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
         else
         {
             int temp = (int)(UnityEngine.Time.time * 100.0f);
+            int[] cumulativeProbability = MakeCumulativeProbability(_itemDiscoveryEvents);
             Random.InitState(temp);
-            _currentEvent = _events[Random.Range(0, _events.Count)];
+            int random = Random.Range(0, 100);
+            _currentEvent = GetSelectedEvent(random, cumulativeProbability, _itemDiscoveryEvents);
         }
     }
+
+    private int[] MakeCumulativeProbability(ExplorationEvent[] events)
+    {
+        int[] cumulativeProbability = new int[events.Length + 1];
+        cumulativeProbability[0] = 0;
+        for(int i=1;i<=events.Length;i++)
+        {
+            cumulativeProbability[i] = cumulativeProbability[i - 1] + (int)events[i - 1].encounterProbabilty;
+        }
+        return cumulativeProbability;
+    }
+
+    private ExplorationEvent GetSelectedEvent(int random, int[] cumlativeProbability, ExplorationEvent[] events)
+    {
+        if(random >= cumlativeProbability.Last())
+        {
+            return _itemDiscoveryFaultEvent;
+        }
+
+        for(int i=cumlativeProbability.Length - 2;i>=0;i--)
+        {
+            if(random >= cumlativeProbability[i])
+            {
+                return events[i];
+            }
+        }
+        return events[0];
+    }
+
 
     private bool CheckPhaseMatched(ExplorationEvent @event)
     {
