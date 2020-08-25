@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ExplorationtManager : SingletonBehaviour<ExplorationtManager>
 {
@@ -12,16 +10,24 @@ public class ExplorationtManager : SingletonBehaviour<ExplorationtManager>
         EventIsAppeared,
     }
     ObjectState objectState;
-
     [SerializeField] // for debugging
     private List<ExplorationEvent> _events;
 
+    private ExplorationEvent.EventPhase _eventPhase;
+    private ExplorationEvent.Region _curentRegion;
     private ExplorationEvent _currentEvent;
 
     protected override void Awake()
     {
         base.Awake();
         // for debugging
+        InitializeExploration();
+    }
+
+    public void InitializeExploration()
+    {
+        _eventPhase = ExplorationEvent.EventPhase.SearchingItem;
+        _curentRegion = ExplorationEvent.Region.City;
         AppearEvent(_events[1]);
     }
 

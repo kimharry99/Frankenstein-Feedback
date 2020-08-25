@@ -9,8 +9,9 @@ public abstract class ExplorationEvent : ScriptableObject
     public enum EventPhase
     {
         None = -1,
-        RandomEncounter,
         SearchingItem,
+        RandomEncounter,
+        FinishingExploration,
     }
 
     public enum EventType
@@ -23,6 +24,16 @@ public abstract class ExplorationEvent : ScriptableObject
         /// </summary>
         Encounter,
         DurabilityDamage,
+    }
+
+    /// <summary>
+    /// 이벤트가 등장할 수 있는 지역
+    /// </summary>
+    public enum Region
+    {
+        None = -1,
+        City,
+
     }
 
     [Header("Event Info")]

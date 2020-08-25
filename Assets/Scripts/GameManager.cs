@@ -53,6 +53,7 @@ public class GameManager : SingletonBehaviour<GameManager>
         
         HomeUIManager.Inst.panelHome.SetActive(false);
         ExplorationUIManager.Inst.panelExploration.SetActive(true);
+        ExplorationtManager.Inst.InitializeExploration();
         IsHome = false;
     }
 
@@ -60,6 +61,9 @@ public class GameManager : SingletonBehaviour<GameManager>
     public void ReturnHome()
     {
         SceneManager.LoadScene(0);
+
+        ExplorationUIManager.Inst.panelExploration.SetActive(false);
+        HomeUIManager.Inst.panelHome.SetActive(true);
         IsHome = true;
     }
 

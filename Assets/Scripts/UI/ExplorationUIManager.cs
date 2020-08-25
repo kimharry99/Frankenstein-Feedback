@@ -59,8 +59,8 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
         if(@event.type == ExplorationEvent.EventType.ItemDiscovery)
         {
             ItemDiscoveryEvent itemDiscoveryEvent = (ItemDiscoveryEvent)@event;
-            if(itemDiscoveryEvent.foundedItem != null)
-                NoticeEventItemImage(itemDiscoveryEvent.foundedItem.itemImage);
+            if(itemDiscoveryEvent.foundItem != null)
+                NoticeEventItemImage(itemDiscoveryEvent.foundItem.itemImage);
         }
         NoticeEventText(@event.content);
         NoticeOptions(@event.optionTexts);

@@ -10,7 +10,7 @@ using UnityEngine;
 public class ItemDiscoveryEvent : ExplorationEvent
 {
     [Header("ItemDIscoveryEvent Field")]
-    public Item foundedItem;
+    public Item foundItem;
 
     public override void Option0()
     {
@@ -37,7 +37,7 @@ public class ItemDiscoveryEvent : ExplorationEvent
 
     private void GetItem()
     {
-        if(foundedItem != null)
-            StorageManager.Inst.AddItemToInven(foundedItem);
+        if(foundItem != null)
+            StorageManager.Inst.AddItemToInven(foundItem);
     }
 }
