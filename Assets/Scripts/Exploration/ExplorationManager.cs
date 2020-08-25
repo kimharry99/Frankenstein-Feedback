@@ -21,6 +21,8 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
 
     [SerializeField] // for debugging
     private List<ExplorationEvent> _events;
+    [SerializeField]
+    private FinishExplorationEvent _finishExplorationEvent;
 
     private ObjectState objectState;
     private PhaseState phaseState;
@@ -80,9 +82,16 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     /// </summary>
     public void SelectEvent()
     {
-        int temp = (int) (UnityEngine.Time.time * 100.0f);
-        Random.InitState(temp);
-        _currentEvent = _events[Random.Range(0, _events.Count)];
+        if(phaseState == PhaseState.FinishingExploration)
+        {
+            _currentEvent = _finishExplorationEvent;
+        }
+        else
+        {
+            int temp = (int)(UnityEngine.Time.time * 100.0f);
+            Random.InitState(temp);
+            _currentEvent = _events[Random.Range(0, _events.Count)];
+        }
         AppearEvent(_currentEvent);
     }
 
@@ -104,6 +113,22 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
         {
             GameManager.Inst.ReturnHome();
         }
-        GameManager.Inst.OnTurnOver(1);
+
+        if(phaseState != PhaseState.ItemDiscovery1)
+            GameManager.Inst.OnTurnOver(1);
+        ChangeToFollowingState();
+    }
+
+    /// <summary>
+    /// 다음 탐사 State로 변경한다.
+    /// </summary>
+    private void ChangeToFollowingState()
+    {
+        if (phaseState == PhaseState.FinishingExploration)
+        {
+            phaseState = PhaseState.ItemDiscovery1;
+        }
+        else
+            phaseState += 1;
     }
 }

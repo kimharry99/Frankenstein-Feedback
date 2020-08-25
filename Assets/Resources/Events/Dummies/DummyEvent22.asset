@@ -24,4 +24,4 @@ MonoBehaviour:
   optionResultTexts:
   - "\uAD8C\uCD1D\uC744 \uCC59\uACBC\uC2B5\uB2C8\uB2E4"
   - "\uC9C0\uB098\uCCE4\uC2B5\uB2C8\uB2E4."
-  foundItem: {fileID: 0}
+  foundItem: {fileID: 11400000, guid: 733c1b99ba5f3f449839a17a53552538, type: 2}
