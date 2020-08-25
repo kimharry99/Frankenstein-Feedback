@@ -10,6 +10,7 @@ public class FinishExplorationEvent : ExplorationEvent
     /// </summary>
     public override void Option0()
     {
+        GameManager.Inst.OnTurnOver(1);
         ExploreAnother();
         FinishEvent();
     }
@@ -24,6 +25,7 @@ public class FinishExplorationEvent : ExplorationEvent
     /// </summary>
     public override void Option1()
     {
+        GameManager.Inst.OnTurnOver(1);
         ExploreAgain();
         FinishEvent();
     }
