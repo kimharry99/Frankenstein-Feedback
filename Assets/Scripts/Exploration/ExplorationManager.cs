@@ -80,14 +80,17 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     public void FinishEvent(bool isReturnHome = false)
     {
         Debug.Log("이벤트 종료");
+        ExplorationUIManager.Inst.RemoveEventsFromButton();
+        _currentEvent = null;
         if (!isReturnHome)
         {
-            GameManager.Inst.OnTurnOver(1);
             StartCoroutine(ExplorationUIManager.Inst.WaitForEncounter(_timeInterval));
             objectState = ObjectState.SearchNextEvent;
         }
-
-        ExplorationUIManager.Inst.RemoveEventsFromButton();
-        _currentEvent = null;
+        else
+        {
+            GameManager.Inst.ReturnHome();
+        }
+        GameManager.Inst.OnTurnOver(1);
     }
 }
