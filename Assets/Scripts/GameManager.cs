@@ -32,6 +32,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     {
         if (scene.name == "HomeScene")
         {
+            IsHome = true;
             bodyAssembly = GameObject.Find("BodyAssembly").GetComponent<BodyAssembly>();
             bodyDisassembly = GameObject.Find("BodyDisassembly").GetComponent<BodyDisassembly>();
             craftingTable = GameObject.Find("CraftingTable").GetComponent<CraftingTable>();
@@ -45,7 +46,6 @@ public class GameManager : SingletonBehaviour<GameManager>
     private void InitGame()
     {
         _time.SetTime(8);
-        IsHome = true;
 
         //for debugging
         energy.value = 500;

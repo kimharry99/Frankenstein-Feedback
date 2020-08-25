@@ -5,6 +5,21 @@ using UnityEngine;
 public class Player : SingletonBehaviour<Player>
 {
     public IntVariable durability;
+    public int Durability
+    {
+        get
+        {
+            return durability.value;
+        }
+        set
+        {
+            durability.value = value;
+            if(durability.value <= 0)
+            {
+                KillPlayer();
+            }
+        }
+    }
     public Inventory inventory;
     [Header("Body Parts")]
     [SerializeField]
@@ -70,14 +85,13 @@ public class Player : SingletonBehaviour<Player>
     public void InitPlayer()
     {
         BodyRegenerationRate = 0;
-        durability.value = 100;
         UpdateAllPlayerBodyStatus(_raceAffinity, _equippedBodyPart.bodyParts, _bodyPartStat);
         UpdateAllPlayerSprites();
     }
     
     public void KillPlayer()
     {
-
+        Debug.Log("Game Over");
     }
 
     #region Body decay
@@ -106,7 +120,7 @@ public class Player : SingletonBehaviour<Player>
     /// <param name="turn"></param>
     public void DecayBody(int turn)
     {
-        durability.value = durability.value - BodyDecayRate * turn;
+        Durability = durability.value - BodyDecayRate * turn;
     }
 
 

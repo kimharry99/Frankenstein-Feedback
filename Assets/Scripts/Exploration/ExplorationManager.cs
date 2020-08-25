@@ -86,8 +86,33 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
         {
             int temp = (int)(UnityEngine.Time.time * 100.0f);
             Random.InitState(temp);
-            _currentEvent = _events[Random.Range(0, _events.Count)];
+            while(true)
+            {
+                _currentEvent = _events[Random.Range(0, _events.Count)];
+                if (CheckPhaseMatched(_currentEvent))
+                    break;
+            }
         }
+    }
+
+    private bool CheckPhaseMatched(ExplorationEvent @event)
+    {
+        switch(@event.phase)
+        {
+            case ExplorationEvent.EventPhase.SearchingItem:
+                if (phaseState == PhaseState.ItemDiscovery1 || phaseState == PhaseState.ItemDiscovery2)
+                    return true;
+                break;
+            case ExplorationEvent.EventPhase.RandomEncounter:
+                if (phaseState == PhaseState.RandomEncounter)
+                    return true;
+                break;
+            case ExplorationEvent.EventPhase.FinishingExploration:
+                if (phaseState == PhaseState.FinishingExploration)
+                    return true;
+                break;
+        }
+        return false;
     }
 
     /// <summary>
