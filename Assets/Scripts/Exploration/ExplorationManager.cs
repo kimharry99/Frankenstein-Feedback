@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplorationtManager : SingletonBehaviour<ExplorationtManager>
+public class ExplorationManager : SingletonBehaviour<ExplorationManager>
 {
     private enum ObjectState
     {
@@ -17,15 +17,20 @@ public class ExplorationtManager : SingletonBehaviour<ExplorationtManager>
     private ExplorationEvent.Region _curentRegion;
     private ExplorationEvent _currentEvent;
 
+    private void Start()
+    {
+        // for debugging
+        //InitializeExploration();
+    }
+
     protected override void Awake()
     {
         base.Awake();
-        // for debugging
-        InitializeExploration();
     }
 
     public void InitializeExploration()
     {
+        Debug.Log("탐사 초기화");
         _eventPhase = ExplorationEvent.EventPhase.SearchingItem;
         _curentRegion = ExplorationEvent.Region.City;
         AppearEvent(_events[1]);
@@ -72,13 +77,17 @@ public class ExplorationtManager : SingletonBehaviour<ExplorationtManager>
         AppearEvent(_nextEvent);
     }
 
-    public void FinishEvent()
+    public void FinishEvent(bool isReturnHome = false)
     {
-        GameManager.Inst.OnTurnOver(1);
+        Debug.Log("이벤트 종료");
+        if (!isReturnHome)
+        {
+            GameManager.Inst.OnTurnOver(1);
+            StartCoroutine(ExplorationUIManager.Inst.WaitForEncounter(_timeInterval));
+            objectState = ObjectState.SearchNextEvent;
+        }
 
         ExplorationUIManager.Inst.RemoveEventsFromButton();
         _currentEvent = null;
-        StartCoroutine(ExplorationUIManager.Inst.WaitForEncounter(_timeInterval));
-        objectState = ObjectState.SearchNextEvent;
     }
 }

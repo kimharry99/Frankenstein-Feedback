@@ -43,12 +43,13 @@ public class FinishExplorationEvent : ExplorationEvent
 
     private void ReturnHome()
     {
+        ExplorationUIManager.Inst.RemoveEventsFromButton();
         GameManager.Inst.ReturnHome();
     }
 
     public override void Option3()
     {
-        FinishEvent();
+        FinishEvent(true);
     }
 
 
