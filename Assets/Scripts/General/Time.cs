@@ -5,11 +5,9 @@ using UnityEngine;
 public class Time : ScriptableObject, ISerializationCallbackReceiver
 {
     public int initialTime;
-    [NonSerialized]
     // 0 ~ 23
     public int runtimeTime;
     public int initialDay;
-    [NonSerialized]
     public int runtimeDay;
     public bool isNight;
     

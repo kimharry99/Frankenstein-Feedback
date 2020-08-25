@@ -17,12 +17,17 @@ public class GameManager : SingletonBehaviour<GameManager>
     public IntVariable durability;
 
     #region Unity Functions
+    private void Start()
+    {
+        InitGame();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
     protected override void Awake()
     {
         base.Awake();
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        InitGame();
     }
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "HomeScene")
