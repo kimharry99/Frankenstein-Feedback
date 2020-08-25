@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff6d752eacc58a4f97ce134d52c74e0, type: 3}
   m_Name: Durability
   m_EditorClassIdentifier: 
-  initialValue: 0
+  initialValue: 100

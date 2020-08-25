@@ -12,7 +12,12 @@ public class ItemLoader : SingletonBehaviour<ItemLoader>
         allItems = Resources.LoadAll<Item>("Items");
         for (int i = 0; i < allItems.Length; i++)
         {
-            dicIdItem.Add(allItems[i].id, allItems[i]);
+            if(!dicIdItem.ContainsKey(allItems[i].id))
+                dicIdItem.Add(allItems[i].id, allItems[i]);
+            else
+            {
+                Debug.LogError("중복된 key : " + allItems[i].id + ", " + allItems[i].itemName);
+            }
             //Debug.Log("add " + allItems[i].itemName);
         }
         //Debug.Log("3021 : " + GetItemById(3021).itemName);

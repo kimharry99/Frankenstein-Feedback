@@ -87,8 +87,40 @@ public class CraftingTable : MonoBehaviour
     {
         debuggingIngredientItemIds.Clear();
         string ingredientItemIds = sortUsingItemsById(_usingItems);
+
+        if (ingredientItemIds == "")
+        {
+            HomeUIManager.Inst.panelNotice.SetActive(true);
+            HomeUIManager.Inst.textNotice.text = "제작에 사용할 아이템을 선택하세요.";
+            return;
+        }
+
         _resultItem = _craftingDirectory.FindItem(ingredientItemIds);
-        //Debug.Log("제작된 아이템 : " + _resultItem.itemName);
+
+        if (_resultItem)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                while (_usingItems[i].itemUsingCount > 0)
+                {
+                    _usingItems[i].itemUsingCount--;
+                    StorageManager.Inst.DeleteFromChest(_usingItems[i].indexUsingChest);
+                }
+            }
+
+            StorageManager.Inst.AddItemToChest(_resultItem);
+
+            HomeUIManager.Inst.panelNotice.SetActive(true);
+            HomeUIManager.Inst.textNotice.text = _resultItem.itemName + " 아이템을 제작하였습니다.";
+
+            HomeUIManager.Inst.UpdateCrafting();
+        }
+
+        else
+        {
+            HomeUIManager.Inst.panelNotice.SetActive(true);
+            HomeUIManager.Inst.textNotice.text = "해당하는 레시피가 없습니다.";
+        }
     }
 
     /// <summary>
@@ -99,8 +131,11 @@ public class CraftingTable : MonoBehaviour
     private string sortUsingItemsById(UsingItem[] usingItems)
     {
         List<int> itemIdList = new List<int>();
-        for(int i=0;usingItems[i].indexUsingChest >= 0; i++)
+        for(int i = 0; i < 6; i++)
         {
+            if (usingItems[i].indexUsingChest < 0)
+                continue;
+
             for (int j = 0; j < usingItems[i].itemUsingCount; j++)
             {
                 itemIdList.Add(usingItems[i].usingItem.id);
