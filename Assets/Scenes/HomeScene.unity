@@ -637,18 +637,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67032a8892c6fbc41a201638db5eb41c, type: 3}
---- !u!114 &426333936 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4496653149735789406, guid: 67032a8892c6fbc41a201638db5eb41c,
-    type: 3}
-  m_PrefabInstance: {fileID: 426333935}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b66f16a9b347f314c89e58b2b5ed0602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &439729937 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1368211035022187555, guid: e5afff4fa20165c418049e3e9db7415e,
@@ -1064,6 +1052,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8477198740150218742, guid: aca0d4922f165f4408bd20e42a2db695,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ButtonCloseClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 8477198740150218742, guid: aca0d4922f165f4408bd20e42a2db695,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 439729937}
+    - target: {fileID: 8477198740150218742, guid: aca0d4922f165f4408bd20e42a2db695,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8477198740150218742, guid: aca0d4922f165f4408bd20e42a2db695,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8477198740898583849, guid: aca0d4922f165f4408bd20e42a2db695,
         type: 3}
@@ -2385,9 +2393,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 426333936}
-        m_MethodName: OnTurnOver
-        m_Mode: 3
+      - m_Target: {fileID: 5598134403201767622, guid: f786abf4f0f25d445889498f150c5434,
+          type: 3}
+        m_MethodName: ButtonDebugClicked
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
