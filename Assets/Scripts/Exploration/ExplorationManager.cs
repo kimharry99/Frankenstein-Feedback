@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ExplorationManager : SingletonBehaviour<ExplorationManager>
@@ -23,22 +24,30 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     private List<ExplorationEvent> _events;
     [SerializeField]
     private FinishExplorationEvent _finishExplorationEvent;
+    [SerializeField]
+    private ItemDiscoveryEvent _itemDiscoveryFaultEvent;
 
     private ObjectState objectState;
     private PhaseState phaseState;
-    private ExplorationEvent.Region _curentRegion;
+    private List<Region> allRegions;
+    private List<Region> unlockedRegions = new List<Region>();
+    private Region _curentRegion;
 
     private void Start()
     {
+        allRegions = Resources.LoadAll<Region>("Regions").ToList();
+        unlockedRegions.Add(allRegions.Find(x => x.regionName == "더미"));
+        unlockedRegions.Add(allRegions.Find(x => x.regionName == "더미학교"));
+        ChangeRegion(null, "더미학교");
         // for debugging
-        _currentEvent = _events[1];
+        SelectEvent();
+        SkipInterval();
     }
 
     public void InitializeExploration()
     {
         Debug.Log("탐사 초기화");
         phaseState = PhaseState.ItemDiscovery1;
-        _curentRegion = ExplorationEvent.Region.City;
         AppearEvent(_events[1]);
     }
 
@@ -54,6 +63,28 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
                 _time = 0.0f;
             }
         }
+    }
+
+    /// <summary>
+    /// 이벤트 종료 후 대기시간을 skip한다.
+    /// </summary>
+    private void SkipInterval()
+    {
+        _time = _timeInterval + 2.0f;
+    }
+
+    public void ChangeRegion(Region region = null, string regionName = "", int regionId = 0)
+    {
+        if(region == null)
+            _curentRegion = unlockedRegions.Find(x => (x.regionId == regionId || x.regionName == regionName));
+        else
+        {
+            if(unlockedRegions.Contains(region))
+            {
+                _curentRegion = region;
+            }
+        }
+        _events = _curentRegion.possibleEvents;
     }
 
     /// <summary>
@@ -74,7 +105,7 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     private float _timeInterval = 3.0f;
     private ExplorationEvent _currentEvent;
     /// <summary>
-    /// 다음으로 등장할 Event를 선택하고 등장시킨다.
+    /// 다음으로 등장할 Event를 선택한다.
     /// </summary>
     public void SelectEvent()
     {
@@ -86,12 +117,7 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
         {
             int temp = (int)(UnityEngine.Time.time * 100.0f);
             Random.InitState(temp);
-            while(true)
-            {
-                _currentEvent = _events[Random.Range(0, _events.Count)];
-                if (CheckPhaseMatched(_currentEvent))
-                    break;
-            }
+            _currentEvent = _events[Random.Range(0, _events.Count)];
         }
     }
 

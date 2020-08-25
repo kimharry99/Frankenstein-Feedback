@@ -49,4 +49,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b0347b6a3154029429c9befb3c169434, type: 2}
   _finishExplorationEvent: {fileID: 11400000, guid: fce51853fd278c84cb569c58e35a39b1,
     type: 2}
+  _itemDiscoveryFaultEvent: {fileID: 11400000, guid: 61a1aac8d0ad7e34b98710f4cde2ecd7,
+    type: 2}
   _timeInterval: 1
