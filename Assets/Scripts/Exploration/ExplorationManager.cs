@@ -32,7 +32,7 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     private PhaseState phaseState;
     private List<Region> allRegions;
     private List<Region> unlockedRegions = new List<Region>();
-    private Region _curentRegion;
+    private Region _currentRegion;
 
     private void Start()
     {
@@ -77,16 +77,18 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     public void ChangeRegion(Region region = null, string regionName = "", int regionId = 0)
     {
         if(region == null)
-            _curentRegion = unlockedRegions.Find(x => (x.regionId == regionId || x.regionName == regionName));
+            _currentRegion = unlockedRegions.Find(x => (x.regionId == regionId || x.regionName == regionName));
         else
         {
             if(unlockedRegions.Contains(region))
             {
-                _curentRegion = region;
+                _currentRegion = region;
             }
         }
-        _itemDiscoveryEvents = _curentRegion.possibleItemDiscoveryEvents;
+        _itemDiscoveryEvents = _currentRegion.possibleItemDiscoveryEvents;
+        _randomEncounterEvents = _currentRegion.possibleRandomEncounterEvents;
     }
+
 
     /// <summary>
     /// @event를 등장시킨다.
@@ -110,20 +112,39 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     /// </summary>
     public void SelectEvent()
     {
-        if(phaseState == PhaseState.FinishingExploration)
+        if (phaseState == PhaseState.FinishingExploration)
         {
             _currentEvent = _finishExplorationEvent;
         }
-        else
+        else if (phaseState == PhaseState.ItemDiscovery1 || phaseState == PhaseState.ItemDiscovery2)
         {
-            int temp = (int)(UnityEngine.Time.time * 100.0f);
-            int[] cumulativeProbability = MakeCumulativeProbability(_itemDiscoveryEvents);
-            Random.InitState(temp);
-            int random = Random.Range(0, 100);
-            _currentEvent = GetSelectedEvent(random, cumulativeProbability, _itemDiscoveryEvents);
+            _currentEvent = SelectEventFromArray(_itemDiscoveryEvents);
+        }
+        else if (phaseState == PhaseState.RandomEncounter)
+        { 
+            _currentEvent = SelectEventFromArray(_randomEncounterEvents);
         }
     }
 
+    /// <summary>
+    /// events 배열에서 적절한 확률에 맞게 이벤트를 선택한다.
+    /// </summary>
+    /// <param name="events"></param>
+    /// <returns></returns>
+    private ExplorationEvent SelectEventFromArray(ExplorationEvent[] events)
+    {
+        int[] cumulativeProbability = MakeCumulativeProbability(events);
+        int temp = (int)(UnityEngine.Time.time * 100.0f);
+        Random.InitState(temp);
+        int random = Random.Range(0, 100);
+        return GetSelectedEvent(random, cumulativeProbability, events);
+    }
+
+    /// <summary>
+    /// event 배열을 참조하여 누적 확률 배열을 만든다.
+    /// </summary>
+    /// <param name="events"></param>
+    /// <returns></returns>
     private int[] MakeCumulativeProbability(ExplorationEvent[] events)
     {
         int[] cumulativeProbability = new int[events.Length + 1];
