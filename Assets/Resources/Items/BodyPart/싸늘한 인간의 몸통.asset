@@ -19,13 +19,12 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 9a9d926a756b01441833586999c55c28, type: 3}
   type: 1
   race: 1
-  energyPotential: 0
+  energyPotential: 6000
   atk: 0
   def: 4
   dex: 0
   mana: 0
   endurance: 0
-  durability: {fileID: 11400000, guid: 0f322d544fce00a498795d7394764a5c, type: 2}
   bodyPartType: 1
   grade: 1
   bodyPartSprite: {fileID: 21300000, guid: 9a9d926a756b01441833586999c55c28, type: 3}
