@@ -27,17 +27,11 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     private ObjectState objectState;
     private PhaseState phaseState;
     private ExplorationEvent.Region _curentRegion;
-    private ExplorationEvent _1currentEvent;
 
     private void Start()
     {
         // for debugging
-        //InitializeExploration();
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
+        _currentEvent = _events[1];
     }
 
     public void InitializeExploration()
@@ -56,7 +50,9 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
             _time += UnityEngine.Time.deltaTime;
             if (_time > _timeInterval)
             {
-                SelectEvent();
+                if (phaseState != PhaseState.ItemDiscovery1)
+                    GameManager.Inst.OnTurnOver(1);
+                AppearEvent(_currentEvent);
                 _time = 0.0f;
             }
         }
@@ -92,7 +88,6 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
             Random.InitState(temp);
             _currentEvent = _events[Random.Range(0, _events.Count)];
         }
-        AppearEvent(_currentEvent);
     }
 
     /// <summary>
@@ -103,20 +98,25 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     {
         Debug.Log("이벤트 종료");
         ExplorationUIManager.Inst.RemoveEventsFromButton();
-        _1currentEvent = null;
+        _currentEvent = null;
         if (!isReturnHome)
         {
-            StartCoroutine(ExplorationUIManager.Inst.WaitForEncounter(_timeInterval));
+            if (phaseState != PhaseState.RandomEncounter)
+            {
+                StartCoroutine(ExplorationUIManager.Inst.WaitForEncounter(_timeInterval));
+            }
+            else
+            {
+                _time = 5.0f;
+            }
             objectState = ObjectState.SearchNextEvent;
+            ChangeToFollowingState();
+            SelectEvent();
         }
         else
         {
             GameManager.Inst.ReturnHome();
         }
-
-        if(phaseState != PhaseState.ItemDiscovery1)
-            GameManager.Inst.OnTurnOver(1);
-        ChangeToFollowingState();
     }
 
     /// <summary>
