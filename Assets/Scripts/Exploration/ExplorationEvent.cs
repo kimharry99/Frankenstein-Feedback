@@ -33,6 +33,10 @@ public abstract class ExplorationEvent : ScriptableObject
     public EventPhase phase;
     public EventType type;
     public float encounterProbabilty;
+    /// <summary>
+    /// 일회용일 경우 true
+    /// </summary>
+    public bool isFleeting = false;
 
     [Header("Event Content")]
     public string titleText;
