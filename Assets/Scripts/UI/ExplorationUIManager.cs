@@ -198,18 +198,21 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     /// </summary>
     private void AddResultTextsToButton(ExplorationEvent @event)
     {
-        if (@event.OptionNumber >= 0)
+        if (@event.phase != ExplorationEvent.EventPhase.FinishingExploration && !ExplorationManager.Inst.GetIsOverwork())
         {
-            buttonOptions[0].onClick.AddListener(() => NoticeEventText(@event.optionResultTexts[0]));
-            if (@event.OptionNumber >= 1)
+            if (@event.OptionNumber >= 0)
             {
-                buttonOptions[1].onClick.AddListener(() => NoticeEventText(@event.optionResultTexts[1]));
-                if (@event.OptionNumber >= 2)
+                buttonOptions[0].onClick.AddListener(() => NoticeEventText(@event.optionResultTexts[0]));
+                if (@event.OptionNumber >= 1)
                 {
-                    buttonOptions[2].onClick.AddListener(() => NoticeEventText(@event.optionResultTexts[2]));
-                    if (@event.OptionNumber >= 3)
+                    buttonOptions[1].onClick.AddListener(() => NoticeEventText(@event.optionResultTexts[1]));
+                    if (@event.OptionNumber >= 2)
                     {
-                        buttonOptions[3].onClick.AddListener(() => NoticeEventText(@event.optionResultTexts[3]));
+                        buttonOptions[2].onClick.AddListener(() => NoticeEventText(@event.optionResultTexts[2]));
+                        if (@event.OptionNumber >= 3)
+                        {
+                            buttonOptions[3].onClick.AddListener(() => NoticeEventText(@event.optionResultTexts[3]));
+                        }
                     }
                 }
             }
@@ -243,10 +246,17 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     {
         panelCollapseWarning.SetActive(true);
         ButtonCancel.onClick.AddListener(CloseCooapseWarningPanel);
-        if(option == 0)
+        if (option == 0)
+        {
             ButtonContinue.onClick.AddListener(finishExplorationEvent.ExploreAnother);
+            ButtonContinue.onClick.AddListener(() => NoticeEventText(finishExplorationEvent.optionResultTexts[0]));
+        }
         else if (option == 1)
+        {
             ButtonContinue.onClick.AddListener(finishExplorationEvent.ExploreAgain);
+            ButtonContinue.onClick.AddListener(() => NoticeEventText(finishExplorationEvent.optionResultTexts[1]));
+        }
+        ButtonContinue.onClick.AddListener(CloseCooapseWarningPanel);
     }
 
     public void CloseCooapseWarningPanel()

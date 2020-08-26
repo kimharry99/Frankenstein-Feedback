@@ -10,9 +10,10 @@ public class FinishExplorationEvent : ExplorationEvent
     /// </summary>
     public override void Option0()
     {
-        Debug.Log(ExplorationManager.Inst.GetIsOverwork());
-        //WarnBodyCollapse(0);
-        ExploreAnother();
+        if(ExplorationManager.Inst.GetIsOverwork())
+            WarnBodyCollapse(0);
+        else
+            ExploreAnother();
     }
 
     public void ExploreAnother()
@@ -27,8 +28,10 @@ public class FinishExplorationEvent : ExplorationEvent
     /// </summary>
     public override void Option1()
     {
-        Debug.Log(ExplorationManager.Inst.GetIsOverwork());
-        ExploreAgain();
+        if (ExplorationManager.Inst.GetIsOverwork())
+            WarnBodyCollapse(1);
+        else
+            ExploreAgain();
     }
     
     public void ExploreAgain()
