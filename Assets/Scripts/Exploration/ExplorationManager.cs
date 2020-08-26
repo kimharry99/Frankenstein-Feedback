@@ -212,6 +212,19 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     }
 
     /// <summary>
+    /// 탐사 횟수와 인내력을 비교한다.
+    /// </summary>
+    /// <returns></returns>
+    public bool GetIsOverwork()
+    {
+        if (explorationCnt >= Player.Inst.Endurance)
+        {
+            return true;
+        }
+        else return false;
+    }
+
+    /// <summary>
     /// event선택이 종료된 후 후처리를 담당한다.
     /// </summary>
     /// <param name="isReturnHome"></param>

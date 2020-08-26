@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   regionId: 99911
   regionName: "\uB354\uBBF8\uD559\uAD50"
-  possibleEvents:
-  - {fileID: 11400000, guid: 96c19feebd6c2f3429d28769c7b9aec1, type: 2}
+  possibleItemDiscoveryEvents:
   - {fileID: 11400000, guid: 82999f3124e870e4c9c079cbc7b00e3b, type: 2}
+  - {fileID: 11400000, guid: 96c19feebd6c2f3429d28769c7b9aec1, type: 2}
+  possibleRandomEncounterEvents:
+  - {fileID: 11400000, guid: b0347b6a3154029429c9befb3c169434, type: 2}
