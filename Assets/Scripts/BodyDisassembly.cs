@@ -40,6 +40,7 @@ public class BodyDisassembly : MonoBehaviour
     {
         BonusItemTable bonusItemTable = new BonusItemTable();
         int probabilityIndex = GetRandomIndex();
+        Debug.Log("probabilityIndex:" + probabilityIndex);
         Slot[] rewardItems = bonusItemTable.GetTableData(item.race, item.grade, probabilityIndex);
         StorageManager.Inst.AddItemsToChest(rewardItems[0].slotItem, rewardItems[0].slotItemNumber);
         StorageManager.Inst.AddItemsToChest(rewardItems[1].slotItem, rewardItems[1].slotItemNumber);
