@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -334,11 +335,11 @@ public class StorageManager : SingletonBehaviour<StorageManager>
             if (inventory.slotItem[i].type == Type.Tool)
             {
                 Tool tool = (Tool)inventory.slotItem[i];
-                toolStat.atk += tool.atk * Player.Inst.GetRaceAffinity(tool.race);
-                toolStat.def += tool.def * Player.Inst.GetRaceAffinity(tool.race);
-                toolStat.dex += tool.dex * Player.Inst.GetRaceAffinity(tool.race); ;
-                toolStat.mana += tool.mana * Player.Inst.GetRaceAffinity(tool.race); ;
-                toolStat.endurance += tool.endurance * Player.Inst.GetRaceAffinity(tool.race); ;
+                toolStat.atk = Math.Max(tool.atk * Player.Inst.GetRaceAffinity(tool.race), toolStat.atk);
+                toolStat.def = Math.Max(tool.def * Player.Inst.GetRaceAffinity(tool.race), toolStat.def);
+                toolStat.dex = Math.Max(tool.dex * Player.Inst.GetRaceAffinity(tool.race), toolStat.dex);
+                toolStat.mana = Math.Max(tool.mana * Player.Inst.GetRaceAffinity(tool.race), toolStat.mana);
+                toolStat.endurance = Math.Max(tool.endurance * Player.Inst.GetRaceAffinity(tool.race), toolStat.endurance);
             }
         }
     }

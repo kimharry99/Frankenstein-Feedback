@@ -156,6 +156,16 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     /// <returns></returns>
     private ExplorationEvent SelectEventFromArray(ExplorationEvent[] events)
     {
+        var eventLists = events.ToList();
+        eventLists.Sort(delegate (ExplorationEvent a, ExplorationEvent b)
+        {
+            if (a.encounterProbabilty > b.encounterProbabilty)
+                return 1;
+            else if (a.encounterProbabilty < b.encounterProbabilty)
+                return -1;
+            else
+                return 0;
+        });
         int[] cumulativeProbability = MakeCumulativeProbability(events);
         int temp = (int)(UnityEngine.Time.time * 100.0f);
         Random.InitState(temp);
