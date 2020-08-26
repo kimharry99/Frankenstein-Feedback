@@ -199,9 +199,14 @@ public class Player : SingletonBehaviour<Player>
 
     private BodyPart ExchangePlayerBodyObject(BodyPart[] equippedBodyParts, BodyPart bodyPart)
     {
+        for (int i = 0; i < 6; i++)
+        {
+            Debug.Log(equippedBodyParts[i].itemName);
+        }
         BodyPart equipping;
         equipping = equippedBodyParts[(int)bodyPart.bodyPartType];
         equippedBodyParts[(int)bodyPart.bodyPartType] = bodyPart;
+
         return equipping;
     }
 

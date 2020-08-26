@@ -20,6 +20,7 @@ public class BodyAssembly : MonoBehaviour
             if (_index[i] != -1)
             {
                 _holdingBodyParts[i] = (BodyPart)StorageManager.Inst.chest.slotItem[_index[i]];
+                Debug.Log(i.ToString() + "th HoldingBodyParts: " + _holdingBodyParts[i].ToString());
                 continue;
             }
             _holdingBodyParts[i] = null;
@@ -33,6 +34,7 @@ public class BodyAssembly : MonoBehaviour
     {
         _selectedSlotOfChest = _index[holdingSlotNumber];
         _selectedBodyPart = _holdingBodyParts[holdingSlotNumber];
+        Debug.Log(_selectedSlotOfChest.ToString() + _selectedBodyPart.ToString());
     }
 
     [SerializeField]
@@ -46,6 +48,7 @@ public class BodyAssembly : MonoBehaviour
         // 에너지를 소비한다.
         Player.Inst.ExchangePlayerBody(_selectedBodyPart, _selectedSlotOfChest);
         SpendEnergy(100);
+        HoldBodyPartsFromChest();
         HomeUIManager.Inst.UpdateBodyAssemblyHoldingImages();
 
         GameManager.Inst.OnTurnOver(1);
