@@ -25,4 +25,5 @@ MonoBehaviour:
   - "\uC9C0\uB098\uAC04\uB2E4"
   optionResultTexts:
   - "\uBB38\uC744 \uC5F4\uACE0 \uB4E4\uC5B4\uAC14\uB2E4."
+  - 
   foundRegion: {fileID: 11400000, guid: dc3fa3091320f5f4ab0ed74ed337da33, type: 2}
