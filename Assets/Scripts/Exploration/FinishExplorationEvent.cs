@@ -58,4 +58,9 @@ public class FinishExplorationEvent : ExplorationEvent
     {
         return true;
     }
+
+    private void WarnBodyCollapse()
+    {
+        ExplorationUIManager.Inst.ActiveCollapseWarningPanel();
+    }
 }

@@ -14,6 +14,7 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     }
 
     public GameObject panelExploration;
+    public GameObject panelCollapseWarning;
     private List<ContentSlot> contentsEvent = new List<ContentSlot>();
     [SerializeField]
     private Button[] buttonOptions = new Button[4];
@@ -227,6 +228,11 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
         contentsEvent[contentsEvent.Count - 1].eventText.text += ".";
         yield return new WaitForSeconds(timeInterval / 3);
         contentsEvent[contentsEvent.Count - 1].eventText.text += ".";
+    }
+
+    public void ActiveCollapseWarningPanel()
+    {
+
     }
 
     #endregion
