@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 1212
   itemName: "\uD53C\uAC00 \uC5C9\uAE34 \uACE0\uBE14\uB9B0\uC758 \uBA38\uB9AC"
   description: "\uC774\uBBF8 \uD53C\uAC00 \uAD73\uC740 \uC9C0 \uC624\uB798\uB2E4. "
-  itemImage: {fileID: 21300000, guid: 95229a67d841fbf4cb1493346fc056ea, type: 3}
+  itemImage: {fileID: 21300000, guid: a8d5e3eeb1c5f40d38d12b37fb3f9a41, type: 3}
   type: 1
   race: 2
   energyPotential: 6000
