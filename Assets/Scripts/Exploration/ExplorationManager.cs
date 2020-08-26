@@ -30,6 +30,7 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
 
     private ObjectState objectState;
     private PhaseState phaseState;
+    private int explorationCnt = 0;
     private List<Region> allRegions;
     private List<Region> unlockedRegions = new List<Region>();
     private Region _currentRegion;
@@ -217,6 +218,8 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     public void FinishEvent(bool isReturnHome = false)
     {
         ExplorationUIManager.Inst.RemoveEventsFromButton();
+        if(phaseState != PhaseState.FinishingExploration)
+            explorationCnt++;
         _currentEvent = null;
         if (!isReturnHome)
         {

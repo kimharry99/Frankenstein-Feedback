@@ -10,14 +10,15 @@ public class FinishExplorationEvent : ExplorationEvent
     /// </summary>
     public override void Option0()
     {
-        GameManager.Inst.OnTurnOver(1);
+        //WarnBodyCollapse(0);
         ExploreAnother();
-        FinishEvent();
     }
 
-    private void ExploreAnother()
+    public void ExploreAnother()
     {
+        GameManager.Inst.OnTurnOver(1);
         ExplorationManager.Inst.MoveToAnotherRegion();
+        FinishEvent();
     }
 
     /// <summary>
@@ -25,14 +26,13 @@ public class FinishExplorationEvent : ExplorationEvent
     /// </summary>
     public override void Option1()
     {
-        GameManager.Inst.OnTurnOver(1);
         ExploreAgain();
-        FinishEvent();
     }
     
-    private void ExploreAgain()
+    public void ExploreAgain()
     {
-
+        GameManager.Inst.OnTurnOver(1);
+        FinishEvent();
     }
 
     /// <summary>
@@ -59,8 +59,8 @@ public class FinishExplorationEvent : ExplorationEvent
         return true;
     }
 
-    private void WarnBodyCollapse()
+    private void WarnBodyCollapse(int option)
     {
-        ExplorationUIManager.Inst.ActiveCollapseWarningPanel();
+        ExplorationUIManager.Inst.ActiveCollapseWarningPanel(this, option);
     }
 }

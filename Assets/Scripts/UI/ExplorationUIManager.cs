@@ -18,17 +18,26 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     private List<ContentSlot> contentsEvent = new List<ContentSlot>();
     [SerializeField]
     private Button[] buttonOptions = new Button[4];
+    private Button[] buttonWarning = new Button[2];
+    private Button ButtonContinue { get { return buttonWarning[0]; } }
+    private Button ButtonCancel { get { return buttonWarning[1]; } }
 
-    protected override void Awake()
+    private void Start()
     {
-        base.Awake();
-        for(int i=0;i<5;i++)
+        for (int i = 0; i < 5; i++)
         {
             ContentSlot contentSlot;
             contentSlot.eventText = panelExploration.transform.GetChild(0).GetChild(i).GetComponent<Text>();
             contentSlot.eventImage = panelExploration.transform.GetChild(0).GetChild(5 + i).GetComponent<Image>();
             contentsEvent.Add(contentSlot);
         }
+        buttonWarning[0] = panelCollapseWarning.transform.GetChild(0).GetComponent<Button>();
+        buttonWarning[1] = panelCollapseWarning.transform.GetChild(1).GetComponent<Button>();
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
     }
 
     // for prototype
@@ -230,9 +239,21 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
         contentsEvent[contentsEvent.Count - 1].eventText.text += ".";
     }
 
-    public void ActiveCollapseWarningPanel()
+    public void ActiveCollapseWarningPanel(FinishExplorationEvent finishExplorationEvent, int option)
     {
+        panelCollapseWarning.SetActive(true);
+        ButtonCancel.onClick.AddListener(CloseCooapseWarningPanel);
+        if(option == 0)
+            ButtonContinue.onClick.AddListener(finishExplorationEvent.ExploreAnother);
+        else if (option == 1)
+            ButtonContinue.onClick.AddListener(finishExplorationEvent.ExploreAgain);
+    }
 
+    public void CloseCooapseWarningPanel()
+    {
+        panelCollapseWarning.SetActive(false);
+        ButtonContinue.onClick.RemoveAllListeners();
+        ButtonCancel.onClick.RemoveAllListeners();
     }
 
     #endregion
