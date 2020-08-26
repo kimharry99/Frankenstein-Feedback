@@ -19,3 +19,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 96c19feebd6c2f3429d28769c7b9aec1, type: 2}
   possibleRandomEncounterEvents:
   - {fileID: 11400000, guid: b0347b6a3154029429c9befb3c169434, type: 2}
+  skipRandomEncounterEvent: {fileID: 11400000, guid: 61a1aac8d0ad7e34b98710f4cde2ecd7,
+    type: 2}

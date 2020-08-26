@@ -183,7 +183,10 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     {
         if(random >= cumlativeProbability.Last())
         {
-            return _itemDiscoveryFaultEvent;
+            if (phaseState == PhaseState.ItemDiscovery1 || phaseState == PhaseState.ItemDiscovery2)
+                return _itemDiscoveryFaultEvent;
+            else if (phaseState == PhaseState.RandomEncounter)
+                return _currentRegion.skipRandomEncounterEvent;
         }
 
         for(int i=cumlativeProbability.Length - 2;i>=0;i--)

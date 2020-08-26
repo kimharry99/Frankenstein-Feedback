@@ -12,14 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9931c44869d896b4db85c01cee77cfb8, type: 3}
   m_Name: "\uB354\uBBF8\uD559\uAD50 \uBC1C\uACAC"
   m_EditorClassIdentifier: 
-  id: 0
-  eventName: 
-  phase: 0
+  id: 80156
+  eventName: "\uB354\uBBF8 \uD559\uAD50 \uBC1C\uACAC"
+  phase: 1
   type: 0
-  encounterProbabilty: 0
-  isFleeting: 0
-  titleText: 
+  encounterProbabilty: 80
+  isFleeting: 1
+  titleText: "\uB354\uBBF8 \uD559\uAD50\uB97C \uBC1C\uACAC\uD588\uB2E4!"
   content: 
-  optionTexts: []
-  optionResultTexts: []
-  foundRegion: {fileID: 0}
+  optionTexts:
+  - "\uB4E4\uC5B4\uAC04\uB2E4"
+  - "\uC9C0\uB098\uAC04\uB2E4"
+  optionResultTexts:
+  - "\uBB38\uC744 \uC5F4\uACE0 \uB4E4\uC5B4\uAC14\uB2E4."
+  foundRegion: {fileID: 11400000, guid: dc3fa3091320f5f4ab0ed74ed337da33, type: 2}
