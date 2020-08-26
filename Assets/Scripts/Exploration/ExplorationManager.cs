@@ -39,8 +39,7 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     {
         allRegions = Resources.LoadAll<Region>("Regions").ToList();
         unlockedRegions.Add(allRegions.Find(x => x.regionName == "더미"));
-        unlockedRegions.Add(allRegions.Find(x => x.regionName == "더미학교"));
-        ChangeRegion(null, "더미학교");
+        ChangeRegion(null, "더미");
         // for debugging
         SelectEvent();
         SkipInterval();
@@ -88,6 +87,13 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
         }
         _itemDiscoveryEvents = _currentRegion.possibleItemDiscoveryEvents;
         _randomEncounterEvents = _currentRegion.possibleRandomEncounterEvents;
+    }
+
+
+    public void UnlockRegion(Region foundRegion)
+    {
+        Debug.Log("지역 발견 : " + foundRegion.regionName);   
+        unlockedRegions.Add(foundRegion);
     }
 
     /// <summary>
