@@ -20,6 +20,8 @@ MonoBehaviour:
   isFleeting: 1
   titleText: "\uB354\uBBF8 \uD559\uAD50\uB97C \uBC1C\uACAC\uD588\uB2E4!"
   content: 
+  basicEnable: 1
+  linkedEventName: 
   optionTexts:
   - "\uB4E4\uC5B4\uAC04\uB2E4"
   - "\uC9C0\uB098\uAC04\uB2E4"

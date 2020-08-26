@@ -1,12 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 [CreateAssetMenu]
 public class RegionDiscoveryEvent : ExplorationEvent
 {
     public Region foundRegion;
-
     public override bool GetOptionEnable(int optionIndex)
     {
         return true;

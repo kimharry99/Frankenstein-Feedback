@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 
 [System.Serializable]
-public abstract class ExplorationEvent : ScriptableObject
+public abstract class ExplorationEvent : ScriptableObject, ISerializationCallbackReceiver
 {
     public enum EventPhase
     {
@@ -42,6 +42,11 @@ public abstract class ExplorationEvent : ScriptableObject
     [Header("Event Content")]
     public string titleText;
     public string content;
+    [SerializeField]
+    private bool basicEnable;
+    [NonSerialized]
+    public bool isEnabled;
+    public string linkedEventName;
 
     public int OptionNumber { get { return optionTexts.Count; } }
     [Header("Option Field")]
@@ -55,6 +60,8 @@ public abstract class ExplorationEvent : ScriptableObject
     /// </summary>
     protected void FinishEvent(bool isReturnHome = false)
     {
+        if (isFleeting)
+            isEnabled = false;
         ExplorationManager.Inst.FinishEvent(isReturnHome); 
     }
     public abstract bool GetOptionEnable(int optionIndex);
@@ -62,4 +69,14 @@ public abstract class ExplorationEvent : ScriptableObject
     public abstract void Option1();
     public abstract void Option2();
     public abstract void Option3();
+
+    public void OnBeforeSerialize()
+    {
+    }
+
+    public void OnAfterDeserialize()
+    {
+        Debug.Log("event deserialize");
+        isEnabled = basicEnable;
+    }
 }

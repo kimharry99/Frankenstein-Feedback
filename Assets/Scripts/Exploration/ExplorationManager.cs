@@ -149,6 +149,7 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
         }
     }
 
+    private List<ExplorationEvent> _enableEvents;
     /// <summary>
     /// events 배열에서 적절한 확률에 맞게 이벤트를 선택한다.
     /// </summary>
@@ -156,21 +157,25 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     /// <returns></returns>
     private ExplorationEvent SelectEventFromArray(ExplorationEvent[] events)
     {
-        var eventLists = events.ToList();
-        eventLists.Sort(delegate (ExplorationEvent a, ExplorationEvent b)
-        {
-            if (a.encounterProbabilty > b.encounterProbabilty)
-                return 1;
-            else if (a.encounterProbabilty < b.encounterProbabilty)
-                return -1;
-            else
-                return 0;
-        });
-        int[] cumulativeProbability = MakeCumulativeProbability(events);
+        _enableEvents = FilterEnableEvent(events);
+        int[] cumulativeProbability = MakeCumulativeProbability(_enableEvents);
         int temp = (int)(UnityEngine.Time.time * 100.0f);
         Random.InitState(temp);
         int random = Random.Range(0, 100);
-        return GetSelectedEvent(random, cumulativeProbability, events);
+        return GetSelectedEvent(random, cumulativeProbability, _enableEvents);
+    }
+
+    private List<ExplorationEvent> FilterEnableEvent(ExplorationEvent[] events)
+    {
+        List<ExplorationEvent> enableEvents = new List<ExplorationEvent>();
+        for(int i=0;i<events.Length;i++)
+        {
+            if(events[i].isEnabled)
+            {
+                enableEvents.Add(events[i]);
+            }
+        }
+        return enableEvents;
     }
 
     /// <summary>
@@ -178,18 +183,18 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     /// </summary>
     /// <param name="events"></param>
     /// <returns></returns>
-    private int[] MakeCumulativeProbability(ExplorationEvent[] events)
+    private int[] MakeCumulativeProbability(List<ExplorationEvent> events)
     {
-        int[] cumulativeProbability = new int[events.Length + 1];
+        int[] cumulativeProbability = new int[events.Count + 1];
         cumulativeProbability[0] = 0;
-        for(int i=1;i<=events.Length;i++)
+        for(int i=1;i<=events.Count;i++)
         {
             cumulativeProbability[i] = cumulativeProbability[i - 1] + (int)events[i - 1].encounterProbabilty;
         }
         return cumulativeProbability;
     }
 
-    private ExplorationEvent GetSelectedEvent(int random, int[] cumlativeProbability, ExplorationEvent[] events)
+    private ExplorationEvent GetSelectedEvent(int random, int[] cumlativeProbability, List<ExplorationEvent> events)
     {
         if(random >= cumlativeProbability.Last())
         {
@@ -249,6 +254,17 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     /// <param name="isReturnHome"></param>
     public void FinishEvent(bool isReturnHome = false)
     {
+        if(_currentEvent.linkedEventName != "")
+        {
+            for (int i = 0; i < _currentRegion.possibleRandomEncounterEvents.Length; i++)
+            {
+                if (_currentRegion.possibleRandomEncounterEvents[i].eventName == _currentEvent.linkedEventName)
+                {
+                    _currentRegion.possibleRandomEncounterEvents[i].isEnabled = true;
+                    break;
+                }
+            }
+        }
         ExplorationUIManager.Inst.RemoveEventsFromButton();
         if(phaseState != PhaseState.FinishingExploration)
             explorationCnt++;
