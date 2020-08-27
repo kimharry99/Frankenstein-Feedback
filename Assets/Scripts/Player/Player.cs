@@ -22,8 +22,7 @@ public class Player : SingletonBehaviour<Player>
     }
     public Inventory inventory;
     [Header("Body Parts")]
-    [SerializeField]
-    private EquippedBodyPart _equippedBodyPart = null;
+    public EquippedBodyPart equippedBodyPart = null;
     [SerializeField]
     private int[] _upgradeLevels = new int[6];
 
@@ -92,7 +91,7 @@ public class Player : SingletonBehaviour<Player>
     public void InitPlayer()
     {
         BodyRegenerationRate = 0;
-        UpdateAllPlayerBodyStatus(_raceAffinity, _equippedBodyPart.bodyParts, _bodyPartStat);
+        UpdateAllPlayerBodyStatus(_raceAffinity, equippedBodyPart.bodyParts, _bodyPartStat);
         UpdateAllPlayerSprites();
     }
     
@@ -144,12 +143,11 @@ public class Player : SingletonBehaviour<Player>
     public void ExchangePlayerBody(BodyPart bodyPart, int chestIndex)
     {
         BodyPart returnedBodyPart;
-
-        returnedBodyPart = ExchangePlayerBodyObject(_equippedBodyPart.bodyParts, bodyPart);
+        returnedBodyPart = ExchangePlayerBodyObject(equippedBodyPart.bodyParts, bodyPart);
         StorageManager.Inst.DeleteFromChest(chestIndex);
         if(!StorageManager.Inst.AddItemToChest(returnedBodyPart))
         {
-            ExchangePlayerBodyObject(_equippedBodyPart.bodyParts, returnedBodyPart);
+            ExchangePlayerBodyObject(equippedBodyPart.bodyParts, returnedBodyPart);
             Debug.Log("신체 교환 실패, 창고에 아이템을 추가할 수 없습니다.");
             return;
         }
@@ -235,7 +233,7 @@ public class Player : SingletonBehaviour<Player>
     /// </summary>
     private void ChangePlayerBodyPartSprite(BodyPartType bodyPartType)
     { 
-        Player.Inst.transform.GetChild((int)bodyPartType).gameObject.GetComponent<SpriteRenderer>().sprite = _equippedBodyPart.bodyParts[(int)bodyPartType].bodyPartSprite;
+        Player.Inst.transform.GetChild((int)bodyPartType).gameObject.GetComponent<SpriteRenderer>().sprite = equippedBodyPart.bodyParts[(int)bodyPartType].bodyPartSprite;
     }
 
     /// <summary>
@@ -257,7 +255,7 @@ public class Player : SingletonBehaviour<Player>
     /// </summary>
     private void UpdateAllPlayerSprites()
     {
-        for(int indexBody = 0; indexBody < _equippedBodyPart.bodyParts.Length; indexBody++)
+        for(int indexBody = 0; indexBody < equippedBodyPart.bodyParts.Length; indexBody++)
         {
             ChangePlayerBodyPartSprite((BodyPartType)indexBody);
         }
@@ -395,7 +393,7 @@ public class Player : SingletonBehaviour<Player>
     public void UpgradeMachinePart(int i)
     {
         _upgradeLevels[i]++;
-        UpdateAllPlayerBodyStatus(_raceAffinity, _equippedBodyPart.bodyParts, _bodyPartStat);
+        UpdateAllPlayerBodyStatus(_raceAffinity, equippedBodyPart.bodyParts, _bodyPartStat);
     }
 
 }

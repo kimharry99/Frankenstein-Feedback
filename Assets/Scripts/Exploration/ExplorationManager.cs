@@ -254,17 +254,6 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     /// <param name="isReturnHome"></param>
     public void FinishEvent(bool isReturnHome = false)
     {
-        if(_currentEvent.linkedEventName != "")
-        {
-            for (int i = 0; i < _currentRegion.possibleRandomEncounterEvents.Length; i++)
-            {
-                if (_currentRegion.possibleRandomEncounterEvents[i].eventName == _currentEvent.linkedEventName)
-                {
-                    _currentRegion.possibleRandomEncounterEvents[i].isEnabled = true;
-                    break;
-                }
-            }
-        }
         ExplorationUIManager.Inst.RemoveEventsFromButton();
         if(phaseState != PhaseState.FinishingExploration)
             explorationCnt++;
@@ -282,6 +271,24 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
             objectState = ObjectState.SearchNextEvent;
             ChangeToFollowingState();
             SelectEvent();
+        }
+    }
+
+    /// <summary>
+    /// 연계되는 이벤트를 활성화한다.
+    /// </summary>
+    public void UnlockLinkedEvent()
+    {
+        if (_currentEvent.linkedEventName != "")
+        {
+            for (int i = 0; i < _currentRegion.possibleRandomEncounterEvents.Length; i++)
+            {
+                if (_currentRegion.possibleRandomEncounterEvents[i].eventName == _currentEvent.linkedEventName)
+                {
+                    _currentRegion.possibleRandomEncounterEvents[i].isEnabled = true;
+                    break;
+                }
+            }
         }
     }
 

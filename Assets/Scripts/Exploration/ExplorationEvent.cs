@@ -64,6 +64,15 @@ public abstract class ExplorationEvent : ScriptableObject, ISerializationCallbac
             isEnabled = false;
         ExplorationManager.Inst.FinishEvent(isReturnHome); 
     }
+
+    /// <summary>
+    /// 연계되는 퀘스트를 활성화한다.
+    /// </summary>
+    protected void UnlockLinkedEvent()
+    {
+        ExplorationManager.Inst.UnlockLinkedEvent();
+    }
+
     public abstract bool GetOptionEnable(int optionIndex);
     public abstract void Option0();
     public abstract void Option1();

@@ -132,7 +132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durability: {fileID: 11400000, guid: 6580257239b0a354db5f697e862bdc9d, type: 2}
   inventory: {fileID: 11400000, guid: 29bd155a658128a48881d6b34a6f79c7, type: 2}
-  _equippedBodyPart: {fileID: 11400000, guid: f200f60ddd578224e8a401f83ea95480, type: 2}
+  equippedBodyPart: {fileID: 11400000, guid: f200f60ddd578224e8a401f83ea95480, type: 2}
+  _upgradeLevels: 000000000000000000000000000000000000000000000000
   toolStat: {fileID: 11400000, guid: d35f7f5c57a326344bcb915cac826d85, type: 2}
   _bodyPartStat: {fileID: 11400000, guid: e15282c3b66f9c94ca849c7076c39fca, type: 2}
 --- !u!1 &4260215970024454593
@@ -366,7 +367,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: eb8b32310d346ca4b940e05dd7d61546, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

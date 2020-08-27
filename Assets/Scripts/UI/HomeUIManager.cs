@@ -644,14 +644,23 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
     public void ButtonDebugClicked()
     {
-        Debug.Log("atk:" + Player.Inst.Atk + "  def:"+Player.Inst.Def+"   dex:"+Player.Inst.Dex+"   mana:"+Player.Inst.Mana+"   endurance:"+Player.Inst.Endurance);
-
+        Debug.Log("atk:" + Player.Inst.Atk + "  def:" + Player.Inst.Def + "   dex:" + Player.Inst.Dex + "   mana:" + Player.Inst.Mana + "   endurance:" + Player.Inst.Endurance);
+        //Debug.Log("2번 아이테 사용");
+        //if (StorageManager.Inst.inventory.slotItem[1].type == Type.Consumable)
+        //{
+        //    var consumable = (Consumable)StorageManager.Inst.inventory.slotItem[1];
+        //    if (!consumable.IsConsumeEnable())
+        //        return;
+        //    consumable.UseItem();
+        //    StorageManager.Inst.DeleteFromInven(1);
+        //}
     }
     // for debugging
     public void ButtonSetTimePanelClicked(GameObject panel)
     {
         panel.SetActive(true);
     }
+
     /// <summary>
     /// for debugging, 가장 가까운 time 시각 까지 게임을 진행시킨다.
     /// </summary>
