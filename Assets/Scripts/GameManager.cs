@@ -37,6 +37,11 @@ public class GameManager : SingletonBehaviour<GameManager>
             bodyDisassembly = GameObject.Find("BodyDisassembly").GetComponent<BodyDisassembly>();
             craftingTable = GameObject.Find("CraftingTable").GetComponent<CraftingTable>();
         }
+        else
+        {
+            if (scene.name != "HomeScene")
+                IsHome = false;
+        }
     }
     #endregion
 
@@ -46,7 +51,10 @@ public class GameManager : SingletonBehaviour<GameManager>
     private void InitGame()
     {
         _time.SetTime(8);
-
+        if (gameObject.scene.name == "HomeScene")
+        {
+            IsHome = true;
+        }
         //for debugging
         energy.value = 500;
     }
@@ -90,6 +98,7 @@ public class GameManager : SingletonBehaviour<GameManager>
         _time.SetTime(_time.runtimeTime+turn);
     }
 
+    private float penaltyPerTime = 5.0f;
     /// <summary>
     /// 플레이어가 잠을 잘 때 호출, 
     /// </summary>'
@@ -101,7 +110,7 @@ public class GameManager : SingletonBehaviour<GameManager>
         RegenBody(time, ref spendEnergy, ref regenDurability);
         if(_time.runtimeTime < 8)
             _time.SetTime(8);
-        StartCoroutine(HomeUIManager.Inst.PutToSleep(spendEnergy, regenDurability));
+        StartCoroutine(HomeUIManager.Inst.PutToSleep(time, penaltyPerTime, spendEnergy, regenDurability));
     }
 
     /// <summary>
@@ -134,8 +143,8 @@ public class GameManager : SingletonBehaviour<GameManager>
         // 비수면 페널티
         if(time > 0)
         {
-            durability.value -= 5 * (time);
-            Debug.Log("비수면 페널티 : " + 5 * time);
+            durability.value -= (int)(penaltyPerTime * time);
+            Debug.Log("비수면 페널티 : " + (int)(penaltyPerTime * time));
         }
     }
     private int GetEnergyCost(int day)
