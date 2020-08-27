@@ -101,10 +101,7 @@ public class GameManager : SingletonBehaviour<GameManager>
         RegenBody(time, ref spendEnergy, ref regenDurability);
         if(_time.runtimeTime < 8)
             _time.SetTime(8);
-        GeneralUIManager.Inst.UpdateTextDurability();
-        GeneralUIManager.Inst.UpdateTextTime();
-        GeneralUIManager.Inst.UpdateEnergy();
-        HomeUIManager.Inst.NoticeEnergyChange(spendEnergy, regenDurability);
+        StartCoroutine(HomeUIManager.Inst.PutToSleep(spendEnergy, regenDurability));
     }
 
     /// <summary>

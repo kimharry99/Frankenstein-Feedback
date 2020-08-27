@@ -690,7 +690,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &598791746
 GameObject:
@@ -903,7 +903,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &701301937
 PrefabInstance:
@@ -1166,7 +1166,7 @@ PrefabInstance:
     - target: {fileID: 8477198741248839903, guid: aca0d4922f165f4408bd20e42a2db695,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8477198741248839903, guid: aca0d4922f165f4408bd20e42a2db695,
         type: 3}
@@ -1760,7 +1760,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1305273992
 GameObject:
@@ -1840,6 +1840,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305273992}
   m_CullTransparentMesh: 0
+--- !u!114 &1331545563 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4496653149735789406, guid: 67032a8892c6fbc41a201638db5eb41c,
+    type: 3}
+  m_PrefabInstance: {fileID: 426333935}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66f16a9b347f314c89e58b2b5ed0602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1374724134
 GameObject:
   m_ObjectHideFlags: 0
@@ -2013,7 +2025,7 @@ RectTransform:
   - {fileID: 225293376}
   - {fileID: 2109168304}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2219,7 +2231,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "\uC7A0\uC790\uAE30\n"
 --- !u!222 &1519757513
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2384,10 +2396,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5598134403201767622, guid: f786abf4f0f25d445889498f150c5434,
-          type: 3}
-        m_MethodName: ButtonDebugClicked
-        m_Mode: 1
+      - m_Target: {fileID: 1331545563}
+        m_MethodName: SendToSleep
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2827,7 +2838,7 @@ PrefabInstance:
     - target: {fileID: 3339899579608164782, guid: d3cc296ffcbbe0645a973cd1d2319945,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3339899579608164782, guid: d3cc296ffcbbe0645a973cd1d2319945,
         type: 3}
@@ -3190,7 +3201,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2109168303
 GameObject:

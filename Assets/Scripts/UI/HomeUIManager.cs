@@ -17,6 +17,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public GameObject panelAssemble;
     public GameObject panelChest;
     public GameObject panelNotice;
+    public GameObject panelBlackOut;
 
     [Header("Inventory")]
     public Button[] imageChestSlot = new Button[Chest.CAPACITY];
@@ -660,6 +661,35 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         else
         {
             GameManager.Inst.OnTurnOver(24 + time - GeneralUIManager.Inst.time.runtimeTime);
+        }
+    }
+
+    private bool _isBlackOut = false;
+    private float _blackOutTime = 3.0f;
+    public IEnumerator PutToSleep(int spendEnergy, int regenedDurability)
+    {
+        Debug.Log("black out start");
+        panelBlackOut.SetActive(true);
+        _isBlackOut = true;
+        yield return new WaitForSeconds(_blackOutTime + 0.5f);
+        GeneralUIManager.Inst.UpdateTextDurability();
+        GeneralUIManager.Inst.UpdateTextTime();
+        GeneralUIManager.Inst.UpdateEnergy();
+        NoticeEnergyChange(spendEnergy, regenedDurability);
+        _isBlackOut = false;
+        panelBlackOut.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+        panelBlackOut.SetActive(false);
+        Debug.Log("black out end");
+    }
+
+    private void Update()
+    {
+        if(_isBlackOut)
+        {
+            if(panelBlackOut.activeSelf)
+            {
+                panelBlackOut.GetComponent<Image>().color = new Color(0, 0, 0, panelBlackOut.GetComponent<Image>().color.a + UnityEngine.Time.deltaTime / _blackOutTime);
+            }
         }
     }
 }
