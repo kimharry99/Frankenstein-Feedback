@@ -16,6 +16,8 @@ MonoBehaviour:
   eventName: "\uC544\uC774\uD15C \uCC3E\uC9C0 \uBABB\uD568"
   phase: 1
   type: 1
+  encounterProbabilty: 0
+  isFleeting: 0
   titleText: "\uC774\uACF3\uC800\uACF3 \uC5F4\uC2EC\uD788 \uB4E4\uC464\uC154\uBD24\uC9C0\uB9CC
     \uC4F8\uB9CC\uD55C \uAC83\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC5C8\uB2E4."
   content: 
@@ -23,4 +25,4 @@ MonoBehaviour:
   - "\uC5D0\uC789..."
   optionResultTexts:
   - 
-  foundedItem: {fileID: 0}
+  foundItem: {fileID: 0}

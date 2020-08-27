@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -27,22 +28,16 @@ public abstract class ExplorationEvent : ScriptableObject
         DurabilityDamage,
     }
 
-    /// <summary>
-    /// 이벤트가 등장할 수 있는 지역
-    /// </summary>
-    public enum Region
-    {
-        None = -1,
-        City,
-
-    }
-
     [Header("Event Info")]
     public int id;
     public string eventName;
     public EventPhase phase;
     public EventType type;
     public float encounterProbabilty;
+    /// <summary>
+    /// 일회용일 경우 true
+    /// </summary>
+    public bool isFleeting = false;
 
     [Header("Event Content")]
     public string titleText;
@@ -50,8 +45,8 @@ public abstract class ExplorationEvent : ScriptableObject
 
     public int OptionNumber { get { return optionTexts.Count; } }
     [Header("Option Field")]
-    public List<string> optionTexts = new List<string>();
-    public List<string> optionResultTexts = new List<string>();
+    public List<string> optionTexts;
+    public List<string> optionResultTexts;
 
 
     /// <summary>
