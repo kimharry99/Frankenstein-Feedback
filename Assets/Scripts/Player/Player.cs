@@ -24,6 +24,13 @@ public class Player : SingletonBehaviour<Player>
     [Header("Body Parts")]
     [SerializeField]
     private EquippedBodyPart _equippedBodyPart = null;
+    [SerializeField]
+    private int[] _upgradeLevels = new int[6];
+
+    public int GetUpgradeLevel(BodyPartType bodyPartType)
+    {
+        return _upgradeLevels[(int)bodyPartType];
+    }
 
     #region Player Stat
     private int[] _raceAffinity = new int[6];
@@ -147,6 +154,10 @@ public class Player : SingletonBehaviour<Player>
             return;
         }
         ChangeAllPlayerBodyStatus(_bodyPartStat, _raceAffinity, bodyPart, returnedBodyPart);
+        if (returnedBodyPart.race == Race.Machine)
+        {
+            ResetUpgrade(returnedBodyPart);
+        }
         ChangePlayerBodyPartSprite(bodyPart.bodyPartType);
 
         #region legacy
@@ -211,6 +222,15 @@ public class Player : SingletonBehaviour<Player>
     }
 
     /// <summary>
+    /// 장착하고 있던 신체가 기계라면, 해당 부위의 강화도를 초기화한다.
+    /// </summary>
+    /// <param name="equipping"></param>
+    private void ResetUpgrade(BodyPart equipping)
+    {
+        _upgradeLevels[(int)equipping.bodyPartType] = 0;
+    }
+
+    /// <summary>
     /// bodyPartType에 해당하는 플레이어 신체 스프라이트를 업데이트한다.
     /// </summary>
     private void ChangePlayerBodyPartSprite(BodyPartType bodyPartType)
@@ -221,6 +241,7 @@ public class Player : SingletonBehaviour<Player>
     /// <summary>
     /// playerBodyPart와 returnedBodyPart의 신체교환에 대한 신체 스텟 변화를 적용한다. 
     /// </summary>
+    /// <param name="playerBodyPart">플레이어가 장착할 BodyPart</param>
     private void ChangeAllPlayerBodyStatus(Status bodyPartStat, int[] raceAffinity, BodyPart playerBodyPart, BodyPart returnedBodyPart)
     {
         UpdateBodyStat(bodyPartStat, playerBodyPart, returnedBodyPart);
@@ -322,19 +343,43 @@ public class Player : SingletonBehaviour<Player>
     /// <param name="returnedBodyPart"> 어떤 신체가 플레이어에게서 탈착되었을 경우 사용한다.</param>
     private void UpdateBodyStat(Status bodyPartStatus, BodyPart playerBodyPart, BodyPart returnedBodyPart = null)
     {
-        bodyPartStatus.atk += playerBodyPart.atk;
-        bodyPartStatus.def += playerBodyPart.def;
-        bodyPartStatus.dex += playerBodyPart.dex;
-        bodyPartStatus.mana += playerBodyPart.mana;
-        bodyPartStatus.endurance += playerBodyPart.endurance;
+        if (playerBodyPart.race != Race.Machine)
+        {
+            bodyPartStatus.atk += playerBodyPart.Atk;
+            bodyPartStatus.def += playerBodyPart.Def; 
+            bodyPartStatus.dex += playerBodyPart.Dex;
+            bodyPartStatus.mana += playerBodyPart.Mana;
+        }
+        else
+        {
+            Machine machine = (Machine)playerBodyPart;
+            bodyPartStatus.atk += machine.Atk;
+            bodyPartStatus.def += machine.Def;
+            bodyPartStatus.dex += machine.Dex;
+            bodyPartStatus.mana += machine.Mana;
+        }
+        
+        bodyPartStatus.endurance += playerBodyPart.Endurance;
 
         if(returnedBodyPart != null)
         {
-            bodyPartStatus.atk -= returnedBodyPart.atk;
-            bodyPartStatus.def -= returnedBodyPart.def;
-            bodyPartStatus.dex -= returnedBodyPart.dex;
-            bodyPartStatus.mana -= returnedBodyPart.mana;
-            bodyPartStatus.endurance -= returnedBodyPart.endurance;
+            if (returnedBodyPart.race != Race.Machine)
+            {
+                bodyPartStatus.atk -= returnedBodyPart.Atk;
+                bodyPartStatus.def -= returnedBodyPart.Def;
+                bodyPartStatus.dex -= returnedBodyPart.Dex;
+                bodyPartStatus.mana -= returnedBodyPart.Mana;
+                bodyPartStatus.endurance -= returnedBodyPart.Endurance;
+            }
+            else
+            {
+                Machine returnedMachine = (Machine)returnedBodyPart;
+                bodyPartStatus.atk -= returnedMachine.Atk;
+                bodyPartStatus.def -= returnedMachine.Def;
+                bodyPartStatus.dex -= returnedMachine.Dex;
+                bodyPartStatus.mana -= returnedMachine.Mana;
+                bodyPartStatus.endurance -= returnedMachine.Endurance;
+            }
         }
     }
     #endregion
@@ -346,6 +391,12 @@ public class Player : SingletonBehaviour<Player>
         InitPlayer();
     }
     #endregion
+
+    public void UpgradeMachinePart(int i)
+    {
+        _upgradeLevels[i]++;
+        UpdateAllPlayerBodyStatus(_raceAffinity, _equippedBodyPart.bodyParts, _bodyPartStat);
+    }
 
 }
 
