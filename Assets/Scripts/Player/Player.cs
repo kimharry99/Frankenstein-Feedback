@@ -150,12 +150,12 @@ public class Player : SingletonBehaviour<Player>
 
         returnedBodyPart = ExchangePlayerBodyObject(_equippedBodyPart.bodyParts, bodyPart);
         StorageManager.Inst.DeleteFromChest(chestIndex);
-        if(!StorageManager.Inst.AddItemToChest(returnedBodyPart))
-        {
-            ExchangePlayerBodyObject(_equippedBodyPart.bodyParts, returnedBodyPart);
-            Debug.Log("신체 교환 실패, 창고에 아이템을 추가할 수 없습니다.");
-            return;
-        }
+        //if(!StorageManager.Inst.AddItemToChest(returnedBodyPart))
+        //{
+        //    ExchangePlayerBodyObject(_equippedBodyPart.bodyParts, returnedBodyPart);
+        //    Debug.Log("신체 교환 실패, 창고에 아이템을 추가할 수 없습니다.");
+        //    return;
+        //}
         ChangeAllPlayerBodyStatus(_bodyPartStat, _raceAffinity, bodyPart, returnedBodyPart);
         ChangePlayerBodyPartSprite(bodyPart.bodyPartType);
 
@@ -213,8 +213,8 @@ public class Player : SingletonBehaviour<Player>
         {
             Debug.Log(equippedBodyParts[i].itemName);
         }
-        BodyPart equipping;
-        equipping = equippedBodyParts[(int)bodyPart.bodyPartType];
+        BodyPart equipping = equippedBodyParts[(int)bodyPart.bodyPartType];
+        GameManager.Inst.bodyDisassembly.GetBonusItem(equipping);
         equippedBodyParts[(int)bodyPart.bodyPartType] = bodyPart;
 
         return equipping;
