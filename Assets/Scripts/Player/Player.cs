@@ -105,10 +105,20 @@ public class Player : SingletonBehaviour<Player>
         {
             if(GameManager.Inst.IsHome)
             {
-                return decayRateHome - BodyRegenerationRate;
+                if (HomeUIManager.Inst.panelAssemble.activeSelf == true)
+                {
+                    Debug.Log("0");
+                    return 0;
+                }
+                else
+                {
+                    Debug.Log("decayRateHome - BodyRegenerationRate");
+                    return decayRateHome - BodyRegenerationRate; ;
+                }
             }
             else
             {
+                Debug.Log("decayRateExploration - BodyRegenerationRate");
                 return decayRateExploration - BodyRegenerationRate;
             }
         }

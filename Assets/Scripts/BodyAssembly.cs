@@ -51,7 +51,7 @@ public class BodyAssembly : MonoBehaviour
         HoldBodyPartsFromChest();
         HomeUIManager.Inst.UpdateBodyAssemblyHoldingImages();
 
-        GameManager.Inst.OnTurnOver(1);
+        GameManager.Inst.OnTurnOver(2);
         GeneralUIManager.Inst.UpdateEnergy();
     }
 
