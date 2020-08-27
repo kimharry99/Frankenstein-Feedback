@@ -11,4 +11,6 @@ public class Tool : Item
     public int dex;
     public int mana;
     public int endurance;
+
+    public int Def { get { return def; } }
 }
