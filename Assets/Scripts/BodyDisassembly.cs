@@ -33,6 +33,9 @@ public class BodyDisassembly : MonoBehaviour
             return;
         }
 
+        HomeUIManager.Inst.panelNotice.SetActive(true);
+        HomeUIManager.Inst.textNotice.text = HomeUIManager.Inst.disassembleEnergy.ToString() + " 에너지를 획득했습니다.";
+
         GeneralUIManager.Inst.energy.value += HomeUIManager.Inst.disassembleEnergy;
         GeneralUIManager.Inst.UpdateEnergy();
 
