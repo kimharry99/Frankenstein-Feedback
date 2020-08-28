@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 210101
   eventName: "\uC8FC\uC778\uC5C6\uB294 \uC0C1\uC810 \uBC29\uBB381 "
   phase: 1
-  encounterProbabilty: 90
+  encounterProbabilty: 20
   titleText: "\uC720\uB9AC\uBCBD\uC774 \uBC15\uC0B4\uB09C \uC0C1\uC810\uC774\uB2E4.
     \uAC00\uAC8C \uC8FC\uC778\uC774 \uBC84\uB9B0 \uC9C0 \uAF64 \uC624\uB798\uB41C
     \uAC83 \uAC19\uB2E4. "

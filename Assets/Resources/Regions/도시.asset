@@ -21,6 +21,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b0347b6a3154029429c9befb3c169434, type: 2}
   - {fileID: 11400000, guid: 78dc9ae0a7d4c184cad36f8ed3d866bd, type: 2}
   - {fileID: 11400000, guid: 7943feed04e85774b874ff16e8dc7825, type: 2}
+  - {fileID: 11400000, guid: 5998da824c65a7141b77ccf037c489cb, type: 2}
   skipRandomEncounterEvent: {fileID: 11400000, guid: b2463d8bfac78744197d7b028b6e0a22,
     type: 2}
   finishExplorationEvents:

@@ -9,36 +9,32 @@ public class RegionDiscoveryEvent : RandomEncounterEvent
 {
     public override bool GetOptionEnable(int optionIndex)
     {
-        throw new NotImplementedException();
+        return true;
     }
 
     public override void Option0()
     {
-        throw new NotImplementedException();
+        ExplorationUIManager.Inst.NoticeResultText(optionResultTexts[0]);
+        FinishEvent(resultEvent[0]);
     }
 
     public override void Option1()
     {
-        throw new NotImplementedException();
+        ExplorationUIManager.Inst.NoticeResultText(optionResultTexts[1]);
+        FinishEvent(resultEvent[1]);
     }
 
-    public override void Option2()
-    {
-        throw new NotImplementedException();
-    }
+    public override void Option2() { }
 
-    public override void Option3()
-    {
-        throw new NotImplementedException();
-    }
+    public override void Option3() { }
 
     protected override bool GetIsEnabled()
     {
-        throw new NotImplementedException();
+        return true;
     }
 
     protected override int GetOptionCaseNumber(int optionNumber)
     {
-        throw new NotImplementedException();
+        return 0;
     }
 }
