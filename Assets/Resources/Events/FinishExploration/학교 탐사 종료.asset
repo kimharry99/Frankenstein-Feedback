@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af24c13c5e4524f4aade68d57e80baff, type: 3}
+  m_Name: "\uD559\uAD50 \uD0D0\uC0AC \uC885\uB8CC"
+  m_EditorClassIdentifier: 
+  id: 311110
+  eventName: "\uD559\uAD50 \uD0D0\uC0AC \uC885\uB8CC"
+  phase: 2
+  type: 0
+  encounterProbabilty: 0
+  isFleeting: 0
+  titleText: "\uAE08\uBC29\uC774\uB77C\uB3C4 \uADC0\uC2E0\uC774 \uB098\uC62C \uAC83
+    \uAC19\uB2E4. "
+  content: 
+  basicEnable: 1
+  linkedEventName: 
+  optionTexts:
+  - "\uD559\uAD50\uB97C \uB2E4\uC2DC \uD0D0\uC0AC\uD55C\uB2E4 "
+  - "\uB3C4\uC2DC\uB97C \uD0D0\uC0AC\uD55C\uB2E4 "
+  - "\uC5F0\uAD6C\uC2E4\uB85C \uB3CC\uC544\uAC04\uB2E4 "
+  optionResultTexts:
+  - 
+  - 
+  - 
+  linkedRegion: {fileID: 11400000, guid: 59c76976c9db2e14e9e7e70fddcb2136, type: 2}

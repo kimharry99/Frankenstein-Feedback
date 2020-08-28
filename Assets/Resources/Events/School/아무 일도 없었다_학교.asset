@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63875adf5989504e8c51fe0f8acb114, type: 3}
+  m_Name: "\uC544\uBB34 \uC77C\uB3C4 \uC5C6\uC5C8\uB2E4_\uD559\uAD50"
+  m_EditorClassIdentifier: 
+  id: 211120
+  eventName: "\uC544\uBB34 \uC77C\uB3C4 \uC5C6\uC5C8\uB2E4_\uD559\uAD50 "
+  phase: 1
+  encounterProbabilty: 0
+  titleText: "\uD559\uAD50\uB97C \uB458\uB7EC\uBCF4\uBA74\uC11C \uB531\uD788 \uB208\uC5D0
+    \uB744\uB294 \uAC83\uC740 \uC5C6\uC5C8\uB2E4. "
+  content: 
+  basicEnable: 1
+  linkedEventName: 
+  optionTexts:
+  - "\u2026 "
+  optionResultTexts:
+  - 
+  type: 4
+  isFleeting: 0
+  resultEvent:
+  - {fileID: 11400000, guid: 6c4dc5e169d390e4eaecb4b523bfbcad, type: 2}
+  option0CaseResult: []

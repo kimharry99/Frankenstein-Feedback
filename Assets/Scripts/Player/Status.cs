@@ -1,9 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Status : ScriptableObject
 {
+    [Serializable]
+    public enum StatName
+    {
+        Atk,
+        Def,
+        Dex,
+        Mana,
+        Endurance,
+    }
     public int atk;
     public int def;
     public int dex;
