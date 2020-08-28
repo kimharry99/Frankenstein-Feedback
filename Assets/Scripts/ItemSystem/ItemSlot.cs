@@ -26,7 +26,6 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         Debug.Log(eventData.position);
         mouse_over = true;
-        Debug.Log("Mouse enter");
         if (inventory.slotItem[indexInventory] != null && !panelDiscard.activeSelf)
         {
             panelDescription.SetActive(true);
@@ -39,7 +38,8 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         mouse_over = false;
         panelDescription.SetActive(false);
-        Debug.Log("Mouse exit");
+        panelUse.SetActive(false);
+        panelDiscard.SetActive(false);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -84,10 +84,20 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             panelUse.SetActive(false);
         }
     }
+
     public void ButtonUseOnClick(int indexButton)
     {
         Consumable consumable;
         consumable = (Consumable)inventory.slotItem[indexButton];
         consumable.UseItem();
+        panelDiscard.SetActive(false);
+        panelUse.SetActive(false);
+    }
+
+    public void ButtonDiscardClicked(int indexButton)
+    {
+        StorageManager.Inst.DeleteFromInven(indexButton);
+        panelDiscard.SetActive(false);
+        panelUse.SetActive(false);
     }
 }
