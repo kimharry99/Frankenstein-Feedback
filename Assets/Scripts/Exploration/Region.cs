@@ -13,4 +13,5 @@ public class Region : ScriptableObject
     public ItemDiscoveryEvent[] possibleItemDiscoveryEvents;
     public ExplorationEvent[] possibleRandomEncounterEvents;
     public ExplorationEvent skipRandomEncounterEvent;
+    public FinishExplorationEvent[] finishExplorationEvents;
 }

@@ -93,24 +93,17 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     public void UnlockRegion(Region foundRegion)
     {
         Debug.Log("지역 발견 : " + foundRegion.regionName);   
-        unlockedRegions.Add(foundRegion);
+        if(!unlockedRegions.Contains(foundRegion))
+            unlockedRegions.Add(foundRegion);
     }
 
     /// <summary>
     /// 다른 지역으로 이동한다.
     /// </summary>
-    public void MoveToAnotherRegion()
+    public void MoveToAnotherRegion(Region linkedRegion)
     {
-        Random.InitState((int)UnityEngine.Time.time);
-        Region nextRegion = _currentRegion;
-        for(int i=0;i<100;i++)
-        {
-            int random = Random.Range(0, unlockedRegions.Count);
-            nextRegion = unlockedRegions[random];
-            if (nextRegion.regionId != _currentRegion.regionId)
-                break;
-        }
-        ChangeRegion(nextRegion);
+        UnlockRegion(linkedRegion);
+        ChangeRegion(linkedRegion);
     }
 
     /// <summary>
@@ -137,7 +130,7 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     {
         if (phaseState == PhaseState.FinishingExploration)
         {
-            _currentEvent = _finishExplorationEvent;
+            _currentEvent = _currentRegion.finishExplorationEvents[0];
         }
         else if (phaseState == PhaseState.ItemDiscovery1 || phaseState == PhaseState.ItemDiscovery2)
         {
@@ -263,6 +256,7 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
                 StartCoroutine(ExplorationUIManager.Inst.WaitForEncounter(_timeInterval));
                 objectState = ObjectState.SearchNextEvent;
                 ChangeToFollowingState();
+                Debug.Log(phaseState);
                 SelectEvent();
                 break;
             case ExplorationEvent.EventPhase.RandomEncounter:
@@ -270,6 +264,7 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
                 SkipInterval();
                 objectState = ObjectState.SearchNextEvent;
                 ChangeToFollowingState();
+                Debug.Log(phaseState);
                 SelectEvent();
                 break;
             case ExplorationEvent.EventPhase.FinishingExploration:
@@ -278,6 +273,7 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
                     StartCoroutine(ExplorationUIManager.Inst.WaitForEncounter(_timeInterval));
                     objectState = ObjectState.SearchNextEvent;
                     ChangeToFollowingState();
+                    Debug.Log(phaseState);
                     SelectEvent();
                 }
                 break;

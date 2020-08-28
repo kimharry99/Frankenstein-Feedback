@@ -5,21 +5,21 @@ using UnityEngine;
 [CreateAssetMenu]
 public class FinishExplorationEvent : ExplorationEvent
 {
+    public Region linkedRegion;
     /// <summary>
     /// 다른 지역을 탐사한다.
     /// </summary>
     public override void Option0()
     {
-        if(ExplorationManager.Inst.GetIsOverwork())
-            WarnBodyCollapse(0);
+        if (ExplorationManager.Inst.GetIsOverwork())
+            WarnBodyCollapse(1);
         else
-            ExploreAnother();
+            ExploreAgain();
     }
 
-    public void ExploreAnother()
+    public void ExploreAgain()
     {
         GameManager.Inst.OnTurnOver(1);
-        ExplorationManager.Inst.MoveToAnotherRegion();
         FinishEvent();
     }
 
@@ -29,14 +29,15 @@ public class FinishExplorationEvent : ExplorationEvent
     public override void Option1()
     {
         if (ExplorationManager.Inst.GetIsOverwork())
-            WarnBodyCollapse(1);
+            WarnBodyCollapse(0);
         else
-            ExploreAgain();
+            ExploreAnother();
     }
-    
-    public void ExploreAgain()
+
+    public void ExploreAnother()
     {
         GameManager.Inst.OnTurnOver(1);
+        ExplorationManager.Inst.MoveToAnotherRegion(linkedRegion);
         FinishEvent();
     }
 
