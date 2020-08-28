@@ -486,7 +486,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
                 Text textUsingCount = buttonCraftUsing[i].transform.GetChild(1).GetComponent<Text>();
                 textUsingCount.text = itemUsingCount[i].ToString();
 
-                craftEnergy += chest.slotItem[indexHoldingChest[slotNumber]].energyPotential;
+                Item resultItem = GameManager.Inst.craftingTable.FindRecipie();
+                if (resultItem)
+                    craftEnergy = resultItem.energyPotential;
+                else
+                    craftEnergy = 0;
                 textCraftEnergy.text = "필요 에너지 [ " + craftEnergy.ToString() + " ]";
 
                 Debug.Log(slotNumber + "select;" +
@@ -518,7 +522,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
                     indexUsingHolding[i] = slotNumber; // Record the Index of Item (Using Slot to Holding Slot)
                     GameManager.Inst.craftingTable.SetIndexUsingChest(i, indexHoldingChest[slotNumber]);
 
-                    craftEnergy += chest.slotItem[indexHoldingChest[slotNumber]].energyPotential;
+                    Item resultItem = GameManager.Inst.craftingTable.FindRecipie();
+                    if (resultItem)
+                        craftEnergy = resultItem.energyPotential;
+                    else
+                        craftEnergy = 0;
                     textCraftEnergy.text = "필요 에너지 [ " + craftEnergy.ToString() + " ]";
 
                     Debug.Log(slotNumber + "select;" +
@@ -558,14 +566,31 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
             Text textHoldingCount = buttonCraftHolding[indexHolding].transform.GetChild(1).GetComponent<Text>();
             textHoldingCount.text = itemHoldingCount[indexHolding].ToString();
 
-            craftEnergy -= chest.slotItem[indexHoldingChest[indexHolding]].energyPotential;
+            Item resultItem = GameManager.Inst.craftingTable.FindRecipie();
+            if (resultItem)
+                craftEnergy = resultItem.energyPotential;
+            else
+                craftEnergy = 0;
             textCraftEnergy.text = "필요 에너지 [ " + craftEnergy.ToString() + " ]";
         }
     }
     
     public void CraftButtonCreateClicked()
     {
-        GameManager.Inst.craftingTable.CraftItem();
+        int i = 0;
+        for (; i < 6; i++)
+        {
+            if (itemUsingCount[i] > 0)
+                break;
+        }
+
+        if (i == 6)
+        {
+            panelNotice.SetActive(true);
+            textNotice.text = "제작에 사용할 아이템을 선택하세요.";
+        }
+        else
+            GameManager.Inst.craftingTable.CraftItem();
     }
     #endregion
 
