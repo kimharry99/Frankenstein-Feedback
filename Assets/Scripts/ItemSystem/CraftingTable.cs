@@ -110,6 +110,10 @@ public class CraftingTable : MonoBehaviour
 
             StorageManager.Inst.AddItemToChest(_resultItem);
 
+            HomeUIManager.Inst.craftEnergy = _resultItem.energyPotential;
+            GeneralUIManager.Inst.energy.value -= HomeUIManager.Inst.craftEnergy;
+            GeneralUIManager.Inst.UpdateEnergy();
+
             HomeUIManager.Inst.panelNotice.SetActive(true);
             HomeUIManager.Inst.textNotice.text = HomeUIManager.Inst.craftEnergy.ToString() + " 에너지를 소모하여\n"
                 + _resultItem.itemName + " 아이템을 제작하였습니다.";
