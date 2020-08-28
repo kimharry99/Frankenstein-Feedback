@@ -33,5 +33,8 @@ MonoBehaviour:
   option0CaseResult:
   - "\uC2DC\uCCB4\uB85C \uB9CC\uB4E0 \uBAB8\uC774 \uC950\uB4E4\uC5D0\uAC8C \uC794\uB729
     \uB72F\uACA8\uB098\uAC14\uB2E4.. "
-  _damage: 5
   statConstraints: []
+  _casePerOption: 01000000
+  _constraintPerOption: 00000000
+  _constraintPerCase: 00000000
+  _damage: 5

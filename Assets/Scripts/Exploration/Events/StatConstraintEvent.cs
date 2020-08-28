@@ -75,7 +75,7 @@ public class StatConstraintEvent : RandomEncounterEvent
             constraintBase += _constraintPerCase[optionNumber - 1];
             caseBase += _casePerOption[optionNumber - 1];
         }
-        //Debug.Log("constraing Base : " + constraintBase + " caseBase : " + caseBase);
+        Debug.Log("constraing Base : " + constraintBase + " caseBase : " + caseBase);
         switch(_casePerOption[optionNumber])
         {
             case 0:
