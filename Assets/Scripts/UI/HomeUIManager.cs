@@ -17,6 +17,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public GameObject panelAssemble;
     public GameObject panelChest;
     public GameObject panelNotice;
+    public GameObject panelBlackOut;
 
     [Header("Inventory")]
     public Button[] imageChestSlot = new Button[Chest.CAPACITY];
@@ -42,6 +43,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     [Header("Assemble UI")]
     public Image imageAssembleUsing;
     public GameObject[] buttonAssembleHolding;
+    public Text textAssembleEnergy;
     public Scrollbar scrollbarAssemble;
 
     [Header("Notice")]
@@ -206,6 +208,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         panelHome.SetActive(false);
         panelAssemble.SetActive(true);
         GameManager.Inst.bodyAssembly.HoldBodyPartsFromChest();
+        UpdateAssembleEnergy(0);
         UpdateBodyAssemblyHoldingImages();
         scrollbarAssemble.value = 1;
     }
@@ -483,7 +486,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
                 Text textUsingCount = buttonCraftUsing[i].transform.GetChild(1).GetComponent<Text>();
                 textUsingCount.text = itemUsingCount[i].ToString();
 
-                craftEnergy += chest.slotItem[indexHoldingChest[slotNumber]].energyPotential;
+                Item resultItem = GameManager.Inst.craftingTable.FindRecipie();
+                if (resultItem)
+                    craftEnergy = resultItem.energyPotential;
+                else
+                    craftEnergy = 0;
                 textCraftEnergy.text = "필요 에너지 [ " + craftEnergy.ToString() + " ]";
 
                 Debug.Log(slotNumber + "select;" +
@@ -515,7 +522,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
                     indexUsingHolding[i] = slotNumber; // Record the Index of Item (Using Slot to Holding Slot)
                     GameManager.Inst.craftingTable.SetIndexUsingChest(i, indexHoldingChest[slotNumber]);
 
-                    craftEnergy += chest.slotItem[indexHoldingChest[slotNumber]].energyPotential;
+                    Item resultItem = GameManager.Inst.craftingTable.FindRecipie();
+                    if (resultItem)
+                        craftEnergy = resultItem.energyPotential;
+                    else
+                        craftEnergy = 0;
                     textCraftEnergy.text = "필요 에너지 [ " + craftEnergy.ToString() + " ]";
 
                     Debug.Log(slotNumber + "select;" +
@@ -555,14 +566,31 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
             Text textHoldingCount = buttonCraftHolding[indexHolding].transform.GetChild(1).GetComponent<Text>();
             textHoldingCount.text = itemHoldingCount[indexHolding].ToString();
 
-            craftEnergy -= chest.slotItem[indexHoldingChest[indexHolding]].energyPotential;
+            Item resultItem = GameManager.Inst.craftingTable.FindRecipie();
+            if (resultItem)
+                craftEnergy = resultItem.energyPotential;
+            else
+                craftEnergy = 0;
             textCraftEnergy.text = "필요 에너지 [ " + craftEnergy.ToString() + " ]";
         }
     }
     
     public void CraftButtonCreateClicked()
     {
-        GameManager.Inst.craftingTable.CraftItem();
+        int i = 0;
+        for (; i < 6; i++)
+        {
+            if (itemUsingCount[i] > 0)
+                break;
+        }
+
+        if (i == 6)
+        {
+            panelNotice.SetActive(true);
+            textNotice.text = "제작에 사용할 아이템을 선택하세요.";
+        }
+        else
+            GameManager.Inst.craftingTable.CraftItem();
     }
     #endregion
 
@@ -612,6 +640,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         GameManager.Inst.bodyAssembly.SelectBodyPart(slotNumber);
     }
 
+    public void UpdateAssembleEnergy(int energyValue)
+    {
+        textAssembleEnergy.text = "필요 에너지 [ " + energyValue.ToString() + " ]";
+    }
+
     // TODO : 이름변경해야 함
     public void ButtonDoAssembleyClicked()
     {
@@ -629,24 +662,37 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     /// <summary>
     /// 수면에 대한 에너지 변화를 안내한다.
     /// </summary>
-    public void NoticeEnergyChange(int energy, int durablity)
+    public void NoticeEnergyChange(int time, float penaltyPerTime, int energy, int durablity)
     {
         Debug.Log("안내 패널 출력");
         panelNotice.SetActive(true);
-        textNotice.text = "에너지를 " + energy + "소모하여\n내구도를 " + durablity + "% 회복했습니다.";
+        textNotice.text = "에너지를 " + energy + "소모하여 내구도를 " + durablity + "%\n 회복했습니다.";
+        if (time != 0)
+        {
+            textNotice.text += "\n\n수면시간이 " + time + "시간 부족하여 내구도가 " + (int)(time * penaltyPerTime) + "% 감소되었습니다.";
+        }
     }
 
 
     public void ButtonDebugClicked()
     {
-        Debug.Log("atk:" + Player.Inst.Atk + "  def:"+Player.Inst.Def+"   dex:"+Player.Inst.Dex+"   mana:"+Player.Inst.Mana+"   endurance:"+Player.Inst.Endurance);
-
+        Debug.Log("atk:" + Player.Inst.Atk + "  def:" + Player.Inst.Def + "   dex:" + Player.Inst.Dex + "   mana:" + Player.Inst.Mana + "   endurance:" + Player.Inst.Endurance);
+        //Debug.Log("2번 아이테 사용");
+        //if (StorageManager.Inst.inventory.slotItem[1].type == Type.Consumable)
+        //{
+        //    var consumable = (Consumable)StorageManager.Inst.inventory.slotItem[1];
+        //    if (!consumable.IsConsumeEnable())
+        //        return;
+        //    consumable.UseItem();
+        //    StorageManager.Inst.DeleteFromInven(1);
+        //}
     }
     // for debugging
     public void ButtonSetTimePanelClicked(GameObject panel)
     {
         panel.SetActive(true);
     }
+
     /// <summary>
     /// for debugging, 가장 가까운 time 시각 까지 게임을 진행시킨다.
     /// </summary>
@@ -660,6 +706,35 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         else
         {
             GameManager.Inst.OnTurnOver(24 + time - GeneralUIManager.Inst.time.runtimeTime);
+        }
+    }
+
+    private bool _isBlackOut = false;
+    private float _blackOutTime = 3.0f;
+    public IEnumerator PutToSleep(int time, float penaltyPerTime, int spendEnergy, int regenedDurability)
+    {
+        Debug.Log("black out start");
+        panelBlackOut.SetActive(true);
+        _isBlackOut = true;
+        yield return new WaitForSeconds(_blackOutTime + 0.5f);
+        GeneralUIManager.Inst.UpdateTextDurability();
+        GeneralUIManager.Inst.UpdateTextTime();
+        GeneralUIManager.Inst.UpdateEnergy();
+        NoticeEnergyChange(time, penaltyPerTime, spendEnergy, regenedDurability);
+        _isBlackOut = false;
+        panelBlackOut.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+        panelBlackOut.SetActive(false);
+        Debug.Log("black out end");
+    }
+
+    private void Update()
+    {
+        if(_isBlackOut)
+        {
+            if(panelBlackOut.activeSelf)
+            {
+                panelBlackOut.GetComponent<Image>().color = new Color(0, 0, 0, panelBlackOut.GetComponent<Image>().color.a + UnityEngine.Time.deltaTime / _blackOutTime);
+            }
         }
     }
 }

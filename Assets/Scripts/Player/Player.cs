@@ -22,8 +22,14 @@ public class Player : SingletonBehaviour<Player>
     }
     public Inventory inventory;
     [Header("Body Parts")]
+    public EquippedBodyPart equippedBodyPart = null;
     [SerializeField]
-    private EquippedBodyPart _equippedBodyPart = null;
+    private int[] _upgradeLevels = new int[6];
+
+    public int GetUpgradeLevel(BodyPartType bodyPartType)
+    {
+        return _upgradeLevels[(int)bodyPartType];
+    }
 
     #region Player Stat
     private int[] _raceAffinity = new int[6];
@@ -85,7 +91,7 @@ public class Player : SingletonBehaviour<Player>
     public void InitPlayer()
     {
         BodyRegenerationRate = 0;
-        UpdateAllPlayerBodyStatus(_raceAffinity, _equippedBodyPart.bodyParts, _bodyPartStat);
+        UpdateAllPlayerBodyStatus(_raceAffinity, equippedBodyPart.bodyParts, _bodyPartStat);
         UpdateAllPlayerSprites();
     }
     
@@ -105,10 +111,20 @@ public class Player : SingletonBehaviour<Player>
         {
             if(GameManager.Inst.IsHome)
             {
-                return decayRateHome - BodyRegenerationRate;
+                if (HomeUIManager.Inst.panelAssemble.activeSelf == true)
+                {
+                    Debug.Log("0");
+                    return 0;
+                }
+                else
+                {
+                    Debug.Log("decayRateHome - BodyRegenerationRate");
+                    return decayRateHome - BodyRegenerationRate; ;
+                }
             }
             else
             {
+                Debug.Log("decayRateExploration - BodyRegenerationRate");
                 return decayRateExploration - BodyRegenerationRate;
             }
         }
@@ -137,16 +153,19 @@ public class Player : SingletonBehaviour<Player>
     public void ExchangePlayerBody(BodyPart bodyPart, int chestIndex)
     {
         BodyPart returnedBodyPart;
-
-        returnedBodyPart = ExchangePlayerBodyObject(_equippedBodyPart.bodyParts, bodyPart);
+        returnedBodyPart = ExchangePlayerBodyObject(equippedBodyPart.bodyParts, bodyPart);
         StorageManager.Inst.DeleteFromChest(chestIndex);
-        if(!StorageManager.Inst.AddItemToChest(returnedBodyPart))
-        {
-            ExchangePlayerBodyObject(_equippedBodyPart.bodyParts, returnedBodyPart);
-            Debug.Log("신체 교환 실패, 창고에 아이템을 추가할 수 없습니다.");
-            return;
-        }
+        //if(!StorageManager.Inst.AddItemToChest(returnedBodyPart))
+        //{
+        //    ExchangePlayerBodyObject(_equippedBodyPart.bodyParts, returnedBodyPart);
+        //    Debug.Log("신체 교환 실패, 창고에 아이템을 추가할 수 없습니다.");
+        //    return;
+        //}
         ChangeAllPlayerBodyStatus(_bodyPartStat, _raceAffinity, bodyPart, returnedBodyPart);
+        if (returnedBodyPart.race == Race.Machine)
+        {
+            ResetUpgrade(returnedBodyPart);
+        }
         ChangePlayerBodyPartSprite(bodyPart.bodyPartType);
 
         #region legacy
@@ -192,6 +211,10 @@ public class Player : SingletonBehaviour<Player>
         //        return null;
         //}
         #endregion
+
+        HomeUIManager.Inst.panelNotice.SetActive(true);
+        HomeUIManager.Inst.textNotice.text = bodyPart.energyPotential.ToString() + " 에너지를 소모하여\n"
+            + bodyPart.itemName + "\n아이템을 장착하였습니다.";
         Debug.Log("장착된 신체 : " + bodyPart.itemName + "\n탈착된 신체 : " + returnedBodyPart.itemName);
 
         return;
@@ -203,11 +226,20 @@ public class Player : SingletonBehaviour<Player>
         {
             Debug.Log(equippedBodyParts[i].itemName);
         }
-        BodyPart equipping;
-        equipping = equippedBodyParts[(int)bodyPart.bodyPartType];
+        BodyPart equipping = equippedBodyParts[(int)bodyPart.bodyPartType];
+        GameManager.Inst.bodyDisassembly.GetBonusItem(equipping);
         equippedBodyParts[(int)bodyPart.bodyPartType] = bodyPart;
 
         return equipping;
+    }
+
+    /// <summary>
+    /// 장착하고 있던 신체가 기계라면, 해당 부위의 강화도를 초기화한다.
+    /// </summary>
+    /// <param name="equipping"></param>
+    private void ResetUpgrade(BodyPart equipping)
+    {
+        _upgradeLevels[(int)equipping.bodyPartType] = 0;
     }
 
     /// <summary>
@@ -215,12 +247,13 @@ public class Player : SingletonBehaviour<Player>
     /// </summary>
     private void ChangePlayerBodyPartSprite(BodyPartType bodyPartType)
     { 
-        Player.Inst.transform.GetChild((int)bodyPartType).gameObject.GetComponent<SpriteRenderer>().sprite = _equippedBodyPart.bodyParts[(int)bodyPartType].bodyPartSprite;
+        Player.Inst.transform.GetChild((int)bodyPartType).gameObject.GetComponent<SpriteRenderer>().sprite = equippedBodyPart.bodyParts[(int)bodyPartType].bodyPartSprite;
     }
 
     /// <summary>
     /// playerBodyPart와 returnedBodyPart의 신체교환에 대한 신체 스텟 변화를 적용한다. 
     /// </summary>
+    /// <param name="playerBodyPart">플레이어가 장착할 BodyPart</param>
     private void ChangeAllPlayerBodyStatus(Status bodyPartStat, int[] raceAffinity, BodyPart playerBodyPart, BodyPart returnedBodyPart)
     {
         UpdateBodyStat(bodyPartStat, playerBodyPart, returnedBodyPart);
@@ -236,7 +269,7 @@ public class Player : SingletonBehaviour<Player>
     /// </summary>
     private void UpdateAllPlayerSprites()
     {
-        for(int indexBody = 0; indexBody < _equippedBodyPart.bodyParts.Length; indexBody++)
+        for(int indexBody = 0; indexBody < equippedBodyPart.bodyParts.Length; indexBody++)
         {
             ChangePlayerBodyPartSprite((BodyPartType)indexBody);
         }
@@ -322,19 +355,43 @@ public class Player : SingletonBehaviour<Player>
     /// <param name="returnedBodyPart"> 어떤 신체가 플레이어에게서 탈착되었을 경우 사용한다.</param>
     private void UpdateBodyStat(Status bodyPartStatus, BodyPart playerBodyPart, BodyPart returnedBodyPart = null)
     {
-        bodyPartStatus.atk += playerBodyPart.atk;
-        bodyPartStatus.def += playerBodyPart.def;
-        bodyPartStatus.dex += playerBodyPart.dex;
-        bodyPartStatus.mana += playerBodyPart.mana;
-        bodyPartStatus.endurance += playerBodyPart.endurance;
+        if (playerBodyPart.race != Race.Machine)
+        {
+            bodyPartStatus.atk += playerBodyPart.Atk;
+            bodyPartStatus.def += playerBodyPart.Def; 
+            bodyPartStatus.dex += playerBodyPart.Dex;
+            bodyPartStatus.mana += playerBodyPart.Mana;
+        }
+        else
+        {
+            Machine machine = (Machine)playerBodyPart;
+            bodyPartStatus.atk += machine.Atk;
+            bodyPartStatus.def += machine.Def;
+            bodyPartStatus.dex += machine.Dex;
+            bodyPartStatus.mana += machine.Mana;
+        }
+        
+        bodyPartStatus.endurance += playerBodyPart.Endurance;
 
         if(returnedBodyPart != null)
         {
-            bodyPartStatus.atk -= returnedBodyPart.atk;
-            bodyPartStatus.def -= returnedBodyPart.def;
-            bodyPartStatus.dex -= returnedBodyPart.dex;
-            bodyPartStatus.mana -= returnedBodyPart.mana;
-            bodyPartStatus.endurance -= returnedBodyPart.endurance;
+            if (returnedBodyPart.race != Race.Machine)
+            {
+                bodyPartStatus.atk -= returnedBodyPart.Atk;
+                bodyPartStatus.def -= returnedBodyPart.Def;
+                bodyPartStatus.dex -= returnedBodyPart.Dex;
+                bodyPartStatus.mana -= returnedBodyPart.Mana;
+                bodyPartStatus.endurance -= returnedBodyPart.Endurance;
+            }
+            else
+            {
+                Machine returnedMachine = (Machine)returnedBodyPart;
+                bodyPartStatus.atk -= returnedMachine.Atk;
+                bodyPartStatus.def -= returnedMachine.Def;
+                bodyPartStatus.dex -= returnedMachine.Dex;
+                bodyPartStatus.mana -= returnedMachine.Mana;
+                bodyPartStatus.endurance -= returnedMachine.Endurance;
+            }
         }
     }
     #endregion
@@ -346,6 +403,12 @@ public class Player : SingletonBehaviour<Player>
         InitPlayer();
     }
     #endregion
+
+    public void UpgradeMachinePart(int i)
+    {
+        _upgradeLevels[i]++;
+        UpdateAllPlayerBodyStatus(_raceAffinity, equippedBodyPart.bodyParts, _bodyPartStat);
+    }
 
 }
 
