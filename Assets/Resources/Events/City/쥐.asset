@@ -12,18 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 138a3f58612b5b5418085739959ee88d, type: 3}
   m_Name: "\uC950"
   m_EditorClassIdentifier: 
-  id: 110100
+  id: 210100
   eventName: "\uC950"
   phase: 1
-  type: 3
-  encounterProbabilty: 70
-  isFleeting: 0
+  encounterProbabilty: 50
   titleText: "\uB208 \uC55E\uC5D0\uC11C \uBB34\uC5B8\uAC00 \uD719 \uC6C0\uC9C1\uC600\uB2E4.
     \uC950..? "
   content: "\uC57C\uC0DD\uC758 \uC950\uB5BC\uAC00 \uB098\uD0C0\uB0AC\uB2E4! "
+  basicEnable: 1
+  linkedEventName: 
   optionTexts:
   - "\uC73C\uC545!"
   optionResultTexts:
   - "\uC2DC\uCCB4\uB85C \uB9CC\uB4E0 \uBAB8\uC774 \uC950\uB4E4\uC5D0\uAC8C \uC794\uB729
     \uB72F\uACA8\uB098\uAC14\uB2E4.. "
+  type: 3
+  isFleeting: 0
+  resultEvent:
+  - {fileID: 11400000, guid: eaa1998ee1943364c8e589808974f5ee, type: 2}
+  option0CaseResult:
+  - "\uC2DC\uCCB4\uB85C \uB9CC\uB4E0 \uBAB8\uC774 \uC950\uB4E4\uC5D0\uAC8C \uC794\uB729
+    \uB72F\uACA8\uB098\uAC14\uB2E4.. "
   _damage: 5
+  statConstraints: []

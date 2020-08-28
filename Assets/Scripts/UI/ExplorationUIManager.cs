@@ -66,7 +66,7 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     {
         Debug.Log("발생한 이벤트 : " + @event.titleText);
         NoticeEventText(@event.titleText);
-        if(@event.type == ExplorationEvent.EventType.ItemDiscovery)
+        if(@event.phase == ExplorationEvent.EventPhase.SearchingItem)
         {
             ItemDiscoveryEvent itemDiscoveryEvent = (ItemDiscoveryEvent)@event;
             if(itemDiscoveryEvent.foundItem != null)
