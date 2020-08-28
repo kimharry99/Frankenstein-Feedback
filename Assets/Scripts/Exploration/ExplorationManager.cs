@@ -306,17 +306,17 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     /// </summary>
     public void UnlockLinkedEvent()
     {
-        if (_currentEvent.linkedEventName != "")
-        {
-            for (int i = 0; i < _currentRegion.possibleRandomEncounterEvents.Length; i++)
-            {
-                if (_currentRegion.possibleRandomEncounterEvents[i].eventName == _currentEvent.linkedEventName)
-                {
-                    _currentRegion.possibleRandomEncounterEvents[i].IsEnabled = true;
-                    break;
-                }
-            }
-        }
+        //if (_currentEvent.linkedEventName != "")
+        //{
+        //    for (int i = 0; i < _currentRegion.possibleRandomEncounterEvents.Length; i++)
+        //    {
+        //        if (_currentRegion.possibleRandomEncounterEvents[i].eventName == _currentEvent.linkedEventName)
+        //        {
+        //            _currentRegion.possibleRandomEncounterEvents[i].IsEnabled = true;
+        //            break;
+        //        }
+        //    }
+        //}
     }
 
     /// <summary>

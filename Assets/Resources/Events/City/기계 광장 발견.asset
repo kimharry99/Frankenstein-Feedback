@@ -9,28 +9,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9931c44869d896b4db85c01cee77cfb8, type: 3}
+  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
   m_Name: "\uAE30\uACC4 \uAD11\uC7A5 \uBC1C\uACAC"
   m_EditorClassIdentifier: 
   id: 210112
   eventName: "\uAE30\uACC4 \uAD11\uC7A5 \uBC1C\uACAC"
   phase: 1
-  encounterProbabilty: 50
+  encounterProbabilty: 20
   titleText: "\uB3C4\uC2DC\uB97C \uB3CC\uC544\uB2E4\uB2C8\uB2E4\uBCF4\uB2C8 \uAE30\uACC4
     \uAD11\uC7A5\uC744 \uAC00\uB9AC\uD0A4\uB294 \uD45C\uC9C0\uD310\uC774 \uBCF4\uC778\uB2E4. "
   content: "\uC800 \uBA40\uB9AC \uCCAB \uC644\uC804\uC778\uACF5\uC9C0\uB2A5\uC758
     \uBAA8\uC2B5\uC744 \uBCF8\uB534 \uB3D9\uC0C1\uC774 \uBCF4\uC778\uB2E4. "
   basicEnable: 1
-  linkedEventName: 
   optionTexts:
   - "\uD45C\uC9C0\uD310\uC744 \uB530\uB77C\uAC04\uB2E4 "
   - "\uADF8\uB0E5 \uB3CC\uC544\uAC04\uB2E4 "
   optionResultTexts:
   - 
   - 
-  type: 0
   isFleeting: 0
-  resultEvent:
-  - {fileID: 11400000, guid: 4c472d00923f14e4f8063fe57bc2d3ba, type: 2}
-  - {fileID: 11400000, guid: eaa1998ee1943364c8e589808974f5ee, type: 2}
-  option0CaseResult: []
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 4c472d00923f14e4f8063fe57bc2d3ba, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: 
+      linkedEventName: 
+    statConstraints: []
+    constraintPerCase: 
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: eaa1998ee1943364c8e589808974f5ee, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: 
+      linkedEventName: 
+    statConstraints: []
+    constraintPerCase: 

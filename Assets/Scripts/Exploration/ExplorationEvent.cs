@@ -28,7 +28,6 @@ public abstract class ExplorationEvent : ScriptableObject, ISerializationCallbac
     [SerializeField]
     private bool basicEnable;
     public bool IsEnabled { get; set; }
-    public string linkedEventName;
 
     public int OptionNumber { get { return optionTexts.Count; } }
     [Header("Option Field")]

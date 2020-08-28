@@ -8,6 +8,22 @@ public class RandomEncounterEvent : ExplorationEvent
     [System.Serializable]
     protected struct StatConstraint
     {
+        public enum ConstraintName
+        {
+            Atk,
+            Def,
+            Dex,
+            Mana,
+            Endurance,
+            Human,
+            Goblin,
+            Elf,
+            Machine,
+            Oak,
+            NightVision,
+            Magic,
+            DarkMagic,
+        }
         [System.Serializable]
         public enum MoreOrLess
         {
@@ -19,6 +35,8 @@ public class RandomEncounterEvent : ExplorationEvent
         }
         [Tooltip("플레이어의 스텟이 요구스텟 보다 높아야 하면 more")]
         public MoreOrLess moreOrLess;
+        public ConstraintName constraintName;
+        [NonSerialized]
         public Status.StatName statName;
         public int statConstraint;
     }
@@ -31,6 +49,7 @@ public class RandomEncounterEvent : ExplorationEvent
         public Slot rewardItem;
         public Slot consumedItem;
         public string resultString;
+        public string linkedEventName;
     }
 
     [System.Serializable]
