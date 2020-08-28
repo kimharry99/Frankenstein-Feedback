@@ -248,22 +248,22 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
         contentsEvent[contentsEvent.Count - 1].eventText.text += ".";
     }
 
-    public void ActiveCollapseWarningPanel(FinishExplorationEvent finishExplorationEvent, int option)
-    {
-        panelCollapseWarning.SetActive(true);
-        ButtonCancel.onClick.AddListener(CloseCooapseWarningPanel);
-        if (option == 0)
-        {
-            ButtonContinue.onClick.AddListener(finishExplorationEvent.ExploreAnother);
-            ButtonContinue.onClick.AddListener(() => NoticeEventText(finishExplorationEvent.optionResultTexts[0]));
-        }
-        else if (option == 1)
-        {
-            ButtonContinue.onClick.AddListener(finishExplorationEvent.ExploreAgain);
-            ButtonContinue.onClick.AddListener(() => NoticeEventText(finishExplorationEvent.optionResultTexts[1]));
-        }
-        ButtonContinue.onClick.AddListener(CloseCooapseWarningPanel);
-    }
+    //public void ActiveCollapseWarningPanel(FinishExplorationEvent finishExplorationEvent, int option)
+    //{
+    //    panelCollapseWarning.SetActive(true);
+    //    ButtonCancel.onClick.AddListener(CloseCooapseWarningPanel);
+    //    if (option == 0)
+    //    {
+    //        ButtonContinue.onClick.AddListener(finishExplorationEvent.ExploreAnother);
+    //        ButtonContinue.onClick.AddListener(() => NoticeEventText(finishExplorationEvent.optionResultTexts[0]));
+    //    }
+    //    else if (option == 1)
+    //    {
+    //        ButtonContinue.onClick.AddListener(finishExplorationEvent.ExploreAgain);
+    //        ButtonContinue.onClick.AddListener(() => NoticeEventText(finishExplorationEvent.optionResultTexts[1]));
+    //    }
+    //    ButtonContinue.onClick.AddListener(CloseCooapseWarningPanel);
+    //}
 
     public void CloseCooapseWarningPanel()
     {

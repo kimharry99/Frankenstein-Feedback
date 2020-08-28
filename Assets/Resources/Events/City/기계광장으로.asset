@@ -22,11 +22,14 @@ MonoBehaviour:
   basicEnable: 1
   linkedEventName: 
   optionTexts:
-  - "\uB3C4\uC2DC\uB97C \uB2E4\uC2DC \uD0D0\uC0AC\uD55C\uB2E4 "
   - "\uAE30\uACC4 \uAD11\uC7A5\uC744 \uD0D0\uC0AC\uD55C\uB2E4 "
+  - "\uB3C4\uC2DC\uB97C \uB2E4\uC2DC \uD0D0\uC0AC\uD55C\uB2E4 "
   - "\uC5F0\uAD6C\uC2E4\uB85C \uB3CC\uC544\uAC04\uB2E4 "
   optionResultTexts:
   - 
   - 
   - 
-  linkedRegion: {fileID: 11400000, guid: cbe6f2c6ad96bee46b34d7fc7afce2a8, type: 2}
+  linkedRegions:
+  - {fileID: 11400000, guid: cbe6f2c6ad96bee46b34d7fc7afce2a8, type: 2}
+  - {fileID: 11400000, guid: 59c76976c9db2e14e9e7e70fddcb2136, type: 2}
+  - {fileID: 0}

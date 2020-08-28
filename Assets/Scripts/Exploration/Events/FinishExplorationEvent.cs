@@ -5,7 +5,8 @@ using UnityEngine;
 [CreateAssetMenu]
 public class FinishExplorationEvent : ExplorationEvent
 {
-    public Region linkedRegion;
+    [Tooltip("null : 연구소로 복귀")]
+    public Region[] linkedRegions;
     /// <summary>
     /// 다른 지역을 탐사한다.
     /// </summary>
@@ -15,13 +16,7 @@ public class FinishExplorationEvent : ExplorationEvent
         //    WarnBodyCollapse(1);
         //else
         ExplorationUIManager.Inst.NoticeResultText(optionResultTexts[0]);
-        ExploreAgain();
-    }
-
-    public void ExploreAgain()
-    {
-        GameManager.Inst.OnTurnOver(1);
-        FinishEvent();
+        ExploreAnother(0);
     }
 
     /// <summary>
@@ -33,22 +28,24 @@ public class FinishExplorationEvent : ExplorationEvent
         //    WarnBodyCollapse(0);
         //else
         ExplorationUIManager.Inst.NoticeResultText(optionResultTexts[1]);
-        ExploreAnother();
+        ExploreAnother(1);
     }
 
-    public void ExploreAnother()
+    public void ExploreAnother(int regionIndex = 0)
     {
+        if(linkedRegions[regionIndex] == null)
+        {
+            ReturnHome();
+            return;
+        }
         GameManager.Inst.OnTurnOver(1);
-        ExplorationManager.Inst.MoveToAnotherRegion(linkedRegion);
+        ExplorationManager.Inst.MoveToAnotherRegion(linkedRegions[regionIndex]);
         FinishEvent();
     }
 
-    /// <summary>
-    /// 연구소로 복귀한다.
-    /// </summary>
     public override void Option2()
     {
-        ReturnHome();
+        ExploreAnother(2);
     }
 
     private void ReturnHome()
@@ -69,6 +66,11 @@ public class FinishExplorationEvent : ExplorationEvent
 
     private void WarnBodyCollapse(int option)
     {
-        ExplorationUIManager.Inst.ActiveCollapseWarningPanel(this, option);
+        //   ExplorationUIManager.Inst.ActiveCollapseWarningPanel(this, option);
+    }
+    public void ExploreAgain()
+    {
+        GameManager.Inst.OnTurnOver(1);
+        FinishEvent();
     }
 }

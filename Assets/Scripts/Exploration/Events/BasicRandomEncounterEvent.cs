@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class RegionDiscoveryEvent : RandomEncounterEvent
+public class BasicRandomEncounterEvent : RandomEncounterEvent
 {
     public override bool GetOptionEnable(int optionIndex)
     {
@@ -24,7 +24,9 @@ public class RegionDiscoveryEvent : RandomEncounterEvent
         FinishEvent(resultEvent[1]);
     }
 
-    public override void Option2() { }
+    public override void Option2() 
+    {
+    }
 
     public override void Option3() { }
 

@@ -23,6 +23,40 @@ public abstract class RandomEncounterEvent : ExplorationEvent
         public int statConstraint;
     }
 
+    protected bool CalConstraint(StatConstraint statConstraint)
+    {
+        switch(statConstraint.moreOrLess)
+        {
+            case StatConstraint.MoreOrLess.More:
+                if (Player.Inst.GetStatus(statConstraint.statName) > statConstraint.statConstraint)
+                    return true;
+                else
+                    return false;
+            case StatConstraint.MoreOrLess.MoreEqual:
+                if (Player.Inst.GetStatus(statConstraint.statName) >= statConstraint.statConstraint)
+                    return true;
+                else
+                    return false;
+            case StatConstraint.MoreOrLess.Equal:
+                if (Player.Inst.GetStatus(statConstraint.statName) == statConstraint.statConstraint)
+                    return true;
+                else
+                    return false;
+            case StatConstraint.MoreOrLess.LessEqual:
+                if (Player.Inst.GetStatus(statConstraint.statName) <= statConstraint.statConstraint)
+                    return true;
+                else
+                    return false;
+            case StatConstraint.MoreOrLess.Less:
+                if (Player.Inst.GetStatus(statConstraint.statName) < statConstraint.statConstraint)
+                    return true;
+                else
+                    return false;
+            default:
+                return true;
+        }
+    }
+
     public enum EventType
     {
         None = -1,

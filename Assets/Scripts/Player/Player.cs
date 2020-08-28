@@ -86,6 +86,25 @@ public class Player : SingletonBehaviour<Player>
             return toolStat.endurance + _bodyPartStat.endurance;
         }
     }
+
+    public int GetStatus(Status.StatName statName)
+    {
+        switch(statName)
+        {
+            case Status.StatName.Atk:
+                return Atk;
+            case Status.StatName.Def:
+                return Def;
+            case Status.StatName.Dex:
+                return Dex;
+            case Status.StatName.Mana:
+                return Mana;
+            case Status.StatName.Endurance:
+                return Endurance;
+            default:
+                return -1;
+        }
+    }
     #endregion
 
     public void InitPlayer()
