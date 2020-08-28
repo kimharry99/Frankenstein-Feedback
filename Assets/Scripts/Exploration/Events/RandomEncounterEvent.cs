@@ -57,6 +57,7 @@ public class RandomEncounterEvent : ExplorationEvent
     {
         public Case[] cases;
         public StatConstraint[] statConstraints;
+        [Tooltip("[0] = 1 case 0은 constraint 1개를 사용")]
         public int[] constraintPerCase;
     }
 
