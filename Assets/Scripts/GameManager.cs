@@ -51,7 +51,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     private void InitGame()
     {
         _time.SetTime(8);
-        if (gameObject.scene.name == "HomeScene")
+        if (bodyDisassembly != null)
         {
             IsHome = true;
         }
