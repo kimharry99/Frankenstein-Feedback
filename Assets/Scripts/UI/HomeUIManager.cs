@@ -43,6 +43,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     [Header("Assemble UI")]
     public Image imageAssembleUsing;
     public GameObject[] buttonAssembleHolding;
+    public Text textAssembleEnergy;
     public Scrollbar scrollbarAssemble;
 
     [Header("Notice")]
@@ -207,6 +208,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         panelHome.SetActive(false);
         panelAssemble.SetActive(true);
         GameManager.Inst.bodyAssembly.HoldBodyPartsFromChest();
+        UpdateAssembleEnergy(0);
         UpdateBodyAssemblyHoldingImages();
         scrollbarAssemble.value = 1;
     }
@@ -611,6 +613,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         DisplayIsSelected(slotNumber);
         GameManager.Inst.bodyAssembly.SelectBodyPart(slotNumber);
+    }
+
+    public void UpdateAssembleEnergy(int energyValue)
+    {
+        textAssembleEnergy.text = "필요 에너지 [ " + energyValue.ToString() + " ]";
     }
 
     // TODO : 이름변경해야 함
