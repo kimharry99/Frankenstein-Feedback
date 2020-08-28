@@ -198,7 +198,8 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     /// </summary>
     private void AddResultTextsToButton(ExplorationEvent @event)
     {
-        if (@event.phase != ExplorationEvent.EventPhase.FinishingExploration && !ExplorationManager.Inst.GetIsOverwork())
+        //if (@event.phase != ExplorationEvent.EventPhase.FinishingExploration && !ExplorationManager.Inst.GetIsOverwork())
+        if (@event.phase != ExplorationEvent.EventPhase.FinishingExploration)
         {
             if (@event.OptionNumber >= 0)
             {
