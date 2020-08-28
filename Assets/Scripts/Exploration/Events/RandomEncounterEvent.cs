@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -92,12 +91,12 @@ public class RandomEncounterEvent : ExplorationEvent
     [NonSerialized]
     public EventType type;
     [Header("Random Encounter Event Field")]
+    public bool isFleeting = false;
     [SerializeField]
     private Option[] options;
     /// <summary>
     /// 일회용일 경우 true
     /// </summary>
-    public bool isFleeting = false;
     [NonSerialized]
     public ExplorationEvent[] resultEvent;
     [NonSerialized]
@@ -133,7 +132,9 @@ public class RandomEncounterEvent : ExplorationEvent
     {
         return true;
     }
+
     #region Option Methods
+
     public override void Option0()
     {
         int durabilityDamage;
@@ -179,6 +180,8 @@ public class RandomEncounterEvent : ExplorationEvent
         GeneralUIManager.Inst.UpdateTextDurability();
     }
 
+    #region Constraint Methods
+
     /// <summary>
     /// optionNumber 옵션의 특수 결과 조건의 번호를 반환한다.
     /// </summary>
@@ -186,6 +189,16 @@ public class RandomEncounterEvent : ExplorationEvent
     /// <returns></returns>
     protected int GetOptionCaseNumber(int optionNumber)
     {
+        if (!CaseLengthMatched())
+        {
+            Debug.LogError("case lenfth mismatched");
+            return 0;
+        }
+        if (!ConstraintLengthMatched())
+        {
+            Debug.LogError("constraint number mismatched");
+            return 0;
+        }
         Option option = options[optionNumber];
         int constraintBase = 0;
         int caseBase = 0;
@@ -233,4 +246,35 @@ public class RandomEncounterEvent : ExplorationEvent
         }
         return true;
     }
+    private bool CaseLengthMatched()
+    {
+        for(int i=0;i<options.Length;i++)
+        {
+            Option option = options[i];
+            if (option.cases.Length <= 1)
+                continue;
+            if (options[i].constraintPerCase.Length != options[i].cases.Length)
+                return false;
+        }
+        return true;
+    }
+
+    private bool ConstraintLengthMatched()
+    {
+        for(int i=0;i<options.Length;i++)
+        {
+            Option option = options[i];
+            if (option.cases.Length <= 1)
+                continue;
+            int a = 0;
+            for(int j=0;j< option.cases.Length;j++)
+            {
+                a += option.constraintPerCase[j];
+            }
+            if (a != option.statConstraints.Length)
+                return false;
+        }
+        return true;
+    }
+#endregion
 }
