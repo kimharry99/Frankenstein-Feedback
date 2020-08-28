@@ -41,7 +41,7 @@ public class BodyDisassembly : MonoBehaviour
         GameManager.Inst.OnTurnOver(1);
     }
 
-    private void GetBonusItem(BodyPart item)
+    public void GetBonusItem(BodyPart item)
     {
         if (item == null)
         {
