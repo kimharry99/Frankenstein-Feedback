@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 
 [System.Serializable]
-public abstract class ExplorationEvent : ScriptableObject
+public abstract class ExplorationEvent : ScriptableObject, ISerializationCallbackReceiver
 {
     public enum EventPhase
     {
@@ -27,31 +28,30 @@ public abstract class ExplorationEvent : ScriptableObject
         DurabilityDamage,
     }
 
-    /// <summary>
-    /// 이벤트가 등장할 수 있는 지역
-    /// </summary>
-    public enum Region
-    {
-        None = -1,
-        City,
-
-    }
-
     [Header("Event Info")]
     public int id;
     public string eventName;
     public EventPhase phase;
     public EventType type;
     public float encounterProbabilty;
+    /// <summary>
+    /// 일회용일 경우 true
+    /// </summary>
+    public bool isFleeting = false;
 
     [Header("Event Content")]
     public string titleText;
     public string content;
+    [SerializeField]
+    private bool basicEnable;
+    [NonSerialized]
+    public bool isEnabled;
+    public string linkedEventName;
 
     public int OptionNumber { get { return optionTexts.Count; } }
     [Header("Option Field")]
-    public List<string> optionTexts = new List<string>();
-    public List<string> optionResultTexts = new List<string>();
+    public List<string> optionTexts;
+    public List<string> optionResultTexts;
 
 
     /// <summary>
@@ -60,11 +60,32 @@ public abstract class ExplorationEvent : ScriptableObject
     /// </summary>
     protected void FinishEvent(bool isReturnHome = false)
     {
+        if (isFleeting)
+            isEnabled = false;
         ExplorationManager.Inst.FinishEvent(isReturnHome); 
     }
+
+    /// <summary>
+    /// 연계되는 퀘스트를 활성화한다.
+    /// </summary>
+    protected void UnlockLinkedEvent()
+    {
+        ExplorationManager.Inst.UnlockLinkedEvent();
+    }
+
     public abstract bool GetOptionEnable(int optionIndex);
     public abstract void Option0();
     public abstract void Option1();
     public abstract void Option2();
     public abstract void Option3();
+
+    public void OnBeforeSerialize()
+    {
+    }
+
+    public void OnAfterDeserialize()
+    {
+        Debug.Log("event deserialize");
+        isEnabled = basicEnable;
+    }
 }

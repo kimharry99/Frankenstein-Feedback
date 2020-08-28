@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1564c065bac2eab4585b0cd500196910, type: 3}
+  m_Name: "\uB354\uBBF8\uC544\uBB34\uC77C\uB3C4 \uC5C6\uC5C8\uB2E4"
+  m_EditorClassIdentifier: 
+  id: 484456
+  eventName: "\uC544\uBB34\uC77C\uB3C4 \uC5C6\uC5C8\uB2E4_\uB354\uBBF8"
+  phase: 0
+  type: 0
+  encounterProbabilty: 0
+  isFleeting: 0
+  titleText: "\uB3C4\uC2DC\uB97C \uD0D0\uC0AC\uD558\uBA74\uC11C \uB531\uD788 \uB208\uC5D0
+    \uB744\uB294 \uAC83\uC740 \uC5C6\uC5C8\uB2E4. "
+  content: 
+  optionTexts:
+  - "\u2026 "
+  optionResultTexts:
+  - 
+  foundItem: {fileID: 0}

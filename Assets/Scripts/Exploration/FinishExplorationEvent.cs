@@ -10,14 +10,17 @@ public class FinishExplorationEvent : ExplorationEvent
     /// </summary>
     public override void Option0()
     {
-        GameManager.Inst.OnTurnOver(1);
-        ExploreAnother();
-        FinishEvent();
+        if(ExplorationManager.Inst.GetIsOverwork())
+            WarnBodyCollapse(0);
+        else
+            ExploreAnother();
     }
 
-    private void ExploreAnother()
+    public void ExploreAnother()
     {
-
+        GameManager.Inst.OnTurnOver(1);
+        ExplorationManager.Inst.MoveToAnotherRegion();
+        FinishEvent();
     }
 
     /// <summary>
@@ -25,14 +28,16 @@ public class FinishExplorationEvent : ExplorationEvent
     /// </summary>
     public override void Option1()
     {
-        GameManager.Inst.OnTurnOver(1);
-        ExploreAgain();
-        FinishEvent();
+        if (ExplorationManager.Inst.GetIsOverwork())
+            WarnBodyCollapse(1);
+        else
+            ExploreAgain();
     }
     
-    private void ExploreAgain()
+    public void ExploreAgain()
     {
-
+        GameManager.Inst.OnTurnOver(1);
+        FinishEvent();
     }
 
     /// <summary>
@@ -57,5 +62,10 @@ public class FinishExplorationEvent : ExplorationEvent
     public override bool GetOptionEnable(int optionIndex)
     {
         return true;
+    }
+
+    private void WarnBodyCollapse(int option)
+    {
+        ExplorationUIManager.Inst.ActiveCollapseWarningPanel(this, option);
     }
 }

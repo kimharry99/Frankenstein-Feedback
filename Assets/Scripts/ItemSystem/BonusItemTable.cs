@@ -264,6 +264,10 @@ public class BonusItemTable
         {
             grade = Grade.A;
         }
+        if(table[(int)race][(int)grade][probabilityIndex] == null)
+        {
+            Debug.LogError("it is null\n" + ", " + race + ", " + grade + ", " + probabilityIndex);
+        }
         return table[(int)race][(int)grade][probabilityIndex];
     }
 }

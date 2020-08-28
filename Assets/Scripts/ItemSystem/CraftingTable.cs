@@ -113,6 +113,7 @@ public class CraftingTable : MonoBehaviour
             HomeUIManager.Inst.panelNotice.SetActive(true);
             HomeUIManager.Inst.textNotice.text = _resultItem.itemName + " 아이템을 제작하였습니다.";
 
+            GameManager.Inst.OnTurnOver(1);
             HomeUIManager.Inst.UpdateCrafting();
         }
 

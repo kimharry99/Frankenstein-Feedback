@@ -9,7 +9,7 @@ public class BodyDisassembly : MonoBehaviour
     {
         int count = 0;
 
-        for (int i = 0; i < 30; i++)
+        for (int i = 29; i >= 0; i--)
         {
             if (HomeUIManager.Inst.imageCheck[i].activeSelf == true)
             {
@@ -17,7 +17,12 @@ public class BodyDisassembly : MonoBehaviour
                 int slotNumber = HomeUIManager.Inst.indexHoldingChest[i];
                 // TODO : dest를 StorageManager로 수정
                 BodyPart dissassembled = (BodyPart)StorageManager.Inst.DeleteFromChest(slotNumber);
-                GetBonusItem(dissassembled);
+                if(dissassembled == null)
+                {
+                    Debug.LogError("dissassembled is null");
+                }
+                else
+                    GetBonusItem(dissassembled);
             }
         }
 
@@ -36,10 +41,15 @@ public class BodyDisassembly : MonoBehaviour
         GameManager.Inst.OnTurnOver(1);
     }
 
-    private void GetBonusItem(BodyPart item)
+    public void GetBonusItem(BodyPart item)
     {
+        if (item == null)
+        {
+            Debug.LogError("item is null");
+        }
         BonusItemTable bonusItemTable = new BonusItemTable();
         int probabilityIndex = GetRandomIndex();
+        Debug.Log("probabilityIndex:" + probabilityIndex);
         Slot[] rewardItems = bonusItemTable.GetTableData(item.race, item.grade, probabilityIndex);
         StorageManager.Inst.AddItemsToChest(rewardItems[0].slotItem, rewardItems[0].slotItemNumber);
         StorageManager.Inst.AddItemsToChest(rewardItems[1].slotItem, rewardItems[1].slotItemNumber);
