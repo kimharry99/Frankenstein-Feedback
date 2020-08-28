@@ -67,5 +67,10 @@ public abstract class ExplorationEvent : ScriptableObject, ISerializationCallbac
     {
         //Debug.Log("event deserialize");
         IsEnabled = basicEnable;
+        if(phase == EventPhase.RandomEncounter)
+        {
+            RandomEncounterEvent randomEncounter = (RandomEncounterEvent)this;
+            randomEncounter.IsEnabled = basicEnable;
+        }
     }
 }

@@ -25,8 +25,17 @@ MonoBehaviour:
   - "\u2026 "
   optionResultTexts:
   - 
-  type: -1
   isFleeting: 0
-  resultEvent:
-  - {fileID: 11400000, guid: eaa1998ee1943364c8e589808974f5ee, type: 2}
-  option0CaseResult: []
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: eaa1998ee1943364c8e589808974f5ee, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: 
+    statConstraints: []
+    constraintPerCase: 

@@ -73,20 +73,18 @@ public class RandomEncounterEvent : ExplorationEvent
     {
         get
         {
-            if (!_isUnlocked)
-                return false;
-            // 일회용 이벤트인 경우
-            if (isFleeting && _isEncountered)
-                return false;
             return GetIsEnabled();
         }
         set
         {
             _isUnlocked = value;
+            _isEncountered = !value;
         }
     }
+
     protected new void FinishEvent(ExplorationEvent nextEvent = null, bool isReturnHome = false)
     {
+        _isEncountered = true;
         if(nextEvent == null)
         {
             Debug.LogError("nextEvent is not assigned : " + eventName);
@@ -97,6 +95,11 @@ public class RandomEncounterEvent : ExplorationEvent
 
     protected bool GetIsEnabled()
     {
+        if (!_isUnlocked)
+            return false;
+        // 일회용 이벤트인 경우
+        if (isFleeting && _isEncountered)
+            return false;
         return true;
     }
 
@@ -307,4 +310,5 @@ public class RandomEncounterEvent : ExplorationEvent
         return true;
     }
 #endregion
+
 }

@@ -10,18 +10,6 @@ public class SkipEvent : RandomEncounterEvent
         return true;
     }
 
-    public override void Option0()
-    {
-        FinishEvent(resultEvent[0]);
-        ExplorationUIManager.Inst.NoticeResultText(optionResultTexts[0]);
-    }
-
-    public override void Option1()
-    {
-        FinishEvent(resultEvent[1]);
-        ExplorationUIManager.Inst.NoticeResultText(optionResultTexts[1]);
-    }
-
     public override void Option2() { }
 
     public override void Option3() { }

@@ -173,9 +173,20 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
         List<ExplorationEvent> enableEvents = new List<ExplorationEvent>();
         for(int i=0;i<events.Length;i++)
         {
-            if(events[i].IsEnabled)
+            if (events[i].phase == ExplorationEvent.EventPhase.RandomEncounter)
             {
-                enableEvents.Add(events[i]);
+                RandomEncounterEvent randomEncounter = (RandomEncounterEvent)events[i];
+                if (randomEncounter.IsEnabled)
+                {
+                    enableEvents.Add(events[i]);
+                }
+            }
+            else
+            {
+                if (events[i].IsEnabled)
+                {
+                    enableEvents.Add(events[i]);
+                }
             }
         }
         return enableEvents;
