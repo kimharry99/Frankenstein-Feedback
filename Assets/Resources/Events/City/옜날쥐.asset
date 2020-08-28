@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
-  m_Name: "\uC950"
+  m_Script: {fileID: 11500000, guid: 138a3f58612b5b5418085739959ee88d, type: 3}
+  m_Name: "\uC61C\uB0A0\uC950"
   m_EditorClassIdentifier: 
   id: 210100
   eventName: "\uC950"
@@ -26,18 +26,10 @@ MonoBehaviour:
   optionResultTexts:
   - "\uC2DC\uCCB4\uB85C \uB9CC\uB4E0 \uBAB8\uC774 \uC950\uB4E4\uC5D0\uAC8C \uC794\uB729
     \uB72F\uACA8\uB098\uAC14\uB2E4.. "
-  options:
-  - cases:
-    - resultEvent: {fileID: 11400000, guid: eaa1998ee1943364c8e589808974f5ee, type: 2}
-      durabilityDamage: 5
-      rewardItem:
-        slotItem: {fileID: 0}
-        slotItemNumber: 0
-      consumedItem:
-        slotItem: {fileID: 0}
-        slotItemNumber: 0
-      resultString: "\uC2DC\uCCB4\uB85C \uB9CC\uB4E0 \uBAB8\uC774 \uC950\uB4E4\uC5D0\uAC8C
-        \uC794\uB729 \uB72F\uACA8\uB098\uAC14\uB2E4.. "
-    statConstraints: []
-    constraintPerCase: 00000000
+  options: []
   isFleeting: 0
+  statConstraints: []
+  _casePerOption: 01000000
+  _constraintPerOption: 00000000
+  _constraintPerCase: 00000000
+  _damage: 5

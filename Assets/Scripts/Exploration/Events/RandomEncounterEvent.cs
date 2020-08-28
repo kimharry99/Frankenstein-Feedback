@@ -24,7 +24,7 @@ public class RandomEncounterEvent : ExplorationEvent
         public int statConstraint;
     }
 
-    [Serializable]
+    [System.Serializable]
     private struct Case
     {
         public ExplorationEvent resultEvent;
@@ -34,7 +34,7 @@ public class RandomEncounterEvent : ExplorationEvent
         public string resultString;
     }
 
-    [Serializable]
+    [System.Serializable]
     private struct Option
     {
         public Case[] cases;
@@ -133,25 +133,25 @@ public class RandomEncounterEvent : ExplorationEvent
     {
         return true;
     }
-
+    #region Option Methods
     public override void Option0()
     {
         int durabilityDamage;
         Case currentCase;
         currentCase = options[0].cases[GetOptionCaseNumber(0)];
+
         durabilityDamage = currentCase.durabilityDamage;
         if (durabilityDamage != 0)
         {
             GetDamage(options[0].cases[0].durabilityDamage);
         }
-        ExplorationUIManager.Inst.NoticeResultText(optionResultTexts[0]);
+        ExplorationUIManager.Inst.NoticeResultText(currentCase.resultString);
+        if(currentCase.resultEvent == null)
+        {
+            Debug.Log("result is not assigned");
+            return;
+        }
         FinishEvent(currentCase.resultEvent);
-    }
-
-    private void GetDamage(int damage)
-    {
-        Player.Inst.Durability -= damage;
-        GeneralUIManager.Inst.UpdateTextDurability();
     }
 
     public override void Option1()
@@ -172,6 +172,12 @@ public class RandomEncounterEvent : ExplorationEvent
     {
         return true;
     }
+#endregion
+    private void GetDamage(int damage)
+    {
+        Player.Inst.Durability -= damage;
+        GeneralUIManager.Inst.UpdateTextDurability();
+    }
 
     /// <summary>
     /// optionNumber 옵션의 특수 결과 조건의 번호를 반환한다.
@@ -180,6 +186,51 @@ public class RandomEncounterEvent : ExplorationEvent
     /// <returns></returns>
     protected int GetOptionCaseNumber(int optionNumber)
     {
+        Option option = options[optionNumber];
+        int constraintBase = 0;
+        int caseBase = 0;
+        for (int i = optionNumber; i > 0; i--)
+        {
+            constraintBase += option.constraintPerCase[optionNumber - 1];
+        }
+        Debug.Log("constraing Base : " + constraintBase + " caseBase : " + caseBase);
+        switch (option.cases.Length)
+        {
+            case 0:
+            case 1:
+                return 0;
+            case 2:
+                if (CalConstraints(0, option.constraintPerCase[0], option.statConstraints))
+                    return 0;
+                else
+                    return 1;
+            case 3:
+                //Debug.Log("CalConstraints("+ (constraintBase + _constraintPerCase[caseBase]) + ", " + _constraintPerCase[caseBase + 1]+", " +statConstraints+")");
+                if (CalConstraints(0, option.constraintPerCase[0], option.statConstraints))
+                    return 0;
+                else if (CalConstraints(option.constraintPerCase[0], option.constraintPerCase[1], option.statConstraints))
+                    return 1;
+                else
+                    return 2;
+        }
         return 0;
+    }
+
+    /// <summary>
+    /// statConstraints의 [i, i + n)구간의 constraint를 계산하여 결과를 return한다.
+    /// </summary>
+    private bool CalConstraints(int i, int n, StatConstraint[] statConstraints)
+    {
+        if (i + n - 1 >= statConstraints.Length)
+        {
+            Debug.Log("out of index i+n : " + (i + n) + " length : " + statConstraints.Length);
+            return true;
+        }
+        for (int t = i; t < i + n; t++)
+        {
+            if (!CalConstraint(statConstraints[t]))
+                return false;
+        }
+        return true;
     }
 }

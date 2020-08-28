@@ -18,7 +18,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 82999f3124e870e4c9c079cbc7b00e3b, type: 2}
   - {fileID: 11400000, guid: 96c19feebd6c2f3429d28769c7b9aec1, type: 2}
   possibleRandomEncounterEvents:
-  - {fileID: 11400000, guid: 4c88db9015670634089c6f74682b2d06, type: 2}
+  - {fileID: 11400000, guid: 3ec4c2a2d6622a648a205c55ebc98628, type: 2}
   skipRandomEncounterEvent: {fileID: 11400000, guid: 0632b2c99a9474246b71b238a778e4c2,
     type: 2}
   finishExplorationEvents:
