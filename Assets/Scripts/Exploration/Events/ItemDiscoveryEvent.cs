@@ -28,17 +28,20 @@ public class ItemDiscoveryEvent : ExplorationEvent
 
     public override void Option0()
     {
-        if(GetItem())
+        ExplorationUIManager.Inst.NoticeResultText(optionResultTexts[0]);
+        if (GetItem())
             FinishEvent();
     }
 
     public override void Option1()
     {
+        ExplorationUIManager.Inst.NoticeResultText(optionResultTexts[0]);
         FinishEvent();
     }
 
     public override void Option2()
     {
+        ExplorationUIManager.Inst.NoticeResultText(optionResultTexts[0]);
         Debug.Log(optionTexts[2] + "이 선택됨");
         FinishEvent();
     }

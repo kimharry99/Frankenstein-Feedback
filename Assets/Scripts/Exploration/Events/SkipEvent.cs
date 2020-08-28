@@ -13,6 +13,7 @@ public class SkipEvent : RandomEncounterEvent
     public override void Option0()
     {
         FinishEvent(resultEvent[0]);
+        ExplorationUIManager.Inst.NoticeResultText(optionResultTexts[0]);
     }
 
     public override void Option1() { }

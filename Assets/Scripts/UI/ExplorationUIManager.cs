@@ -166,10 +166,10 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     /// <param name="event"></param>
     public void AddResultOptionsToButton(ExplorationEvent @event)
     {
-        AddResultTextsToButton(@event);
+        //AddResultTextsToButton(@event);
         AddResultEventsToButton(@event);
     }
-    
+
     /// <summary>
     /// option을 선택했을 때 event의 결과를 Button에 등록한다.
     /// </summary>
@@ -218,6 +218,11 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
                 }
             }
         }
+    }
+
+    public void NoticeResultText(string resultText)
+    {
+        NoticeEventText(resultText);
     }
 
     /// <summary>

@@ -14,6 +14,7 @@ public class FinishExplorationEvent : ExplorationEvent
         //if (ExplorationManager.Inst.GetIsOverwork())
         //    WarnBodyCollapse(1);
         //else
+        ExplorationUIManager.Inst.NoticeResultText(optionResultTexts[0]);
         ExploreAgain();
     }
 
@@ -31,6 +32,7 @@ public class FinishExplorationEvent : ExplorationEvent
         //if (ExplorationManager.Inst.GetIsOverwork())
         //    WarnBodyCollapse(0);
         //else
+        ExplorationUIManager.Inst.NoticeResultText(optionResultTexts[1]);
         ExploreAnother();
     }
 

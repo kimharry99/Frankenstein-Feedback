@@ -30,6 +30,7 @@ public class DurabilityDamageEvent : RandomEncounterEvent
                 optionResultTexts[0] = option0CaseResult[1];
                 break;
         }
+        ExplorationUIManager.Inst.NoticeResultText(optionResultTexts[0]);
         FinishEvent(resultEvent[0]);
     }
 
