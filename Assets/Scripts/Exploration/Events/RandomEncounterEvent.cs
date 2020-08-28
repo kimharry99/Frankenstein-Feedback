@@ -41,40 +41,6 @@ public class RandomEncounterEvent : ExplorationEvent
         public int[] constraintPerCase;
     }
 
-    protected bool CalConstraint(StatConstraint statConstraint)
-    {
-        switch(statConstraint.moreOrLess)
-        {
-            case StatConstraint.MoreOrLess.More:
-                if (Player.Inst.GetStatus(statConstraint.statName) > statConstraint.statConstraint)
-                    return true;
-                else
-                    return false;
-            case StatConstraint.MoreOrLess.MoreEqual:
-                if (Player.Inst.GetStatus(statConstraint.statName) >= statConstraint.statConstraint)
-                    return true;
-                else
-                    return false;
-            case StatConstraint.MoreOrLess.Equal:
-                if (Player.Inst.GetStatus(statConstraint.statName) == statConstraint.statConstraint)
-                    return true;
-                else
-                    return false;
-            case StatConstraint.MoreOrLess.LessEqual:
-                if (Player.Inst.GetStatus(statConstraint.statName) <= statConstraint.statConstraint)
-                    return true;
-                else
-                    return false;
-            case StatConstraint.MoreOrLess.Less:
-                if (Player.Inst.GetStatus(statConstraint.statName) < statConstraint.statConstraint)
-                    return true;
-                else
-                    return false;
-            default:
-                return true;
-        }
-    }
-
     public enum EventType
     {
         None = -1,
@@ -128,6 +94,7 @@ public class RandomEncounterEvent : ExplorationEvent
         }
         ExplorationManager.Inst.FinishEvent(phase, nextEvent, isReturnHome);
     }
+
     protected bool GetIsEnabled()
     {
         return true;
@@ -178,10 +145,7 @@ public class RandomEncounterEvent : ExplorationEvent
         Slot rewardItem = currentCase.rewardItem;
         if(rewardItem.slotItem != null && rewardItem.slotItemNumber != 0)
         {
-            if (StorageManager.Inst.inventory.GetFirstEmptySlot() != -1)
-            {
-                StorageManager.Inst.AddItemsToInven(rewardItem.slotItem, rewardItem.slotItemNumber);
-            }
+            PickUpItem(rewardItem);
         }
 
         ExplorationUIManager.Inst.NoticeResultText(currentCase.resultString);
@@ -194,10 +158,19 @@ public class RandomEncounterEvent : ExplorationEvent
 
     }
 #endregion
+
     private void GetDamage(int damage)
     {
         Player.Inst.Durability -= damage;
         GeneralUIManager.Inst.UpdateTextDurability();
+    }
+
+    private void PickUpItem(Slot reward)
+    {
+        if (StorageManager.Inst.inventory.GetFirstEmptySlot() != -1)
+        {
+            StorageManager.Inst.AddItemsToInven(reward.slotItem, reward.slotItemNumber);
+        }
     }
 
     #region Constraint Methods
@@ -207,7 +180,7 @@ public class RandomEncounterEvent : ExplorationEvent
     /// </summary>
     /// <param name="optionNumber"></param>
     /// <returns></returns>
-    protected int GetOptionCaseNumber(int optionNumber)
+    private int GetOptionCaseNumber(int optionNumber)
     {
         if (!CaseLengthMatched())
         {
@@ -251,6 +224,40 @@ public class RandomEncounterEvent : ExplorationEvent
         return 0;
     }
 
+    private bool CalConstraint(StatConstraint statConstraint)
+    {
+        switch (statConstraint.moreOrLess)
+        {
+            case StatConstraint.MoreOrLess.More:
+                if (Player.Inst.GetStatus(statConstraint.statName) > statConstraint.statConstraint)
+                    return true;
+                else
+                    return false;
+            case StatConstraint.MoreOrLess.MoreEqual:
+                if (Player.Inst.GetStatus(statConstraint.statName) >= statConstraint.statConstraint)
+                    return true;
+                else
+                    return false;
+            case StatConstraint.MoreOrLess.Equal:
+                if (Player.Inst.GetStatus(statConstraint.statName) == statConstraint.statConstraint)
+                    return true;
+                else
+                    return false;
+            case StatConstraint.MoreOrLess.LessEqual:
+                if (Player.Inst.GetStatus(statConstraint.statName) <= statConstraint.statConstraint)
+                    return true;
+                else
+                    return false;
+            case StatConstraint.MoreOrLess.Less:
+                if (Player.Inst.GetStatus(statConstraint.statName) < statConstraint.statConstraint)
+                    return true;
+                else
+                    return false;
+            default:
+                return true;
+        }
+    }
+
     /// <summary>
     /// statConstraints의 [i, i + n)구간의 constraint를 계산하여 결과를 return한다.
     /// </summary>
@@ -268,6 +275,7 @@ public class RandomEncounterEvent : ExplorationEvent
         }
         return true;
     }
+
     private bool CaseLengthMatched()
     {
         for(int i=0;i<options.Length;i++)
