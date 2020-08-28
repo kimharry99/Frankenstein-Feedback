@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a769393fd011504b8e89acee0672994, type: 3}
-  m_Name: "\uB3C4\uC2DC"
+  m_Name: "\uD559\uAD50"
   m_EditorClassIdentifier: 
-  regionId: 10
-  regionName: "\uB3C4\uC2DC"
+  regionId: 11
+  regionName: "\uD559\uAD50"
   possibleItemDiscoveryEvents:
-  - {fileID: 11400000, guid: 25e20a313caf01042aba44289e050250, type: 2}
-  - {fileID: 11400000, guid: d9ad02a9b6e375942a1e5c8e73764703, type: 2}
+  - {fileID: 11400000, guid: 82999f3124e870e4c9c079cbc7b00e3b, type: 2}
+  - {fileID: 11400000, guid: 96c19feebd6c2f3429d28769c7b9aec1, type: 2}
   possibleRandomEncounterEvents:
-  - {fileID: 11400000, guid: b0347b6a3154029429c9befb3c169434, type: 2}
-  skipRandomEncounterEvent: {fileID: 11400000, guid: b2463d8bfac78744197d7b028b6e0a22,
+  - {fileID: 11400000, guid: 4c88db9015670634089c6f74682b2d06, type: 2}
+  skipRandomEncounterEvent: {fileID: 11400000, guid: 0632b2c99a9474246b71b238a778e4c2,
     type: 2}
   finishExplorationEvents:
-  - {fileID: 11400000, guid: eaa1998ee1943364c8e589808974f5ee, type: 2}
+  - {fileID: 11400000, guid: 6c4dc5e169d390e4eaecb4b523bfbcad, type: 2}

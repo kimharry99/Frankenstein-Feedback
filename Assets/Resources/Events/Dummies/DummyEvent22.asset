@@ -20,7 +20,7 @@ MonoBehaviour:
   isFleeting: 0
   titleText: "\uB514\uBC84\uAE45\uC6A9 \uC774\uBCA4\uD2B8 2\uAC00 \uBC1C\uC0DD\uD588\uC2B5\uB2C8\uB2E4!"
   content: "\uB514\uBC84\uAE45\uC6A9 \uC774\uBCA4\uD2B82\uC758 \uB0B4\uC6A9 \uD14D\uC2A4\uD2B8\uC785\uB2C8\uB2E4."
-  basicEnable: 0
+  basicEnable: 1
   linkedEventName: 
   optionTexts:
   - "\uD68D\uB4DD\uD55C\uB2E4"

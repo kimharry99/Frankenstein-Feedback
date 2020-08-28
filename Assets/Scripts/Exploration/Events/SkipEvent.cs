@@ -2,30 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkipEvent : ExplorationEvent
+[CreateAssetMenu]
+public class SkipEvent : RandomEncounterEvent
 {
     public override bool GetOptionEnable(int optionIndex)
     {
-        throw new System.NotImplementedException();
+        return true;
     }
 
     public override void Option0()
     {
-        throw new System.NotImplementedException();
+        FinishEvent(resultEvent[0]);
     }
 
-    public override void Option1()
+    public override void Option1() { }
+
+    public override void Option2() { }
+
+    public override void Option3() { }
+
+    protected override bool GetIsEnabled()
     {
-        throw new System.NotImplementedException();
+        return true;
     }
 
-    public override void Option2()
+    protected override int GetOptionCaseNumber(int optionNumber)
     {
-        throw new System.NotImplementedException();
-    }
-
-    public override void Option3()
-    {
-        throw new System.NotImplementedException();
+        return 0;
     }
 }

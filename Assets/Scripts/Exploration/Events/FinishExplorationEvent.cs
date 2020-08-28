@@ -51,7 +51,7 @@ public class FinishExplorationEvent : ExplorationEvent
 
     private void ReturnHome()
     {
-        FinishEvent(true);
+        FinishEvent(null, true);
         GameManager.Inst.ReturnHome();
         GameManager.Inst.OnTurnOver(1);
     }

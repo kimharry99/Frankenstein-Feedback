@@ -14,10 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 210120
   eventName: "\uC544\uBB34 \uC77C\uB3C4 \uC5C6\uC5C8\uB2E4_\uB3C4\uC2DC"
-  phase: 0
-  type: 0
+  phase: 1
   encounterProbabilty: 0
-  isFleeting: 0
   titleText: "\uB3C4\uC2DC\uB97C \uD0D0\uC0AC\uD558\uBA74\uC11C \uB531\uD788 \uB208\uC5D0
     \uB744\uB294 \uAC83\uC740 \uC5C6\uC5C8\uB2E4. "
   content: 

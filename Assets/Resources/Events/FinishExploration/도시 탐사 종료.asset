@@ -12,16 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af24c13c5e4524f4aade68d57e80baff, type: 3}
   m_Name: "\uB3C4\uC2DC \uD0D0\uC0AC \uC885\uB8CC"
   m_EditorClassIdentifier: 
-  id: 0
-  eventName: 
-  phase: 0
-  type: 0
-  encounterProbabilty: 0
-  isFleeting: 0
-  titleText: 
-  content: 
+  id: 11111
+  eventName: "\uB3C4\uC2DC \uD0D0\uC0AC \uC885\uB8CC"
+  phase: 2
+  encounterProbabilty: 100
+  titleText: "\uC0AC\uB78C \uC5C6\uB294 \uB3C4\uC2DC\uB294 \uACE0\uC694\uD558\uAE30\uB9CC
+    \uD558\uB2E4. "
+  content: "\uBA40\uC9C0 \uC54A\uC740 \uACF3\uC5D0 \uC0B0\uC774 \uBCF4\uC778\uB2E4. "
   basicEnable: 0
   linkedEventName: 
-  optionTexts: []
-  optionResultTexts: []
-  linkedRegion: {fileID: 0}
+  optionTexts:
+  - "\uB3C4\uC2DC\uB97C \uB2E4\uC2DC \uD0D0\uC0AC\uD55C\uB2E4"
+  - "\uC0B0\uC744 \uD0D0\uC0AC\uD55C\uB2E4"
+  - "\uC5F0\uAD6C\uC2E4\uB85C \uB3CC\uC544\uAC04\uB2E4"
+  optionResultTexts:
+  - 
+  - 
+  - 
+  linkedRegion: {fileID: 11400000, guid: 4d619907d1deb65419cba29e27846de5, type: 2}

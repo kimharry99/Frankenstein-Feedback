@@ -126,10 +126,17 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     /// <summary>
     /// 다음으로 등장할 Event를 선택한다.
     /// </summary>
-    public void SelectEvent()
+    /// <param name="event">현재 이벤트로 결정된 이벤트</param>
+    public void SelectEvent(ExplorationEvent @event = null)
     {
+        if(@event != null)
+        {
+            _currentEvent = @event;
+            return;
+        }
         if (phaseState == PhaseState.FinishingExploration)
         {
+            Debug.LogError("wrong case");
             _currentEvent = _currentRegion.finishExplorationEvents[0];
         }
         else if (phaseState == PhaseState.ItemDiscovery1 || phaseState == PhaseState.ItemDiscovery2)
@@ -137,7 +144,7 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
             _currentEvent = SelectEventFromArray(_itemDiscoveryEvents);
         }
         else if (phaseState == PhaseState.RandomEncounter)
-        { 
+        {
             _currentEvent = SelectEventFromArray(_randomEncounterEvents);
         }
     }
@@ -163,7 +170,7 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
         List<ExplorationEvent> enableEvents = new List<ExplorationEvent>();
         for(int i=0;i<events.Length;i++)
         {
-            if(events[i].isEnabled)
+            if(events[i].IsEnabled)
             {
                 enableEvents.Add(events[i]);
             }
@@ -245,7 +252,7 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     /// event선택이 종료된 후 후처리를 담당한다.
     /// </summary>
     /// <param name="isReturnHome"></param>
-    public void FinishEvent(ExplorationEvent.EventPhase eventPhase, bool isReturnHome = false)
+    public void FinishEvent(ExplorationEvent.EventPhase eventPhase, ExplorationEvent nextEvent = null, bool isReturnHome = false)
     {
         ExplorationUIManager.Inst.RemoveEventsFromButton();
         _currentEvent = null;
@@ -265,7 +272,7 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
                 objectState = ObjectState.SearchNextEvent;
                 ChangeToFollowingState();
                 Debug.Log(phaseState);
-                SelectEvent();
+                SelectEvent(nextEvent);
                 break;
             case ExplorationEvent.EventPhase.FinishingExploration:
                 if(!isReturnHome)
@@ -291,7 +298,7 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
             {
                 if (_currentRegion.possibleRandomEncounterEvents[i].eventName == _currentEvent.linkedEventName)
                 {
-                    _currentRegion.possibleRandomEncounterEvents[i].isEnabled = true;
+                    _currentRegion.possibleRandomEncounterEvents[i].IsEnabled = true;
                     break;
                 }
             }

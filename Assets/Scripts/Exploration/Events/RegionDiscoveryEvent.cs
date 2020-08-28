@@ -5,37 +5,40 @@ using System.Runtime.Serialization;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class RegionDiscoveryEvent : ExplorationEvent
+public class RegionDiscoveryEvent : RandomEncounterEvent
 {
-    public Region foundRegion;
     public override bool GetOptionEnable(int optionIndex)
     {
-        return true;
+        throw new NotImplementedException();
     }
 
     public override void Option0()
     {
-        UnlockRegion(foundRegion);
-        FinishEvent();
-    }
-    
-    private void UnlockRegion(Region foundRegion)
-    {
-        ExplorationManager.Inst.UnlockRegion(foundRegion);
+        throw new NotImplementedException();
     }
 
     public override void Option1()
     {
-        FinishEvent();
+        throw new NotImplementedException();
     }
 
     public override void Option2()
     {
-
+        throw new NotImplementedException();
     }
 
     public override void Option3()
     {
+        throw new NotImplementedException();
+    }
 
+    protected override bool GetIsEnabled()
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override int GetOptionCaseNumber(int optionNumber)
+    {
+        throw new NotImplementedException();
     }
 }
