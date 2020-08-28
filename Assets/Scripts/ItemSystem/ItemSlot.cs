@@ -14,13 +14,6 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Inventory inventory;
     public int indexInventory;
     private bool mouse_over = false;
-    void Update()
-    {
-        if (mouse_over)
-        {
-            Debug.Log("Mouse Over");
-        }
-    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -67,6 +60,15 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                     else
                     {
                         panelUse.SetActive(true);
+                        Consumable consumable = (Consumable)inventory.slotItem[indexInventory];
+                        if(consumable.IsConsumeEnable())
+                        {
+                            panelUse.transform.GetChild(0).GetComponent<Button>().interactable = true;
+                        }
+                        else
+                        {
+                            panelUse.transform.GetChild(0).GetComponent<Button>().interactable = false;
+                        }
                     }
                 }
             }
