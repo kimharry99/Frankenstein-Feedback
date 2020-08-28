@@ -39,7 +39,10 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     {
         allRegions = Resources.LoadAll<Region>("Regions").ToList();
         unlockedRegions.Add(allRegions.Find(x => x.regionName == "도시"));
-        ChangeRegion(null, "도시");
+        //ChangeRegion(null, "도시");
+        // for debugging
+        unlockedRegions.Add(allRegions.Find(x => x.regionName == "더미지역"));
+        ChangeRegion(null, "더미지역");
         // for debugging
         SelectEvent();
         SkipInterval();

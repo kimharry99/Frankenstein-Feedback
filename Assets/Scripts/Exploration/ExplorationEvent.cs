@@ -65,7 +65,7 @@ public abstract class ExplorationEvent : ScriptableObject, ISerializationCallbac
 
     public void OnAfterDeserialize()
     {
-        Debug.Log("event deserialize");
+        //Debug.Log("event deserialize");
         IsEnabled = basicEnable;
     }
 }
