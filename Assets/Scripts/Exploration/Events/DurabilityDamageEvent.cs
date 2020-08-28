@@ -48,9 +48,4 @@ public class DurabilityDamageEvent : StatConstraintEvent
     public override void Option3()
     {
     }
-
-    protected override bool GetIsEnabled()
-    {
-        return true;
-    }
 }

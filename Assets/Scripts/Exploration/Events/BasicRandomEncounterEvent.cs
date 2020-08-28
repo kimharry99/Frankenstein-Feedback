@@ -30,13 +30,4 @@ public class BasicRandomEncounterEvent : RandomEncounterEvent
 
     public override void Option3() { }
 
-    protected override bool GetIsEnabled()
-    {
-        return true;
-    }
-
-    protected override int GetOptionCaseNumber(int optionNumber)
-    {
-        return 0;
-    }
 }

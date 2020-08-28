@@ -25,14 +25,4 @@ public class SkipEvent : RandomEncounterEvent
     public override void Option2() { }
 
     public override void Option3() { }
-
-    protected override bool GetIsEnabled()
-    {
-        return true;
-    }
-
-    protected override int GetOptionCaseNumber(int optionNumber)
-    {
-        return 0;
-    }
 }

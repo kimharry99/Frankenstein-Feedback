@@ -46,12 +46,7 @@ public class StatConstraintEvent : RandomEncounterEvent
         throw new System.NotImplementedException();
     }
 
-    protected override bool GetIsEnabled()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    protected override int GetOptionCaseNumber(int optionNumber)
+    protected int GetOptionCaseNumber(int optionNumber)
     {
         if(!OptionLengthMatched())
         {
