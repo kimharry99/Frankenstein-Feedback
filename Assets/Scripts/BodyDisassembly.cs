@@ -5,9 +5,16 @@ using UnityEngine;
 
 public class BodyDisassembly : MonoBehaviour
 {
+    /// <summary>
+    /// 0: 가죽, 1: 고철, 2: 금가루, 3: 자연의 정수, 4: 질긴 가죽, 5: 기계 부품
+    /// </summary>
+    private int[] _bonusItemNum = new int[6];
+
     public void DisassembleItem(/* some parameters */)
     {
         int count = 0;
+
+        ResetBonusItemNum();
 
         for (int i = 29; i >= 0; i--)
         {
@@ -33,12 +40,23 @@ public class BodyDisassembly : MonoBehaviour
             return;
         }
 
+        NoticeDisassemble();
+        ResetBonusItemNum();
+
         GeneralUIManager.Inst.energy.value += HomeUIManager.Inst.disassembleEnergy;
         GeneralUIManager.Inst.UpdateEnergy();
 
         HomeUIManager.Inst.UpdateDisassemble();
 
         GameManager.Inst.OnTurnOver(1);
+    }
+
+    private void ResetBonusItemNum()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            _bonusItemNum[i] = 0;
+        }
     }
 
     public void GetBonusItem(BodyPart item)
@@ -53,6 +71,18 @@ public class BodyDisassembly : MonoBehaviour
         Slot[] rewardItems = bonusItemTable.GetTableData(item.race, item.grade, probabilityIndex);
         StorageManager.Inst.AddItemsToChest(rewardItems[0].slotItem, rewardItems[0].slotItemNumber);
         StorageManager.Inst.AddItemsToChest(rewardItems[1].slotItem, rewardItems[1].slotItemNumber);
+
+        int index = -1;
+        if (rewardItems[0].slotItem != null)
+        {
+            index = (rewardItems[0].slotItem.id % 10 == 1) ? (rewardItems[0].slotItem.id / 100 % 10) : 1;
+            _bonusItemNum[index] += rewardItems[0].slotItemNumber;
+        }
+        if (rewardItems[1].slotItem != null)
+        {
+            index = (rewardItems[1].slotItem.id % 10 == 1) ? (rewardItems[1].slotItem.id / 100 % 10) : 1;
+            _bonusItemNum[index] += rewardItems[1].slotItemNumber;
+        }
     }
 
     // 승윤 TODO : 
@@ -80,5 +110,24 @@ public class BodyDisassembly : MonoBehaviour
         {
             return 3;
         }
+    }
+
+    private void NoticeDisassemble()
+    {
+        HomeUIManager.Inst.panelNotice.SetActive(true);
+        HomeUIManager.Inst.textNotice.text = "";
+        if (_bonusItemNum[0] > 0)
+            HomeUIManager.Inst.textNotice.text += "가죽 " + _bonusItemNum[0] + "개, ";
+        if (_bonusItemNum[1] > 0)
+            HomeUIManager.Inst.textNotice.text += "고철 " + _bonusItemNum[1] + "개, ";
+        if (_bonusItemNum[2] > 0)
+            HomeUIManager.Inst.textNotice.text += "금가루 " + _bonusItemNum[2] + "개, ";
+        if (_bonusItemNum[3] > 0)
+            HomeUIManager.Inst.textNotice.text += "자연의 정수 " + _bonusItemNum[3] + "개, ";
+        if (_bonusItemNum[4] > 0)
+            HomeUIManager.Inst.textNotice.text += "질긴 가죽 " + _bonusItemNum[4] + "개, ";
+        if (_bonusItemNum[5] > 0)
+            HomeUIManager.Inst.textNotice.text += "기계 부품 " + _bonusItemNum[5] + "개, ";
+        HomeUIManager.Inst.textNotice.text += HomeUIManager.Inst.disassembleEnergy.ToString() + " 에너지를 획득했습니다.";
     }
 }
