@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a769393fd011504b8e89acee0672994, type: 3}
   m_Name: DummyCity
   m_EditorClassIdentifier: 
-  regionId: 99999
-  regionName: "\uB354\uBBF8"
+  regionId: 0
+  regionName: "\uB3C4\uC2DC"
   possibleItemDiscoveryEvents:
   - {fileID: 11400000, guid: 25e20a313caf01042aba44289e050250, type: 2}
   - {fileID: 11400000, guid: d9ad02a9b6e375942a1e5c8e73764703, type: 2}
   possibleRandomEncounterEvents:
-  - {fileID: 11400000, guid: d5529560c74d766439ff7cba6535b868, type: 2}
-  - {fileID: 11400000, guid: 50c873dbd358f1c4db92318153cbe5ae, type: 2}
+  - {fileID: 11400000, guid: b0347b6a3154029429c9befb3c169434, type: 2}
   skipRandomEncounterEvent: {fileID: 11400000, guid: 5eb1a1b1d4560da40b5a483c61f9a5e3,
     type: 2}

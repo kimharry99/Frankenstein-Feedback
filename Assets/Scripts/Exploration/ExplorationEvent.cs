@@ -62,7 +62,7 @@ public abstract class ExplorationEvent : ScriptableObject, ISerializationCallbac
     {
         if (isFleeting)
             isEnabled = false;
-        ExplorationManager.Inst.FinishEvent(isReturnHome); 
+        ExplorationManager.Inst.FinishEvent(phase ,isReturnHome); 
     }
 
     /// <summary>

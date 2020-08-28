@@ -38,8 +38,8 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     private void Start()
     {
         allRegions = Resources.LoadAll<Region>("Regions").ToList();
-        unlockedRegions.Add(allRegions.Find(x => x.regionName == "더미"));
-        ChangeRegion(null, "더미");
+        unlockedRegions.Add(allRegions.Find(x => x.regionName == "도시"));
+        ChangeRegion(null, "도시");
         // for debugging
         SelectEvent();
         SkipInterval();
@@ -252,25 +252,35 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     /// event선택이 종료된 후 후처리를 담당한다.
     /// </summary>
     /// <param name="isReturnHome"></param>
-    public void FinishEvent(bool isReturnHome = false)
+    public void FinishEvent(ExplorationEvent.EventPhase eventPhase, bool isReturnHome = false)
     {
         ExplorationUIManager.Inst.RemoveEventsFromButton();
-        if(phaseState != PhaseState.FinishingExploration)
-            explorationCnt++;
         _currentEvent = null;
-        if (!isReturnHome)
+        switch (eventPhase)
         {
-            if (phaseState != PhaseState.RandomEncounter)
-            {
+            case ExplorationEvent.EventPhase.SearchingItem:
+                explorationCnt++;
                 StartCoroutine(ExplorationUIManager.Inst.WaitForEncounter(_timeInterval));
-            }
-            else
-            {
-                _time = _timeInterval + 2.0f;
-            }
-            objectState = ObjectState.SearchNextEvent;
-            ChangeToFollowingState();
-            SelectEvent();
+                objectState = ObjectState.SearchNextEvent;
+                ChangeToFollowingState();
+                SelectEvent();
+                break;
+            case ExplorationEvent.EventPhase.RandomEncounter:
+                explorationCnt++;
+                SkipInterval();
+                objectState = ObjectState.SearchNextEvent;
+                ChangeToFollowingState();
+                SelectEvent();
+                break;
+            case ExplorationEvent.EventPhase.FinishingExploration:
+                if(!isReturnHome)
+                {
+                    StartCoroutine(ExplorationUIManager.Inst.WaitForEncounter(_timeInterval));
+                    objectState = ObjectState.SearchNextEvent;
+                    ChangeToFollowingState();
+                    SelectEvent();
+                }
+                break;
         }
     }
 
