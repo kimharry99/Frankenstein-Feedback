@@ -15,9 +15,7 @@ MonoBehaviour:
   id: 311110
   eventName: "\uD559\uAD50 \uD0D0\uC0AC \uC885\uB8CC"
   phase: 2
-  type: 0
   encounterProbabilty: 0
-  isFleeting: 0
   titleText: "\uAE08\uBC29\uC774\uB77C\uB3C4 \uADC0\uC2E0\uC774 \uB098\uC62C \uAC83
     \uAC19\uB2E4. "
   content: 

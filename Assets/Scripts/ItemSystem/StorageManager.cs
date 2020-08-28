@@ -223,6 +223,16 @@ public class StorageManager : SingletonBehaviour<StorageManager>
         return isSuccess;
     }
 
+    public bool AddItemsToInven(Item item, int n)
+    {
+        for(int i=0;i<n;i++)
+        {
+            if (!AddItemToInven(item))
+                return false;
+        }
+        return true;
+    }
+
     #endregion
 
     #region Move Methods

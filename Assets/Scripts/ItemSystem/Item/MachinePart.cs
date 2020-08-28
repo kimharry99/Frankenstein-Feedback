@@ -43,6 +43,7 @@ public class MachinePart : Consumable
 
     public override void UseItem()
     {
+        Debug.Log("기계부품 사용");
         EquippedBodyPart equippedBodyPart = Player.Inst.equippedBodyPart;
         if (IsConsumeEnable())
         {

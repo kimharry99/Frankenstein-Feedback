@@ -92,6 +92,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Consumable consumable;
         consumable = (Consumable)inventory.slotItem[indexButton];
         consumable.UseItem();
+        StorageManager.Inst.DeleteFromInven(indexButton);
         panelDiscard.SetActive(false);
         panelUse.SetActive(false);
     }

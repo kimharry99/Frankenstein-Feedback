@@ -27,7 +27,7 @@ public abstract class RandomEncounterEvent : ExplorationEvent
     {
         None = -1,
         RegionDiscovery,
-        ItemDiscovery,
+        PickUpItem,
         /// <summary>
         /// 조우
         /// </summary>
@@ -45,15 +45,22 @@ public abstract class RandomEncounterEvent : ExplorationEvent
     public ExplorationEvent[] resultEvent;
     [Tooltip("option0 번의 특수 결과 내용 결과가 갈리지 않으면 size는 0")]
     public List<string> option0CaseResult;
+    private bool _isUnlocked = true;
     private bool _isEncountered;
     public new bool IsEnabled 
     {
         get
         {
+            if (!_isUnlocked)
+                return false;
             // 일회용 이벤트인 경우
             if (isFleeting && _isEncountered)
                 return false;
             return GetIsEnabled();
+        }
+        set
+        {
+            _isUnlocked = value;
         }
     }
     protected new void FinishEvent(ExplorationEvent nextEvent = null, bool isReturnHome = false)
