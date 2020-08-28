@@ -137,41 +137,61 @@ public class RandomEncounterEvent : ExplorationEvent
 
     public override void Option0()
     {
+        DoOption(0);
+    }
+
+    public override void Option1()
+    {
+        DoOption(1);
+    }
+
+    public override void Option2()
+    {
+        DoOption(2);
+    }
+
+    public override void Option3()
+    {
+        DoOption(3);
+    }
+    public override bool GetOptionEnable(int optionIndex)
+    {
+        if (options.Length <= optionIndex)
+            return false;
+        return true;
+    }
+
+    public void DoOption(int optionNumber)
+    {
         int durabilityDamage;
         Case currentCase;
-        currentCase = options[0].cases[GetOptionCaseNumber(0)];
+        if (options[optionNumber].cases == null)
+            return;
+        currentCase = options[optionNumber].cases[GetOptionCaseNumber(optionNumber)];
 
         durabilityDamage = currentCase.durabilityDamage;
         if (durabilityDamage != 0)
         {
-            GetDamage(options[0].cases[0].durabilityDamage);
+            GetDamage(currentCase.durabilityDamage);
         }
+
+        Slot rewardItem = currentCase.rewardItem;
+        if(rewardItem.slotItem != null && rewardItem.slotItemNumber != 0)
+        {
+            if (StorageManager.Inst.inventory.GetFirstEmptySlot() != -1)
+            {
+                StorageManager.Inst.AddItemsToInven(rewardItem.slotItem, rewardItem.slotItemNumber);
+            }
+        }
+
         ExplorationUIManager.Inst.NoticeResultText(currentCase.resultString);
-        if(currentCase.resultEvent == null)
+        if (currentCase.resultEvent == null)
         {
             Debug.Log("result is not assigned");
             return;
         }
         FinishEvent(currentCase.resultEvent);
-    }
 
-    public override void Option1()
-    {
-        throw new NotImplementedException();
-    }
-
-    public override void Option2()
-    {
-        throw new NotImplementedException();
-    }
-
-    public override void Option3()
-    {
-        throw new NotImplementedException();
-    }
-    public override bool GetOptionEnable(int optionIndex)
-    {
-        return true;
     }
 #endregion
     private void GetDamage(int damage)
@@ -200,6 +220,8 @@ public class RandomEncounterEvent : ExplorationEvent
             return 0;
         }
         Option option = options[optionNumber];
+        if (option.cases.Length <= 1)
+            return 0;
         int constraintBase = 0;
         int caseBase = 0;
         for (int i = optionNumber; i > 0; i--)

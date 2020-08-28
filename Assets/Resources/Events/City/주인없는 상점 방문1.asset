@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f13ac42bfc0a964d9b1f0f940a040a3, type: 3}
+  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
   m_Name: "\uC8FC\uC778\uC5C6\uB294 \uC0C1\uC810 \uBC29\uBB381"
   m_EditorClassIdentifier: 
   id: 210101
@@ -23,16 +23,34 @@ MonoBehaviour:
   basicEnable: 1
   linkedEventName: 
   optionTexts:
-  - "\uB458\uB7EC\uBCF8\uB2E4 "
+  - "\uB458\uB7EC\uBCF8\uB2E4"
   - "\uC9C0\uB098\uCE5C\uB2E4"
   optionResultTexts:
-  - "\uC4F8\uB9CC\uD55C \uC1F3\uB369\uC774\uB4E4\uC744 \uCC59\uACBC\uB2E4. "
   - 
-  type: 1
+  - 
   isFleeting: 0
-  resultEvent:
-  - {fileID: 11400000, guid: eaa1998ee1943364c8e589808974f5ee, type: 2}
-  option0CaseResult: []
-  rewardItem:
-    slotItem: {fileID: 11400000, guid: d902c592e836a5a4599a2d42d0d6990a, type: 2}
-    slotItemNumber: 3
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: eaa1998ee1943364c8e589808974f5ee, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 11400000, guid: d902c592e836a5a4599a2d42d0d6990a, type: 2}
+        slotItemNumber: 3
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uC4F8\uB9CC\uD55C \uC1F3\uB369\uC774\uB4E4\uC744 \uCC59\uACBC\uB2E4. "
+    statConstraints: []
+    constraintPerCase: 
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: eaa1998ee1943364c8e589808974f5ee, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: 
+    statConstraints: []
+    constraintPerCase: 
