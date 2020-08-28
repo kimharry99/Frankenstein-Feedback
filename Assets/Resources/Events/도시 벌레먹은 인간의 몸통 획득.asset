@@ -13,16 +13,21 @@ MonoBehaviour:
   m_Name: "\uB3C4\uC2DC \uBC8C\uB808\uBA39\uC740 \uC778\uAC04\uC758 \uBAB8\uD1B5
     \uD68D\uB4DD"
   m_EditorClassIdentifier: 
-  id: 0
-  eventName: 
+  id: 110108
+  eventName: "\uB3C4\uC2DC \uBC8C\uB808\uBA39\uC740 \uC778\uAC04\uC758 \uBAB8\uD1B5
+    \uD68D\uB4DD"
   phase: 0
-  type: 0
-  encounterProbabilty: 0
+  type: 1
+  encounterProbabilty: 1
   isFleeting: 0
-  titleText: 
+  titleText: "\uBC8C\uB808\uBA39\uC740 \uC778\uAC04\uC758 \uBAB8\uD1B5\uC744 \uBC1C\uACAC\uD588\uB2E4!"
   content: 
-  basicEnable: 0
+  basicEnable: 1
   linkedEventName: 
-  optionTexts: []
-  optionResultTexts: []
-  foundItem: {fileID: 0}
+  optionTexts:
+  - "\uD68D\uB4DD\uD55C\uB2E4"
+  - "\uBC84\uB9B0\uB2E4"
+  optionResultTexts:
+  - "\uBC8C\uB808\uBA39\uC740 \uC778\uAC04\uC758 \uBAB8\uD1B5\uC744 \uD68D\uB4DD\uD588\uB2E4."
+  - 
+  foundItem: {fileID: 11400000, guid: b8d6b6d1ed89bb84ba154e1246b4a2a9, type: 2}
