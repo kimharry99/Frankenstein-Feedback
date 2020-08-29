@@ -105,11 +105,11 @@ public class RandomEncounterEvent : ExplorationEvent
     protected new void FinishEvent(ExplorationEvent nextEvent = null, bool isReturnHome = false)
     {
         _isEncountered = true;
-        if(nextEvent == null)
-        {
-            Debug.LogError("nextEvent is not assigned : " + eventName);
-            return;
-        }
+        //if(nextEvent == null)
+        //{
+        //    Debug.LogError("nextEvent is not assigned : " + eventName);
+        //    return;
+        //}
         ExplorationManager.Inst.FinishEvent(phase, nextEvent, isReturnHome);
     }
 
@@ -172,11 +172,11 @@ public class RandomEncounterEvent : ExplorationEvent
         }
 
         ExplorationUIManager.Inst.NoticeResultText(currentCase.resultString);
-        if (currentCase.resultEvent == null)
-        {
-            Debug.Log("result is not assigned");
-            return;
-        }
+        //if (currentCase.resultEvent == null)
+        //{
+        //    Debug.Log("result is not assigned");
+        //    return;
+        //}
         FinishEvent(currentCase.resultEvent);
 
     }
