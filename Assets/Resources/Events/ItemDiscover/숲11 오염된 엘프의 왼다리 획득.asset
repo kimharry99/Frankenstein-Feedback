@@ -15,9 +15,7 @@ MonoBehaviour:
   id: 130111
   eventName: "\uC232 \uC624\uC5FC\uB41C \uC5D8\uD504\uC758 \uC67C\uB2E4\uB9AC \uD68D\uB4DD"
   phase: 0
-  type: 1
   encounterProbabilty: 3
-  isFleeting: 0
   titleText: "\uC624\uC5FC\uB41C \uC5D8\uD504\uC758 \uC67C\uB2E4\uB9AC\uB97C \uBC1C\uACAC\uD588\uB2E4"
   content: 
   basicEnable: 1
@@ -26,6 +24,6 @@ MonoBehaviour:
   - "\uAC00\uC838\uAC04\uB2E4"
   - "\uBC84\uB9B0\uB2E4"
   optionResultTexts:
-  - "\uAC00\uC838\uAC04\uB2E4"
-  - "\uBC84\uB9B0\uB2E4"
+  - "\uC624\uC5FC\uB41C \uC5D8\uD504\uC758 \uC67C\uB2E4\uB9AC\uB97C \uD68D\uB4DD\uD55C"
+  - 
   foundItem: {fileID: 11400000, guid: 05688eb9730b4ed4688f2d10d1c18453, type: 2}
