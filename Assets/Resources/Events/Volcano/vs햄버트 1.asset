@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
+  m_Name: "vs\uD584\uBC84\uD2B8 1"
+  m_EditorClassIdentifier: 
+  id: 0
+  eventName: "vs\uD584\uBC84\uD2B8 1"
+  phase: 1
+  encounterProbabilty: 0
+  titleText: "\uC11C\uB85C\uC758 \uBC14\uC9C0\uCDA4\uC744 \uB2E8\uB2E8\uD788 \uBD99\uC7A1\uACE0,
+    \uC900\uBE44\u2026 \uC77C\uC5B4\uC11C\uC11C, \uC2DC\uC791!"
+  content: "\uD584\uBC84\uD2B8\uAC00 \uBA3C\uC800 \uAE30\uC220\uB85C \uB4E4\uC5B4\uC628\uB2E4!"
+  basicEnable: 0
+  optionTexts:
+  - "\uADF8\uB0E5 \uBC00\uC5B4\uBD99\uC778\uB2E4!"
+  - "\uAE30\uC220\uC744 \uBC84\uD2F4\uB2E4!"
+  optionResultTexts:
+  - 
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 322d646381dfe4a4c98cd6e05ca32785, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uB2E4\uB9AC\uB97C \uAC78\uB838\uC9C0\uB9CC, \uB0B4\uAC00 \uB354
+        \uC138\uAC8C \uBC00\uC5B4\uBD99\uC774\uBA74\u2026 \uD761! \uD584\uBC84\uD2B8\uAC00
+        \uB4A4\uB85C \uB118\uC5B4\uAC14\uB2E4!"
+      linkedEventName: 
+    - resultEvent: {fileID: 11400000, guid: 1eb805046fbccd8438415f87e25e7e95, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uBC14\uB85C \uB2E4\uB9AC\uAC00 \uAC78\uB824\uBC84\uB838\uACE0,
+        \uB0B4 \uD798\uC5D0 \uADE0\uD615\uC744 \uC783\uACE0 \uB118\uC5B4\uC838\uBC84\uB838\uB2E4\u2026"
+      linkedEventName: 
+    statConstraints:
+    - moreOrLess: 1
+      constraintName: 0
+      statConstraint: 50
+    constraintPerCase: 0100000000000000
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 13a63a232b0c45d40a2ae350d099e160, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uD584\uBC84\uD2B8\uAC00 \uBE60\uB974\uAC8C \uB4E4\uC5B4\uC654\uC9C0\uB9CC,
+        \uB0B4 \uB2E4\uB9AC\uB294 \uAFC8\uCA4D\uB3C4 \uD558\uC9C0 \uC54A\uB294\uB2E4!"
+      linkedEventName: 
+    - resultEvent: {fileID: 11400000, guid: 1eb805046fbccd8438415f87e25e7e95, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uBC84\uD168\uBCF4\uB824 \uD588\uC9C0\uB9CC \uC774\uBBF8 \uB0B4
+        \uBC1C\uC740 \uACF5\uC911\uC5D0 \uB5A0\uBC84\uB838\uACE0, \uB0B4 \uBAB8\uB3C4
+        \uADF8\uB300\uB85C \uB118\uC5B4\uC838\uBC84\uB838\uB2E4\u2026"
+      linkedEventName: 
+    statConstraints:
+    - moreOrLess: 1
+      constraintName: 1
+      statConstraint: 20
+    constraintPerCase: 0100000000000000

@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
+  m_Name: "\uD654\uC0B0\uCC38\uCE58 \uBAB0\uC7743"
+  m_EditorClassIdentifier: 
+  id: 0
+  eventName: "\uD654\uC0B0\uCC38\uCE58 \uBAB0\uC7743"
+  phase: 1
+  encounterProbabilty: 0
+  titleText: "\uD584\uBC84\uD2B8\uB294 \uAE30\uD68C\uB97C \uB193\uCE58\uC9C0 \uC54A\uACE0
+    \uB9DD\uC744 \uB4E4\uC5B4\uC62C\uB838\uB2E4! \"\uC7A1\uC558\uB2E4! \uD06C\uD559\uD559,
+    \uB0B4 \uBAB8\uB6B1\uC774\uB9CC\uD558\uAD70!\""
+  content: "\uAC11\uC790\uAE30, \uCC38\uCE58\uAC00 \uD384\uB5A1 \uB6F0\uC5B4\uC62C\uB790\uB2E4!
+    \"\uC6B0\uC641!\""
+  basicEnable: 0
+  optionTexts:
+  - "\uC548\uB3FC!"
+  optionResultTexts:
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 51eeacb9af62efa4e82bec4d4a21a2c6, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uBC18\uC0AC\uC801\uC73C\uB85C \uCC38\uCE58\uC758 \uC544\uAC00\uBBF8\uB97C
+        \uB09A\uC544\uCC58\uB2E4! \"\uB098\uC774\uC2A4! \uB193\uCE60 \uBED4\uD588\uB294\uB370,
+        \uC798\uD588\uB2E4!\""
+      linkedEventName: 
+    - resultEvent: {fileID: 11400000, guid: edef36baf90be77448a65e9593cf744d, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uBC18\uC751\uD560 \uC0C8\uB3C4 \uC5C6\uC774 \uCC38\uCE58\uB294
+        \uBB3C\uB85C \uB3CC\uC544\uAC14\uB2E4\u2026"
+      linkedEventName: 
+    statConstraints:
+    - moreOrLess: 1
+      constraintName: 2
+      statConstraint: 40
+    constraintPerCase: 0100000000000000

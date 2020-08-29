@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
+  m_Name: "\uC624\uB8E8\uADF8\uC640 \uD55C\uD310"
+  m_EditorClassIdentifier: 
+  id: 0
+  eventName: "\uC624\uB8E8\uADF8\uC640 \uD55C\uD310"
+  phase: 1
+  encounterProbabilty: 0
+  titleText: "\"\uD584\uBC84\uD2B8 \uC774 \uC790\uC2DD\uC774 \uB0A8\uC758 \uC774\uB984\uC744
+    \uB9C9 \uD314\uC5B4! \uC544, \uBB3C\uB860 \uB3C4\uC804\uC740 \uD658\uC601\uD55C\uB2E4!\""
+  content: "\"\uC190\uB2D8\uC774\uB77C \uB54C\uB9AC\uAE30 \uBBF8\uC548\uD558\uC9C0\uB9CC,
+    \uC800\uAE30 \uC62C\uB77C\uAC00\uBA74 \uBD10\uC8FC\uB294 \uAC74 \uC5C6\uB2E4!
+    \uC5B4\uB54C, \uD55C \uD310 \uD560\uAC70\uB0D0?\""
+  basicEnable: 0
+  optionTexts:
+  - "\uD55C \uD310 \uB5A0!"
+  - "\uC544\u2026 \uC544\uB2C8\u2026"
+  optionResultTexts:
+  - 
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: eadb8d91c5834104d9f92c11ced266e7, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\"\uC624\uB8E8\uADF8 \uB108, \uC560\uC1A1\uC774\uD55C\uD14C
+        \uD55C \uB300 \uB9DE\uACE0 \uBED7\uB294 \uAC70 \uC544\uB2C8\uC9C0? \uD06C\uD559\uD559!\"
+        \uC625\uD0C0\uACE4\uC5D0 \uC62C\uB77C\uAC00\uC790, \uD584\uBC84\uD2B8\uAC00
+        \uCCA0\uCC3D\uC744 \uB2EB\uC558\uB2E4. \uCCA0\uCEF9!"
+      linkedEventName: 
+    statConstraints: []
+    constraintPerCase: 
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 0b9a3830fb407a947a27b5c68a5128d7, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\"\uADF8\uB798, \uC798 \uC0DD\uAC01\uD588\uB2E4. \uD131\uBF08\uBCF4\uB2E4\uB294
+        \uACE0\uAE30\uAC00 \uC911\uC694\uD558\uC9C0.\""
+      linkedEventName: 
+    statConstraints: []
+    constraintPerCase: 

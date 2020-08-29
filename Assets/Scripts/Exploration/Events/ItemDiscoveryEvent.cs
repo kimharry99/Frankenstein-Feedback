@@ -37,13 +37,13 @@ public class ItemDiscoveryEvent : ExplorationEvent
 
     public override void Option1()
     {
-        ExplorationUIManager.Inst.NoticeResultText(optionResultTexts[0]);
+        ExplorationUIManager.Inst.NoticeResultText(optionResultTexts[1]);
         FinishEvent();
     }
 
     public override void Option2()
     {
-        ExplorationUIManager.Inst.NoticeResultText(optionResultTexts[0]);
+        ExplorationUIManager.Inst.NoticeResultText(optionResultTexts[2]);
         Debug.Log(optionTexts[2] + "이 선택됨");
         FinishEvent();
     }
@@ -72,5 +72,39 @@ public class ItemDiscoveryEvent : ExplorationEvent
         }
         // 아이템 발견을 실패한 경우
         return true;
+    }
+
+    [ContextMenu("Make Event \'을\'")]
+    private void MakeEvent1()
+    {
+        if(foundItem != null)
+        {
+            eventName = foundItem.itemName + "획득";
+            phase = EventPhase.SearchingItem;
+            titleText = foundItem.itemName + "을 발견했다.";
+            optionTexts = new List<string>();
+            optionTexts.Add("가져간다");
+            optionTexts.Add("버린다");
+            optionResultTexts = new List<string>();
+            optionResultTexts.Add(foundItem.itemName + "을 획득했다.");
+            optionResultTexts.Add("");
+        }
+    }
+
+    [ContextMenu("Make Event \'를\'")]
+    private void MakeEvent2()
+    {
+        if (foundItem != null)
+        {
+            eventName = foundItem.itemName + "획득";
+            phase = EventPhase.SearchingItem;
+            titleText = foundItem.itemName + "를 발견했다.";
+            optionTexts = new List<string>();
+            optionTexts.Add("가져간다");
+            optionTexts.Add("버린다");
+            optionResultTexts = new List<string>();
+            optionResultTexts.Add(foundItem.itemName + "를 획득했다.");
+            optionResultTexts.Add("");
+        }
     }
 }

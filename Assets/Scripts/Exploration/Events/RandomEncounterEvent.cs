@@ -102,6 +102,7 @@ public class RandomEncounterEvent : ExplorationEvent
         }
     }
 
+    private Case _selectedCase;
     protected override void FinishEvent(ExplorationEvent nextEvent = null, bool isReturnHome = false)
     {
         _isEncountered = true;
@@ -110,7 +111,20 @@ public class RandomEncounterEvent : ExplorationEvent
         //    Debug.LogError("nextEvent is not assigned : " + eventName);
         //    return;
         //}
+        UnlockLinkedEvent();
         ExplorationManager.Inst.FinishEvent(phase, nextEvent, isReturnHome);
+    }
+
+    /// <summary>
+    /// 연계되는 퀘스트를 활성화한다.
+    /// </summary>
+    protected void UnlockLinkedEvent()
+    {
+        if (_selectedCase.linkedEventName != "")
+        {
+            ExplorationManager.Inst.UnlockLinkedEvent(_selectedCase.linkedEventName);
+            Debug.Log("Unlock " + _selectedCase.linkedEventName);
+        }
     }
 
     protected override bool GetIsEnabled()
@@ -181,6 +195,7 @@ public class RandomEncounterEvent : ExplorationEvent
         if (options[optionNumber].cases == null)
             return;
         currentCase = options[optionNumber].cases[GetOptionCaseNumber(optionNumber)];
+        _selectedCase = currentCase;
 
         durabilityDamage = currentCase.durabilityDamage;
         if (durabilityDamage != 0)
