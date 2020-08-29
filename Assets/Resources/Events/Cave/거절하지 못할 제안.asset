@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
+  m_Name: "\uAC70\uC808\uD558\uC9C0 \uBABB\uD560 \uC81C\uC548"
+  m_EditorClassIdentifier: 
+  id: 0
+  eventName: "\uAC70\uC808\uD558\uC9C0 \uBABB\uD560 \uC81C\uC548"
+  phase: 1
+  encounterProbabilty: 0
+  titleText: "\uACE0\uBE14\uB9B0\uCE58\uACE0 \uAF64 \uAE54\uB054\uD55C \uC815\uC7A5\uC744
+    \uC785\uACE0 \uC788\uAD70\u2026 \uAF64 \uB192\uC740 \uC9C1\uCC45\uC5D0 \uC788\uB294
+    \uC790\uC778 \uAC83 \uAC19\uB2E4."
+  content: "\"\uC778\uADFC\uC5D0 \uC790\uB9AC\uC7A1\uC740 \uBA4D\uCCAD\uD558\uACE0
+    \uB369\uCE58 \uD070 \uACE0\uBE14\uB9B0\uB4E4\uC774 \uC6B0\uB9AC\uB97C \uBAB0\uC544\uB0B4\uB824\uACE0
+    \uD55C\uB2E4\uB124. \uB369\uCE58 \uD070 \uB188\uB4E4\uC774 \uC791\uC740 \uC6B0\uB9AC\uB97C
+    \uBCF4\uD638\uD574\uC8FC\uC9C0\uB294 \uBABB\uD560 \uB9DD\uC815... \uADF8\uB798\uC11C,
+    \uC6B0\uB9AC\uB97C \uB3C4\uC640\uC8FC\uACA0\uB098? \uC131\uACF5\uD55C\uB2E4\uBA74
+    \uD3D0\uD558\uAED8\uC11C \uC9C1\uC811 \uC790\uB124\uC5D0\uAC8C \uBCF4\uBB3C\uC744
+    \uD558\uC0AC\uD560 \uAC83\uC774\uB124.\" "
+  basicEnable: 0
+  optionTexts:
+  - "\uC218\uB77D\uD55C\uB2E4"
+  - "\uAC70\uC808\uD55C\uB2E4"
+  optionResultTexts:
+  - 
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: ea25042c1f5cb564586e67d99d365616, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\"\uACE0\uB9D9\uB124! \uC790\uB124\uB294 \uC6B0\uB9AC\uC5D0\uAC8C
+        \uC815\uB9D0 \uD070 \uB3C4\uC6C0\uC774 \uB420\uAC70\uC57C.\""
+      linkedEventName: 
+    statConstraints: []
+    constraintPerCase: 
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 04e59023b7deaaa488e866281f89f7da, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uBB50 \uC5B4\uCA54 \uC218 \uC5C6\uAD70."
+      linkedEventName: 
+    statConstraints: []
+    constraintPerCase: 

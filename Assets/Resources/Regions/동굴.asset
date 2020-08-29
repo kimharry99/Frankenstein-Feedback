@@ -49,6 +49,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cf3b492bd6da28843b4254fe0d5d93f6, type: 2}
   - {fileID: 11400000, guid: dc2391137e53ec14797a6df1df878b6f, type: 2}
   - {fileID: 11400000, guid: b38083fbd70167b4080766fb5056e4a5, type: 2}
+  - {fileID: 11400000, guid: db82b063fdcd1c7459853a0b092b3054, type: 2}
+  - {fileID: 11400000, guid: 149940eb62bf9d649bd5d2640f8d25e8, type: 2}
+  - {fileID: 11400000, guid: ae3d11c2c29f0f249bdf3c10fa9d4b5b, type: 2}
+  - {fileID: 11400000, guid: e66ccc78bacb9ca4abb752a0b35cc0f5, type: 2}
+  - {fileID: 11400000, guid: 4d671d27d4f98e84a9b48914cd01d7e9, type: 2}
+  - {fileID: 11400000, guid: ea25042c1f5cb564586e67d99d365616, type: 2}
+  - {fileID: 11400000, guid: 9fc130c82fe27d44a8470e06e4a5bf21, type: 2}
+  - {fileID: 11400000, guid: 3b88c4300a80ea84aa4bcba7fefd1487, type: 2}
+  - {fileID: 11400000, guid: b83fbf06c6dbbb545877293dadd2ab00, type: 2}
+  - {fileID: 11400000, guid: b7393ff6b446c644e921c57d4eb4d801, type: 2}
   skipRandomEncounterEvent: {fileID: 11400000, guid: 5f2553271a48b1a40b22fcda412e0af0,
     type: 2}
   finishExplorationEvents:

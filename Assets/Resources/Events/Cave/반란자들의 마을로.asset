@@ -37,7 +37,7 @@ MonoBehaviour:
   isFleeting: 1
   options:
   - cases:
-    - resultEvent: {fileID: 11400000, guid: 04e59023b7deaaa488e866281f89f7da, type: 2}
+    - resultEvent: {fileID: 11400000, guid: db82b063fdcd1c7459853a0b092b3054, type: 2}
       durabilityDamage: 0
       rewardItem:
         slotItem: {fileID: 11400000, guid: 6b8b9b55cd5a125428680803ebc58949, type: 2}

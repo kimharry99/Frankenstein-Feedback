@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
+  m_Name: "\u3134\uACE0\uBE14\uB9B0\uB4E4\uC5D0 \uB300\uD558\uC5EC"
+  m_EditorClassIdentifier: 
+  id: 0
+  eventName: "\uACE0\uBE14\uB9B0\uB4E4\uC5D0 \uB300\uD558\uC5EC"
+  phase: 1
+  encounterProbabilty: 0
+  titleText: "\uBCF4\uC548\uAD00\uC774\uB77C\uB354\uB2C8 \uC815\uB9D0 \uC2F8\uC6C0
+    \uC798\uD558\uAC8C \uC0DD\uACBC\uAD70."
+  content: "\"\"\"\uC608\uC804\uC5D4 \uB098\uB3C4 \uC655\uC744 \uC9C0\uD0A4\uB294
+    \uC815\uC608\uBCD1\uC774\uC5C8\uB2E4. \uADF8\uB54C\uB3C4 \uC717\uB300\uAC00\uB9AC\uB4E4\uC740
+    \uC544\uC8FC \uD3EC\uC545\uD55C \uB188\uB4E4\uC774\uC5C8\uC9C0. \uADF8\uB4E4\uC740
+    \uB3C4\uC801\uC9C8\uC744 \uBC25 \uBA39\uB4EF\uC774 \uD558\uACE0 \uC628\uAC16
+    \uC545\uD589\uC744 \uC800\uC9C8\uB800\uB294\uB370, \uADF8\uC5D0 \uD611\uC870\uD558\uC9C0
+    \uC54A\uB294 \uC6B0\uB9AC\uAC00 \uC544\uB2C8\uAF2C\uC6E0\uB294\uC9C0, \uC544\uB2D8
+    \uBC25\uADF8\uB987\uC744 \uBE8F\uAE38\uAE4C \uB450\uB824\uC6E0\uB294\uC9C0 \uBAA8\uB974\uACA0\uC9C0\uB9CC
+    \uC5B4\uCA0C\uB4E0 \uB3CC\uC5F0\uBCC0\uC774\uB77C\uB294 \uC2DC\uB365\uC796\uC740
+    \uD551\uACC4\uB97C \uB300\uBA74\uC11C \uC6B0\uB9AC\uB97C \uBC16\uC73C\uB85C \uB0B4\uBAB0\uC558\uB2E4.
+    \uC774\uC820... \uC815\uC758\uB97C \uC2E4\uD604\uD560 \uB54C\uB2E4.\"\"\"  "
+  basicEnable: 0
+  optionTexts:
+  - "\uC544\uAE4C \uBCF8 \uAD34\uC218\uC5D0 \uB300\uD574 \uBB3C\uC5B4\uBCF8\uB2E4."
+  - "\uCC38\uC804\uD55C\uB2E4"
+  - "\uB9C8\uC74C\uC744 \uBC14\uAFBC\uB2E4"
+  optionResultTexts:
+  - 
+  - 
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 0}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 11400000, guid: 77d75f85848e7f443ba52d5ee3478323, type: 2}
+        slotItemNumber: 557
+      resultString: "\"\uACE0\uAE43\uB369\uC5B4\uB9AC\uB77C\uACE0 \uD558\uAE34 \uD588\uC9C0\uB9CC
+        \uBA39\uC744 \uAC83\uC740 \uC544\uB2C8\uACE0, \uADF8 \uB140\uC11D\uB4E4\uC740
+        \uC778\uAC04\uB4E4\uC758 \uD751\uB9C8\uBC95 \uD30C\uD3B8\uC744 \uC774\uC6A9\uD574
+        \uB9CC\uB4E4\uC5B4\uB0B8 \uBCD1\uAE30\uB4E4\uC774\uB2E4. \uACE0\uBE14\uB9B0
+        \uB3C4\uC801 \uB188\uB4E4\uC744 \uB9CE\uC774 \uC0DD\uD3EC\uD574\uC654\uB294\uB370,
+        \uADF8 \uB188\uB4E4\uC744 \uACE0\uBE14\uB9B0\uC758 \uD30C\uBA78\uBC16\uC5D0
+        \uBAA8\uB974\uB294 \uAD34\uBB3C\uB85C \uB9CC\uB4E0\uAC70\uC9C0. \uD3EC\uC545\uD55C
+        \uBCF8\uC131\uC740 \uADF8\uB300\uB85C\uC9C0\uB9CC \uB0A0\uB6F0\uAE30\uB9CC
+        \uD574\uB3C4 \uC6B0\uB9AC\uC758 \uC804\uC7C1\uC5D0 \uD070 \uB3C4\uC6C0\uC774
+        \uB420 \uAC70\uC57C. \uC544, \uC544\uAE4C \uD55C \uB188\uC744 \uC8FD\uC600\uB2E4\uACE0
+        \uBBF8\uC548\uD574\uD560 \uD544\uC698 \uC5C6\uB2E4. \uC8FD\uC740 \uAC83 \uAC19\uC544\uB3C4
+        \uAE08\uBC29 \uB2E4\uC2DC \uC77C\uC5B4\uB0A0 \uD14C\uB2C8\uAE4C.\""
+      linkedEventName: 
+    statConstraints: []
+    constraintPerCase: 
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 149940eb62bf9d649bd5d2640f8d25e8, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\"\uC791\uC804\uC740 \uBAA8\uB450 \uC9DC\uC5EC\uC788\uC5B4.
+        \uB10C \uB098\uB9CC \uB530\uB77C\uC624\uBA74 \uB41C\uB2E4.\""
+      linkedEventName: 
+    statConstraints: []
+    constraintPerCase: 
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 04e59023b7deaaa488e866281f89f7da, type: 2}
+      durabilityDamage: 5
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 11400000, guid: 6b8b9b55cd5a125428680803ebc58949, type: 2}
+        slotItemNumber: 1
+      resultString: "\uAC70\uB300 \uACE0\uBE14\uB9B0\uC740 \uC7A0\uC2DC \uB098\uB97C
+        \uB178\uB824\uBCF4\uB354\uB2C8, \uC774\uB0B4 \uB0B4 \uBA71\uC0B4\uC744 \uB365\uC11D
+        \uC7A1\uACE0 \uB0B4\uD33D\uAC1C\uCCE4\uB2E4. \"\uB124\uB188\u2026 \uCCA9\uC790\uC778\uAC00?
+        \uB3C4\uB9DD\uAC08 \uAE30\uD68C\uB97C \uC8FC\uACA0\uB2E4. \uC774 \uB3D9\uAD74\uC5D0\uC11C
+        \uB2E4\uC2DC \uB9C8\uC8FC\uCE5C\uB2E4\uBA74 \uCCA9\uC790\uB77C\uACE0 \uAC04\uC8FC\uD560\uD14C\uB2C8...
+        \uB2E4\uC2DC\uB294 \uB208\uC5D0 \uB744\uC9C0 \uB9C8\uB77C.\""
+      linkedEventName: 
+    statConstraints: []
+    constraintPerCase: 
