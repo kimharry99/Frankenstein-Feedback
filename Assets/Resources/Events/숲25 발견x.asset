@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 130125
   eventName: "\uC232 \uBC1C\uACACx"
   phase: 0
-  type: 0
+  type: 1
   encounterProbabilty: 10
   isFleeting: 0
   titleText: "\uC774\uACF3\uC800\uACF3 \uC5F4\uC2EC\uD788 \uB4E4\uC464\uC154\uBD24\uC9C0\uB9CC

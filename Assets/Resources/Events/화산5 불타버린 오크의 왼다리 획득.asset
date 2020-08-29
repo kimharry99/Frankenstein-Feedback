@@ -20,9 +20,9 @@ MonoBehaviour:
   type: 1
   encounterProbabilty: 2
   isFleeting: 0
-  titleText: 
-  content: "\uBD88\uD0C0\uBC84\uB9B0 \uC624\uD06C\uC758 \uC67C\uB2E4\uB9AC\uB97C
+  titleText: "\uBD88\uD0C0\uBC84\uB9B0 \uC624\uD06C\uC758 \uC67C\uB2E4\uB9AC\uB97C
     \uBC1C\uACAC\uD588\uB2E4 "
+  content: 
   basicEnable: 1
   linkedEventName: 
   optionTexts:

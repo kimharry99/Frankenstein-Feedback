@@ -19,7 +19,7 @@ MonoBehaviour:
   phase: 0
   type: 1
   encounterProbabilty: 1.5
-  isFleeting: 1
+  isFleeting: 0
   titleText: "\uC0DD\uAE30 \uC783\uC740 \uC5D8\uD504\uC758 \uC624\uB978\uD314\uC744
     \uBC1C\uACAC\uD588\uB2E4"
   content: 

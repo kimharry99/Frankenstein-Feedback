@@ -20,7 +20,7 @@ MonoBehaviour:
   isFleeting: 0
   titleText: 
   content: 
-  basicEnable: 0
+  basicEnable: 1
   linkedEventName: 
   optionTexts: []
   optionResultTexts: []
