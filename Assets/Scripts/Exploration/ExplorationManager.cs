@@ -20,7 +20,6 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
         FinishingExploration,
     }
 
-    [SerializeField] // for debugging
     private ItemDiscoveryEvent[] _itemDiscoveryEvents;
     private ExplorationEvent[] _randomEncounterEvents;
     [SerializeField]
@@ -42,7 +41,7 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
         //ChangeRegion(null, "도시");
         // for debugging
         unlockedRegions.Add(allRegions.Find(x => x.regionName == "더미지역"));
-        ChangeRegion(null, "더미지역");
+        ChangeRegion(null, "동굴");
         // for debugging
         SelectEvent();
         SkipInterval();
@@ -79,11 +78,11 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
 
     public void ChangeRegion(Region region = null, string regionName = "", int regionId = 0)
     {
-        if(region == null)
-            _currentRegion = unlockedRegions.Find(x => (x.regionId == regionId || x.regionName == regionName));
+        if (region == null)
+            _currentRegion = allRegions.Find(x => (x.regionId == regionId || x.regionName == regionName));
         else
         {
-            if(unlockedRegions.Contains(region))
+            if (unlockedRegions.Contains(region))
             {
                 _currentRegion = region;
             }
@@ -312,19 +311,19 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     /// <summary>
     /// 연계되는 이벤트를 활성화한다.
     /// </summary>
-    public void UnlockLinkedEvent()
+    public void UnlockLinkedEvent(string linkedEventName)
     {
-        //if (_currentEvent.linkedEventName != "")
-        //{
-        //    for (int i = 0; i < _currentRegion.possibleRandomEncounterEvents.Length; i++)
-        //    {
-        //        if (_currentRegion.possibleRandomEncounterEvents[i].eventName == _currentEvent.linkedEventName)
-        //        {
-        //            _currentRegion.possibleRandomEncounterEvents[i].IsEnabled = true;
-        //            break;
-        //        }
-        //    }
-        //}
+        if (linkedEventName != "")
+        {
+            for (int i = 0; i < _currentRegion.possibleRandomEncounterEvents.Length; i++)
+            {
+                if (_currentRegion.possibleRandomEncounterEvents[i].eventName == linkedEventName)
+                {
+                    _currentRegion.possibleRandomEncounterEvents[i].IsEnabled = true;
+                    break;
+                }
+            }
+        }
     }
 
     /// <summary>
