@@ -49,6 +49,8 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     [Header("Notice")]
     public Text textNotice;
 
+
+
     #region chest methods
     //public void UpdateChestSlot(int slotNumber)
     //{
@@ -737,4 +739,6 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
             }
         }
     }
+
+
 }
