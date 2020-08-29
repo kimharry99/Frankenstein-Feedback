@@ -144,6 +144,7 @@ public class RandomEncounterEvent : ExplorationEvent
     {
         DoOption(3);
     }
+    
     public override bool GetOptionEnable(int optionIndex)
     {
         if (options.Length <= optionIndex)
@@ -248,7 +249,7 @@ public class RandomEncounterEvent : ExplorationEvent
     /// </summary>
     /// <param name="optionNumber"></param>
     /// <returns></returns>
-    private int GetOptionCaseNumber(int optionNumber)
+    protected int GetOptionCaseNumber(int optionNumber)
     {
         if (!CaseLengthMatched())
         {
