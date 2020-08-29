@@ -398,7 +398,7 @@ public class StorageManager : SingletonBehaviour<StorageManager>
         int j;
         int temp;
         Item tmp;
-         for(int i = 0; i < Chest.CAPACITY; i++)
+         for(int i = 0; i < Chest.CAPACITY-1; i++)
         {
             if (chest.slotItem[i] == null)
             {

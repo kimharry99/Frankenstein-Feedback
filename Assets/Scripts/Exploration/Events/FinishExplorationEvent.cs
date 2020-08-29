@@ -7,6 +7,9 @@ public class FinishExplorationEvent : ExplorationEvent
 {
     [Tooltip("null : 연구소로 복귀")]
     public Region[] linkedRegions;
+
+    public override bool IsEnabled { get; set; }
+
     /// <summary>
     /// 다른 지역을 탐사한다.
     /// </summary>
@@ -72,5 +75,15 @@ public class FinishExplorationEvent : ExplorationEvent
     {
         GameManager.Inst.OnTurnOver(1);
         FinishEvent();
+    }
+
+    protected override void FinishEvent(ExplorationEvent nextEvent = null, bool isReturnHome = false)
+    {
+        ExplorationManager.Inst.FinishEvent(phase, nextEvent, isReturnHome);
+    }
+
+    protected override bool GetIsEnabled()
+    {
+        return true;
     }
 }

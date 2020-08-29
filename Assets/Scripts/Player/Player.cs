@@ -281,10 +281,12 @@ public class Player : SingletonBehaviour<Player>
     {
         for (int i = 0; i < 6; i++)
         {
-            Debug.Log(equippedBodyParts[i].itemName);
+            if(equippedBodyParts[i] != null)
+                Debug.Log(equippedBodyParts[i].itemName);
         }
         BodyPart equipping = equippedBodyParts[(int)bodyPart.bodyPartType];
-        GameManager.Inst.bodyDisassembly.GetBonusItem(equipping);
+        if(equipping != null)
+            GameManager.Inst.bodyDisassembly.GetBonusItem(equipping);
         equippedBodyParts[(int)bodyPart.bodyPartType] = bodyPart;
 
         return equipping;
@@ -303,8 +305,11 @@ public class Player : SingletonBehaviour<Player>
     /// bodyPartType에 해당하는 플레이어 신체 스프라이트를 업데이트한다.
     /// </summary>
     private void ChangePlayerBodyPartSprite(BodyPartType bodyPartType)
-    { 
-        Player.Inst.transform.GetChild((int)bodyPartType).gameObject.GetComponent<SpriteRenderer>().sprite = equippedBodyPart.bodyParts[(int)bodyPartType].bodyPartSprite;
+    {
+        if (equippedBodyPart.bodyParts[(int)bodyPartType] != null)
+            transform.GetChild((int)bodyPartType).gameObject.GetComponent<SpriteRenderer>().sprite = equippedBodyPart.bodyParts[(int)bodyPartType].bodyPartSprite;
+        else
+            transform.GetChild((int)bodyPartType).gameObject.GetComponent<SpriteRenderer>().sprite = null;
     }
 
     /// <summary>
@@ -364,30 +369,56 @@ public class Player : SingletonBehaviour<Player>
     /// <param name="returnedBodyPart"> 어떤 신체가 플레이어에게서 탈착되었을 경우 사용한다.</param>
     private void UpdateBodyAffinity(int[] raceAffinity, BodyPart playerBodyPart, BodyPart returnedBodyPart = null)
     {
-        switch (playerBodyPart.bodyPartType)
+        if (playerBodyPart != null)
         {
-            case BodyPartType.Head:
-            case BodyPartType.Body:
-                raceAffinity[(int)playerBodyPart.race] += 3;
-                if (returnedBodyPart != null)
-                    raceAffinity[(int)returnedBodyPart.race] -= 3;
-                break;
-            case BodyPartType.LeftArm:
-            case BodyPartType.RightArm:
-            case BodyPartType.LeftLeg:
-            case BodyPartType.RightLeg:
-                raceAffinity[(int)playerBodyPart.race] += 1;
-                if (returnedBodyPart != null)
-                    raceAffinity[(int)returnedBodyPart.race] -= 1;
-                break;
-            default:
-                Debug.Log("wrong item type");
-                break;
-        }
-        if(returnedBodyPart != null)
-        {
-            if(playerBodyPart.race != returnedBodyPart.race)
+            switch (playerBodyPart.bodyPartType)
             {
+                case BodyPartType.Head:
+                case BodyPartType.Body:
+                    raceAffinity[(int)playerBodyPart.race] += 3;
+                    if (returnedBodyPart != null)
+                        raceAffinity[(int)returnedBodyPart.race] -= 3;
+                    break;
+                case BodyPartType.LeftArm:
+                case BodyPartType.RightArm:
+                case BodyPartType.LeftLeg:
+                case BodyPartType.RightLeg:
+                    raceAffinity[(int)playerBodyPart.race] += 1;
+                    if (returnedBodyPart != null)
+                        raceAffinity[(int)returnedBodyPart.race] -= 1;
+                    break;
+                default:
+                    Debug.Log("wrong item type");
+                    break;
+            }
+            if (returnedBodyPart != null)
+            {
+                if (playerBodyPart.race != returnedBodyPart.race)
+                {
+                    StorageManager.Inst.UpdateToolStat();
+                }
+            }
+        }
+        else
+        {
+            if (returnedBodyPart != null)
+            {
+                switch(returnedBodyPart.bodyPartType)
+                {
+                    case BodyPartType.Head:
+                    case BodyPartType.Body:
+                        raceAffinity[(int)returnedBodyPart.race] -= 3;
+                        break;
+                    case BodyPartType.LeftArm:
+                    case BodyPartType.RightArm:
+                    case BodyPartType.LeftLeg:
+                    case BodyPartType.RightLeg:
+                        raceAffinity[(int)returnedBodyPart.race] -= 1;
+                        break;
+                    default:
+                        Debug.Log("wrong item type");
+                        break;
+                }
                 StorageManager.Inst.UpdateToolStat();
             }
         }
@@ -412,24 +443,26 @@ public class Player : SingletonBehaviour<Player>
     /// <param name="returnedBodyPart"> 어떤 신체가 플레이어에게서 탈착되었을 경우 사용한다.</param>
     private void UpdateBodyStat(Status bodyPartStatus, BodyPart playerBodyPart, BodyPart returnedBodyPart = null)
     {
-        if (playerBodyPart.race != Race.Machine)
+        if (playerBodyPart != null)
         {
-            bodyPartStatus.atk += playerBodyPart.Atk;
-            bodyPartStatus.def += playerBodyPart.Def; 
-            bodyPartStatus.dex += playerBodyPart.Dex;
-            bodyPartStatus.mana += playerBodyPart.Mana;
-        }
-        else
-        {
-            Machine machine = (Machine)playerBodyPart;
-            bodyPartStatus.atk += machine.Atk;
-            bodyPartStatus.def += machine.Def;
-            bodyPartStatus.dex += machine.Dex;
-            bodyPartStatus.mana += machine.Mana;
-        }
-        
-        bodyPartStatus.endurance += playerBodyPart.Endurance;
+            if (playerBodyPart.race != Race.Machine)
+            {
+                bodyPartStatus.atk += playerBodyPart.Atk;
+                bodyPartStatus.def += playerBodyPart.Def;
+                bodyPartStatus.dex += playerBodyPart.Dex;
+                bodyPartStatus.mana += playerBodyPart.Mana;
+            }
+            else
+            {
+                Machine machine = (Machine)playerBodyPart;
+                bodyPartStatus.atk += machine.Atk;
+                bodyPartStatus.def += machine.Def;
+                bodyPartStatus.dex += machine.Dex;
+                bodyPartStatus.mana += machine.Mana;
+            }
 
+            bodyPartStatus.endurance += playerBodyPart.Endurance;
+        }
         if(returnedBodyPart != null)
         {
             if (returnedBodyPart.race != Race.Machine)

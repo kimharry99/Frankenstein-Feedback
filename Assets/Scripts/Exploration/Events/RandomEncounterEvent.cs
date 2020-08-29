@@ -77,19 +77,19 @@ public class RandomEncounterEvent : ExplorationEvent
     [NonSerialized]
     public EventType type;
     [Header("Random Encounter Event Field")]
-    public bool isFleeting = false;
-    [SerializeField]
-    private Option[] options;
     /// <summary>
     /// 일회용일 경우 true
     /// </summary>
-    [NonSerialized]
-    public ExplorationEvent[] resultEvent;
-    [NonSerialized]
-    public List<string> option0CaseResult;
+    public bool isFleeting = false;
+    [SerializeField]
+    private Option[] options;
+    //[NonSerialized]
+    //public ExplorationEvent[] resultEvent;
+    //[NonSerialized]
+    //public List<string> option0CaseResult;
     private bool _isUnlocked = true;
     private bool _isEncountered;
-    public new bool IsEnabled 
+    public override bool IsEnabled 
     {
         get
         {
@@ -102,18 +102,18 @@ public class RandomEncounterEvent : ExplorationEvent
         }
     }
 
-    protected new void FinishEvent(ExplorationEvent nextEvent = null, bool isReturnHome = false)
+    protected override void FinishEvent(ExplorationEvent nextEvent = null, bool isReturnHome = false)
     {
         _isEncountered = true;
-        if(nextEvent == null)
-        {
-            Debug.LogError("nextEvent is not assigned : " + eventName);
-            return;
-        }
+        //if(nextEvent == null)
+        //{
+        //    Debug.LogError("nextEvent is not assigned : " + eventName);
+        //    return;
+        //}
         ExplorationManager.Inst.FinishEvent(phase, nextEvent, isReturnHome);
     }
 
-    protected bool GetIsEnabled()
+    protected override bool GetIsEnabled()
     {
         if (!_isUnlocked)
             return false;
@@ -144,10 +144,33 @@ public class RandomEncounterEvent : ExplorationEvent
     {
         DoOption(3);
     }
+    
     public override bool GetOptionEnable(int optionIndex)
     {
         if (options.Length <= optionIndex)
             return false;
+        for (int i=0;i<options[optionIndex].cases.Length;i++)
+        {
+            Case @case = options[optionIndex].cases[i];
+            if (@case.consumedItem.slotItem != null)
+            {
+                Storage inven = StorageManager.Inst.inventory;
+                for(int j=0;j<inven.slotItem.Length;j++)
+                {
+                    if (inven.slotItem[j] != null)
+                    {
+                        if (inven.slotItem[j].id == @case.consumedItem.slotItem.id)
+                        {
+                            if (inven.slotItemNumber[j] < @case.consumedItem.slotItemNumber)
+                                return false;
+                            else
+                                return true;
+                        }
+                    }
+                }
+                return false;
+            }
+        }
         return true;
     }
 
@@ -165,6 +188,12 @@ public class RandomEncounterEvent : ExplorationEvent
             GetDamage(currentCase.durabilityDamage);
         }
 
+        Slot costItem = currentCase.consumedItem;
+        if(costItem.slotItem != null && costItem.slotItemNumber != 0)
+        {
+            ConsumeItem(costItem);
+        }
+
         Slot rewardItem = currentCase.rewardItem;
         if(rewardItem.slotItem != null && rewardItem.slotItemNumber != 0)
         {
@@ -172,11 +201,11 @@ public class RandomEncounterEvent : ExplorationEvent
         }
 
         ExplorationUIManager.Inst.NoticeResultText(currentCase.resultString);
-        if (currentCase.resultEvent == null)
-        {
-            Debug.Log("result is not assigned");
-            return;
-        }
+        //if (currentCase.resultEvent == null)
+        //{
+        //    Debug.Log("result is not assigned");
+        //    return;
+        //}
         FinishEvent(currentCase.resultEvent);
 
     }
@@ -196,6 +225,23 @@ public class RandomEncounterEvent : ExplorationEvent
         }
     }
 
+    private void ConsumeItem(Slot cost)
+    {
+        Storage inven = StorageManager.Inst.inventory;
+        for(int i=0;i<inven.slotItem.Length;i++)
+        {
+            if(cost.slotItem.id == inven.slotItem[i].id)
+            {
+                for(int j=0;j<cost.slotItemNumber;j++)
+                {
+                    StorageManager.Inst.DeleteFromInven(i);
+                }
+                return;
+            }
+        }
+        Debug.Log("item not found");
+    }
+    
     #region Constraint Methods
 
     /// <summary>
@@ -203,7 +249,7 @@ public class RandomEncounterEvent : ExplorationEvent
     /// </summary>
     /// <param name="optionNumber"></param>
     /// <returns></returns>
-    private int GetOptionCaseNumber(int optionNumber)
+    protected int GetOptionCaseNumber(int optionNumber)
     {
         if (!CaseLengthMatched())
         {
@@ -363,5 +409,4 @@ public class RandomEncounterEvent : ExplorationEvent
         return true;
     }
 #endregion
-
 }
