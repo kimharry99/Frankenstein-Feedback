@@ -17,7 +17,6 @@ public class BodyCollapseEvent : RandomEncounterEvent
 
     protected override bool GetIsEnabled()
     {
-        Debug.Log(Player.Inst.equippedBodyPart.bodyParts[(int)partType] == null);
         if (Player.Inst.equippedBodyPart.bodyParts[(int)partType] == null)
             return false;
         if (Player.Inst.durability.value > durabilityConstraint)
