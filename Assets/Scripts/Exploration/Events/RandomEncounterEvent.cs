@@ -256,76 +256,60 @@ public class RandomEncounterEvent : ExplorationEvent
         {
             Debug.Log("stat constraint case");
             status = Player.Inst.GetStatus((Status.StatName)statConstraint.constraintName);
-            switch (statConstraint.moreOrLess)
-            {
-                case StatConstraint.MoreOrLess.More:
-                    if (status > constraint)
-                        return true;
-                    else
-                        return false;
-                case StatConstraint.MoreOrLess.MoreEqual:
-                    if (status >= constraint)
-                        return true;
-                    else
-                        return false;
-                case StatConstraint.MoreOrLess.Equal:
-                    if (status == constraint)
-                        return true;
-                    else
-                        return false;
-                case StatConstraint.MoreOrLess.LessEqual:
-                    if (status <= constraint)
-                        return true;
-                    else
-                        return false;
-                case StatConstraint.MoreOrLess.Less:
-                    if (status < constraint)
-                        return true;
-                    else
-                        return false;
-                default:
-                    return true;
-            }
         }
         else if (statConstraint.constraintName >= StatConstraint.ConstraintName.Human && statConstraint.constraintName < StatConstraint.ConstraintName.NightVision)
         {
             Debug.Log("race affinity case");
             status = Player.Inst.GetRaceAffinity((Race)(statConstraint.constraintName - 4));
             Debug.Log((Race)(statConstraint.constraintName - 4) + "affinity : " + status);
-            switch (statConstraint.moreOrLess)
-            {
-                case StatConstraint.MoreOrLess.More:
-                    if (status > constraint)
-                        return true;
-                    else
-                        return false;
-                case StatConstraint.MoreOrLess.MoreEqual:
-                    if (status >= constraint)
-                        return true;
-                    else
-                        return false;
-                case StatConstraint.MoreOrLess.Equal:
-                    if (status == constraint)
-                        return true;
-                    else
-                        return false;
-                case StatConstraint.MoreOrLess.LessEqual:
-                    if (status <= constraint)
-                        return true;
-                    else
-                        return false;
-                case StatConstraint.MoreOrLess.Less:
-                    if (status < constraint)
-                        return true;
-                    else
-                        return false;
-                default:
-                    return true;
-            }
         }
         else
         {
-            return true;
+            switch(statConstraint.constraintName)
+            {
+                case StatConstraint.ConstraintName.NightVision:
+                    status = Player.Inst.NightVision ? 1 : 0;
+                    break;
+                case StatConstraint.ConstraintName.Magic:
+                    status = Player.Inst.Magic? 1 : 0;
+                    break;
+                case StatConstraint.ConstraintName.DarkMagic:
+                    status = Player.Inst.DarkMagic ? 1 : 0;
+                    break;
+                default:
+                    Debug.LogError("wrong constraint name : " + statConstraint.constraintName);
+                    return false;
+            }
+        }
+        switch (statConstraint.moreOrLess)
+        {
+            case StatConstraint.MoreOrLess.More:
+                if (status > constraint)
+                    return true;
+                else
+                    return false;
+            case StatConstraint.MoreOrLess.MoreEqual:
+                if (status >= constraint)
+                    return true;
+                else
+                    return false;
+            case StatConstraint.MoreOrLess.Equal:
+                if (status == constraint)
+                    return true;
+                else
+                    return false;
+            case StatConstraint.MoreOrLess.LessEqual:
+                if (status <= constraint)
+                    return true;
+                else
+                    return false;
+            case StatConstraint.MoreOrLess.Less:
+                if (status < constraint)
+                    return true;
+                else
+                    return false;
+            default:
+                return true;
         }
     }
 
