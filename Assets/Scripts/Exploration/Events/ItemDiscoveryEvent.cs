@@ -12,6 +12,8 @@ public class ItemDiscoveryEvent : ExplorationEvent
     [Header("ItemDIscoveryEvent Field")]
     public Item foundItem;
 
+    public override bool IsEnabled { get; set; }
+
     public override bool GetOptionEnable(int optionIndex)
     {
         if(optionIndex == 0)
@@ -50,6 +52,16 @@ public class ItemDiscoveryEvent : ExplorationEvent
     {
         Debug.Log(optionTexts[3] + "이 선택됨");
         FinishEvent();
+    }
+
+    protected override void FinishEvent(ExplorationEvent nextEvent = null, bool isReturnHome = false)
+    {
+        ExplorationManager.Inst.FinishEvent(phase, nextEvent, isReturnHome);
+    }
+
+    protected override bool GetIsEnabled()
+    {
+        return true;
     }
 
     private bool GetItem()

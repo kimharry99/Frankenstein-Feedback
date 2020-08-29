@@ -22,7 +22,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (inventory.slotItem[indexInventory] != null && !panelDiscard.activeSelf)
         {
             panelDescription.SetActive(true);
-            description.text = inventory.slotItem[indexInventory].description;
+            description.text =inventory.slotItem[indexInventory].name+"\n\n"+inventory.slotItem[indexInventory].description;
         }
         
     }
@@ -81,7 +81,8 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         else
         {
-            panelDescription.SetActive(true);
+            if (inventory.slotItem[indexInventory] != null)
+                panelDescription.SetActive(true);
             panelDiscard.SetActive(false);
             panelUse.SetActive(false);
         }

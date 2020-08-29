@@ -16,29 +16,39 @@ public class MachinePart : Consumable
         EquippedBodyPart equippedBodyPart = Player.Inst.equippedBodyPart;
         if(atkValue != 0)
         {
-            if(equippedBodyPart.LeftArm.race != Race.Machine && equippedBodyPart.RightArm.race != Race.Machine)
+            if(!IsMachine(equippedBodyPart, BodyPartType.LeftArm) && !IsMachine(equippedBodyPart, BodyPartType.RightArm))
             {
                 return false;
             }
         }
         if (defValue != 0)
         {
-            if (equippedBodyPart.Body.race != Race.Machine)
+            if (!IsMachine(equippedBodyPart, BodyPartType.Body))
                 return false;
         }
         if(dexValue != 0)
         {
-            if(equippedBodyPart.LeftLeg.race != Race.Machine && equippedBodyPart.RightLeg.race != Race.Machine)
+            if(!IsMachine(equippedBodyPart, BodyPartType.LeftLeg) && !IsMachine(equippedBodyPart, BodyPartType.RightLeg))
             {
                 return false;
             }
         }
         if(manaValue != 0)
         {
-            if (equippedBodyPart.Head.race != Race.Machine)
+            if (!IsMachine(equippedBodyPart, BodyPartType.Head))
                 return false;
         }
         return true;
+    }
+
+    private bool IsMachine(EquippedBodyPart equippedBodyPart, BodyPartType bodyPartType)
+    {
+        if (equippedBodyPart.bodyParts[(int)bodyPartType] == null)
+            return false;
+        else
+        {
+            return equippedBodyPart.bodyParts[(int)bodyPartType].race != Race.Machine;
+        }
     }
 
     public override void UseItem()
@@ -68,7 +78,7 @@ public class MachinePart : Consumable
 
     private void UpgradeAtk(EquippedBodyPart equippedBodyPart)
     {
-        if (equippedBodyPart.LeftArm.race == Race.Machine && equippedBodyPart.RightArm.race == Race.Machine)
+        if (IsMachine(equippedBodyPart, BodyPartType.LeftArm) && IsMachine(equippedBodyPart, BodyPartType.RightArm))
         {
             if (equippedBodyPart.LeftArm.grade >= equippedBodyPart.RightArm.grade)
             {
@@ -79,7 +89,7 @@ public class MachinePart : Consumable
                 Player.Inst.UpgradeMachinePart((int)BodyPartType.RightArm);
             }
         }
-        else if (equippedBodyPart.LeftArm.race == Race.Machine)
+        else if (IsMachine(equippedBodyPart, BodyPartType.LeftArm))
         {
             Player.Inst.UpgradeMachinePart((int)BodyPartType.LeftArm);
         }
@@ -96,7 +106,7 @@ public class MachinePart : Consumable
 
     private void UpgradeDex(EquippedBodyPart equippedBodyPart)
     {
-        if (equippedBodyPart.LeftLeg.race == Race.Machine && equippedBodyPart.RightLeg.race == Race.Machine)
+        if (IsMachine(equippedBodyPart, BodyPartType.LeftLeg) && IsMachine(equippedBodyPart, BodyPartType.RightLeg))
         {
             if (equippedBodyPart.LeftLeg.grade >= equippedBodyPart.RightLeg.grade)
             {

@@ -27,7 +27,7 @@ public abstract class ExplorationEvent : ScriptableObject, ISerializationCallbac
     public string content;
     [SerializeField]
     private bool basicEnable;
-    public bool IsEnabled { get; set; }
+    public abstract bool IsEnabled { get; set; }
 
     public int OptionNumber { get { return optionTexts.Count; } }
     [Header("Option Field")]
@@ -39,10 +39,7 @@ public abstract class ExplorationEvent : ScriptableObject, ISerializationCallbac
     /// 이벤트가 종료되었을 때 해야하는 작업을 명시한다.
     /// SelectNextEvent가 마지막에 와야 한다.
     /// </summary>
-    protected void FinishEvent(ExplorationEvent nextEvent = null, bool isReturnHome = false)
-    {
-        ExplorationManager.Inst.FinishEvent(phase ,nextEvent, isReturnHome); 
-    }
+    protected abstract void FinishEvent(ExplorationEvent nextEvent = null, bool isReturnHome = false);
 
     /// <summary>
     /// 연계되는 퀘스트를 활성화한다.
@@ -52,6 +49,7 @@ public abstract class ExplorationEvent : ScriptableObject, ISerializationCallbac
         ExplorationManager.Inst.UnlockLinkedEvent();
     }
 
+    protected abstract bool GetIsEnabled();
     public abstract bool GetOptionEnable(int optionIndex);
     public abstract void Option0();
     public abstract void Option1();

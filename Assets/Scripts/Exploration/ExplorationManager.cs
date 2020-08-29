@@ -265,6 +265,7 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     /// <summary>
     /// event선택이 종료된 후 후처리를 담당한다.
     /// </summary>
+    /// <param name="nextEvent">nextEvent가 있는 경우에 nextEvent를 실행, RandomEncounter임에도 nextEvent가 없는 경우에 랜덤 인카운터를 한 번더 실행</param>
     /// <param name="isReturnHome"></param>
     public void FinishEvent(ExplorationEvent.EventPhase eventPhase, ExplorationEvent nextEvent = null, bool isReturnHome = false)
     {
@@ -282,10 +283,16 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
                 break;
             case ExplorationEvent.EventPhase.RandomEncounter:
                 explorationCnt++;
-                SkipInterval();
+                if (nextEvent != null)
+                {
+                    SkipInterval();
+                }
+                else
+                    StartCoroutine(ExplorationUIManager.Inst.WaitForEncounter(_timeInterval));
                 objectState = ObjectState.SearchNextEvent;
-                if(nextEvent.phase != ExplorationEvent.EventPhase.RandomEncounter)
-                    ChangeToFollowingState();
+                if(nextEvent != null)
+                    if(nextEvent.phase != ExplorationEvent.EventPhase.RandomEncounter)
+                        ChangeToFollowingState();
                 Debug.Log(phaseState);
                 SelectEvent(nextEvent);
                 break;
