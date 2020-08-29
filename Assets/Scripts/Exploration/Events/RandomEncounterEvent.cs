@@ -77,19 +77,19 @@ public class RandomEncounterEvent : ExplorationEvent
     [NonSerialized]
     public EventType type;
     [Header("Random Encounter Event Field")]
-    public bool isFleeting = false;
-    [SerializeField]
-    private Option[] options;
     /// <summary>
     /// 일회용일 경우 true
     /// </summary>
-    [NonSerialized]
-    public ExplorationEvent[] resultEvent;
-    [NonSerialized]
-    public List<string> option0CaseResult;
+    public bool isFleeting = false;
+    [SerializeField]
+    private Option[] options;
+    //[NonSerialized]
+    //public ExplorationEvent[] resultEvent;
+    //[NonSerialized]
+    //public List<string> option0CaseResult;
     private bool _isUnlocked = true;
     private bool _isEncountered;
-    public new bool IsEnabled 
+    public override bool IsEnabled 
     {
         get
         {
@@ -102,7 +102,7 @@ public class RandomEncounterEvent : ExplorationEvent
         }
     }
 
-    protected new void FinishEvent(ExplorationEvent nextEvent = null, bool isReturnHome = false)
+    protected override void FinishEvent(ExplorationEvent nextEvent = null, bool isReturnHome = false)
     {
         _isEncountered = true;
         //if(nextEvent == null)
@@ -113,7 +113,7 @@ public class RandomEncounterEvent : ExplorationEvent
         ExplorationManager.Inst.FinishEvent(phase, nextEvent, isReturnHome);
     }
 
-    protected bool GetIsEnabled()
+    protected override bool GetIsEnabled()
     {
         if (!_isUnlocked)
             return false;
@@ -156,12 +156,15 @@ public class RandomEncounterEvent : ExplorationEvent
                 Storage inven = StorageManager.Inst.inventory;
                 for(int j=0;j<inven.slotItem.Length;j++)
                 {
-                    if (inven.slotItem[j].id == @case.consumedItem.slotItem.id)
+                    if (inven.slotItem[j] != null)
                     {
-                        if (inven.slotItemNumber[j] < @case.consumedItem.slotItemNumber)
-                            return false;
-                        else
-                            return true;
+                        if (inven.slotItem[j].id == @case.consumedItem.slotItem.id)
+                        {
+                            if (inven.slotItemNumber[j] < @case.consumedItem.slotItemNumber)
+                                return false;
+                            else
+                                return true;
+                        }
                     }
                 }
                 return false;
