@@ -2911,6 +2911,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1368211035022187551}
     m_Modifications:
+    - target: {fileID: 1885540682904782022, guid: 2f195fa205dd9b144b63249190d19844,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1368211035022187555}
     - target: {fileID: 5588550868557448271, guid: 2f195fa205dd9b144b63249190d19844,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3617,6 +3622,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PanelNotice
+      objectReference: {fileID: 0}
+    - target: {fileID: 8705185780236784628, guid: d46db295c795c184684845efc8f818a2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8705185780236784629, guid: d46db295c795c184684845efc8f818a2,
         type: 3}
