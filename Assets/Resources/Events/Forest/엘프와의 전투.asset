@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
+  m_Name: "\uC5D8\uD504\uC640\uC758 \uC804\uD22C"
+  m_EditorClassIdentifier: 
+  id: 230312
+  eventName: "\uC5D8\uD504\uC640\uC758 \uC804\uD22C"
+  phase: 1
+  encounterProbabilty: 0
+  titleText: "\"\uC5ED\uC2DC\u2026 \uC778\uAC04\uC740 \uC4F0\uB808\uAE30\uAD6C\uB098!\"
+    \uB2F9\uD669\uD55C \uB4EF\uD55C \uC6B0\uB450\uBA38\uB9AC \uC5D8\uD504\uB294 \uACE7\uBC14\uB85C
+    \uACF5\uACA9\uD560 \uD0DC\uC138\uB97C \uAC16\uCD94\uC5C8\uACE0, \uADF8 \uC9E7\uC740
+    \uCC30\uB098\uC5D0 \uC218\uC2ED \uBC1C\uC758 \uD654\uC0B4\uC774 \uB098\uB97C
+    \uD5A5\uD574 \uB0A0\uC544\uC624\uAE30 \uC2DC\uC791\uD588\uB2E4. "
+  content: "\uBC18\uC0AC\uC801\uC73C\uB85C \uD314\uC744 \uD718\uB450\uB974\uC790,
+    \uBCF4\uB78F\uBE5B \uD30C\uB3D9\uC5D0 \uB2FF\uC740 \uD654\uC0B4\uB4E4\uC774 \uD798\uC744
+    \uC783\uACE0 \uB5A8\uC5B4\uC84C\uB2E4. \uD558\uC9C0\uB9CC \uB9C9\uC9C0 \uBABB\uD55C
+    \uD654\uC0B4\uC774 \uD55C \uBC1C \uB0A8\uC544\uC788\uC5C8\uB2E4! "
+  basicEnable: 0
+  optionTexts:
+  - "\uD53C\uD55C\uB2E4! "
+  optionResultTexts:
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 4a03c27f8b4e50142b949cf6d1db335b, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uBAB8\uC744 \uC0B4\uC9DD \uBE44\uD2C0\uC790 \uD654\uC0B4\uC774
+        \uD5C8\uB9AC\uB97C \uC2A4\uCE58\uACE0 \uC9C0\uB098\uAC14\uB2E4! "
+      linkedEventName: 
+    - resultEvent: {fileID: 11400000, guid: 4a03c27f8b4e50142b949cf6d1db335b, type: 2}
+      durabilityDamage: 10
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uD53C\uD574\uBCF4\uB824 \uD588\uC9C0\uB9CC \uC606\uAD6C\uB9AC\uC5D0
+        \uD654\uC0B4\uC774 \uBC15\uD614\uB2E4\u2026 "
+      linkedEventName: 
+    statConstraints:
+    - moreOrLess: 1
+      constraintName: 2
+      statConstraint: 10
+    constraintPerCase: 0100000000000000

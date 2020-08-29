@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
+  m_Name: "\uC5D8\uD504 \uC7AC\uD68C"
+  m_EditorClassIdentifier: 
+  id: 230110
+  eventName: "\uC5D8\uD504 \uC7AC\uD68C"
+  phase: 1
+  encounterProbabilty: 10
+  titleText: "\uB098\uBB34 \uC704\uC5D0\uC11C \uBA4B\uC9C0\uAC8C \uB0B4\uB824\uC628
+    \uB124\uACE8\uB77C\uC2A4\uAC00 \uC778\uC0AC\uB97C \uAC74\uB128\uB2E4. "
+  content: "\"\uB610 \uC232\uC5D0 \uCC3E\uC544\uC624\uC168\uAD70\uC694. \uC624\uB298\uC740
+    \uBB34\uC2A8 \uC77C\uB85C \uC624\uC168\uB098\uC694?\" "
+  basicEnable: 0
+  optionTexts:
+  - "\uC232\uC744 \uAC74\uB108\uACE0 \uC2F6\uC5B4. "
+  - "\uADF8\uB0E5 \uC4F8\uB9CC\uD55C \uAC83\uB4E4\uC744 \uCC3E\uACE0 \uC788\uC5C8\uC5B4. "
+  optionResultTexts:
+  - 
+  - 
+  isFleeting: 0
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 4212ac0103c9d0f4ca3f95cb2f428385, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\"\uADF8\uB7F0 \uBD80\uD0C1\uC774\uC57C \uC5B4\uB835\uC9C0 \uC54A\uC8E0.
+        \uC774\uB9AC\uB85C \uC624\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?\" "
+      linkedEventName: 
+    statConstraints: []
+    constraintPerCase: 
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 2c4b71434c49ad345b5253235a6835c4, type: 2}
+      durabilityDamage: -10
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\"\uD56D\uC0C1 \uD53C\uACE4\uD574 \uBCF4\uC774\uC2DC\uB124\uC694.
+        \uC774\uAC8C \uB3C4\uC6C0\uC774 \uB410\uC73C\uBA74 \uC88B\uACA0\uC2B5\uB2C8\uB2E4.\"
+        \uC77C\uC804\uC758 \uD478\uB978 \uBE5B\uC774 \uBAB8\uC744 \uAC10\uC2FC\uB2E4. "
+      linkedEventName: 
+    statConstraints: []
+    constraintPerCase: 
