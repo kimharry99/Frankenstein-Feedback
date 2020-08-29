@@ -11,6 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1564c065bac2eab4585b0cd500196910, type: 3}
   m_Name: "\uC2321 \uC0AC\uB77C\uC838\uAC00\uB294 \uC5D8\uD504\uC758 \uBA38\uB9AC
+    \uD68D\uB4DD"
   m_EditorClassIdentifier: 
   id: 130101
   eventName: "\uC232 \uC0AC\uB77C\uC838\uAC00\uB294 \uC5D8\uD504\uC758 \uBA38\uB9AC
