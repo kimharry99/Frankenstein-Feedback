@@ -16,7 +16,7 @@ MonoBehaviour:
   regionName: "\uB354\uBBF8\uC9C0\uC5ED"
   possibleItemDiscoveryEvents: []
   possibleRandomEncounterEvents:
-  - {fileID: 11400000, guid: e8a8ffafd87bdd249b1434dfb2ab6ba3, type: 2}
+  - {fileID: 11400000, guid: a3aecca9974a89b46bfb21fce435fe5a, type: 2}
   skipRandomEncounterEvent: {fileID: 11400000, guid: 0632b2c99a9474246b71b238a778e4c2,
     type: 2}
   finishExplorationEvents: []

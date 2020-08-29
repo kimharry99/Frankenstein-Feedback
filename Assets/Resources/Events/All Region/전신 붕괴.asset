@@ -9,32 +9,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
-  m_Name: "\uB354\uBBF8\uB354\uBBF8\uB354\uBBF8"
+  m_Script: {fileID: 11500000, guid: f4e64e5e9273fa14cbb787123598c829, type: 3}
+  m_Name: "\uC804\uC2E0 \uBD95\uAD34"
   m_EditorClassIdentifier: 
-  id: -300
-  eventName: "\uB79C\uB364 \uC778\uCE74\uC6B4\uD130 \uC7AC\uC9C4\uD589 \uD14C\uC2A4\uD2B8"
+  id: 200017
+  eventName: "\uC804\uC2E0 \uBD95\uAD34 "
   phase: 1
-  encounterProbabilty: 100
-  titleText: "\uB79C\uB364 \uC778\uCE74\uC6B4\uD130 \uC7AC\uC9C4\uD589 \uD14C\uC2A4\uD2B8"
+  encounterProbabilty: 20
+  titleText: "\uC628 \uBAB8\uC774 \uB9D0\uC744 \uB4E3\uC9C0 \uC54A\uB294\uB2E4\u2026 "
   content: 
   basicEnable: 1
   optionTexts:
-  - 
+  - "\u2026 "
   optionResultTexts:
   - 
   isFleeting: 0
   options:
   - cases:
     - resultEvent: {fileID: 0}
-      durabilityDamage: 0
+      durabilityDamage: 100
       rewardItem:
         slotItem: {fileID: 0}
         slotItemNumber: 0
       consumedItem:
-        slotItem: {fileID: 11400000, guid: 74bf7538549802d48886536f42faddd9, type: 2}
+        slotItem: {fileID: 0}
         slotItemNumber: 0
-      resultString: "\uB79C\uB364 \uC778\uCE74\uC6B4\uD130 \uC7AC\uC9C4\uD589 \uD14C\uC2A4\uD2B8"
+      resultString: 
       linkedEventName: 
     statConstraints: []
     constraintPerCase: 
+  durabilityConstraint: 10
+  partType: -1

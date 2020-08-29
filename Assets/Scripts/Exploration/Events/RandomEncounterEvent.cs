@@ -240,6 +240,7 @@ public class RandomEncounterEvent : ExplorationEvent
         }
         Debug.Log("item not found");
     }
+    
     #region Constraint Methods
 
     /// <summary>
@@ -407,5 +408,4 @@ public class RandomEncounterEvent : ExplorationEvent
         return true;
     }
 #endregion
-
 }
