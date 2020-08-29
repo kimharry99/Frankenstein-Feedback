@@ -1245,6 +1245,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4920854717054981444, guid: aca0d4922f165f4408bd20e42a2db695,
+        type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920854717424379869, guid: aca0d4922f165f4408bd20e42a2db695,
+        type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920854717913509380, guid: aca0d4922f165f4408bd20e42a2db695,
+        type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920854717964297266, guid: aca0d4922f165f4408bd20e42a2db695,
+        type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920854718534350989, guid: aca0d4922f165f4408bd20e42a2db695,
+        type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6176768703950207895, guid: aca0d4922f165f4408bd20e42a2db695,
+        type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8477198739958865030, guid: aca0d4922f165f4408bd20e42a2db695,
         type: 3}
       propertyPath: m_AnchorMin.y
