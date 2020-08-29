@@ -16,37 +16,18 @@ public abstract class ExplorationEvent : ScriptableObject, ISerializationCallbac
         FinishingExploration,
     }
 
-    public enum EventType
-    {
-        None = -1,
-        RegionDiscovery,
-        ItemDiscovery,
-        /// <summary>
-        /// 조우
-        /// </summary>
-        Encounter,
-        DurabilityDamage,
-    }
-
     [Header("Event Info")]
     public int id;
     public string eventName;
     public EventPhase phase;
-    public EventType type;
     public float encounterProbabilty;
-    /// <summary>
-    /// 일회용일 경우 true
-    /// </summary>
-    public bool isFleeting = false;
 
     [Header("Event Content")]
     public string titleText;
     public string content;
     [SerializeField]
     private bool basicEnable;
-    [NonSerialized]
-    public bool isEnabled;
-    public string linkedEventName;
+    public bool IsEnabled { get; set; }
 
     public int OptionNumber { get { return optionTexts.Count; } }
     [Header("Option Field")]
@@ -58,11 +39,9 @@ public abstract class ExplorationEvent : ScriptableObject, ISerializationCallbac
     /// 이벤트가 종료되었을 때 해야하는 작업을 명시한다.
     /// SelectNextEvent가 마지막에 와야 한다.
     /// </summary>
-    protected void FinishEvent(bool isReturnHome = false)
+    protected void FinishEvent(ExplorationEvent nextEvent = null, bool isReturnHome = false)
     {
-        if (isFleeting)
-            isEnabled = false;
-        ExplorationManager.Inst.FinishEvent(isReturnHome); 
+        ExplorationManager.Inst.FinishEvent(phase ,nextEvent, isReturnHome); 
     }
 
     /// <summary>
@@ -85,7 +64,12 @@ public abstract class ExplorationEvent : ScriptableObject, ISerializationCallbac
 
     public void OnAfterDeserialize()
     {
-        Debug.Log("event deserialize");
-        isEnabled = basicEnable;
+        //Debug.Log("event deserialize");
+        IsEnabled = basicEnable;
+        if(phase == EventPhase.RandomEncounter)
+        {
+            RandomEncounterEvent randomEncounter = (RandomEncounterEvent)this;
+            randomEncounter.IsEnabled = basicEnable;
+        }
     }
 }

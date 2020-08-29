@@ -14,19 +14,11 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Inventory inventory;
     public int indexInventory;
     private bool mouse_over = false;
-    void Update()
-    {
-        if (mouse_over)
-        {
-            Debug.Log("Mouse Over");
-        }
-    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log(eventData.position);
         mouse_over = true;
-        Debug.Log("Mouse enter");
         if (inventory.slotItem[indexInventory] != null && !panelDiscard.activeSelf)
         {
             panelDescription.SetActive(true);
@@ -39,7 +31,8 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         mouse_over = false;
         panelDescription.SetActive(false);
-        Debug.Log("Mouse exit");
+        panelUse.SetActive(false);
+        panelDiscard.SetActive(false);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -67,6 +60,15 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                     else
                     {
                         panelUse.SetActive(true);
+                        Consumable consumable = (Consumable)inventory.slotItem[indexInventory];
+                        if(consumable.IsConsumeEnable())
+                        {
+                            panelUse.transform.GetChild(0).GetComponent<Button>().interactable = true;
+                        }
+                        else
+                        {
+                            panelUse.transform.GetChild(0).GetComponent<Button>().interactable = false;
+                        }
                     }
                 }
             }
@@ -84,10 +86,21 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             panelUse.SetActive(false);
         }
     }
+
     public void ButtonUseOnClick(int indexButton)
     {
         Consumable consumable;
         consumable = (Consumable)inventory.slotItem[indexButton];
         consumable.UseItem();
+        StorageManager.Inst.DeleteFromInven(indexButton);
+        panelDiscard.SetActive(false);
+        panelUse.SetActive(false);
+    }
+
+    public void ButtonDiscardClicked(int indexButton)
+    {
+        StorageManager.Inst.DeleteFromInven(indexButton);
+        panelDiscard.SetActive(false);
+        panelUse.SetActive(false);
     }
 }

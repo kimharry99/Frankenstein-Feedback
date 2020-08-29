@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Equipped Body Part
   m_EditorClassIdentifier: 
   bodyParts:
-  - {fileID: 11400000, guid: 2e3921dbf567fe6419a94bce9bdc642b, type: 2}
+  - {fileID: 11400000, guid: 4d22235e57dad8748a19548f2a661d50, type: 2}
   - {fileID: 11400000, guid: 62245c6705ecda14f9e255824f3aa56d, type: 2}
   - {fileID: 11400000, guid: 059beb8366ba1c746b9836176da64254, type: 2}
   - {fileID: 11400000, guid: 94a71b1d5a9867440b5a3f30be8c4688, type: 2}

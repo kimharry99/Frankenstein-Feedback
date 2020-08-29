@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: DummySchool
   m_EditorClassIdentifier: 
   regionId: 99911
-  regionName: "\uB354\uBBF8\uD559\uAD50"
-  possibleItemDiscoveryEvents:
-  - {fileID: 11400000, guid: 82999f3124e870e4c9c079cbc7b00e3b, type: 2}
-  - {fileID: 11400000, guid: 96c19feebd6c2f3429d28769c7b9aec1, type: 2}
+  regionName: "\uB354\uBBF8\uC9C0\uC5ED"
+  possibleItemDiscoveryEvents: []
   possibleRandomEncounterEvents:
-  - {fileID: 11400000, guid: b0347b6a3154029429c9befb3c169434, type: 2}
-  skipRandomEncounterEvent: {fileID: 11400000, guid: 61a1aac8d0ad7e34b98710f4cde2ecd7,
+  - {fileID: 11400000, guid: e8a8ffafd87bdd249b1434dfb2ab6ba3, type: 2}
+  skipRandomEncounterEvent: {fileID: 11400000, guid: 0632b2c99a9474246b71b238a778e4c2,
     type: 2}
+  finishExplorationEvents: []

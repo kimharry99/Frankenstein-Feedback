@@ -66,7 +66,7 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     {
         Debug.Log("발생한 이벤트 : " + @event.titleText);
         NoticeEventText(@event.titleText);
-        if(@event.type == ExplorationEvent.EventType.ItemDiscovery)
+        if(@event.phase == ExplorationEvent.EventPhase.SearchingItem)
         {
             ItemDiscoveryEvent itemDiscoveryEvent = (ItemDiscoveryEvent)@event;
             if(itemDiscoveryEvent.foundItem != null)
@@ -166,10 +166,10 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     /// <param name="event"></param>
     public void AddResultOptionsToButton(ExplorationEvent @event)
     {
-        AddResultTextsToButton(@event);
+        //AddResultTextsToButton(@event);
         AddResultEventsToButton(@event);
     }
-    
+
     /// <summary>
     /// option을 선택했을 때 event의 결과를 Button에 등록한다.
     /// </summary>
@@ -198,7 +198,8 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     /// </summary>
     private void AddResultTextsToButton(ExplorationEvent @event)
     {
-        if (@event.phase != ExplorationEvent.EventPhase.FinishingExploration && !ExplorationManager.Inst.GetIsOverwork())
+        //if (@event.phase != ExplorationEvent.EventPhase.FinishingExploration && !ExplorationManager.Inst.GetIsOverwork())
+        if (@event.phase != ExplorationEvent.EventPhase.FinishingExploration)
         {
             if (@event.OptionNumber >= 0)
             {
@@ -217,6 +218,11 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
                 }
             }
         }
+    }
+
+    public void NoticeResultText(string resultText)
+    {
+        NoticeEventText(resultText);
     }
 
     /// <summary>
@@ -242,22 +248,22 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
         contentsEvent[contentsEvent.Count - 1].eventText.text += ".";
     }
 
-    public void ActiveCollapseWarningPanel(FinishExplorationEvent finishExplorationEvent, int option)
-    {
-        panelCollapseWarning.SetActive(true);
-        ButtonCancel.onClick.AddListener(CloseCooapseWarningPanel);
-        if (option == 0)
-        {
-            ButtonContinue.onClick.AddListener(finishExplorationEvent.ExploreAnother);
-            ButtonContinue.onClick.AddListener(() => NoticeEventText(finishExplorationEvent.optionResultTexts[0]));
-        }
-        else if (option == 1)
-        {
-            ButtonContinue.onClick.AddListener(finishExplorationEvent.ExploreAgain);
-            ButtonContinue.onClick.AddListener(() => NoticeEventText(finishExplorationEvent.optionResultTexts[1]));
-        }
-        ButtonContinue.onClick.AddListener(CloseCooapseWarningPanel);
-    }
+    //public void ActiveCollapseWarningPanel(FinishExplorationEvent finishExplorationEvent, int option)
+    //{
+    //    panelCollapseWarning.SetActive(true);
+    //    ButtonCancel.onClick.AddListener(CloseCooapseWarningPanel);
+    //    if (option == 0)
+    //    {
+    //        ButtonContinue.onClick.AddListener(finishExplorationEvent.ExploreAnother);
+    //        ButtonContinue.onClick.AddListener(() => NoticeEventText(finishExplorationEvent.optionResultTexts[0]));
+    //    }
+    //    else if (option == 1)
+    //    {
+    //        ButtonContinue.onClick.AddListener(finishExplorationEvent.ExploreAgain);
+    //        ButtonContinue.onClick.AddListener(() => NoticeEventText(finishExplorationEvent.optionResultTexts[1]));
+    //    }
+    //    ButtonContinue.onClick.AddListener(CloseCooapseWarningPanel);
+    //}
 
     public void CloseCooapseWarningPanel()
     {

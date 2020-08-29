@@ -14,7 +14,7 @@ public class Player : SingletonBehaviour<Player>
         set
         {
             durability.value = value;
-            if(durability.value <= 0)
+            if (durability.value <= 0)
             {
                 KillPlayer();
             }
@@ -43,6 +43,44 @@ public class Player : SingletonBehaviour<Player>
     public Status toolStat;
     [SerializeField]
     private Status _bodyPartStat = null;
+
+    private bool _darkMagic = false;
+    public bool DarkMagic
+    {
+        get
+        {
+            return _darkMagic;
+        }
+        set
+        {
+            _darkMagic = value;
+        }
+
+    }
+    private bool _magic = false;
+    public bool Magic
+    {
+        get
+        {
+            return _magic;
+        }
+        set
+        {
+            _magic = value;
+        }
+    }
+    private bool _nightVision = false;
+    public bool NightVision
+    {
+        get
+        {
+            return _nightVision;
+        }
+        set
+        {
+            _nightVision = value;
+        }
+    }
     public void ResetBodyAffinity()
     {
         _raceAffinity[(int)Race.All] = 1;
@@ -84,6 +122,25 @@ public class Player : SingletonBehaviour<Player>
         get
         {
             return toolStat.endurance + _bodyPartStat.endurance;
+        }
+    }
+
+    public int GetStatus(Status.StatName statName)
+    {
+        switch(statName)
+        {
+            case Status.StatName.Atk:
+                return Atk;
+            case Status.StatName.Def:
+                return Def;
+            case Status.StatName.Dex:
+                return Dex;
+            case Status.StatName.Mana:
+                return Mana;
+            case Status.StatName.Endurance:
+                return Endurance;
+            default:
+                return -1;
         }
     }
     #endregion

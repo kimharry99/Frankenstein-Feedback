@@ -38,8 +38,11 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     private void Start()
     {
         allRegions = Resources.LoadAll<Region>("Regions").ToList();
-        unlockedRegions.Add(allRegions.Find(x => x.regionName == "더미"));
-        ChangeRegion(null, "더미");
+        unlockedRegions.Add(allRegions.Find(x => x.regionName == "도시"));
+        //ChangeRegion(null, "도시");
+        // for debugging
+        unlockedRegions.Add(allRegions.Find(x => x.regionName == "더미지역"));
+        ChangeRegion(null, "더미지역");
         // for debugging
         SelectEvent();
         SkipInterval();
@@ -93,24 +96,17 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     public void UnlockRegion(Region foundRegion)
     {
         Debug.Log("지역 발견 : " + foundRegion.regionName);   
-        unlockedRegions.Add(foundRegion);
+        if(!unlockedRegions.Contains(foundRegion))
+            unlockedRegions.Add(foundRegion);
     }
 
     /// <summary>
     /// 다른 지역으로 이동한다.
     /// </summary>
-    public void MoveToAnotherRegion()
+    public void MoveToAnotherRegion(Region linkedRegion)
     {
-        Random.InitState((int)UnityEngine.Time.time);
-        Region nextRegion = _currentRegion;
-        for(int i=0;i<100;i++)
-        {
-            int random = Random.Range(0, unlockedRegions.Count);
-            nextRegion = unlockedRegions[random];
-            if (nextRegion.regionId != _currentRegion.regionId)
-                break;
-        }
-        ChangeRegion(nextRegion);
+        UnlockRegion(linkedRegion);
+        ChangeRegion(linkedRegion);
     }
 
     /// <summary>
@@ -133,18 +129,25 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     /// <summary>
     /// 다음으로 등장할 Event를 선택한다.
     /// </summary>
-    public void SelectEvent()
+    /// <param name="event">현재 이벤트로 결정된 이벤트</param>
+    public void SelectEvent(ExplorationEvent @event = null)
     {
+        if(@event != null)
+        {
+            _currentEvent = @event;
+            return;
+        }
         if (phaseState == PhaseState.FinishingExploration)
         {
-            _currentEvent = _finishExplorationEvent;
+            Debug.LogError("wrong case");
+            _currentEvent = _currentRegion.finishExplorationEvents[0];
         }
         else if (phaseState == PhaseState.ItemDiscovery1 || phaseState == PhaseState.ItemDiscovery2)
         {
             _currentEvent = SelectEventFromArray(_itemDiscoveryEvents);
         }
         else if (phaseState == PhaseState.RandomEncounter)
-        { 
+        {
             _currentEvent = SelectEventFromArray(_randomEncounterEvents);
         }
     }
@@ -170,9 +173,20 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
         List<ExplorationEvent> enableEvents = new List<ExplorationEvent>();
         for(int i=0;i<events.Length;i++)
         {
-            if(events[i].isEnabled)
+            if (events[i].phase == ExplorationEvent.EventPhase.RandomEncounter)
             {
-                enableEvents.Add(events[i]);
+                RandomEncounterEvent randomEncounter = (RandomEncounterEvent)events[i];
+                if (randomEncounter.IsEnabled)
+                {
+                    enableEvents.Add(events[i]);
+                }
+            }
+            else
+            {
+                if (events[i].IsEnabled)
+                {
+                    enableEvents.Add(events[i]);
+                }
             }
         }
         return enableEvents;
@@ -252,25 +266,39 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     /// event선택이 종료된 후 후처리를 담당한다.
     /// </summary>
     /// <param name="isReturnHome"></param>
-    public void FinishEvent(bool isReturnHome = false)
+    public void FinishEvent(ExplorationEvent.EventPhase eventPhase, ExplorationEvent nextEvent = null, bool isReturnHome = false)
     {
         ExplorationUIManager.Inst.RemoveEventsFromButton();
-        if(phaseState != PhaseState.FinishingExploration)
-            explorationCnt++;
         _currentEvent = null;
-        if (!isReturnHome)
+        switch (eventPhase)
         {
-            if (phaseState != PhaseState.RandomEncounter)
-            {
+            case ExplorationEvent.EventPhase.SearchingItem:
+                explorationCnt++;
                 StartCoroutine(ExplorationUIManager.Inst.WaitForEncounter(_timeInterval));
-            }
-            else
-            {
-                _time = _timeInterval + 2.0f;
-            }
-            objectState = ObjectState.SearchNextEvent;
-            ChangeToFollowingState();
-            SelectEvent();
+                objectState = ObjectState.SearchNextEvent;
+                ChangeToFollowingState();
+                Debug.Log(phaseState);
+                SelectEvent();
+                break;
+            case ExplorationEvent.EventPhase.RandomEncounter:
+                explorationCnt++;
+                SkipInterval();
+                objectState = ObjectState.SearchNextEvent;
+                if(nextEvent.phase != ExplorationEvent.EventPhase.RandomEncounter)
+                    ChangeToFollowingState();
+                Debug.Log(phaseState);
+                SelectEvent(nextEvent);
+                break;
+            case ExplorationEvent.EventPhase.FinishingExploration:
+                if(!isReturnHome)
+                {
+                    StartCoroutine(ExplorationUIManager.Inst.WaitForEncounter(_timeInterval));
+                    objectState = ObjectState.SearchNextEvent;
+                    ChangeToFollowingState();
+                    Debug.Log(phaseState);
+                    SelectEvent();
+                }
+                break;
         }
     }
 
@@ -279,17 +307,17 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     /// </summary>
     public void UnlockLinkedEvent()
     {
-        if (_currentEvent.linkedEventName != "")
-        {
-            for (int i = 0; i < _currentRegion.possibleRandomEncounterEvents.Length; i++)
-            {
-                if (_currentRegion.possibleRandomEncounterEvents[i].eventName == _currentEvent.linkedEventName)
-                {
-                    _currentRegion.possibleRandomEncounterEvents[i].isEnabled = true;
-                    break;
-                }
-            }
-        }
+        //if (_currentEvent.linkedEventName != "")
+        //{
+        //    for (int i = 0; i < _currentRegion.possibleRandomEncounterEvents.Length; i++)
+        //    {
+        //        if (_currentRegion.possibleRandomEncounterEvents[i].eventName == _currentEvent.linkedEventName)
+        //        {
+        //            _currentRegion.possibleRandomEncounterEvents[i].IsEnabled = true;
+        //            break;
+        //        }
+        //    }
+        //}
     }
 
     /// <summary>
