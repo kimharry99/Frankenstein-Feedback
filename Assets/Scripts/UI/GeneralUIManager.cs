@@ -76,6 +76,13 @@ public class GeneralUIManager : SingletonBehaviour<GeneralUIManager>
 
     public void ButtonInvenItemClicked(int slotNumber)
     {
+        for(int i = 0; i < Chest.CAPACITY; i++)
+        {
+            if (StorageManager.Inst.chest.slotItem[i] == null)
+                break;
+            if (i == Chest.CAPACITY - 1)
+                return;
+        }
         if (HomeUIManager.Inst.panelChest.activeSelf)
         {
             Debug.Log("chest");
