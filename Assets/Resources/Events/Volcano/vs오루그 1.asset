@@ -15,11 +15,71 @@ MonoBehaviour:
   id: 0
   eventName: "vs\uC624\uB8E8\uADF8 1"
   phase: 1
-  encounterProbabilty: 100
-  titleText: 
-  content: 
+  encounterProbabilty: 0
+  titleText: "\uC624\uB8E8\uADF8\uAC00 \uBA3C\uC800 \uB2EC\uB824\uB4E0\uB2E4!"
+  content: "\uC67C\uC190 \uC2A4\uD2B8\uB808\uC774\uD2B8? \uC5B4\uB5BB\uAC8C \uD574\uC57C\uD560\uAE4C?"
   basicEnable: 0
-  optionTexts: []
-  optionResultTexts: []
-  isFleeting: 0
-  options: []
+  optionTexts:
+  - "\uB9C9\uB294\uB2E4"
+  - "\uD53C\uD55C\uB2E4"
+  optionResultTexts:
+  - 
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 18315ed10e9d7b94a96c0edb4f94f535, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uC624\uB8E8\uADF8\uC758 \uC67C\uC190 \uC2A4\uD2B8\uB808\uC774\uD2B8\uB97C
+        \uAC00\uB4DC\uD558\uACE0, \uCE74\uC6B4\uD130\uB97C \uBA39\uC600\uB2E4!"
+      linkedEventName: 
+    - resultEvent: {fileID: 11400000, guid: fdbf4a9380a53a4418c7d20c615d3dc8, type: 2}
+      durabilityDamage: 5
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uCF85! \uC5F0\uC57D\uD55C \uD314\uB69D\uC73C\uB85C \uB9C9\uAE30\uC5D4
+        \uB108\uBB34 \uAC15\uB825\uD55C \uD380\uCE58\uC600\uB2E4\u2026"
+      linkedEventName: 
+    statConstraints:
+    - moreOrLess: 1
+      constraintName: 1
+      statConstraint: 50
+    constraintPerCase: 0100000000000000
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 18315ed10e9d7b94a96c0edb4f94f535, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uBED4\uD55C \uB3D9\uC791\uC744 \uAC00\uBCCD\uAC8C \uD53C\uD558\uACE0,
+        \uCE74\uC6B4\uD130\uB97C \uBA39\uC600\uB2E4!"
+      linkedEventName: 
+    - resultEvent: {fileID: 11400000, guid: fdbf4a9380a53a4418c7d20c615d3dc8, type: 2}
+      durabilityDamage: 5
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uCF85! \uB204\uAC00 \uBD10\uB3C4 \uBED4\uD55C \uD380\uCE58\uC600\uC9C0\uB9CC,
+        \uD53C\uD560 \uC218\uAC00 \uC5C6\uC5C8\uB2E4\u2026"
+      linkedEventName: 
+    statConstraints:
+    - moreOrLess: 1
+      constraintName: 2
+      statConstraint: 10
+    constraintPerCase: 0100000000000000

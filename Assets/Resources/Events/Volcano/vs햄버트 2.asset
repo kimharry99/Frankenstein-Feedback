@@ -15,11 +15,44 @@ MonoBehaviour:
   id: 0
   eventName: "vs\uD584\uBC84\uD2B8 2"
   phase: 1
-  encounterProbabilty: 100
-  titleText: 
-  content: 
+  encounterProbabilty: 0
+  titleText: "\uB2F9\uD669\uD55C \uD584\uBC84\uD2B8\uAC00 \uC774\uB7F0\uC800\uB7F0
+    \uAE30\uC220\uC744 \uB9C9 \uC2DC\uB3C4\uD55C\uB2E4!"
+  content: "\uADF8\uB7EC\uB2E4 \uAC11\uC790\uAE30 \uD479 \uC219\uC774\uACE0 \uB4E4\uC5B4\uC624\uB354\uB2C8\u2026
+    \uB0A0 \uBA54\uCE58\uB824\uB294 \uAC83 \uAC19\uB2E4!"
   basicEnable: 0
-  optionTexts: []
-  optionResultTexts: []
-  isFleeting: 0
-  options: []
+  optionTexts:
+  - "\uBC84\uD2F4\uB2E4!"
+  optionResultTexts:
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 322d646381dfe4a4c98cd6e05ca32785, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uD761! \uB2E4\uB9AC\uC5D0 \uD798\uC744 \uC8FC\uACE0 \uBC84\uD2F0\uB2E4\uAC00,
+        \uD655 \uBC00\uC5B4\uBD99\uC774\uC790 \uD584\uBC84\uD2B8\uAC00 \uB4A4\uB85C
+        \uB118\uC5B4\uAC14\uB2E4!"
+      linkedEventName: 
+    - resultEvent: {fileID: 11400000, guid: 1eb805046fbccd8438415f87e25e7e95, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uAC00\uBCCD\uAC8C \uB4E4\uC5B4\uC62C\uB824\uC9C4 \uB0B4 \uBAB8\uC740
+        \uC774\uC73D\uACE0\u2026 \uCCA0\uC369! \uC218\uBA74\uACFC \uCDA9\uB3CC\uD588\uB2E4\u2026"
+      linkedEventName: 
+    statConstraints:
+    - moreOrLess: 1
+      constraintName: 1
+      statConstraint: 30
+    constraintPerCase: 0100000000000000

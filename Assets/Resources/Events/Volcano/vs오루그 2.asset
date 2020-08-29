@@ -15,11 +15,73 @@ MonoBehaviour:
   id: 0
   eventName: "vs\uC624\uB8E8\uADF8 2"
   phase: 1
-  encounterProbabilty: 100
-  titleText: 
-  content: 
+  encounterProbabilty: 0
+  titleText: "\uC624\uB8E8\uADF8\uB294 \uC7A0\uAE50 \uC8FC\uCDA4\uD558\uB354\uB2C8,
+    \uB2E4\uC2DC \uB2EC\uB824\uB4E0\uB2E4!"
+  content: "\uBD99\uC7A1\uC73C\uB824\uB294\uAC74\uAC00? \uC5B4\uB5BB\uAC8C \uD574\uC57C\uD560\uAE4C?"
   basicEnable: 0
-  optionTexts: []
-  optionResultTexts: []
-  isFleeting: 0
-  options: []
+  optionTexts:
+  - "\uACF5\uACA9\uC744 \uBC1B\uC544\uC900\uB2E4"
+  - "\uD53C\uD55C\uB2E4"
+  optionResultTexts:
+  - 
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: bd69459c468ad2b4589f5a252fd5fd18, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uC624\uB8E8\uADF8\uAC00 \uBAB8\uC744 \uBD99\uC7A1\uACE0 \uB0B4\uB9AC\uCC0D\uC5C8\uC9C0\uB9CC,
+        \uB099\uBC95\uC73C\uB85C \uAD74\uB7EC \uB098\uC624\uBA74\uC11C \uCE74\uC6B4\uD130\uB97C
+        \uBA39\uC600\uB2E4!"
+      linkedEventName: 
+    - resultEvent: {fileID: 11400000, guid: fdbf4a9380a53a4418c7d20c615d3dc8, type: 2}
+      durabilityDamage: 10
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uC21C\uAC04 \uBAB8\uC774 \uBD95 \uB5B4\uB2E4\uAC00\u2026 \uCF85!
+        \uBC14\uB2E5\uC5D0 \uB0B4\uB9AC\uAF42\uD614\uB2E4\u2026"
+      linkedEventName: 
+    statConstraints:
+    - moreOrLess: 1
+      constraintName: 1
+      statConstraint: 60
+    constraintPerCase: 0100000000000000
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: bd69459c468ad2b4589f5a252fd5fd18, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uBAB8\uC5D0 \uD30C\uACE0\uB4DC\uB294 \uC190\uC744 \uAC00\uBCCD\uAC8C
+        \uBFCC\uB9AC\uCE58\uACE0 \uCE74\uC6B4\uD130\uB97C \uBA39\uC600\uB2E4!"
+      linkedEventName: 
+    - resultEvent: {fileID: 11400000, guid: fdbf4a9380a53a4418c7d20c615d3dc8, type: 2}
+      durabilityDamage: 10
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uD53C\uD560 \uC218\uAC00 \uC5C6\uB2E4! \uC21C\uAC04 \uBAB8\uC774
+        \uBD95 \uB5B4\uB2E4\uAC00\u2026 \uCF85! \uBC14\uB2E5\uC5D0 \uB0B4\uB9AC\uAF42\uD614\uB2E4\u2026"
+      linkedEventName: 
+    statConstraints:
+    - moreOrLess: 1
+      constraintName: 2
+      statConstraint: 12
+    constraintPerCase: 0100000000000000

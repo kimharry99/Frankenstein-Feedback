@@ -13,12 +13,19 @@ MonoBehaviour:
   m_Name: "\uD654\uC0B0 \uD0D0\uC0AC \uC885\uB8CC"
   m_EditorClassIdentifier: 
   id: 0
-  eventName: 
-  phase: 0
+  eventName: "\uD654\uC0B0 \uD0D0\uC0AC \uC885\uB8CC"
+  phase: 2
   encounterProbabilty: 0
-  titleText: 
+  titleText: "\uD654\uC0B0\uC740 \uB365\uC9C0\uB9CC, \uC9C0\uAE08\uC740 \uC5EC\uAE30\uB9CC\uD07C
+    \uD65C\uAE30\uCC2C \uACF3\uC774 \uC5C6\uB294 \uAC83 \uAC19\uB2E4."
   content: 
-  basicEnable: 0
-  optionTexts: []
-  optionResultTexts: []
-  linkedRegions: []
+  basicEnable: 1
+  optionTexts:
+  - "\uD654\uC0B0\uC744 \uB2E4\uC2DC \uD0D0\uC0AC\uD55C\uB2E4"
+  - "\uC5F0\uAD6C\uC2E4\uB85C \uB3CC\uC544\uAC04\uB2E4"
+  optionResultTexts:
+  - 
+  - 
+  linkedRegions:
+  - {fileID: 11400000, guid: 14fcf7bbf8c7f7d4588cc471e0efd12c, type: 2}
+  - {fileID: 0}

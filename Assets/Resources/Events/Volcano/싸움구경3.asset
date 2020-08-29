@@ -15,11 +15,33 @@ MonoBehaviour:
   id: 0
   eventName: "\uC2F8\uC6C0\uAD6C\uACBD3"
   phase: 1
-  encounterProbabilty: 100
-  titleText: 
-  content: 
+  encounterProbabilty: 0
+  titleText: "\uC624\uB8E8\uADF8\uAC00 \uC7A0\uAE50 \uC8FC\uCDA4\uD588\uC73C\uB098,
+    \uC774\uBC88\uC5D4 \uC624\uB978\uC190 \uD6C5\uC774 \uD584\uBC84\uD2B8\uC758 \uC5B4\uAE68\uC5D0
+    \uC81C\uB300\uB85C \uB9DE\uC558\uB2E4! \"\uB098\uC774\uC2A4 \uB300\uC7A5! \uD55C
+    \uB300 \uB354!\" \uC544\uAE4C \uC624\uB8E8\uADF8 \uBB34\uB9AC\uC5D0 \uC788\uB358
+    \uC624\uD06C\uAC00 \uC678\uCCE4\uB2E4."
+  content: "\uACE7\uBC14\uB85C, \uD584\uBC84\uD2B8\uB294 \uC624\uB8E8\uADF8\uC758
+    \uB2E4\uB9AC\uB97C \uAC78\uC5B4\uC11C, \uB118\uC5B4\uB728\uB9AC\uB294\uB370 \uC131\uACF5\uD588\uB2E4!"
   basicEnable: 0
-  optionTexts: []
-  optionResultTexts: []
-  isFleeting: 0
-  options: []
+  optionTexts:
+  - "\uC624\uC624\u2026!"
+  optionResultTexts:
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: a5864b0face474742955795e9abebb3d, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uC624\uB8E8\uADF8\uB294 \uADF8\uC0C8 \uC62C\uB77C\uD0C4 \uD584\uBC84\uD2B8\uC758
+        \uB09C\uD0C0\uB97C \uAC00\uB4DC\uD558\uB2E4\uAC00\u2026 \uACB0\uAD6D \uB545\uC744
+        \uB450 \uBC88 \uCCE4\uB2E4."
+      linkedEventName: 
+    statConstraints: []
+    constraintPerCase: 

@@ -15,11 +15,31 @@ MonoBehaviour:
   id: 0
   eventName: "\uC2F8\uC6C0\uAD6C\uACBD \uB05D"
   phase: 1
-  encounterProbabilty: 100
-  titleText: 
-  content: 
+  encounterProbabilty: 0
+  titleText: "\"\uC9DC\uC2DD\uC774, \uACE0\uAE30 \uC370\uC5B4\uC57C\uB418\uB294\uB370
+    \uD314\uC744 \uB54C\uB824\u2026 \uC77C\uC5B4\uB098 \uC784\uB9C8! \uD06C\uD559\uD559\uD559!\""
+  content: "\"\uD06C\uC73C\u2026 \uC0AC\uB0E5 \uC548 \uAC14\uB2E4\uC628 \uB0A0\uC5D0
+    \uB2E4\uC2DC \uD55C \uD310 \uD574\u2026!\""
   basicEnable: 0
-  optionTexts: []
-  optionResultTexts: []
-  isFleeting: 0
-  options: []
+  optionTexts:
+  - "\uD489!"
+  optionResultTexts:
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 0a5cc942d7c50e74dbfa3f5e277ab012, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\"\uC6B0\uB9AC \uC560\uC1A1\uC774 \uC190\uB2D8\uB3C4 \uC6C3\uB124!
+        \uD06C\uD559\uD559! \uB2E4\uC74C\uC5D0 \uB610 \uC624\uBA74, \uC624\uB8E8\uADF8
+        \uB188\uC774\uB791 \uC0AC\uB0E5\uC774\uB098 \uAC14\uB2E4\uC640\uB77C! \uC7AC\uBC0C\uC744\uAC70\uB2E4.
+        \uD06C\uD559\uD559\uD559!\""
+      linkedEventName: "\uC640\uC774\uBC88or\uC624\uB8E8\uADF8"
+    statConstraints: []
+    constraintPerCase: 

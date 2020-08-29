@@ -15,11 +15,31 @@ MonoBehaviour:
   id: 0
   eventName: "vs\uC624\uB8E8\uADF8 \uD328\uBC30"
   phase: 1
-  encounterProbabilty: 100
-  titleText: 
-  content: 
+  encounterProbabilty: 0
+  titleText: "\"\uC5D0\uD5E4\uC774, \uC624\uB8E8\uADF8, \uC880 \uC0B4\uC0B4 \uD558\uC9C0
+    \uADF8\uB7AC\uB098!\" \uBB38\uC744 \uC5F4\uC5B4\uC8FC\uB294 \uD584\uBC84\uD2B8\uAC00
+    \uAC71\uC815\uC2A4\uB7FD\uAC8C \uCCD0\uB2E4\uBCF8\uB2E4."
+  content: "\"\uADF8\uB798\uB3C4 \uB098\uB984 \uD798\uC870\uC808\uC740 \uD588\uB2E4\uACE0.\"
+    \uC624\uB8E8\uADF8\uAC00 \uC190\uC744 \uC7A1\uC544 \uC77C\uC73C\uCF1C\uC92C\uB2E4."
   basicEnable: 0
-  optionTexts: []
-  optionResultTexts: []
-  isFleeting: 0
-  options: []
+  optionTexts:
+  - "\uB2E4\uC74C\uC5D4 \uAF2D\u2026!"
+  optionResultTexts:
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 0a5cc942d7c50e74dbfa3f5e277ab012, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\"\uADF8\uB798, \uC560\uC1A1\uC544! \uC5F0\uC2B5 \uC880 \uB354
+        \uD558\uACE0 \uC640\uC11C, \uC624\uB8E8\uADF8 \uB188 \uCF54\uBF08\uB97C \uC544\uC791\uB0B4\uC790\uAD6C!
+        \uD06C\uD559\uD559!\""
+      linkedEventName: "\uC640\uC774\uBC88or\uC624\uB8E8\uADF8"
+    statConstraints: []
+    constraintPerCase: 

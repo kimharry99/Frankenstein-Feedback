@@ -15,11 +15,47 @@ MonoBehaviour:
   id: 0
   eventName: "\uC640\uC774\uBC88 \uC0AC\uB0E5 1"
   phase: 1
-  encounterProbabilty: 100
-  titleText: 
-  content: 
+  encounterProbabilty: 0
+  titleText: "\uC808\uBCBD \uC544\uB798\uB85C\uB294 \uB9C8\uADF8\uB9C8\uAC00 \uD750\uB974\uACE0,
+    \uBC18\uB300\uCABD \uC808\uBCBD\uC5D0\uB294 \uB3C5\uC218\uB9AC\uAC19\uC740 \uB2E4\uB9AC\uC640
+    \uC6A9\uC758 \uB0A0\uAC1C\uB97C \uAC00\uC9C4 \uC640\uC774\uBC88\uB4E4\uC774 \uC549\uC544
+    \uC788\uB2E4."
+  content: "\uC6B0\uB9AC\uB97C \uBC1C\uACAC\uD55C \uC640\uC774\uBC88 \uD55C \uB9C8\uB9AC\uAC00,
+    \uB192\uC774 \uB5A0\uC62C\uB790\uB2E4\uAC00 \uC3DC\uC0B4\uAC19\uC774 \uC6B0\uB9AC\uC5D0\uAC8C
+    \uB0A0\uC544\uC628\uB2E4! \"\uBC1C\uD1B1\uC744 \uD53C\uD574! \uC219\uC5EC\uB77C!\""
   basicEnable: 0
-  optionTexts: []
-  optionResultTexts: []
-  isFleeting: 0
-  options: []
+  optionTexts:
+  - "\uD53C\uD55C\uB2E4"
+  optionResultTexts:
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 13a63a232b0c45d40a2ae350d099e160, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\"\uC13C\uC2A4\uAC00 \uAD1C\uCC2E\uAD6C\uB9CC! \uBE0C\uD558\uB4DC,
+        \uC900\uBE44!\""
+      linkedEventName: 
+    - resultEvent: {fileID: 11400000, guid: 923a7aec33b59af41b69bb62417cef74, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uC640\uC774\uBC88\uC758 \uBC1C\uC5D0 \uB09A\uC544\uCC44\uC600\uB2E4\u2026\uAC00
+        \uC624\uB8E8\uADF8\uC758 \uC190\uC5D0 \uC7A1\uD600 \uAD6C\uCD9C\uB410\uB2E4!
+        \"\uC774\uB7F0! \uC870\uC2EC\uD588\uC5B4\uC57C\uC9C0!\""
+      linkedEventName: 
+    statConstraints:
+    - moreOrLess: 1
+      constraintName: 2
+      statConstraint: 10
+    constraintPerCase: 0100000000000000

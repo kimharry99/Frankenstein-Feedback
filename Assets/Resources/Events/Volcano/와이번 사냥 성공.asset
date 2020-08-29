@@ -15,11 +15,29 @@ MonoBehaviour:
   id: 0
   eventName: "\uC640\uC774\uBC88 \uC0AC\uB0E5 \uC131\uACF5"
   phase: 1
-  encounterProbabilty: 100
-  titleText: 
-  content: 
+  encounterProbabilty: 0
+  titleText: "\"\uC640\uC774\uBC88\uD55C\uD14C \uADF8\uB7F0 \uCDA9\uACA9\uC744 \uC904
+    \uC218 \uC788\uB294 \uACF5\uACA9\uC774 \uB9CE\uC9C0 \uC54A\uC740\uB370, \uB300\uB2E8\uD55C\uAC78?\""
+  content: "\"\uC624\uB298 \uC0AC\uB0E5\uC740 \uC131\uACF5\uC774\uB2E4! \uB3CC\uC544\uAC00\uC790!\""
   basicEnable: 0
-  optionTexts: []
-  optionResultTexts: []
-  isFleeting: 0
-  options: []
+  optionTexts:
+  - "\uC640! \uACE0\uAE30!"
+  optionResultTexts:
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 6a0a3a9e0cdbb0c49b5954946b368707, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\"\uC624, \uC560\uC1A1\uC774! \uC0AC\uB0E5\uC5D0\uB3C4 \uC18C\uC9C8\uC774
+        \uC788\uB098\uBD10? \uC624\uB298\uC740 \uC640\uC774\uBC88 \uC2A4\uD14C\uC774\uD06C\uB2E4!
+        \uD06C\uD559\uD559!\""
+      linkedEventName: 
+    statConstraints: []
+    constraintPerCase: 
