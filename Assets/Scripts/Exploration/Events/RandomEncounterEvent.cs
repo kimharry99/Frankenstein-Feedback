@@ -148,6 +148,25 @@ public class RandomEncounterEvent : ExplorationEvent
     {
         if (options.Length <= optionIndex)
             return false;
+        for (int i=0;i<options[optionIndex].cases.Length;i++)
+        {
+            Case @case = options[optionIndex].cases[i];
+            if (@case.consumedItem.slotItem != null)
+            {
+                Storage inven = StorageManager.Inst.inventory;
+                for(int j=0;j<inven.slotItem.Length;j++)
+                {
+                    if (inven.slotItem[j].id == @case.consumedItem.slotItem.id)
+                    {
+                        if (inven.slotItemNumber[j] < @case.consumedItem.slotItemNumber)
+                            return false;
+                        else
+                            return true;
+                    }
+                }
+                return false;
+            }
+        }
         return true;
     }
 
@@ -163,6 +182,12 @@ public class RandomEncounterEvent : ExplorationEvent
         if (durabilityDamage != 0)
         {
             GetDamage(currentCase.durabilityDamage);
+        }
+
+        Slot costItem = currentCase.consumedItem;
+        if(costItem.slotItem != null && costItem.slotItemNumber != 0)
+        {
+            ConsumeItem(costItem);
         }
 
         Slot rewardItem = currentCase.rewardItem;
@@ -196,6 +221,22 @@ public class RandomEncounterEvent : ExplorationEvent
         }
     }
 
+    private void ConsumeItem(Slot cost)
+    {
+        Storage inven = StorageManager.Inst.inventory;
+        for(int i=0;i<inven.slotItem.Length;i++)
+        {
+            if(cost.slotItem.id == inven.slotItem[i].id)
+            {
+                for(int j=0;j<cost.slotItemNumber;j++)
+                {
+                    StorageManager.Inst.DeleteFromInven(i);
+                }
+                return;
+            }
+        }
+        Debug.Log("item not found");
+    }
     #region Constraint Methods
 
     /// <summary>
