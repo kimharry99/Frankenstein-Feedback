@@ -284,7 +284,8 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
                 explorationCnt++;
                 SkipInterval();
                 objectState = ObjectState.SearchNextEvent;
-                ChangeToFollowingState();
+                if(nextEvent.phase != ExplorationEvent.EventPhase.RandomEncounter)
+                    ChangeToFollowingState();
                 Debug.Log(phaseState);
                 SelectEvent(nextEvent);
                 break;
