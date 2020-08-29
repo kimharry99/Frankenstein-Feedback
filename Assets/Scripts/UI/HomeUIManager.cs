@@ -141,7 +141,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
         for(int i = 0; i < Chest.CAPACITY; i++)
         {
-            txt = panelChest.transform.GetChild(1).GetChild(i).GetChild(0).GetChild(0).GetComponent<Text>();
+            txt = panelChest.transform.GetChild(2).GetChild(0).GetChild(i).GetChild(0).GetChild(0).GetComponent<Text>();
             int indexItem = StorageManager.Inst.GetIndexTable(_currentChestType, i);
             if (indexItem != -1)
             {
