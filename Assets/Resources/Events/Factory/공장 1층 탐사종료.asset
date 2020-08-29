@@ -15,11 +15,10 @@ MonoBehaviour:
   id: 0
   eventName: "\uACF5\uC7A5 1\uCE35 \uD0D0\uC0AC \uC885\uB8CC"
   phase: 2
-  encounterProbabilty: 0
+  encounterProbabilty: 100
   titleText: "\"\uC9C0\uD558 1\uCE35\uB3C4 \uC870\uAE08 \uB458\uB7EC\uBCF4\uC8E0.\" "
   content: 
-  basicEnable: 0
-  linkedEventName: "\uACF5\uC7A5 \uC9C0\uD558 1\uCE35   "
+  basicEnable: 1
   optionTexts:
   - "\uACF5\uC7A5\uC744 \uD0D0\uC0AC\uD55C\uB2E4 "
   optionResultTexts:

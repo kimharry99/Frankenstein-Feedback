@@ -10,16 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
-  m_Name: "\u3147"
+  m_Name: "\u3147 \uACF5\uC7A5\uC758 \uC4F8\uB9CC\uD55C \uBB3C\uAC74 2"
   m_EditorClassIdentifier: 
-  id: 0
-  eventName: 
-  phase: 0
-  encounterProbabilty: 0
-  titleText: 
-  content: 
+  id: 214112
+  eventName: "\uACF5\uC7A5\uC758 \uC4F8\uB9CC\uD55C \uBB3C\uAC742  "
+  phase: 1
+  encounterProbabilty: 30
+  titleText: "\uACF5\uC7A5\uC744 \uB458\uB7EC\uBCF4\uB2E4\uAC00, \uC8FC\uC6CC\uAC08
+    \uB9CC\uD55C \uAC83\uB4E4\uC744 \uCC3E\uC558\uB2E4.  "
+  content: "\uB108\uBB34 \uB9CE\uC740\uB370\u2026 \uD558\uB098\uB9CC \uB4E4\uACE0
+    \uAC00\uC790.  "
   basicEnable: 0
-  optionTexts: []
-  optionResultTexts: []
+  optionTexts:
+  - "\uBC18\uD30C\uB41C \uAE30\uACC4 \uC67C\uD314"
+  - "\uBC18\uD30C\uB41C \uAE30\uACC4 \uC67C\uB2E4\uB9AC"
+  - "\uBC84\uB9B0\uB2E4"
+  optionResultTexts:
+  - "\uBC18\uD30C\uB41C \uAE30\uACC4 \uC67C\uD314\uC744 \uD68D\uB4DD\uD588\uB2E4!"
+  - "\uBC18\uD30C \uAE30\uACC4 \uC67C\uB2E4\uB9AC\uB97C \uD68D\uB4DD\uD588\uB2E4!"
+  - 
   isFleeting: 0
   options: []

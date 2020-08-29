@@ -10,16 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
-  m_Name: "\u3147"
+  m_Name: "\u3147 \uD3ED\uC8FC \uAE30\uACC4 1"
   m_EditorClassIdentifier: 
-  id: 0
-  eventName: 
-  phase: 0
+  id: 214311
+  eventName: "\uD3ED\uC8FC \uAE30\uACC4 1  "
+  phase: 1
   encounterProbabilty: 0
-  titleText: 
-  content: 
+  titleText: "\uD734\uBA38\uB178\uC774\uB4DC\uB294 \uB098\uB97C \uC8FD\uC77C \uB4EF
+    \uB178\uB824\uBCF4\uACE0 \uC788\uB2E4\u2026  "
+  content: "\uAE30\uACC4\uB294 \uC544\uD30C\uD560 \uC2DC\uAC04\uB3C4 \uC8FC\uC9C0
+    \uC54A\uACE0 \uD314\uC744 \uD718\uB458\uB7EC \uC628\uB2E4.  "
   basicEnable: 0
-  optionTexts: []
+  optionTexts:
+  - "\uB9C9\uB294"
   optionResultTexts: []
   isFleeting: 0
   options: []
