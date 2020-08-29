@@ -76,9 +76,12 @@ public class GeneralUIManager : SingletonBehaviour<GeneralUIManager>
 
     public void ButtonInvenItemClicked(int slotNumber)
     {
+        Item _item = inventory.slotItem[slotNumber];
         for(int i = 0; i < Chest.CAPACITY; i++)
         {
             if (StorageManager.Inst.chest.slotItem[i] == null)
+                break;
+            if (_item.type != Type.BodyPart && _item == StorageManager.Inst.chest.slotItem[i])
                 break;
             if (i == Chest.CAPACITY - 1)
                 return;

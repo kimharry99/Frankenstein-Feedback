@@ -10,18 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1564c065bac2eab4585b0cd500196910, type: 3}
-  m_Name: "\u1112\u116A"
+  m_Name: "\uD654\uC0B012 \uD53C\uBA4D\uC774 \uB4E0 \uC624\uD06C\uC758 \uC624\uB978\uB2E4\uB9AC
+    \uD68D\uB4DD"
   m_EditorClassIdentifier: 
   id: 0
   eventName: 
   phase: 0
-  type: 0
   encounterProbabilty: 0
-  isFleeting: 0
   titleText: 
   content: 
   basicEnable: 0
-  linkedEventName: 
   optionTexts: []
   optionResultTexts: []
   foundItem: {fileID: 0}

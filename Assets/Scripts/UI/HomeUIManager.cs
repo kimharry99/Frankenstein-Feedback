@@ -98,14 +98,17 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     }
     public void ButtonChestSlotClidked(int uiSlot)
     {
+        int itemSlot = StorageManager.Inst.GetIndexTable(_currentChestType, uiSlot);
+        Item _item = chest.slotItem[itemSlot];
         for(int i = 0; i < 5; i++)
         {
             if (StorageManager.Inst.inventory.slotItem[i] == null)
                 break;
+            if (_item.type != Type.BodyPart && _item == StorageManager.Inst.inventory.slotItem[i])
+                break;
             if (i == 4)
                 return;
         }
-        int itemSlot = StorageManager.Inst.GetIndexTable(_currentChestType, uiSlot);
         StorageManager.Inst.MoveItemToInven(itemSlot);
     }
 
