@@ -10,21 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1564c065bac2eab4585b0cd500196910, type: 3}
-  m_Name: "\uC544\uC774\uD15C \uCC3E\uC9C0 \uBABB\uD568"
+  m_Name: "\uACF5\uC7A521 \uBC18\uD30C\uB41C \uAE30\uACC4 \uC624\uB978\uB2E4\uB9AC
+    \uD68D\uB4DD"
   m_EditorClassIdentifier: 
-  id: 100000
-  eventName: "\uC544\uC774\uD15C \uCC3E\uC9C0 \uBABB\uD568"
+  id: 114121
+  eventName: "\uBC18\uD30C\uB41C \uAE30\uACC4 \uC624\uB978\uB2E4\uB9AC"
   phase: 0
   type: 1
-  encounterProbabilty: 0
+  encounterProbabilty: 6
   isFleeting: 0
-  titleText: "\uC774\uACF3\uC800\uACF3 \uC5F4\uC2EC\uD788 \uB4E4\uC464\uC154\uBD24\uC9C0\uB9CC
-    \uC4F8\uB9CC\uD55C \uAC83\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC5C8\uB2E4."
+  titleText: "\uBC18\uD30C\uB41C \uAE30\uACC4 \uC624\uB978\uB2E4\uB9AC\uB97C \uBC1C\uACAC\uD588\uB2E4 "
   content: 
-  basicEnable: 0
+  basicEnable: 1
   linkedEventName: 
   optionTexts:
-  - "\uC5D0\uC789..."
+  - "\uD68D\uB4DD\uD55C\uB2E4"
+  - "\uBC84\uB9B0\uB2E4"
   optionResultTexts:
+  - "\uBC18\uD30C\uB41C \uAE30\uACC4 \uC624\uB978\uB2E4\uB9AC\uB97C \uD68D\uB4DD\uD588\uB2E4 "
   - 
   foundItem: {fileID: 0}
