@@ -418,6 +418,76 @@ PrefabInstance:
       propertyPath: m_Name
       value: HomeUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1368211035110939627, guid: e5afff4fa20165c418049e3e9db7415e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545177900121491845, guid: e5afff4fa20165c418049e3e9db7415e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545177900121491845, guid: e5afff4fa20165c418049e3e9db7415e,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545177900121491845, guid: e5afff4fa20165c418049e3e9db7415e,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545177900121491845, guid: e5afff4fa20165c418049e3e9db7415e,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545177900121491845, guid: e5afff4fa20165c418049e3e9db7415e,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545177900121491845, guid: e5afff4fa20165c418049e3e9db7415e,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545177900121491845, guid: e5afff4fa20165c418049e3e9db7415e,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545177900121491845, guid: e5afff4fa20165c418049e3e9db7415e,
+        type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545177900121491845, guid: e5afff4fa20165c418049e3e9db7415e,
+        type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545177900121491845, guid: e5afff4fa20165c418049e3e9db7415e,
+        type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545177900121491845, guid: e5afff4fa20165c418049e3e9db7415e,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545177900121491845, guid: e5afff4fa20165c418049e3e9db7415e,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3545177900121491845, guid: e5afff4fa20165c418049e3e9db7415e,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5afff4fa20165c418049e3e9db7415e, type: 3}
 --- !u!114 &79899572 stripped
