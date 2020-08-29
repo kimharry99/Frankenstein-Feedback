@@ -18,8 +18,8 @@ public class RandomEncounterEvent : ExplorationEvent
             Human,
             Goblin,
             Elf,
-            Machine,
             Oak,
+            Machine,
             NightVision,
             Magic,
             DarkMagic,
@@ -249,35 +249,83 @@ public class RandomEncounterEvent : ExplorationEvent
 
     private bool CalConstraint(StatConstraint statConstraint)
     {
-        switch (statConstraint.moreOrLess)
+        int status;
+        int constraint = statConstraint.statConstraint;
+        Debug.Log(statConstraint.constraintName);
+        if (statConstraint.constraintName <= StatConstraint.ConstraintName.Endurance)
         {
-            case StatConstraint.MoreOrLess.More:
-                if (Player.Inst.GetStatus(statConstraint.statName) > statConstraint.statConstraint)
+            Debug.Log("stat constraint case");
+            status = Player.Inst.GetStatus((Status.StatName)statConstraint.constraintName);
+            switch (statConstraint.moreOrLess)
+            {
+                case StatConstraint.MoreOrLess.More:
+                    if (status > constraint)
+                        return true;
+                    else
+                        return false;
+                case StatConstraint.MoreOrLess.MoreEqual:
+                    if (status >= constraint)
+                        return true;
+                    else
+                        return false;
+                case StatConstraint.MoreOrLess.Equal:
+                    if (status == constraint)
+                        return true;
+                    else
+                        return false;
+                case StatConstraint.MoreOrLess.LessEqual:
+                    if (status <= constraint)
+                        return true;
+                    else
+                        return false;
+                case StatConstraint.MoreOrLess.Less:
+                    if (status < constraint)
+                        return true;
+                    else
+                        return false;
+                default:
                     return true;
-                else
-                    return false;
-            case StatConstraint.MoreOrLess.MoreEqual:
-                if (Player.Inst.GetStatus(statConstraint.statName) >= statConstraint.statConstraint)
+            }
+        }
+        else if (statConstraint.constraintName >= StatConstraint.ConstraintName.Human && statConstraint.constraintName < StatConstraint.ConstraintName.NightVision)
+        {
+            Debug.Log("race affinity case");
+            status = Player.Inst.GetRaceAffinity((Race)(statConstraint.constraintName - 4));
+            Debug.Log((Race)(statConstraint.constraintName - 4) + "affinity : " + status);
+            switch (statConstraint.moreOrLess)
+            {
+                case StatConstraint.MoreOrLess.More:
+                    if (status > constraint)
+                        return true;
+                    else
+                        return false;
+                case StatConstraint.MoreOrLess.MoreEqual:
+                    if (status >= constraint)
+                        return true;
+                    else
+                        return false;
+                case StatConstraint.MoreOrLess.Equal:
+                    if (status == constraint)
+                        return true;
+                    else
+                        return false;
+                case StatConstraint.MoreOrLess.LessEqual:
+                    if (status <= constraint)
+                        return true;
+                    else
+                        return false;
+                case StatConstraint.MoreOrLess.Less:
+                    if (status < constraint)
+                        return true;
+                    else
+                        return false;
+                default:
                     return true;
-                else
-                    return false;
-            case StatConstraint.MoreOrLess.Equal:
-                if (Player.Inst.GetStatus(statConstraint.statName) == statConstraint.statConstraint)
-                    return true;
-                else
-                    return false;
-            case StatConstraint.MoreOrLess.LessEqual:
-                if (Player.Inst.GetStatus(statConstraint.statName) <= statConstraint.statConstraint)
-                    return true;
-                else
-                    return false;
-            case StatConstraint.MoreOrLess.Less:
-                if (Player.Inst.GetStatus(statConstraint.statName) < statConstraint.statConstraint)
-                    return true;
-                else
-                    return false;
-            default:
-                return true;
+            }
+        }
+        else
+        {
+            return true;
         }
     }
 
@@ -286,6 +334,7 @@ public class RandomEncounterEvent : ExplorationEvent
     /// </summary>
     private bool CalConstraints(int i, int n, StatConstraint[] statConstraints)
     {
+        Debug.Log("CalConstraints(" + i + ", " + n + ", option.statConstraints)");
         if (i + n - 1 >= statConstraints.Length)
         {
             Debug.Log("out of index i+n : " + (i + n) + " length : " + statConstraints.Length);

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b8361628c070a438b33ea176d71c17, type: 3}
   m_Name: BodyPartStatus
   m_EditorClassIdentifier: 
-  atk: 10
-  def: 1
-  dex: 11
-  mana: 6
-  endurance: 6
+  atk: 0
+  def: 0
+  dex: 0
+  mana: 0
+  endurance: 0
