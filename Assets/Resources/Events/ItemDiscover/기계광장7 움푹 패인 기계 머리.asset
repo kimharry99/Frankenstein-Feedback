@@ -16,9 +16,7 @@ MonoBehaviour:
   eventName: "\uAE30\uACC4\uAD11\uC7A5 \uC6C0\uD479 \uD328\uC778 \uAE30\uACC4 \uBA38\uB9AC
     \uD68D\uB4DD"
   phase: 0
-  type: 1
   encounterProbabilty: 1
-  isFleeting: 0
   titleText: "\uC6C0\uD479 \uD328\uC778 \uAE30\uACC4 \uBA38\uB9AC\uB97C \uBC1C\uACAC\uD588\uB2E4"
   content: 
   basicEnable: 1
@@ -29,4 +27,4 @@ MonoBehaviour:
   optionResultTexts:
   - "\uC6C0\uD479 \uD328\uC778 \uAE30\uACC4 \uBA38\uB9AC\uB97C \uD68D\uB4DD\uD588\uB2E4."
   - 
-  foundItem: {fileID: 0}
+  foundItem: {fileID: 11400000, guid: 7ef08f267451b3349b0191bc2214a751, type: 2}

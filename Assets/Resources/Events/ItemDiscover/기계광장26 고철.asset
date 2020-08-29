@@ -15,9 +15,7 @@ MonoBehaviour:
   id: 112127
   eventName: "\uAE30\uACC4\uAD11\uC7A5 \uACE0\uCCA0 \uD68D\uB4DD"
   phase: 0
-  type: 1
   encounterProbabilty: 30
-  isFleeting: 0
   titleText: "\uACE0\uCCA0\uC744 \uBC1C\uACAC\uD588\uB2E4"
   content: 
   basicEnable: 1
@@ -28,4 +26,4 @@ MonoBehaviour:
   optionResultTexts:
   - "\uACE0\uCCA0\uC744 \uD68D\uB4DD\uD588\uB2E4."
   - 
-  foundItem: {fileID: 0}
+  foundItem: {fileID: 11400000, guid: d902c592e836a5a4599a2d42d0d6990a, type: 2}
