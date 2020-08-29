@@ -14,7 +14,7 @@ public class Player : SingletonBehaviour<Player>
         set
         {
             durability.value = value;
-            if(durability.value <= 0)
+            if (durability.value <= 0)
             {
                 KillPlayer();
             }
@@ -43,6 +43,44 @@ public class Player : SingletonBehaviour<Player>
     public Status toolStat;
     [SerializeField]
     private Status _bodyPartStat = null;
+
+    private bool _darkMagic = false;
+    public bool DarkMagic
+    {
+        get
+        {
+            return _darkMagic;
+        }
+        set
+        {
+            _darkMagic = value;
+        }
+
+    }
+    private bool _magic = false;
+    public bool Magic
+    {
+        get
+        {
+            return _magic;
+        }
+        set
+        {
+            _magic = value;
+        }
+    }
+    private bool _nightVision = false;
+    public bool NightVision
+    {
+        get
+        {
+            return _nightVision;
+        }
+        set
+        {
+            _nightVision = value;
+        }
+    }
     public void ResetBodyAffinity()
     {
         _raceAffinity[(int)Race.All] = 1;
