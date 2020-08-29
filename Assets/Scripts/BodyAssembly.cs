@@ -34,7 +34,12 @@ public class BodyAssembly : MonoBehaviour
     {
         _selectedSlotOfChest = _index[holdingSlotNumber];
         _selectedBodyPart = _holdingBodyParts[holdingSlotNumber];
-        Debug.Log(_selectedSlotOfChest.ToString() + _selectedBodyPart.ToString());
+        //Debug.Log(_selectedSlotOfChest.ToString() + _selectedBodyPart.ToString());
+
+        if (_selectedBodyPart)
+            HomeUIManager.Inst.UpdateAssembleEnergy(_selectedBodyPart.energyPotential);
+        else
+            HomeUIManager.Inst.UpdateAssembleEnergy(0);
     }
 
     [SerializeField]
@@ -47,10 +52,10 @@ public class BodyAssembly : MonoBehaviour
         // Player가 장착하고 있던 신체는 창고로 이동한다.
         // 에너지를 소비한다.
         Player.Inst.ExchangePlayerBody(_selectedBodyPart, _selectedSlotOfChest);
-        SpendEnergy(100);
+        SpendEnergy(_selectedBodyPart.energyPotential);
         HoldBodyPartsFromChest();
         HomeUIManager.Inst.UpdateBodyAssemblyHoldingImages();
-
+        HomeUIManager.Inst.UpdateAssembleEnergy(0);
         GameManager.Inst.OnTurnOver(2);
         GeneralUIManager.Inst.UpdateEnergy();
     }

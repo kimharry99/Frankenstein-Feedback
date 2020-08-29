@@ -85,17 +85,7 @@ public class CraftingTable : MonoBehaviour
     /// </summary>
     public void CraftItem()
     {
-        debuggingIngredientItemIds.Clear();
-        string ingredientItemIds = sortUsingItemsById(_usingItems);
-
-        if (ingredientItemIds == "")
-        {
-            HomeUIManager.Inst.panelNotice.SetActive(true);
-            HomeUIManager.Inst.textNotice.text = "제작에 사용할 아이템을 선택하세요.";
-            return;
-        }
-
-        _resultItem = _craftingDirectory.FindItem(ingredientItemIds);
+        FindRecipie();
 
         if (_resultItem)
         {
@@ -110,8 +100,12 @@ public class CraftingTable : MonoBehaviour
 
             StorageManager.Inst.AddItemToChest(_resultItem);
 
+            GeneralUIManager.Inst.energy.value -= _resultItem.energyPotential;
+            GeneralUIManager.Inst.UpdateEnergy();
+
             HomeUIManager.Inst.panelNotice.SetActive(true);
-            HomeUIManager.Inst.textNotice.text = _resultItem.itemName + " 아이템을 제작하였습니다.";
+            HomeUIManager.Inst.textNotice.text = _resultItem.energyPotential.ToString() + " 에너지를 소모하여\n"
+                + _resultItem.itemName + " 아이템을 제작하였습니다.";
 
             GameManager.Inst.OnTurnOver(1);
             HomeUIManager.Inst.UpdateCrafting();
@@ -123,6 +117,23 @@ public class CraftingTable : MonoBehaviour
             HomeUIManager.Inst.textNotice.text = "해당하는 레시피가 없습니다.";
         }
     }
+
+
+    /// <summary>
+    /// 현재 올려진 재료들에 해당하는 resultItem을 반환한다.
+    /// </summary>
+    public Item FindRecipie()
+    {
+        debuggingIngredientItemIds.Clear();
+        string ingredientItemIds = sortUsingItemsById(_usingItems);
+
+        if (ingredientItemIds == "")
+            return null;
+
+        _resultItem = _craftingDirectory.FindItem(ingredientItemIds);
+        return _resultItem;
+    }
+
 
     /// <summary>
     /// usingItems의 아이템의 아이디를 읽어서 정렬된 상태로 ingredientItemIds에 저장한다.

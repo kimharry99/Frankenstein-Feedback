@@ -268,6 +268,10 @@ public class Player : SingletonBehaviour<Player>
         //        return null;
         //}
         #endregion
+
+        HomeUIManager.Inst.panelNotice.SetActive(true);
+        HomeUIManager.Inst.textNotice.text = bodyPart.energyPotential.ToString() + " 에너지를 소모하여\n"
+            + bodyPart.itemName + "\n아이템을 장착하였습니다.";
         Debug.Log("장착된 신체 : " + bodyPart.itemName + "\n탈착된 신체 : " + returnedBodyPart.itemName);
 
         return;

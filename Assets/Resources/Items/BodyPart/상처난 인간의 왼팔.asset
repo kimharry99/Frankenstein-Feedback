@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: "\uC0C1\uCC98\uB09C \uC778\uAC04\uC758 \uC67C\uD314"
   description: "\uC9D0\uC2B9\uC5D0\uAC8C \uB2F9\uD55C \uC0C1\uCC98\uB294 \uC544\uB2CC
     \uAC83 \uAC19\uB2E4."
-  itemImage: {fileID: 21300000, guid: 95229a67d841fbf4cb1493346fc056ea, type: 3}
+  itemImage: {fileID: 21300000, guid: a50fabd91c13e5144b9e8eb2e749a403, type: 3}
   type: 1
   race: 1
   energyPotential: 1500
@@ -27,4 +27,4 @@ MonoBehaviour:
   endurance: 0
   bodyPartType: 2
   grade: 2
-  bodyPartSprite: {fileID: 21300000, guid: 95229a67d841fbf4cb1493346fc056ea, type: 3}
+  bodyPartSprite: {fileID: 21300000, guid: a50fabd91c13e5144b9e8eb2e749a403, type: 3}
