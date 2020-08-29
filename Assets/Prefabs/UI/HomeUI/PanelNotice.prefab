@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8705185780236784629
 RectTransform:
   m_ObjectHideFlags: 0
@@ -238,8 +238,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5598134403201767622, guid: f786abf4f0f25d445889498f150c5434,
-          type: 3}
+      - m_Target: {fileID: 0}
         m_MethodName: PanelNoticeClicked
         m_Mode: 1
         m_Arguments:
