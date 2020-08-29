@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1564c065bac2eab4585b0cd500196910, type: 3}
-  m_Name: New Item Discovery Event
+  m_Name: "\uD654\uC0B029 \uAE30\uACC4 \uBD80\uD488 \uD68D\uB4DD"
   m_EditorClassIdentifier: 
-  id: 0
-  eventName: 
+  id: 150129
+  eventName: "\uD654\uC0B0 \uAE30\uACC4 \uBD80\uD488 \uD68D\uB4DD "
   phase: 0
-  type: 0
+  type: 1
   encounterProbabilty: 0
   isFleeting: 0
   titleText: 

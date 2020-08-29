@@ -10,18 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1564c065bac2eab4585b0cd500196910, type: 3}
-  m_Name: "\u1112\u116A\u1109\u1161\u11AB9"
+  m_Name: "\uD654\uC0B09 \uD53C\uBA4D\uC774 \uB4E0 \uC624\uD06C\uC758 \uC67C\uD314
+    \uD68D\uB4DD"
   m_EditorClassIdentifier: 
-  id: 0
-  eventName: 
+  id: 150109
+  eventName: "\uD654\uC0B0 \uD53C\uBA4D\uC774 \uB4E0 \uC624\uD06C\uC758 \uC67C\uD314
+    \uD68D\uB4DD "
   phase: 0
-  type: 0
-  encounterProbabilty: 0
+  type: 1
+  encounterProbabilty: 3
   isFleeting: 0
-  titleText: 
+  titleText: "\uD53C\uBA4D\uC774 \uB4E0 \uC624\uD06C\uC758 \uC67C\uD314\uC744 \uBC1C\uACAC\uD588\uB2E4"
   content: 
-  basicEnable: 0
+  basicEnable: 1
   linkedEventName: 
-  optionTexts: []
-  optionResultTexts: []
-  foundItem: {fileID: 0}
+  optionTexts:
+  - "\uAC00\uC838\uC628\uB2E4"
+  - "\uBC84\uB9B0\uB2E4"
+  optionResultTexts:
+  - "\uD53C\uBA4D\uC774 \uB4E0 \uC624\uD06C\uC758 \uC67C\uD314\uC744 \uD68D\uB4DD\uD588\uB2E4"
+  - 
+  foundItem: {fileID: 11400000, guid: d7d9bff278acc09449e3368926e415d9, type: 2}
