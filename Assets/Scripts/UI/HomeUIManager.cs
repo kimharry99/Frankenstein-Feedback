@@ -98,6 +98,13 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     }
     public void ButtonChestSlotClidked(int uiSlot)
     {
+        for(int i = 0; i < 5; i++)
+        {
+            if (StorageManager.Inst.inventory.slotItem[i] == null)
+                break;
+            if (i == 4)
+                return;
+        }
         int itemSlot = StorageManager.Inst.GetIndexTable(_currentChestType, uiSlot);
         StorageManager.Inst.MoveItemToInven(itemSlot);
     }
@@ -610,10 +617,10 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
                 imageAssembleHolding.sprite = chest.slotItem[indexItem].itemImage;
                 continue;
             }
-            imageAssembleHolding.sprite = null;
+            imageAssembleHolding.sprite = emptyImage;
         }
 
-        imageAssembleUsing.sprite = null;
+        imageAssembleUsing.sprite = emptyImage;
         buttonAssembleHolding[_lastSlotNumber].transform.GetChild(1).gameObject.SetActive(false);
         _lastSlotNumber = 0;
     }
@@ -629,7 +636,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         imageAssembleUsing.sprite = buttonAssembleHolding[slotNumber].transform.GetChild(0).GetComponent<Image>().sprite;
         buttonAssembleHolding[_lastSlotNumber].transform.GetChild(1).gameObject.SetActive(false);
-        if (imageAssembleUsing.sprite != null)
+        if (imageAssembleUsing.sprite != emptyImage)
             buttonAssembleHolding[slotNumber].transform.GetChild(1).gameObject.SetActive(true);
         _lastSlotNumber = slotNumber;
     }
@@ -648,7 +655,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     // TODO : 이름변경해야 함
     public void ButtonDoAssembleyClicked()
     {
-        if (imageAssembleUsing.sprite != null)
+        if (imageAssembleUsing.sprite != emptyImage)
             GameManager.Inst.bodyAssembly.AssemleBody();
         else
         {

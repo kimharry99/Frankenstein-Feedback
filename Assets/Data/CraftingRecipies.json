@@ -7,7 +7,7 @@
         },
         {
             "itemName": "도끼",
-            "ingredientItemIds": "400240024003",
+            "ingredientItemIds": "4002400240034003",
             "resultItemId": 3011
         },
         {
@@ -49,152 +49,152 @@
             "itemName": "반파된 기계 머리",
             "ingredientItemIds": "4002400245014501450145014501",
             "resultItemId": 1511
-        }
+        },
         {
             "itemName": "움푹 패인 기계 머리",
             "ingredientItemIds": "151115111511",
             "resultItemId": 1512
-        }
+        },
         {
             "itemName": "녹슨 기계 머리",
             "ingredientItemIds": "151215121512",
             "resultItemId": 1513
-        }
+        },
         {
             "itemName": "단단한 기계 머리",
             "ingredientItemIds": "1513151315134301",
             "resultItemId": 1514
-        }
+        },
         {
             "itemName": "반파된 기계 몸통",
             "ingredientItemIds": "40024002400240024002400240024501",
             "resultItemId": 1521
-        }
+        },
         {
             "itemName": "움푹 패인 기계 몸통",
             "ingredientItemIds": "152115211521",
             "resultItemId": 1522
-        }
+        },
         {
             "itemName": "녹슨 기계 몸통",
             "ingredientItemIds": "152215221522",
             "resultItemId": 1523
-        }
+        },
         {
             "itemName": "단단한 기계 몸통",
             "ingredientItemIds": "152315231523440144014401",
             "resultItemId": 1524
-        }
+        },
         {
             "itemName": "반파된 기계 왼팔",
             "ingredientItemIds": "4002400240024002400240024501450145014003",
             "resultItemId": 1531
-        }
+        },
         {
             "itemName": "움푹 패인 기계 왼팔",
             "ingredientItemIds": "153115311531",
             "resultItemId": 1532
-        }
+        },
         {
             "itemName": "녹슨 기계 왼팔",
             "ingredientItemIds": "153215321532",
             "resultItemId": 1533
-        }
+        },
         {
             "itemName": "단단한 기계 왼팔",
             "ingredientItemIds": "153315331533",
             "resultItemId": 1534
-        }
+        },
         {
             "itemName": "반파된 기계 오른팔",
             "ingredientItemIds": "400240024002400240024501450145014001",
             "resultItemId": 1541
-        }
+        },
         {
             "itemName": "움푹 패인 기계 오른팔",
             "ingredientItemIds": "154115411541",
             "resultItemId": 1542
-        }
+        },
         {
             "itemName": "녹슨 기계 오른팔",
             "ingredientItemIds": "154215421542",
             "resultItemId": 1543
-        }
+        },
         {
             "itemName": "단단한 기계 오른팔",
             "ingredientItemIds": "154315431543",
             "resultItemId": 1544
-        }
+        },
         {
             "itemName": "반파된 기계 왼다리",
             "ingredientItemIds": "400240024002400240024002450145014003",
             "resultItemId": 1551
-        }
+        },
         {
             "itemName": "움푹 패인 기계 왼다리",
             "ingredientItemIds": "155115511551",
             "resultItemId": 1552
-        }
+        },
         {
             "itemName": "녹슨 기계 왼다리",
             "ingredientItemIds": "155215521552",
             "resultItemId": 1553
-        }
+        },
         {
             "itemName": "단단한 기계 왼다리",
             "ingredientItemIds": "155315531553",
             "resultItemId": 1554
-        }
+        },
         {
             "itemName": "반파된 기계 오른다리",
             "ingredientItemIds": "400240024002400240024002450145014001",
             "resultItemId": 1561
-        }
+        },
         {
             "itemName": "움푹 패인 기계 오른다리",
             "ingredientItemIds": "156115611561",
             "resultItemId": 1562
-        }
+        },
         {
             "itemName": "녹슨 기계 오른다리",
             "ingredientItemIds": "156215621562",
             "resultItemId": 1563
-        }
+        },
         {
             "itemName": "단단한 기계 오른다리",
             "ingredientItemIds": "156315631563",
             "resultItemId": 1564
-        }
+        },
         {
             "itemName": "마력 연산 부품",
             "ingredientItemIds": "450145014501430143014301",
             "resultItemId": 2511
-        }
+        },
         {
             "itemName": "충격 완화 부품",
             "ingredientItemIds": "4002400240024501440144014401",
             "resultItemId": 2521
-        }
+        },
         {
             "itemName": "톱날 부품",
             "ingredientItemIds": "400240024501",
             "resultItemId": 2531
-        }
+        },
         {
             "itemName": "추진력 부품",
             "ingredientItemIds": "40024002400240024002450145014201",
             "resultItemId": 2551
-        }
+        },
         {
             "itemName": "지팡이",
             "ingredientItemIds": "400340034003",
             "resultItemId": 3042
-        }
+        },
         {
             "itemName": "채찍",
             "ingredientItemIds": "4001440144014401",
             "resultItemId": 3212
-        }
+        },
         {
             "itemName":"너클",
             "ingredientItemIds":"44014401440140024002400240024002",
