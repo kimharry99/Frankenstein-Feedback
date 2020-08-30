@@ -14,11 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   eventName: 
-  phase: 0
+  phase: 2
   encounterProbabilty: 0
-  titleText: 
+  titleText: ...
   content: 
   basicEnable: 0
-  optionTexts: []
-  optionResultTexts: []
-  linkedRegions: []
+  optionTexts:
+  - ...
+  optionResultTexts:
+  - 
+  linkedRegions:
+  - {fileID: 0}

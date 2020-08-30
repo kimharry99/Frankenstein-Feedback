@@ -19,6 +19,9 @@ MonoBehaviour:
   titleText: 
   content: 
   basicEnable: 0
-  optionTexts: []
-  optionResultTexts: []
-  linkedRegions: []
+  optionTexts:
+  - ...
+  optionResultTexts:
+  - 
+  linkedRegions:
+  - {fileID: 0}

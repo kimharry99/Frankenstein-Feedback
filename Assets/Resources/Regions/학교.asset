@@ -41,6 +41,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5626152003df5554cb2ac6945f9a4218, type: 2}
   - {fileID: 11400000, guid: 3ec4c2a2d6622a648a205c55ebc98628, type: 2}
   - {fileID: 11400000, guid: 051ea2daa5ddc314f8316c96a873da6a, type: 2}
+  - {fileID: 11400000, guid: 16a772d5537b97a49b3aab5fe9ecf5bb, type: 2}
+  - {fileID: 11400000, guid: a3aecca9974a89b46bfb21fce435fe5a, type: 2}
+  - {fileID: 11400000, guid: 137282049f3c2ca44b671aacdcb03cfc, type: 2}
+  - {fileID: 11400000, guid: 44af5116e5c8ae943960d204b6b6f6e1, type: 2}
+  - {fileID: 11400000, guid: d61e9b6dae192874aa48667b1be73785, type: 2}
+  - {fileID: 11400000, guid: 99c9b6d36ef11cb4382400a89a2167c3, type: 2}
+  - {fileID: 11400000, guid: 7a5b796baf3380946b8c0aea60b76686, type: 2}
   skipRandomEncounterEvent: {fileID: 11400000, guid: 0632b2c99a9474246b71b238a778e4c2,
     type: 2}
   finishExplorationEvents:
