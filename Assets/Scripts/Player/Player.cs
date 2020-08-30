@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Player : SingletonBehaviour<Player>
 {
-    public IntVariable durability;
-    public int Durability
+    //public IntVariable durabilityI;
+    public FloatVariable durability;
+    public float Durability
     {
         get
         {
@@ -15,7 +16,7 @@ public class Player : SingletonBehaviour<Player>
         {
             durability.value = value;
             if (value > 100)
-                durability.value = 100;
+                durability.value = 100.0f;
             if (durability.value <= 0)
             {
                 KillPlayer();
@@ -90,21 +91,21 @@ public class Player : SingletonBehaviour<Player>
     {
         get
         {
-            return toolStat.atk + _bodyPartStat.atk;
+            return toolStat.atk + _bodyPartStat.atk + GameManager.Inst.research.GetStatBonus(Status.StatName.Atk);
         }
     }
     public int Def
     {
         get
         {
-            return toolStat.def + _bodyPartStat.def;
+            return toolStat.def + _bodyPartStat.def + GameManager.Inst.research.GetStatBonus(Status.StatName.Def);
         }
     }
     public int Dex
     {
         get
         {
-            return toolStat.dex + _bodyPartStat.dex;
+            return toolStat.dex + _bodyPartStat.dex + GameManager.Inst.research.GetStatBonus(Status.StatName.Dex);
         }
     }
     public int Mana
@@ -112,15 +113,15 @@ public class Player : SingletonBehaviour<Player>
         get
         {
             if(_bodyPartStat.darkMagic)
-                return toolStat.mana + _bodyPartStat.mana + 500;
-            return toolStat.mana + _bodyPartStat.mana;
+                return toolStat.mana + _bodyPartStat.mana + GameManager.Inst.research.GetStatBonus(Status.StatName.Mana) + 500;
+            return toolStat.mana + _bodyPartStat.mana + GameManager.Inst.research.GetStatBonus(Status.StatName.Atk);
         }
     }
     public int Endurance
     {
         get
         {
-            return toolStat.endurance + _bodyPartStat.endurance;
+            return toolStat.endurance + _bodyPartStat.endurance + GameManager.Inst.research.GetStatBonus(Status.StatName.Endurance);
         }
     }
 
@@ -146,7 +147,7 @@ public class Player : SingletonBehaviour<Player>
 
     public void InitPlayer()
     {
-        BodyRegenerationRate = 0;
+        //BodyRegenerationRate = 0;
         UpdateAllPlayerBodyStatus(_raceAffinity, equippedBodyPart.bodyParts, _bodyPartStat);
         UpdateAllPlayerSprites();
     }
@@ -154,14 +155,22 @@ public class Player : SingletonBehaviour<Player>
     public void KillPlayer()
     {
         Debug.Log("Game Over");
+        GeneralUIManager.Inst.NoticeGameOver();
     }
 
     #region Body decay
 
     private int decayRateExploration = 5;
     private int decayRateHome = 3;
-    public int BodyRegenerationRate {get; private set;}
-    private int BodyDecayRate
+    public float BodyRegenerationRate 
+    {
+        get
+        {
+            return GameManager.Inst.research.GetRegenBonus();
+        }
+    }
+
+    private float BodyDecayRate
     {
         get
         {
@@ -175,7 +184,7 @@ public class Player : SingletonBehaviour<Player>
                 else
                 {
                     Debug.Log("decayRateHome - BodyRegenerationRate");
-                    return decayRateHome - BodyRegenerationRate; ;
+                    return decayRateHome - BodyRegenerationRate;
                 }
             }
             else
@@ -375,16 +384,24 @@ public class Player : SingletonBehaviour<Player>
                 case BodyPartType.Head:
                 case BodyPartType.Body:
                     raceAffinity[(int)playerBodyPart.race] += 3;
+                    raceAffinity[(int)playerBodyPart.race] += GameManager.Inst.research.GetBonusAffinity(playerBodyPart.race, playerBodyPart.bodyPartType);
                     if (returnedBodyPart != null)
+                    {
                         raceAffinity[(int)returnedBodyPart.race] -= 3;
+                        raceAffinity[(int)returnedBodyPart.race] -= GameManager.Inst.research.GetBonusAffinity(playerBodyPart.race, playerBodyPart.bodyPartType);
+                    }
                     break;
                 case BodyPartType.LeftArm:
                 case BodyPartType.RightArm:
                 case BodyPartType.LeftLeg:
                 case BodyPartType.RightLeg:
                     raceAffinity[(int)playerBodyPart.race] += 1;
+                    raceAffinity[(int)playerBodyPart.race] += GameManager.Inst.research.GetBonusAffinity(playerBodyPart.race, playerBodyPart.bodyPartType);
                     if (returnedBodyPart != null)
+                    {
                         raceAffinity[(int)returnedBodyPart.race] -= 1;
+                        raceAffinity[(int)returnedBodyPart.race] -= GameManager.Inst.research.GetBonusAffinity(playerBodyPart.race, playerBodyPart.bodyPartType);
+                    }
                     break;
                 default:
                     Debug.Log("wrong item type");
@@ -407,12 +424,14 @@ public class Player : SingletonBehaviour<Player>
                     case BodyPartType.Head:
                     case BodyPartType.Body:
                         raceAffinity[(int)returnedBodyPart.race] -= 3;
+                        raceAffinity[(int)returnedBodyPart.race] -= GameManager.Inst.research.GetBonusAffinity(playerBodyPart.race, playerBodyPart.bodyPartType);
                         break;
                     case BodyPartType.LeftArm:
                     case BodyPartType.RightArm:
                     case BodyPartType.LeftLeg:
                     case BodyPartType.RightLeg:
                         raceAffinity[(int)returnedBodyPart.race] -= 1;
+                        raceAffinity[(int)returnedBodyPart.race] -= GameManager.Inst.research.GetBonusAffinity(playerBodyPart.race, playerBodyPart.bodyPartType);
                         break;
                     default:
                         Debug.Log("wrong item type");

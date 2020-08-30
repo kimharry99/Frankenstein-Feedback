@@ -5,7 +5,7 @@ public class Bandage : Consumable
 {
     public override bool IsConsumeEnable()
     {
-        if (Player.Inst.Durability == 100)
+        if (Player.Inst.Durability >= 100)
             return false;
         else
             return true;

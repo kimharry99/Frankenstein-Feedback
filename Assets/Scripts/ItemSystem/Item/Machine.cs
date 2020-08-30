@@ -11,14 +11,19 @@ public class Machine : BodyPart
     public int maxDex;
     public int maxMana;
 
+    public int MaxAtk { get { return maxAtk + GameManager.Inst.research.GetBonusLimit(); } }
+    public int MaxDef { get { return maxDef + GameManager.Inst.research.GetBonusLimit(); } }
+    public int MaxDex { get { return maxDex + GameManager.Inst.research.GetBonusLimit(); } }
+    public int MaxMana { get { return maxMana + GameManager.Inst.research.GetBonusLimit(); } }
+
     public new int Atk 
     { 
         get 
         {
             if (bodyPartType == BodyPartType.LeftArm)
-                return Mathf.Min(maxAtk, atk + Player.Inst.GetUpgradeLevel(BodyPartType.LeftArm) * 5);
+                return Mathf.Min(MaxAtk, atk + Player.Inst.GetUpgradeLevel(BodyPartType.LeftArm) * 5);
             else if (bodyPartType == BodyPartType.RightArm)
-                return Mathf.Min(maxAtk, atk + Player.Inst.GetUpgradeLevel(BodyPartType.RightArm) * 5);
+                return Mathf.Min(MaxAtk, atk + Player.Inst.GetUpgradeLevel(BodyPartType.RightArm) * 5);
             else
                 return atk;
         } 
@@ -28,7 +33,7 @@ public class Machine : BodyPart
         get 
         {
             if (bodyPartType == BodyPartType.Body)
-                return Mathf.Min(maxDef, def + Player.Inst.GetUpgradeLevel(BodyPartType.Body) * 5);
+                return Mathf.Min(MaxDef, def + Player.Inst.GetUpgradeLevel(BodyPartType.Body) * 5);
             else
                 return def;
         }
@@ -38,9 +43,9 @@ public class Machine : BodyPart
         get
         {
             if (bodyPartType == BodyPartType.LeftLeg)
-                return Mathf.Min(maxDex, dex + Player.Inst.GetUpgradeLevel(BodyPartType.LeftArm) * 10);
+                return Mathf.Min(MaxDex, dex + Player.Inst.GetUpgradeLevel(BodyPartType.LeftArm) * 10);
             else if (bodyPartType == BodyPartType.RightLeg)
-                return Mathf.Min(maxDex, dex + Player.Inst.GetUpgradeLevel(BodyPartType.RightArm) * 10);
+                return Mathf.Min(MaxDex, dex + Player.Inst.GetUpgradeLevel(BodyPartType.RightArm) * 10);
             else
                 return dex;
         }
@@ -50,7 +55,7 @@ public class Machine : BodyPart
         get 
         {
             if (bodyPartType == BodyPartType.Head)
-                return Mathf.Min(maxMana, mana + Player.Inst.GetUpgradeLevel(BodyPartType.Head) * 5);
+                return Mathf.Min(MaxMana, mana + Player.Inst.GetUpgradeLevel(BodyPartType.Head) * 5);
             else
                 return mana;
         } 

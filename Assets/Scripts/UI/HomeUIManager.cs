@@ -195,6 +195,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         panelHome.SetActive(false);
         panelResearch.SetActive(true);
+        UpdateResearchPanel();
     }
 
     public void ButtonDisassembleClicked()
@@ -671,27 +672,52 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
     #endregion
 
+    [Header("Research Panel Field")]
     public GameObject panelResearchProgress;
+    private int _selectedIndex = -1;
+    public Text[] progressTexts = new Text[4];
+    public Text requireEnergy;
     #region ResearchPanel methods
+    public void UpdateResearchPanel()
+    {
+        Research research = GameManager.Inst.research;
+        progressTexts[0].text = "진행률 " + (research.GoblinLevel * 10).ToString() + "%";
+        progressTexts[1].text = "진행률 " + (research.ElfLevel * 10).ToString() + "%";
+        progressTexts[2].text = "진행률 " + (research.OakLevel* 10).ToString() + "%";
+        progressTexts[3].text = "진행률 " + (research.MachineLevel * 10).ToString() + "%";
+
+    }
     public void ResearchIconClick(int index)
     {
-        panelResearchProgress.SetActive(true);   
+        if (progressTexts[index].text != "진행률 100%")
+        {
+            panelResearchProgress.SetActive(true);
+            _selectedIndex = index;
+            requireEnergy.text = GameManager.Inst.research.ResearchCost(_selectedIndex).ToString();
+        }
     }
 
     public void ResearchProcessClicked()
     {
-
+        Research research = GameManager.Inst.research;
+        if (GameManager.Inst.energy.value >= research.ResearchCost(_selectedIndex))
+        {
+            Debug.Log("연구 성공");
+            GameManager.Inst.research.ResearchRace(_selectedIndex);
+            UpdateResearchPanel();
+        }
+        panelResearchProgress.SetActive(false);
     }
     #endregion
 
     /// <summary>
     /// 수면에 대한 에너지 변화를 안내한다.
     /// </summary>
-    public void NoticeEnergyChange(int time, float penaltyPerTime, int energy, int durablity)
+    public void NoticeEnergyChange(int time, float penaltyPerTime, int energy, float durablity)
     {
         Debug.Log("안내 패널 출력");
         panelNotice.SetActive(true);
-        textNotice.text = "에너지를 " + energy + "소모하여 내구도를 " + durablity + "%\n 회복했습니다.";
+        textNotice.text = "에너지를 " + energy + "소모하여 내구도를 " + Mathf.Ceil(durablity*10)/10 + "." + Mathf.Ceil(durablity * 10) % 10 + "%\n 회복했습니다.";
         if (time != 0)
         {
             textNotice.text += "\n\n수면시간이 " + time + "시간 부족하여 내구도가 " + (int)(time * penaltyPerTime) + "% 감소되었습니다.";
@@ -736,7 +762,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
     private bool _isBlackOut = false;
     private float _blackOutTime = 3.0f;
-    public IEnumerator PutToSleep(int time, float penaltyPerTime, int spendEnergy, int regenedDurability)
+    public IEnumerator PutToSleep(int time, float penaltyPerTime, int spendEnergy, float regenedDurability)
     {
         Debug.Log("black out start");
         panelBlackOut.SetActive(true);

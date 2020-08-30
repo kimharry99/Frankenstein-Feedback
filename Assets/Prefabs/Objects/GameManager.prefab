@@ -47,5 +47,6 @@ MonoBehaviour:
   bodyAssembly: {fileID: 0}
   bodyDisassembly: {fileID: 0}
   craftingTable: {fileID: 0}
+  research: {fileID: 0}
   energy: {fileID: 11400000, guid: b48f545c1bd604f458611bfec53d253c, type: 2}
-  durability: {fileID: 11400000, guid: 6580257239b0a354db5f697e862bdc9d, type: 2}
+  durability: {fileID: 11400000, guid: e52e9b02206ca904abf70b1c271d2685, type: 2}
