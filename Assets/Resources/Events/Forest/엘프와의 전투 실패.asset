@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
+  m_Name: "\uC5D8\uD504\uC640\uC758 \uC804\uD22C \uC2E4\uD328"
+  m_EditorClassIdentifier: 
+  id: 230306
+  eventName: "\uC5D8\uD504\uC640\uC758 \uC804\uD22C \uC2E4\uD328"
+  phase: 1
+  encounterProbabilty: 0
+  titleText: "\"\uC9C0\uAE08\uAECF \uC0B4\uC544\uC788\uB294\uAC8C \uC6A9\uD558\uAD6C\uB098,
+    \uC778\uAC04. \uD751\uB9C8\uBC95\uC774\uB77C\u2026 \uBB34\uC2DD\uD55C \uAC83\uB4E4\uC774
+    \uADF8\uB7F0 \uBB34\uC2DD\uD55C \uD798\uC744 \uBBFF\uACE0 \uB098\uB300\uB2E4\uAC00
+    \uC138\uC0C1\uC774 \uC774 \uAF34\uC774 \uB0AC\uC9C0.\" "
+  content: "\"\uB09C \uB108\uD76C \uC778\uAC04\uC774 \uB108\uBB34 \uC5ED\uACA8\uC6CC.
+    \uB108\uD76C\uB294 \uC8FD\uC5B4\uC11C \uAC70\uB984\uC774 \uB418\uB294 \uAC83\uC774
+    \uC790\uC5F0\uC5D0\uAC8C \uC774\uB85C\uC6B8 \uAC70\uB2E4.\" \uC4F0\uB7EC\uC9C4
+    \uB0B4 \uAC00\uC2B4\uD30D\uC5D0 \uC9C0\uD321\uC774\uB97C \uB0B4\uB9AC\uAF42\uC73C\uBA74\uC11C
+    \uD55C \uB9D0\uC774\uB2E4..."
+  basicEnable: 0
+  optionTexts:
+  - "\uC73C\uC73D\u2026 "
+  optionResultTexts:
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 2c4b71434c49ad345b5253235a6835c4, type: 2}
+      durabilityDamage: 10
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\"\uB124\uAC00 \uC5BC\uB9C8\uB098 \uB098\uC57D\uD55C\uC9C0 \uBC18\uC131\uD558\uBA74\uC11C
+        \uC8FD\uB3C4\uB85D \uD574\uB77C.\" "
+      linkedEventName: "\uC544\uBB34 \uC77C\uB3C4 \uC5C6\uC5C8\uB2E42_\uC232"
+    statConstraints: []
+    constraintPerCase: 

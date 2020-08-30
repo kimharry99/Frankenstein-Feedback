@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1564c065bac2eab4585b0cd500196910, type: 3}
+  m_Name: "\uACF5\uC7A518 \uC6C0\uD479 \uD328\uC778 \uAE30\uACC4 \uC67C\uB2E4\uB9AC
+    \uD68D\uB4DD"
+  m_EditorClassIdentifier: 
+  id: 114118
+  eventName: "\uC6C0\uD479 \uD328\uC778 \uAE30\uACC4 \uC67C\uB2E4\uB9AC"
+  phase: 0
+  encounterProbabilty: 3
+  titleText: "\uC6C0\uD479 \uD328\uC778 \uAE30\uACC4 \uC67C\uB2E4\uB9AC\uB97C \uBC1C\uACAC\uD588\uB2E4"
+  content: 
+  basicEnable: 1
+  linkedEventName: 
+  optionTexts:
+  - "\uD68D\uB4DD\uD55C\uB2E4"
+  - "\uBC84\uB9B0\uB2E4"
+  optionResultTexts:
+  - "\uC6C0\uD479 \uD328\uC778 \uAE30\uACC4 \uC67C\uB2E4\uB9AC\uB97C \uD68D\uB4DD\uD588\uB2E4 "
+  - 
+  foundItem: {fileID: 11400000, guid: 6ea1d33651c73454095766498120b205, type: 2}

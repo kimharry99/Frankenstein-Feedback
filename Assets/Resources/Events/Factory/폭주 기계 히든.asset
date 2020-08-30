@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
+  m_Name: "\uD3ED\uC8FC \uAE30\uACC4 \uD788\uB4E0"
+  m_EditorClassIdentifier: 
+  id: 214315
+  eventName: "\uD3ED\uC8FC \uAE30\uACC4 \uD788\uB4E0 "
+  phase: 1
+  encounterProbabilty: 0
+  titleText: "\"\uBC29\uAE08 \uADF8\uAC74\u2026 \uD751\uB9C8\uBC95\uC778\uAC00\uC694?\"
+    \uB098\uB294 \uBC99\uCC10 \uCC44\uB85C \uB0A0\uB77C\uAC04 \uD734\uBA38\uB178\uC774\uB4DC\uB97C
+    \uCCD0\uB2E4\uBCF4\uACE0 \uC788\uB2E4. "
+  content: "\"\uC800\uB294 \uAC10\uC815\uC744 \uD504\uB85C\uADF8\uB798\uBC0D \uBC1B\uC9C0
+    \uC54A\uC558\uC9C0\uB9CC\u2026 \uC9C0\uAE08 \uC774\uAC74 \uBD84\uB178\uC778 \uAC83
+    \uAC19\uC2B5\uB2C8\uB2E4. \uB2F9\uC2E0\uB3C4 \uADF8 \uC778\uAC04\uB4E4 \uC911
+    \uD558\uB098\uC785\uB2C8\uAE4C?\" "
+  basicEnable: 0
+  optionTexts:
+  - "\uC544\uB2C8\uC57C! \uB098\uB3C4 \uBB54\uC9C0 \uBAA8\uB974\uACA0\uB2E4\uACE0!"
+  - "\uC5B4\u2026 \uBB50\u2026?"
+  optionResultTexts:
+  - 
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 9d347aa271713ad41aa40ddab280ed71, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\"\u2026\uAC70\uC9D3\uB9D0\uC744 \uD558\uACE0 \uC788\uC9C4 \uC54A\uAD70\uC694\u2026
+        \uC54C\uACA0\uC2B5\uB2C8\uB2E4. \uC77C\uB2E8 \uBC16\uC73C\uB85C \uB098\uAC11\uC2DC\uB2E4\u2026\" "
+      linkedEventName: "\uACF5\uC7A5\uC758 \uC4F8\uB9CC\uD55C \uBB3C\uAC741"
+      linkedEventName1: "\uACF5\uC7A5\uC758 \uC4F8\uB9CC\uD55C \uBB3C\uAC742"
+      linkedEventName2: "\uACF5\uC7A5\uC758 \uC4F8\uB9CC\uD55C \uBB3C\uAC743"
+      linkedEventName3: "\uC544\uBB34 \uC77C\uB3C4 \uC5C6\uC5C8\uB2E4_\uACF5\uC7A5"
+    statConstraints: []
+    constraintPerCase: 
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 5229ab64803d639478608696ad0292a5, type: 2}
+      durabilityDamage: 100
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uC791\uC740 \uD3ED\uBC1C\uC74C\uC774 \uC5F0\uC774\uC5B4 \uB4E4\uB824\uC624\uACE0,
+        \uAC74\uBB3C\uC758 \uC9C4\uB3D9\uC5D0 \uADE0\uD615\uC744 \uC783\uACE0 \uB118\uC5B4\uC84C\uB2E4.
+        \"\uC5EC\uAE30 \uC124\uCE58\uB41C \uAC74 EMP\uBFD0\uB9CC\uC774 \uC544\uB2D9\uB2C8\uB2E4.
+        \uB2F9\uC2E0\uC774 \uB9CC\uC57D \uADF8 \uC77C\uC5D0 \uAE30\uC5EC\uD588\uB2E4\uBA74...
+        \uC774\uAC83\uC774 \uC81C\uAC00 \uD560 \uC218 \uC788\uB294 \uCD5C\uC120\uC774\uACA0\uC8E0.\"
+        \uB8E8\uD53C\uC544\uC758 \uB9D0\uACFC \uD568\uAED8 \uB0B4\uAC00 \uB9C8\uC9C0\uB9C9\uC73C\uB85C
+        \uBCF8 \uAC83\uC740 \uB0B4 \uBA38\uB9AC \uC704\uB85C \uB5A8\uC5B4\uC9C0\uB294
+        \uCF58\uD06C\uB9AC\uD2B8 \uB369\uC5B4\uB9AC\uC600\uB2E4..."
+      linkedEventName: 
+      linkedEventName1: 
+      linkedEventName2: 
+      linkedEventName3: 
+    statConstraints: []
+    constraintPerCase: 

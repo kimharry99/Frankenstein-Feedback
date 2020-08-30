@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
+  m_Name: "vs\uC624\uB8E8\uADF8 3"
+  m_EditorClassIdentifier: 
+  id: 0
+  eventName: "vs\uC624\uB8E8\uADF8 3"
+  phase: 1
+  encounterProbabilty: 0
+  titleText: "\uC624\uB8E8\uADF8\uC758 \uD45C\uC815\uC774 \uD5D8\uC545\uD574\uC9C0\uB354\uB2C8,
+    \uB2E4\uC2DC \uB2EC\uB824\uB4E0\uB2E4!"
+  content: "\uC624\uB978\uD314\uC744 \uD06C\uAC8C \uB2F9\uAE30\uB294\uB370\u2026
+    \uC5B4\uB5BB\uAC8C \uD574\uC57C\uD560\uAE4C?"
+  basicEnable: 0
+  optionTexts:
+  - "\uB9C9\uB294\uB2E4"
+  optionResultTexts:
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 4fb98e201bf6d1a448a195e1ddf83a29, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uB9F7\uC9D1\uC73C\uB85C \uB77C\uC774\uD2B8 \uD6C5\uC744 \uBC84\uD2F0\uACE0,
+        \uB9C8\uBB34\uB9AC\uB85C \uC624\uB8E8\uADF8\uB97C \uD655 \uBC00\uC5B4\uBD99\uC600\uB2E4!"
+      linkedEventName: 
+    - resultEvent: {fileID: 11400000, guid: fdbf4a9380a53a4418c7d20c615d3dc8, type: 2}
+      durabilityDamage: 15
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uCF85! \uC774\uAC74\u2026 \uBC84\uD2F8 \uC218\uAC00\u2026"
+      linkedEventName: 
+    statConstraints:
+    - moreOrLess: 1
+      constraintName: 1
+      statConstraint: 70
+    constraintPerCase: 0100000000000000
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 4fb98e201bf6d1a448a195e1ddf83a29, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uD68C\uC2EC\uC758 \uB77C\uC774\uD2B8 \uD6C5\uC744 \uD53C\uD558\uACE0,
+        \uADF8 \uD798\uC744 \uC5ED\uC774\uC6A9\uD574 \uC624\uB8E8\uADF8\uB97C \uB118\uC5B4\uB728\uB838\uB2E4!"
+      linkedEventName: 
+    - resultEvent: {fileID: 11400000, guid: fdbf4a9380a53a4418c7d20c615d3dc8, type: 2}
+      durabilityDamage: 15
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uD53C\u2026 \uD53C\uD560 \uC218\uAC00\u2026! \uCF85!"
+      linkedEventName: 
+    statConstraints:
+    - moreOrLess: 1
+      constraintName: 2
+      statConstraint: 14
+    constraintPerCase: 0100000000000000

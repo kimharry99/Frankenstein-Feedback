@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
+  m_Name: "\uD3ED\uC8FC \uAE30\uACC4 \uC2E4\uD328"
+  m_EditorClassIdentifier: 
+  id: 214314
+  eventName: "\uD3ED\uC8FC \uAE30\uACC4 \uC2E4\uD328   "
+  phase: 1
+  encounterProbabilty: 100
+  titleText: "\uD734\uBA38\uB178\uC774\uB4DC\uC758 \uBAB8\uC774 \uC774\uC0C1\uD558\uAC8C
+    \uB5A8\uB9AC\uACE0, \uC2A4\uD30C\uD06C\uAC00 \uB354 \uC2EC\uD558\uAE30 \uD280\uAE30
+    \uC2DC\uC791\uD588\uB2E4. \uC544\uBB34\uB9AC \uBD10\uB3C4 \uD3ED\uBC1C\uD558\uB824\uB294
+    \uAC83\uCC98\uB7FC \uBCF4\uC774\uB294\uB370, \uB098\uB294 \uC4F0\uB7EC\uC9C4
+    \uCC44\uB85C \uC9C0\uCF1C\uBCFC \uC218 \uBC16\uC5D0 \uC5C6\uB2E4...  "
+  content: "\u2026\uBC14\uB85C \uC606\uC5D0 \uC788\uB294 \uACF5\uC7A5\uC758 \uC0DD\uC0B0
+    \uAE30\uACC4\uB97C \uBCF4\uC790, \uAC11\uC790\uAE30 EMP \uC598\uAE30\uAC00 \uB5A0\uC62C\uB790\uB2E4.
+    EMP\uB97C \uD130\uB728\uB9B0\uB2E4\uBA74 \uC0B4 \uC218 \uC788\uC744\uAE4C\u2026? "
+  basicEnable: 1
+  optionTexts:
+  - "\uAE30\uACC4\uB97C \uD798\uAECF \uB54C\uB9B0\uB2E4 "
+  optionResultTexts:
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 5229ab64803d639478608696ad0292a5, type: 2}
+      durabilityDamage: 100
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uC0DD\uC0B0 \uAE30\uACC4\uAC00 \uC6C0\uD479 \uD328\uC600\uACE0,
+        \uC54C \uC218 \uC5C6\uB294 \uCDA9\uACA9\uACFC \uD568\uAED8 \uB0B4 \uAE30\uACC4
+        \uBAB8 \uB610\uD55C \uD798\uC744 \uC783\uACE0 \uBB34\uB108\uC84C\uB2E4. \uC810\uC810
+        \uAC10\uACA8\uC624\uB294 \uB208\uAEBC\uD480 \uC0AC\uC774\uB85C, \uC4F0\uB7EC\uC9C4
+        \uD734\uBA38\uB178\uC774\uB4DC\uC640 \uB8E8\uD53C\uC544\uAC00 \uBCF4\uC778\uB2E4.
+        \uC798 \uD55C\uAC70\uACA0\uC9C0\u2026 "
+      linkedEventName: 
+      linkedEventName1: 
+      linkedEventName2: 
+      linkedEventName3: 
+    - resultEvent: {fileID: 11400000, guid: c98962032579e8b4391d07b1c666982c, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uC0DD\uC0B0 \uAE30\uACC4\uAC00 \uC6C0\uD479 \uD328\uC600\uACE0,
+        \uC54C \uC218 \uC5C6\uB294 \uCDA9\uACA9\uACFC \uD568\uAED8 \uC8FC\uBCC0\uC758
+        \uBAA8\uB4E0 \uAC83\uC774 \uC7A0\uC7A0\uD574\uC84C\uB2E4. \uBAB8\uC744 \uAC00\uB20C
+        \uC218\uAC00 \uC5C6\uB2E4. \uAC10\uACA8\uC624\uB294 \uB208\uAEBC\uD480 \uC0AC\uC774\uB85C
+        \uC4F0\uB7EC\uC9C4 \uB8E8\uD53C\uC544\uAC00 \uBCF4\uC778\uB2E4\u2026 "
+      linkedEventName: "\uACF5\uC7A5\uC758 \uC4F8\uB9CC\uD55C \uBB3C\uAC741"
+      linkedEventName1: "\uACF5\uC7A5\uC758 \uC4F8\uB9CC\uD55C \uBB3C\uAC742"
+      linkedEventName2: "\uACF5\uC7A5\uC758 \uC4F8\uB9CC\uD55C \uBB3C\uAC743"
+      linkedEventName3: "\uC544\uBB34 \uC77C\uB3C4 \uC5C6\uC5C8\uB2E4_\uACF5\uC7A5"
+    - resultEvent: {fileID: 11400000, guid: 5229ab64803d639478608696ad0292a5, type: 2}
+      durabilityDamage: 100
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uD241\u2026 \uB0B4 \uD798\uC5C6\uB294 \uD314\uC774 \uB2E4\uC2DC
+        \uBC14\uB2E5\uC73C\uB85C \uB5A8\uC5B4\uC84C\uACE0, \uB0B4\uAC00 \uB9C8\uC9C0\uB9C9\uC73C\uB85C
+        \uBCF8 \uAC83\uC740 \uB098\uB97C \uB36E\uCCD0\uC624\uB294 \uBCF4\uB77C\uC0C9
+        \uD654\uC5FC\uC774\uC5C8\uB2E4. "
+      linkedEventName: 
+      linkedEventName1: 
+      linkedEventName2: 
+      linkedEventName3: 
+    statConstraints:
+    - moreOrLess: 1
+      constraintName: 0
+      statConstraint: 40
+    - moreOrLess: 1
+      constraintName: 8
+      statConstraint: 6
+    - moreOrLess: 1
+      constraintName: 0
+      statConstraint: 40
+    - moreOrLess: 4
+      constraintName: 8
+      statConstraint: 6
+    constraintPerCase: 020000000200000000000000

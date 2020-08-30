@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52afe9a15cac164abaab7d716dac079, type: 3}
+  m_Name: "\uBC18\uD30C\uB41C \uAE30\uACC4 \uBA38\uB9AC"
+  m_EditorClassIdentifier: 
+  id: 1511
+  itemName: "\uBC18\uD30C\uB41C \uAE30\uACC4 \uBA38\uB9AC"
+  description: "\uC5D8\uD504\uC758 \uB3C4\uC6C0\uC73C\uB85C \uC778\uACA9\uC744 \uAC00\uC9C4
+    \uC644\uC804\uC778\uACF5\uC9C0\uB2A5\uC774 \uD0C4\uC0DD\uD560 \uC218 \uC788\uC5C8\uB2E4."
+  itemImage: {fileID: 21300000, guid: f917a2080797f484d9249e523b8554f8, type: 3}
+  type: 1
+  race: 5
+  energyPotential: 3000
+  atk: 0
+  def: 0
+  dex: 0
+  mana: 1
+  endurance: 0
+  _nightVision: 1
+  _magic: 0
+  bodyPartType: 0
+  grade: 4
+  bodyPartSprite: {fileID: 21300000, guid: f917a2080797f484d9249e523b8554f8, type: 3}
+  maxAtk: 0
+  maxDef: 0
+  maxDex: 0
+  maxMana: 6

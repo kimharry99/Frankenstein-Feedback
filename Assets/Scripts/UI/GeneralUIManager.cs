@@ -21,7 +21,8 @@ public class GeneralUIManager : SingletonBehaviour<GeneralUIManager>
 
     public GameObject panelSetting;
     public Time time;
-    public IntVariable durability;
+    //public IntVariable durabilityI;
+    public FloatVariable durability;
     public IntVariable energy;
     public Inventory inventory;
 
@@ -38,7 +39,13 @@ public class GeneralUIManager : SingletonBehaviour<GeneralUIManager>
         UpdateEnergy();
     }
     #endregion
-    
+
+    public GameObject gameOverPanel;
+    public void NoticeGameOver()
+    {
+        gameOverPanel.SetActive(true);
+    }
+
     public void UpdateTextTime()
     {
         textDay.text = "Day" + time.runtimeDay.ToString();
@@ -47,7 +54,7 @@ public class GeneralUIManager : SingletonBehaviour<GeneralUIManager>
 
     public void UpdateTextDurability()
     {
-        textDurabilty.text = durability.value.ToString() + "%";
+        textDurabilty.text = (Mathf.CeilToInt(durability.value*10)/10).ToString() + "." + (Mathf.CeilToInt(durability.value * 10) % 10).ToString() + "%";
     }
 
     public void UpdateEnergy()
@@ -76,6 +83,17 @@ public class GeneralUIManager : SingletonBehaviour<GeneralUIManager>
 
     public void ButtonInvenItemClicked(int slotNumber)
     {
+        Item _item = inventory.slotItem[slotNumber];
+        for(int i = 0; i < Chest.CAPACITY; i++)
+        {
+            if (StorageManager.Inst.chest.slotItem[i] == null)
+                break;
+            if(_item != null)
+                if (_item.type != Type.BodyPart && _item == StorageManager.Inst.chest.slotItem[i])
+                    break;
+            if (i == Chest.CAPACITY - 1)
+                return;
+        }
         if (HomeUIManager.Inst.panelChest.activeSelf)
         {
             Debug.Log("chest");

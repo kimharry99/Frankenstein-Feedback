@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Equipped Body Part
   m_EditorClassIdentifier: 
   bodyParts:
-  - {fileID: 11400000, guid: 2e3921dbf567fe6419a94bce9bdc642b, type: 2}
-  - {fileID: 11400000, guid: 62245c6705ecda14f9e255824f3aa56d, type: 2}
-  - {fileID: 11400000, guid: 059beb8366ba1c746b9836176da64254, type: 2}
-  - {fileID: 11400000, guid: 94a71b1d5a9867440b5a3f30be8c4688, type: 2}
-  - {fileID: 11400000, guid: bf3c74fe68236ba4e9bcda07aa8c7896, type: 2}
-  - {fileID: 11400000, guid: 1edac494c2cbeef40b51958056a0cf65, type: 2}
+  - {fileID: 11400000, guid: 84869d0cf29e96544ba7903a4cb8a59b, type: 2}
+  - {fileID: 11400000, guid: 7d8b4a6d8f9cf074390c5972b0627575, type: 2}
+  - {fileID: 11400000, guid: 5770cb2afa5fade4da9cf7cb04bc8100, type: 2}
+  - {fileID: 11400000, guid: 9d761f64022796f47a11a0d6c4f5258d, type: 2}
+  - {fileID: 11400000, guid: 6bf8ab14ba4fcb34b887b26053662ad3, type: 2}
+  - {fileID: 11400000, guid: 579b06c576af03b4ab74837f814ec3d0, type: 2}

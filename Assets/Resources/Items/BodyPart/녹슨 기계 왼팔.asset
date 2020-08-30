@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52afe9a15cac164abaab7d716dac079, type: 3}
+  m_Name: "\uB179\uC2A8 \uAE30\uACC4 \uC67C\uD314"
+  m_EditorClassIdentifier: 
+  id: 1533
+  itemName: "\uB179\uC2A8 \uAE30\uACC4 \uC67C\uD314"
+  description: "\uC6C0\uC9C1\uC77C\uB54C\uB9C8\uB2E4 \uC18C\uB984\uB07C\uCE58\uB294
+    \uC18C\uB9AC\uAC00 \uB09C\uB2E4."
+  itemImage: {fileID: 21300000, guid: f49ea9ea3185a4acaa44f39ba9459001, type: 3}
+  type: 1
+  race: 5
+  energyPotential: 3000
+  atk: 3
+  def: 0
+  dex: 0
+  mana: 0
+  endurance: 0
+  bodyPartType: 2
+  grade: 2
+  bodyPartSprite: {fileID: 21300000, guid: f49ea9ea3185a4acaa44f39ba9459001, type: 3}
+  maxAtk: 33
+  maxDef: 0
+  maxDex: 0
+  maxMana: 0

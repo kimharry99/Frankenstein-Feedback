@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
+  m_Name: "\uACF5\uC7A5 \uC9C0\uD558 2\uCE35"
+  m_EditorClassIdentifier: 
+  id: 214411
+  eventName: "\uACF5\uC7A5 \uC9C0\uD558 2\uCE35 "
+  phase: 1
+  encounterProbabilty: 100
+  titleText: "\"\uC7A0\uAE50\uB9CC\uC694. \uBB34\uC5B8\uAC00 \uC788\uB294 \uAC83
+    \uAC19\uC2B5\uB2C8\uB2E4. \uCD5C\uADFC\uC5D0 \uB204\uAD70\uAC00 \uC774\uACF3\uC744
+    \uB3CC\uC544\uB2E4\uB2CC \uD754\uC801\uC774 \uC788\uC2B5\uB2C8\uB2E4.\" "
+  content: "\"\uC774\uACF3\uC740 \uC800\uC640 \uAC19\uC740 \uC774\uC804 \uC138\uB300
+    \uC778\uACF5\uC9C0\uB2A5 \uD734\uBA38\uB178\uC774\uB4DC\uAC00 \uC874\uC7AC\uD558\uC9C0
+    \uC54A\uC2B5\uB2C8\uB2E4. \uC704\uD5D8\uC744 \uBB34\uB985\uC4F0\uAE30\uBCF4\uB2E4\uB294
+    \uB3CC\uC544\uAC00\uB294 \uAC83\uC744 \uAD8C\uC7A5\uD569\uB2C8\uB2E4.\" "
+  basicEnable: 0
+  optionTexts:
+  - "\uADF8\uB798? \uADF8\uB7FC \uC62C\uB77C\uAC00\uC790."
+  - "\uB610 \uB2E4\uB978 \uC0DD\uC874\uC790 \uC544\uB2D0\uAE4C?"
+  optionResultTexts:
+  - 
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: c9fca5ed08bdd154db772970baaa0806, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: 
+      linkedEventName: 
+    statConstraints: []
+    constraintPerCase: 
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 47140b8e822454f8ea8a8f712ed56c5c, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\"\u2026\uC800\uAE30 1\uBC88 \uC0DD\uC0B0 \uB77C\uC778 \uCABD\uC5D0
+        \uC788\uB294 \uAC83 \uAC19\uC2B5\uB2C8\uB2E4.\""
+      linkedEventName: 
+    statConstraints: []
+    constraintPerCase: 

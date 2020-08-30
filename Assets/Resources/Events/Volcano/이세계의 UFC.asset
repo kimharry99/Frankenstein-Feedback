@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
+  m_Name: "\uC774\uC138\uACC4\uC758 UFC"
+  m_EditorClassIdentifier: 
+  id: 0
+  eventName: "\uC774\uC138\uACC4\uC758 UFC"
+  phase: 1
+  encounterProbabilty: 0
+  titleText: "\"\uC5EC\uAE30 \uC624\uD06C\uB4E4\uC740 \uC800\uAC70 \uBCF4\uB294 \uB099\uC73C\uB85C
+    \uC0B4\uC5B4. \uB108\uB3C4 \uD55C \uBC88 \uBCF4\uBA74 \uC7AC\uBBF8 \uBD99\uC77C\uAC78?\""
+  content: "\"\uC544, \uC544\uB2C8\uBA74 \uB108\uAC00 \uB6F0\uC5B4 \uBCFC \uC0DD\uAC01\uC740
+    \uC5C6\uB0D0? \uB108 \uC800\uAE30 \uC624\uB8E8\uADF8 \uB188\uC774\uB791 \uB5A0\uC11C
+    \uC774\uAE30\uBA74 \uC624\uB298 \uACE0\uAE30 \uB2E4 \uACF5\uC9DC\uB85C \uC904\uAC8C!\""
+  basicEnable: 0
+  optionTexts:
+  - "\uC88B\uC544!"
+  - "\uC74C... \uB410\uC5B4."
+  optionResultTexts:
+  - 
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 926b89d8b80c93a498df53137c9bccd3, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\"\uC624\uD638, \uC560\uC1A1\uC774 \uC8FC\uC81C\uC5D0 \uAE61\uB2E4\uAD6C\uAC00
+        \uC880 \uC788\uB294\uB370? \uD06C\uD559\uD559!\""
+      linkedEventName: 
+    statConstraints: []
+    constraintPerCase: 
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 0b9a3830fb407a947a27b5c68a5128d7, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\"\uD06C\uD559\uD559\uD559!! \uCAC4\uC558\uB0D0? \uADF8\uB9AC\uACE0
+        \uC6D0\uB798 \uC190\uB2D8\uD55C\uD14C\uB294 \uACE0\uAE30 \uACF5\uC9DC\uB85C
+        \uC8FC\uAE34 \uD574! \uD06C\uD559\uD559!\""
+      linkedEventName: 
+    statConstraints: []
+    constraintPerCase: 

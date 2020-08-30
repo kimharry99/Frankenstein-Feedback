@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ff6d752eacc58a4f97ce134d52c74e0, type: 3}
+  m_Script: {fileID: 11500000, guid: cdddbb5d5d56d944b933f4f3f13cdd16, type: 3}
   m_Name: Durability
   m_EditorClassIdentifier: 
   initialValue: 100

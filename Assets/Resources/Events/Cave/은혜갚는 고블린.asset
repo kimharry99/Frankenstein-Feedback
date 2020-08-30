@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
+  m_Name: "\uC740\uD61C\uAC1A\uB294 \uACE0\uBE14\uB9B0"
+  m_EditorClassIdentifier: 
+  id: 0
+  eventName: "\uC740\uD61C\uAC1A\uB294 \uACE0\uBE14\uB9B0"
+  phase: 1
+  encounterProbabilty: 0
+  titleText: "\uC815\uC7A5\uC744 \uC785\uC740 \uACE0\uBE14\uB9B0\uC774 \uC54C\uD604\uC2E4\uB85C
+    \uC548\uB0B4\uD574\uC92C\uB2E4."
+  content: "\"\uADF8\uB798! \uC790\uB124\uAC00 \uC774\uBC88 \uC791\uC804\uC5D0 \uAE30\uC5EC\uD55C
+    \uBC14\uB294 \uC774\uBBF8 \uB4E4\uC5C8\uB2E4!\""
+  basicEnable: 0
+  optionTexts:
+  - "\uD655\uC778"
+  optionResultTexts:
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 04e59023b7deaaa488e866281f89f7da, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 11400000, guid: 77d75f85848e7f443ba52d5ee3478323, type: 2}
+        slotItemNumber: 3
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\"\uACE0\uB9D9\uB124! \uC57D\uD55C \uC790\uB4E4\uC744 \uB3D5\uB2E4\uB2C8
+        \uC815\uB9D0 \uC815\uC758\uB86D\uAD6C\uB098. \uC55E\uC73C\uB85C\uB3C4 \uBCFC
+        \uC218 \uC788\uC73C\uBA74 \uC88B\uACA0\uAD70!\""
+      linkedEventName: 
+    statConstraints: []
+    constraintPerCase: 

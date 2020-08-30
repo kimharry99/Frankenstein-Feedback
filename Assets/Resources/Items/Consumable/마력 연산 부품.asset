@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ee025f1a2f930b469d818fc68b0670f, type: 3}
+  m_Name: "\uB9C8\uB825 \uC5F0\uC0B0 \uBD80\uD488"
+  m_EditorClassIdentifier: 
+  id: 2511
+  itemName: "\uB9C8\uB825 \uC5F0\uC0B0 \uBD80\uD488"
+  description: "\uB9C8\uB825\uACFC \uC804\uAE30 \uC5D0\uB108\uC9C0\uB294 \uBE44\uC2B7\uD55C
+    \uBD80\uBD84\uC774 \uC788\uB2E4\uACE0 \uD55C\uB2E4."
+  itemImage: {fileID: 21300000, guid: 5e2714485f48b5d478def7d2b8693d33, type: 3}
+  type: 2
+  race: 5
+  energyPotential: 3000
+  atkValue: 0
+  defValue: 0
+  dexValue: 0
+  manaValue: 5

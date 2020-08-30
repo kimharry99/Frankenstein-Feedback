@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
+  m_Name: "\uC640\uC774\uBC88 \uC0AC\uB0E5 2"
+  m_EditorClassIdentifier: 
+  id: 0
+  eventName: "\uC640\uC774\uBC88 \uC0AC\uB0E5 2"
+  phase: 1
+  encounterProbabilty: 0
+  titleText: "\"\uB140\uC11D\uC774 \uC774\uC81C \uBD88\uC744 \uBFDC\uC73C\uB7EC \uC62C
+    \uAC70\uC57C! \uADF8 \uB3D9\uC548\uC740 \uC6C0\uC9C1\uC774\uC9C0 \uC54A\uC73C\uB2C8,
+    \uBE0C\uD558\uB4DC\uAC00 \uBD88\uAE38\uC744 \uBC1B\uB294 \uB3D9\uC548 \uB0B4\uAC00
+    \uC1E0\uC0AC\uC2AC\uC744 \uAC78 \uAC70\uB2E4!\""
+  content: "\"\u2026\" \uBE0C\uD558\uB4DC\uB294 \uBB35\uBB35\uD788 \uBC29\uD328\uB97C
+    \uC6C0\uCF1C\uC954\uB2E4. \"\uC628\uB2E4! \uC7A0\uAE50\uB9CC \uBC84\uD168!\""
+  basicEnable: 0
+  optionTexts:
+  - "\uC5F4\uAE30\uB97C \uBC84\uD2F4\uB2E4"
+  optionResultTexts:
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 172fba753f585a942b48c68715e763f2, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uBE0C\uD558\uB4DC\uAC00 \uB300\uBD80\uBD84\uC744 \uB9C9\uACE0
+        \uC788\uC9C0\uB9CC, \uC5EC\uC804\uD788 \uC5F4\uAE30\uAC00 \uAC15\uD558\uB2E4!
+        \uC870\uAE08\uB9CC \uB354 \uBC84\uD2F0\uC790\u2026!"
+      linkedEventName: 
+    - resultEvent: {fileID: 11400000, guid: 923a7aec33b59af41b69bb62417cef74, type: 2}
+      durabilityDamage: 5
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uBE0C\uD558\uB4DC\uAC00 \uB9C9\uC544\uB3C4 \uC5EC\uC804\uD788
+        \uAC15\uD55C \uC5F4\uAE30\uC5D0 \uC815\uC2E0\uC774 \uD63C\uBBF8\uD574\uC9C4\uB2E4\u2026"
+      linkedEventName: 
+    statConstraints:
+    - moreOrLess: 1
+      constraintName: 1
+      statConstraint: 30
+    constraintPerCase: 0100000000000000

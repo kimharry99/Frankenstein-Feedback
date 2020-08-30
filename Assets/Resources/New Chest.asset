@@ -13,14 +13,6 @@ MonoBehaviour:
   m_Name: New Chest
   m_EditorClassIdentifier: 
   slotItem:
-  - {fileID: 11400000, guid: 0966d19ce6837974e9f442384c64e581, type: 2}
-  - {fileID: 11400000, guid: 6c2fa154e61e9a446b32923643b518a3, type: 2}
-  - {fileID: 11400000, guid: 0966d19ce6837974e9f442384c64e581, type: 2}
-  - {fileID: 11400000, guid: 74bf7538549802d48886536f42faddd9, type: 2}
-  - {fileID: 11400000, guid: d902c592e836a5a4599a2d42d0d6990a, type: 2}
-  - {fileID: 11400000, guid: f28c282e3a657cf499f9c2974af08f58, type: 2}
-  - {fileID: 11400000, guid: fed1200ff7f999d418d4e600cb431231, type: 2}
-  - {fileID: 11400000, guid: 4d22235e57dad8748a19548f2a661d50, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -31,4 +23,24 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  slotItemNumber: 01000000010000000100000084000000580000000b000000040000000700000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  slotItemNumber: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000

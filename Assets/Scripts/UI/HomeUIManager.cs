@@ -17,6 +17,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public GameObject panelAssemble;
     public GameObject panelChest;
     public GameObject panelNotice;
+    public GameObject panelBlackOut;
 
     [Header("Inventory")]
     public Button[] imageChestSlot = new Button[Chest.CAPACITY];
@@ -42,10 +43,13 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     [Header("Assemble UI")]
     public Image imageAssembleUsing;
     public GameObject[] buttonAssembleHolding;
+    public Text textAssembleEnergy;
     public Scrollbar scrollbarAssemble;
 
     [Header("Notice")]
     public Text textNotice;
+
+
 
     #region chest methods
     //public void UpdateChestSlot(int slotNumber)
@@ -97,6 +101,16 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public void ButtonChestSlotClidked(int uiSlot)
     {
         int itemSlot = StorageManager.Inst.GetIndexTable(_currentChestType, uiSlot);
+        Item _item = chest.slotItem[itemSlot];
+        for(int i = 0; i < 5; i++)
+        {
+            if (StorageManager.Inst.inventory.slotItem[i] == null)
+                break;
+            if (_item.type != Type.BodyPart && _item == StorageManager.Inst.inventory.slotItem[i])
+                break;
+            if (i == 4)
+                return;
+        }
         StorageManager.Inst.MoveItemToInven(itemSlot);
     }
 
@@ -132,7 +146,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
         for(int i = 0; i < Chest.CAPACITY; i++)
         {
-            txt = panelChest.transform.GetChild(1).GetChild(i).GetChild(0).GetChild(0).GetComponent<Text>();
+            txt = panelChest.transform.GetChild(2).GetChild(0).GetChild(i).GetChild(0).GetChild(0).GetComponent<Text>();
             int indexItem = StorageManager.Inst.GetIndexTable(_currentChestType, i);
             if (indexItem != -1)
             {
@@ -181,6 +195,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         panelHome.SetActive(false);
         panelResearch.SetActive(true);
+        UpdateResearchPanel();
     }
 
     public void ButtonDisassembleClicked()
@@ -206,6 +221,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         panelHome.SetActive(false);
         panelAssemble.SetActive(true);
         GameManager.Inst.bodyAssembly.HoldBodyPartsFromChest();
+        UpdateAssembleEnergy(0);
         UpdateBodyAssemblyHoldingImages();
         scrollbarAssemble.value = 1;
     }
@@ -483,7 +499,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
                 Text textUsingCount = buttonCraftUsing[i].transform.GetChild(1).GetComponent<Text>();
                 textUsingCount.text = itemUsingCount[i].ToString();
 
-                craftEnergy += chest.slotItem[indexHoldingChest[slotNumber]].energyPotential;
+                Item resultItem = GameManager.Inst.craftingTable.FindRecipie();
+                if (resultItem)
+                    craftEnergy = resultItem.energyPotential;
+                else
+                    craftEnergy = 0;
                 textCraftEnergy.text = "필요 에너지 [ " + craftEnergy.ToString() + " ]";
 
                 Debug.Log(slotNumber + "select;" +
@@ -515,7 +535,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
                     indexUsingHolding[i] = slotNumber; // Record the Index of Item (Using Slot to Holding Slot)
                     GameManager.Inst.craftingTable.SetIndexUsingChest(i, indexHoldingChest[slotNumber]);
 
-                    craftEnergy += chest.slotItem[indexHoldingChest[slotNumber]].energyPotential;
+                    Item resultItem = GameManager.Inst.craftingTable.FindRecipie();
+                    if (resultItem)
+                        craftEnergy = resultItem.energyPotential;
+                    else
+                        craftEnergy = 0;
                     textCraftEnergy.text = "필요 에너지 [ " + craftEnergy.ToString() + " ]";
 
                     Debug.Log(slotNumber + "select;" +
@@ -555,14 +579,31 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
             Text textHoldingCount = buttonCraftHolding[indexHolding].transform.GetChild(1).GetComponent<Text>();
             textHoldingCount.text = itemHoldingCount[indexHolding].ToString();
 
-            craftEnergy -= chest.slotItem[indexHoldingChest[indexHolding]].energyPotential;
+            Item resultItem = GameManager.Inst.craftingTable.FindRecipie();
+            if (resultItem)
+                craftEnergy = resultItem.energyPotential;
+            else
+                craftEnergy = 0;
             textCraftEnergy.text = "필요 에너지 [ " + craftEnergy.ToString() + " ]";
         }
     }
     
     public void CraftButtonCreateClicked()
     {
-        GameManager.Inst.craftingTable.CraftItem();
+        int i = 0;
+        for (; i < 6; i++)
+        {
+            if (itemUsingCount[i] > 0)
+                break;
+        }
+
+        if (i == 6)
+        {
+            panelNotice.SetActive(true);
+            textNotice.text = "제작에 사용할 아이템을 선택하세요.";
+        }
+        else
+            GameManager.Inst.craftingTable.CraftItem();
     }
     #endregion
 
@@ -582,10 +623,10 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
                 imageAssembleHolding.sprite = chest.slotItem[indexItem].itemImage;
                 continue;
             }
-            imageAssembleHolding.sprite = null;
+            imageAssembleHolding.sprite = emptyImage;
         }
 
-        imageAssembleUsing.sprite = null;
+        imageAssembleUsing.sprite = emptyImage;
         buttonAssembleHolding[_lastSlotNumber].transform.GetChild(1).gameObject.SetActive(false);
         _lastSlotNumber = 0;
     }
@@ -601,7 +642,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         imageAssembleUsing.sprite = buttonAssembleHolding[slotNumber].transform.GetChild(0).GetComponent<Image>().sprite;
         buttonAssembleHolding[_lastSlotNumber].transform.GetChild(1).gameObject.SetActive(false);
-        if (imageAssembleUsing.sprite != null)
+        if (imageAssembleUsing.sprite != emptyImage)
             buttonAssembleHolding[slotNumber].transform.GetChild(1).gameObject.SetActive(true);
         _lastSlotNumber = slotNumber;
     }
@@ -612,10 +653,15 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         GameManager.Inst.bodyAssembly.SelectBodyPart(slotNumber);
     }
 
+    public void UpdateAssembleEnergy(int energyValue)
+    {
+        textAssembleEnergy.text = "필요 에너지 [ " + energyValue.ToString() + " ]";
+    }
+
     // TODO : 이름변경해야 함
     public void ButtonDoAssembleyClicked()
     {
-        if (imageAssembleUsing.sprite != null)
+        if (imageAssembleUsing.sprite != emptyImage)
             GameManager.Inst.bodyAssembly.AssemleBody();
         else
         {
@@ -626,27 +672,78 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
     #endregion
 
+    [Header("Research Panel Field")]
+    public GameObject panelResearchProgress;
+    private int _selectedIndex = -1;
+    public Text[] progressTexts = new Text[4];
+    public Text requireEnergy;
+    #region ResearchPanel methods
+    public void UpdateResearchPanel()
+    {
+        Research research = GameManager.Inst.research;
+        progressTexts[0].text = "진행률 " + (research.GoblinLevel * 10).ToString() + "%";
+        progressTexts[1].text = "진행률 " + (research.ElfLevel * 10).ToString() + "%";
+        progressTexts[2].text = "진행률 " + (research.OakLevel* 10).ToString() + "%";
+        progressTexts[3].text = "진행률 " + (research.MachineLevel * 10).ToString() + "%";
+
+    }
+    public void ResearchIconClick(int index)
+    {
+        if (progressTexts[index].text != "진행률 100%")
+        {
+            panelResearchProgress.SetActive(true);
+            _selectedIndex = index;
+            requireEnergy.text = GameManager.Inst.research.ResearchCost(_selectedIndex).ToString();
+        }
+    }
+
+    public void ResearchProcessClicked()
+    {
+        Research research = GameManager.Inst.research;
+        if (GameManager.Inst.energy.value >= research.ResearchCost(_selectedIndex))
+        {
+            Debug.Log("연구 성공");
+            GameManager.Inst.research.ResearchRace(_selectedIndex);
+            UpdateResearchPanel();
+        }
+        panelResearchProgress.SetActive(false);
+    }
+    #endregion
+
     /// <summary>
     /// 수면에 대한 에너지 변화를 안내한다.
     /// </summary>
-    public void NoticeEnergyChange(int energy, int durablity)
+    public void NoticeEnergyChange(int time, float penaltyPerTime, int energy, float durablity)
     {
         Debug.Log("안내 패널 출력");
         panelNotice.SetActive(true);
-        textNotice.text = "에너지를 " + energy + "소모하여\n내구도를 " + durablity + "% 회복했습니다.";
+        textNotice.text = "에너지를 " + energy + "소모하여 내구도를 " + Mathf.Ceil(durablity*10)/10 + "." + Mathf.Ceil(durablity * 10) % 10 + "%\n 회복했습니다.";
+        if (time != 0)
+        {
+            textNotice.text += "\n\n수면시간이 " + time + "시간 부족하여 내구도가 " + (int)(time * penaltyPerTime) + "% 감소되었습니다.";
+        }
     }
 
 
     public void ButtonDebugClicked()
     {
-        Debug.Log("atk:" + Player.Inst.Atk + "  def:"+Player.Inst.Def+"   dex:"+Player.Inst.Dex+"   mana:"+Player.Inst.Mana+"   endurance:"+Player.Inst.Endurance);
-
+        Debug.Log("atk:" + Player.Inst.Atk + "  def:" + Player.Inst.Def + "   dex:" + Player.Inst.Dex + "   mana:" + Player.Inst.Mana + "   endurance:" + Player.Inst.Endurance);
+        //Debug.Log("2번 아이테 사용");
+        //if (StorageManager.Inst.inventory.slotItem[1].type == Type.Consumable)
+        //{
+        //    var consumable = (Consumable)StorageManager.Inst.inventory.slotItem[1];
+        //    if (!consumable.IsConsumeEnable())
+        //        return;
+        //    consumable.UseItem();
+        //    StorageManager.Inst.DeleteFromInven(1);
+        //}
     }
     // for debugging
     public void ButtonSetTimePanelClicked(GameObject panel)
     {
         panel.SetActive(true);
     }
+
     /// <summary>
     /// for debugging, 가장 가까운 time 시각 까지 게임을 진행시킨다.
     /// </summary>
@@ -662,4 +759,35 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
             GameManager.Inst.OnTurnOver(24 + time - GeneralUIManager.Inst.time.runtimeTime);
         }
     }
+
+    private bool _isBlackOut = false;
+    private float _blackOutTime = 3.0f;
+    public IEnumerator PutToSleep(int time, float penaltyPerTime, int spendEnergy, float regenedDurability)
+    {
+        Debug.Log("black out start");
+        panelBlackOut.SetActive(true);
+        _isBlackOut = true;
+        yield return new WaitForSeconds(_blackOutTime + 0.5f);
+        GeneralUIManager.Inst.UpdateTextDurability();
+        GeneralUIManager.Inst.UpdateTextTime();
+        GeneralUIManager.Inst.UpdateEnergy();
+        NoticeEnergyChange(time, penaltyPerTime, spendEnergy, regenedDurability);
+        _isBlackOut = false;
+        panelBlackOut.GetComponent<Image>().color = new Color(0, 0, 0, 0);
+        panelBlackOut.SetActive(false);
+        Debug.Log("black out end");
+    }
+
+    private void Update()
+    {
+        if(_isBlackOut)
+        {
+            if(panelBlackOut.activeSelf)
+            {
+                panelBlackOut.GetComponent<Image>().color = new Color(0, 0, 0, panelBlackOut.GetComponent<Image>().color.a + UnityEngine.Time.deltaTime / _blackOutTime);
+            }
+        }
+    }
+
+
 }

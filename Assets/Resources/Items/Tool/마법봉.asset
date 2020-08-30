@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 3331
   itemName: "\uB9C8\uBC95\uBD09"
   description: "\uB9C8\uBC95 \uC785\uBB38\uC790\uB97C \uC704\uD55C \uC644\uB4DC."
-  itemImage: {fileID: 21300000, guid: 95229a67d841fbf4cb1493346fc056ea, type: 3}
+  itemImage: {fileID: 21300000, guid: be4ef910aa6d847609fb61ecbd4bf6e2, type: 3}
   type: 3
   race: 3
   energyPotential: 8000
@@ -24,3 +24,5 @@ MonoBehaviour:
   dex: 0
   mana: 5
   endurance: 0
+  _nightVision: 0
+  _magic: 1

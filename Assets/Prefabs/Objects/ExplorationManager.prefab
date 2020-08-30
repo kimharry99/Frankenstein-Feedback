@@ -43,10 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73aac0e90384cd64595632a4c6a06f75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _events:
-  - {fileID: 11400000, guid: 25e20a313caf01042aba44289e050250, type: 2}
-  - {fileID: 11400000, guid: 61a1aac8d0ad7e34b98710f4cde2ecd7, type: 2}
-  - {fileID: 11400000, guid: b0347b6a3154029429c9befb3c169434, type: 2}
   _finishExplorationEvent: {fileID: 11400000, guid: fce51853fd278c84cb569c58e35a39b1,
     type: 2}
+  _itemDiscoveryFaultEvent: {fileID: 11400000, guid: 61a1aac8d0ad7e34b98710f4cde2ecd7,
+    type: 2}
+  _currentRegion: {fileID: 0}
+  startingEvent: {fileID: 11400000, guid: 8918fa0e8b849da4ea7968abe797968a, type: 2}
   _timeInterval: 1

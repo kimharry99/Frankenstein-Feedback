@@ -13,8 +13,10 @@ public class GameManager : SingletonBehaviour<GameManager>
     public BodyAssembly bodyAssembly;
     public BodyDisassembly bodyDisassembly;
     public CraftingTable craftingTable;
+    public Research research;
     public IntVariable energy;
-    public IntVariable durability;
+    //public IntVariable durabilityI;
+    public FloatVariable durability;
 
     #region Unity Functions
     private void Start()
@@ -36,6 +38,12 @@ public class GameManager : SingletonBehaviour<GameManager>
             bodyAssembly = GameObject.Find("BodyAssembly").GetComponent<BodyAssembly>();
             bodyDisassembly = GameObject.Find("BodyDisassembly").GetComponent<BodyDisassembly>();
             craftingTable = GameObject.Find("CraftingTable").GetComponent<CraftingTable>();
+            research = GameObject.Find("Research").GetComponent<Research>();
+        }
+        else
+        {
+            if (scene.name != "HomeScene")
+                IsHome = false;
         }
     }
     #endregion
@@ -46,9 +54,12 @@ public class GameManager : SingletonBehaviour<GameManager>
     private void InitGame()
     {
         _time.SetTime(8);
-
+        if (bodyDisassembly != null)
+        {
+            IsHome = true;
+        }
         //for debugging
-        energy.value = 500;
+        //energy.value = 500;
     }
 
     // 탐사를 시작할 때 호출하는 함수이다.
@@ -90,6 +101,7 @@ public class GameManager : SingletonBehaviour<GameManager>
         _time.SetTime(_time.runtimeTime+turn);
     }
 
+    private float penaltyPerTime = 5.0f;
     /// <summary>
     /// 플레이어가 잠을 잘 때 호출, 
     /// </summary>'
@@ -97,14 +109,12 @@ public class GameManager : SingletonBehaviour<GameManager>
     public void SendToSleep(int time)
     {
         Debug.Log("now sleeping...");
-        int spendEnergy = 0, regenDurability = 0;
+        int spendEnergy = 0;
+        float regenDurability = 0.0f;
         RegenBody(time, ref spendEnergy, ref regenDurability);
         if(_time.runtimeTime < 8)
             _time.SetTime(8);
-        GeneralUIManager.Inst.UpdateTextDurability();
-        GeneralUIManager.Inst.UpdateTextTime();
-        GeneralUIManager.Inst.UpdateEnergy();
-        HomeUIManager.Inst.NoticeEnergyChange(spendEnergy, regenDurability);
+        StartCoroutine(HomeUIManager.Inst.PutToSleep(time, penaltyPerTime, spendEnergy, regenDurability));
     }
 
     /// <summary>
@@ -113,16 +123,19 @@ public class GameManager : SingletonBehaviour<GameManager>
     /// <param name="time">잠이 든 시각</param>
     /// <param name="energy">수면에 사용한 에너지</param>
     /// <param name="durability">수면으로 회복한 내구도</param>
-    public void RegenBody(int time, ref int spendEnergy, ref int regenDurability)
+    public void RegenBody(int time, ref int spendEnergy, ref float regenDurability)
     {
         // 에너지를 통한 힐
+        //int cost = Mathf.CeilToInt((100 - durabilityI.value) / 100.0f * GetEnergyCost(_time.runtimeDay));
         int cost = Mathf.CeilToInt((100 - durability.value) / 100.0f * GetEnergyCost(_time.runtimeDay));
         if (cost <= energy.value)
         {
             energy.value -= cost;
             spendEnergy = cost;
+            //regenDurability = 100 - durabilityI.value;
             regenDurability = 100 - durability.value;
-            durability.value = 100;
+            //durabilityI.value = 100;
+            durability.value = 100.0f;
             Debug.Log("내구도 전부 회복, 소모한 에너지 : " + cost);
         }
         else
@@ -130,15 +143,17 @@ public class GameManager : SingletonBehaviour<GameManager>
             cost = GetEnergyCost(_time.runtimeDay);
             Debug.Log("내구도 일부 회복\n소모한 에너지 : " + energy.value + "\n회복한 내구도 : " + 100.0f * energy.value / cost);
             spendEnergy = energy.value;
-            regenDurability = Mathf.CeilToInt(100.0f * energy.value / cost);
-            durability.value += Mathf.CeilToInt(100.0f * energy.value / cost);
+            regenDurability = 100.0f * energy.value / cost;
+            //durabilityI.value += Mathf.CeilToInt(100.0f * energy.value / cost);
+            durability.value += 100.0f * energy.value / cost;
             energy.value = 0;
         }
         // 비수면 페널티
         if(time > 0)
         {
-            durability.value -= 5 * (time);
-            Debug.Log("비수면 페널티 : " + 5 * time);
+            //durabilityI.value -= (int)(penaltyPerTime * time);
+            durability.value -= penaltyPerTime * time;
+            Debug.Log("비수면 페널티 : " + (int)(penaltyPerTime * time));
         }
     }
     private int GetEnergyCost(int day)
@@ -191,5 +206,11 @@ public class GameManager : SingletonBehaviour<GameManager>
                 Debug.Log("1");
                 break;
         }
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("game over");
+        Application.Quit();
     }
 }

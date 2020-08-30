@@ -14,20 +14,30 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     }
 
     public GameObject panelExploration;
+    public GameObject panelCollapseWarning;
     private List<ContentSlot> contentsEvent = new List<ContentSlot>();
     [SerializeField]
     private Button[] buttonOptions = new Button[4];
+    private Button[] buttonWarning = new Button[2];
+    private Button ButtonContinue { get { return buttonWarning[0]; } }
+    private Button ButtonCancel { get { return buttonWarning[1]; } }
 
-    protected override void Awake()
+    private void Start()
     {
-        base.Awake();
-        for(int i=0;i<5;i++)
+        for (int i = 0; i < 5; i++)
         {
             ContentSlot contentSlot;
             contentSlot.eventText = panelExploration.transform.GetChild(0).GetChild(i).GetComponent<Text>();
             contentSlot.eventImage = panelExploration.transform.GetChild(0).GetChild(5 + i).GetComponent<Image>();
             contentsEvent.Add(contentSlot);
         }
+        buttonWarning[0] = panelCollapseWarning.transform.GetChild(0).GetComponent<Button>();
+        buttonWarning[1] = panelCollapseWarning.transform.GetChild(1).GetComponent<Button>();
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
     }
 
     // for prototype
@@ -56,13 +66,20 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     {
         Debug.Log("발생한 이벤트 : " + @event.titleText);
         NoticeEventText(@event.titleText);
-        if(@event.type == ExplorationEvent.EventType.ItemDiscovery)
+        if(@event.phase == ExplorationEvent.EventPhase.SearchingItem)
         {
             ItemDiscoveryEvent itemDiscoveryEvent = (ItemDiscoveryEvent)@event;
             if(itemDiscoveryEvent.foundItem != null)
                 NoticeEventItemImage(itemDiscoveryEvent.foundItem.itemImage);
         }
         NoticeEventText(@event.content);
+        if (@event.name == "최초 탐사 시작" || @event.id == 100000)
+        {
+            NoticeEventText(" ");
+            NoticeEventText(" ");
+            NoticeEventText(" ");
+            NoticeEventText(" ");
+        }
         NoticeOptions(@event);
     }
 
@@ -156,15 +173,16 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     /// <param name="event"></param>
     public void AddResultOptionsToButton(ExplorationEvent @event)
     {
-        AddResultTextsToButton(@event);
+        //AddResultTextsToButton(@event);
         AddResultEventsToButton(@event);
     }
-    
+
     /// <summary>
     /// option을 선택했을 때 event의 결과를 Button에 등록한다.
     /// </summary>
     private void AddResultEventsToButton(ExplorationEvent @event)
     {
+        Debug.Log(@event.name);
         if (@event.OptionNumber >= 0)
         {
             buttonOptions[0].onClick.AddListener(@event.Option0);
@@ -188,22 +206,31 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     /// </summary>
     private void AddResultTextsToButton(ExplorationEvent @event)
     {
-        if (@event.OptionNumber >= 0)
+        //if (@event.phase != ExplorationEvent.EventPhase.FinishingExploration && !ExplorationManager.Inst.GetIsOverwork())
+        if (@event.phase != ExplorationEvent.EventPhase.FinishingExploration)
         {
-            buttonOptions[0].onClick.AddListener(() => NoticeEventText(@event.optionResultTexts[0]));
-            if (@event.OptionNumber >= 1)
+            if (@event.OptionNumber >= 0)
             {
-                buttonOptions[1].onClick.AddListener(() => NoticeEventText(@event.optionResultTexts[1]));
-                if (@event.OptionNumber >= 2)
+                buttonOptions[0].onClick.AddListener(() => NoticeEventText(@event.optionResultTexts[0]));
+                if (@event.OptionNumber >= 1)
                 {
-                    buttonOptions[2].onClick.AddListener(() => NoticeEventText(@event.optionResultTexts[2]));
-                    if (@event.OptionNumber >= 3)
+                    buttonOptions[1].onClick.AddListener(() => NoticeEventText(@event.optionResultTexts[1]));
+                    if (@event.OptionNumber >= 2)
                     {
-                        buttonOptions[3].onClick.AddListener(() => NoticeEventText(@event.optionResultTexts[3]));
+                        buttonOptions[2].onClick.AddListener(() => NoticeEventText(@event.optionResultTexts[2]));
+                        if (@event.OptionNumber >= 3)
+                        {
+                            buttonOptions[3].onClick.AddListener(() => NoticeEventText(@event.optionResultTexts[3]));
+                        }
                     }
                 }
             }
         }
+    }
+
+    public void NoticeResultText(string resultText)
+    {
+        NoticeEventText(resultText);
     }
 
     /// <summary>
@@ -227,6 +254,30 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
         contentsEvent[contentsEvent.Count - 1].eventText.text += ".";
         yield return new WaitForSeconds(timeInterval / 3);
         contentsEvent[contentsEvent.Count - 1].eventText.text += ".";
+    }
+
+    //public void ActiveCollapseWarningPanel(FinishExplorationEvent finishExplorationEvent, int option)
+    //{
+    //    panelCollapseWarning.SetActive(true);
+    //    ButtonCancel.onClick.AddListener(CloseCooapseWarningPanel);
+    //    if (option == 0)
+    //    {
+    //        ButtonContinue.onClick.AddListener(finishExplorationEvent.ExploreAnother);
+    //        ButtonContinue.onClick.AddListener(() => NoticeEventText(finishExplorationEvent.optionResultTexts[0]));
+    //    }
+    //    else if (option == 1)
+    //    {
+    //        ButtonContinue.onClick.AddListener(finishExplorationEvent.ExploreAgain);
+    //        ButtonContinue.onClick.AddListener(() => NoticeEventText(finishExplorationEvent.optionResultTexts[1]));
+    //    }
+    //    ButtonContinue.onClick.AddListener(CloseCooapseWarningPanel);
+    //}
+
+    public void CloseCooapseWarningPanel()
+    {
+        panelCollapseWarning.SetActive(false);
+        ButtonContinue.onClick.RemoveAllListeners();
+        ButtonCancel.onClick.RemoveAllListeners();
     }
 
     #endregion

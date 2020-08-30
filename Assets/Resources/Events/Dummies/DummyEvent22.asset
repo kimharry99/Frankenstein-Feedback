@@ -16,11 +16,15 @@ MonoBehaviour:
   eventName: "\uB514\uBC84\uAE45\uC6A9 \uC774\uBCA4\uD2B8 2"
   phase: 0
   type: 1
+  encounterProbabilty: 20
+  isFleeting: 0
   titleText: "\uB514\uBC84\uAE45\uC6A9 \uC774\uBCA4\uD2B8 2\uAC00 \uBC1C\uC0DD\uD588\uC2B5\uB2C8\uB2E4!"
   content: "\uB514\uBC84\uAE45\uC6A9 \uC774\uBCA4\uD2B82\uC758 \uB0B4\uC6A9 \uD14D\uC2A4\uD2B8\uC785\uB2C8\uB2E4."
+  basicEnable: 1
+  linkedEventName: 
   optionTexts:
-  - "\uCC59\uAE34\uB2E4"
-  - "\uADF8\uB0E5 \uC9C0\uB098\uAC04\uB2E4"
+  - "\uD68D\uB4DD\uD55C\uB2E4"
+  - "\uBC84\uB9B0\uB2E4"
   optionResultTexts:
   - "\uAD8C\uCD1D\uC744 \uCC59\uACBC\uC2B5\uB2C8\uB2E4"
   - "\uC9C0\uB098\uCCE4\uC2B5\uB2C8\uB2E4."

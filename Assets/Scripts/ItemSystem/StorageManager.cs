@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -142,6 +143,10 @@ public class StorageManager : SingletonBehaviour<StorageManager>
     public Item DeleteFromChest(int slotNumber)
     {
         Item item = DeleteItem(slotNumber, chest);
+        if(item == null)
+        {
+            Debug.Log("item is null, slotNumber = " + slotNumber);
+        }
         SortChestItem();
         UpdateChestIndexes();
         if (HomeUIManager.Inst.panelChest)
@@ -216,6 +221,16 @@ public class StorageManager : SingletonBehaviour<StorageManager>
         UpdateToolStat();
         GeneralUIManager.Inst.UpdateInventory();
         return isSuccess;
+    }
+
+    public bool AddItemsToInven(Item item, int n)
+    {
+        for(int i=0;i<n;i++)
+        {
+            if (!AddItemToInven(item))
+                return false;
+        }
+        return true;
     }
 
     #endregion
@@ -297,19 +312,19 @@ public class StorageManager : SingletonBehaviour<StorageManager>
                 switch (stat)
                 {
                     case "atk":
-                        itemStatToReturn += tool.atk;
+                        itemStatToReturn += tool.Atk;
                         break;
                     case "def":
-                        itemStatToReturn += tool.def;
+                        itemStatToReturn += tool.Def;
                         break;
                     case "dex":
-                        itemStatToReturn += tool.dex;
+                        itemStatToReturn += tool.Dex;
                         break;
                     case "mana":
-                        itemStatToReturn += tool.mana;
+                        itemStatToReturn += tool.Mana;
                         break;
                     case "endurance":
-                        itemStatToReturn += tool.endurance;
+                        itemStatToReturn += tool.Endurance;
                         break;
                     default:
                         Debug.Log(stat + " : wrong stat name");
@@ -330,11 +345,13 @@ public class StorageManager : SingletonBehaviour<StorageManager>
             if (inventory.slotItem[i].type == Type.Tool)
             {
                 Tool tool = (Tool)inventory.slotItem[i];
-                toolStat.atk += tool.atk * Player.Inst.GetRaceAffinity(tool.race);
-                toolStat.def += tool.def * Player.Inst.GetRaceAffinity(tool.race);
-                toolStat.dex += tool.dex * Player.Inst.GetRaceAffinity(tool.race); ;
-                toolStat.mana += tool.mana * Player.Inst.GetRaceAffinity(tool.race); ;
-                toolStat.endurance += tool.endurance * Player.Inst.GetRaceAffinity(tool.race); ;
+                toolStat.atk = Math.Max(tool.Atk * Player.Inst.GetRaceAffinity(tool.race), toolStat.atk);
+                toolStat.def = Math.Max(tool.Def * Player.Inst.GetRaceAffinity(tool.race), toolStat.def);
+                toolStat.dex = Math.Max(tool.Dex * Player.Inst.GetRaceAffinity(tool.race), toolStat.dex);
+                toolStat.mana = Math.Max(tool.Mana * Player.Inst.GetRaceAffinity(tool.race), toolStat.mana);
+                toolStat.endurance = Math.Max(tool.Endurance * Player.Inst.GetRaceAffinity(tool.race), toolStat.endurance);
+                toolStat.nightVision = tool.nightVision || toolStat.nightVision;
+                toolStat.magic = tool.magic || toolStat.magic;
             }
         }
     }
@@ -383,7 +400,7 @@ public class StorageManager : SingletonBehaviour<StorageManager>
         int j;
         int temp;
         Item tmp;
-         for(int i = 0; i < Chest.CAPACITY; i++)
+         for(int i = 0; i < Chest.CAPACITY-1; i++)
         {
             if (chest.slotItem[i] == null)
             {

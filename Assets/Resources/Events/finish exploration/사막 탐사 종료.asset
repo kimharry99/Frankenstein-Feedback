@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af24c13c5e4524f4aade68d57e80baff, type: 3}
+  m_Name: "\uC0AC\uB9C9 \uD0D0\uC0AC \uC885\uB8CC"
+  m_EditorClassIdentifier: 
+  id: 340001
+  eventName: "\uC0AC\uB9C9 \uD0D0\uC0AC \uC885\uB8CC"
+  phase: 2
+  encounterProbabilty: 0
+  titleText: "\uD654\uC0B0\uC758 \uC5F4\uAE30\uAC00 \uCF54\uC55E\uC5D0\uC11C \uB290\uAEF4\uC9C4\uB2E4."
+  content: 
+  basicEnable: 0
+  optionTexts:
+  - "\uD654\uC0B0\uC744 \uD0D0\uC0AC\uD55C\uB2E4"
+  - "\uC5F0\uAD6C\uC2E4\uB85C \uB3CC\uC544\uAC04\uB2E4"
+  optionResultTexts:
+  - 
+  - 
+  linkedRegions:
+  - {fileID: 11400000, guid: 14fcf7bbf8c7f7d4588cc471e0efd12c, type: 2}
+  - {fileID: 0}

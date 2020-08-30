@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f1aa059670bfec4bb97930f1de3197e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5119a2c4b10a12e43abbc2a02bb09836, type: 3}
   m_Name: "\uC0DD\uCCB4 \uD14C\uC774\uD504"
   m_EditorClassIdentifier: 
   id: 2001
@@ -19,4 +19,4 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 76fdc1ef355ec8f47b6db0a3765db0ff, type: 3}
   type: 2
   race: 0
-  energyPotential: 0
+  energyPotential: 1500
