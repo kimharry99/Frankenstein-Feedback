@@ -169,7 +169,7 @@ public class Player : SingletonBehaviour<Player>
             {
                 if (HomeUIManager.Inst.panelAssemble.activeSelf == true)
                 {
-                    Debug.Log("0");
+                    Debug.Log("BodyDecayRate: 0");
                     return 0;
                 }
                 else
