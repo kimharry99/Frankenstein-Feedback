@@ -14,6 +14,8 @@ public class Player : SingletonBehaviour<Player>
         set
         {
             durability.value = value;
+            if (value > 100)
+                durability.value = 100;
             if (durability.value <= 0)
             {
                 KillPlayer();
