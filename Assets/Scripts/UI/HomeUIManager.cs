@@ -672,17 +672,29 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
     #endregion
 
+    [Header("Research Panel Field")]
     public GameObject panelResearchProgress;
     private int _selectedIndex = -1;
+    public Text[] progressTexts = new Text[4];
+    public Text requireEnergy;
     #region ResearchPanel methods
     public void UpdateResearchPanel()
     {
+        Research research = GameManager.Inst.research;
+        progressTexts[0].text = "진행률 " + (research.GoblinLevel * 10).ToString() + "%";
+        progressTexts[1].text = "진행률 " + (research.ElfLevel * 10).ToString() + "%";
+        progressTexts[2].text = "진행률 " + (research.OakLevel* 10).ToString() + "%";
+        progressTexts[3].text = "진행률 " + (research.MachineLevel * 10).ToString() + "%";
 
     }
     public void ResearchIconClick(int index)
     {
-        panelResearchProgress.SetActive(true);
-        _selectedIndex = index;
+        if (progressTexts[index].text != "진행률 100%")
+        {
+            panelResearchProgress.SetActive(true);
+            _selectedIndex = index;
+            requireEnergy.text = GameManager.Inst.research.ResearchCost(_selectedIndex).ToString();
+        }
     }
 
     public void ResearchProcessClicked()
@@ -692,6 +704,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         {
             Debug.Log("연구 성공");
             GameManager.Inst.research.ResearchRace(_selectedIndex);
+            UpdateResearchPanel();
         }
         panelResearchProgress.SetActive(false);
     }
