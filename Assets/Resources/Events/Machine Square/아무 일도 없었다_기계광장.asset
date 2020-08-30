@@ -13,13 +13,31 @@ MonoBehaviour:
   m_Name: "\uC544\uBB34 \uC77C\uB3C4 \uC5C6\uC5C8\uB2E4_\uAE30\uACC4\uAD11\uC7A5"
   m_EditorClassIdentifier: 
   id: 0
-  eventName: 
-  phase: 0
+  eventName: "\uC544\uBB34 \uC77C\uB3C4 \uC5C6\uC5C8\uB2E4_\uAE30\uACC4\uAD11\uC7A5"
+  phase: 1
   encounterProbabilty: 0
-  titleText: 
+  titleText: "\uD1B1\uB2C8\uBC14\uD034 \uBA87 \uAC1C\uAC00 \uBC1C\uC5D0 \uAC78\uB9B0\uB2E4"
   content: 
-  basicEnable: 0
-  optionTexts: []
-  optionResultTexts: []
+  basicEnable: 1
+  optionTexts:
+  - ...
+  optionResultTexts:
+  - 
   isFleeting: 0
-  options: []
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: 7e137924ab3aee747a94c77f49d01870, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: 
+      linkedEventName: 
+      linkedEventName1: 
+      linkedEventName2: 
+      linkedEventName3: 
+    statConstraints: []
+    constraintPerCase: 
