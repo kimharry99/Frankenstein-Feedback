@@ -35,7 +35,7 @@ MonoBehaviour:
   isFleeting: 1
   options:
   - cases:
-    - resultEvent: {fileID: 11400000, guid: 04e59023b7deaaa488e866281f89f7da, type: 2}
+    - resultEvent: {fileID: 11400000, guid: 844d22fc59fd6fe4fb7ae673bb2f3a71, type: 2}
       durabilityDamage: 0
       rewardItem:
         slotItem: {fileID: 11400000, guid: a8361f7d1b12bd34c941eb6f8e55d840, type: 2}
@@ -46,10 +46,13 @@ MonoBehaviour:
       resultString: "\"\uADF8\uAC74 \uAC00\uC838\uAC00\uC11C \uC5B4\uB5A1\uD558\uB824\uACE0
         \uADF8\uB7EC\uB098? \uAD6C\uC6CC\uBA39\uAC8C? \uD06C\uD558\uD558\uD558!\""
       linkedEventName: 
+      linkedEventName1: 
+      linkedEventName2: 
+      linkedEventName3: 
     statConstraints: []
     constraintPerCase: 
   - cases:
-    - resultEvent: {fileID: 11400000, guid: 04e59023b7deaaa488e866281f89f7da, type: 2}
+    - resultEvent: {fileID: 11400000, guid: 844d22fc59fd6fe4fb7ae673bb2f3a71, type: 2}
       durabilityDamage: 0
       rewardItem:
         slotItem: {fileID: 11400000, guid: 6b8b9b55cd5a125428680803ebc58949, type: 2}
@@ -61,10 +64,13 @@ MonoBehaviour:
         \uC778\uAC04\uB188\uB4E4\uC774 \uC7AC\uBC0C\uB294 \uAC74 \uAE30\uB9C9\uD788\uAC8C
         \uB9CC\uB4E0\uB2E8 \uB9D0\uC774\uC9C0!\""
       linkedEventName: 
+      linkedEventName1: 
+      linkedEventName2: 
+      linkedEventName3: 
     statConstraints: []
     constraintPerCase: 
   - cases:
-    - resultEvent: {fileID: 11400000, guid: 04e59023b7deaaa488e866281f89f7da, type: 2}
+    - resultEvent: {fileID: 11400000, guid: 844d22fc59fd6fe4fb7ae673bb2f3a71, type: 2}
       durabilityDamage: 0
       rewardItem:
         slotItem: {fileID: 0}
@@ -79,7 +85,10 @@ MonoBehaviour:
         \uC88B\uC744\uAC70\uB2E4! \uC5E5? \uADF8\uAC70 \uC5B4\uB514\uAC14\uB0D0?
         \uBB50, \uC774\uC820 \uD544\uC694\uC5C6\uC73C\uB2C8 \uB410\uB2E4.\""
       linkedEventName: 
-    - resultEvent: {fileID: 11400000, guid: 04e59023b7deaaa488e866281f89f7da, type: 2}
+      linkedEventName1: 
+      linkedEventName2: 
+      linkedEventName3: 
+    - resultEvent: {fileID: 11400000, guid: 844d22fc59fd6fe4fb7ae673bb2f3a71, type: 2}
       durabilityDamage: 0
       rewardItem:
         slotItem: {fileID: 0}
@@ -92,6 +101,9 @@ MonoBehaviour:
         \uC800 \uAD34\uBB3C\uB188\uB4E4 \uC808\uBC18\uC774 \uADF8\uAC70 \uB9CC\uC9C0\uB824\uB2E4
         \uC800\uB798\uB410\uB2E4. \uC548 \uB9CC\uC9C0\uB294\uAC8C \uB098\uC744\uAC70\uB2E4!\""
       linkedEventName: 
+      linkedEventName1: 
+      linkedEventName2: 
+      linkedEventName3: 
     statConstraints:
     - moreOrLess: 1
       constraintName: 5

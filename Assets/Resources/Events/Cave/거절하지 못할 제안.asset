@@ -47,10 +47,13 @@ MonoBehaviour:
       resultString: "\"\uACE0\uB9D9\uB124! \uC790\uB124\uB294 \uC6B0\uB9AC\uC5D0\uAC8C
         \uC815\uB9D0 \uD070 \uB3C4\uC6C0\uC774 \uB420\uAC70\uC57C.\""
       linkedEventName: 
+      linkedEventName1: 
+      linkedEventName2: 
+      linkedEventName3: 
     statConstraints: []
     constraintPerCase: 
   - cases:
-    - resultEvent: {fileID: 11400000, guid: 04e59023b7deaaa488e866281f89f7da, type: 2}
+    - resultEvent: {fileID: 11400000, guid: 844d22fc59fd6fe4fb7ae673bb2f3a71, type: 2}
       durabilityDamage: 0
       rewardItem:
         slotItem: {fileID: 0}
@@ -60,5 +63,8 @@ MonoBehaviour:
         slotItemNumber: 0
       resultString: "\uBB50 \uC5B4\uCA54 \uC218 \uC5C6\uAD70."
       linkedEventName: 
+      linkedEventName1: 
+      linkedEventName2: 
+      linkedEventName3: 
     statConstraints: []
     constraintPerCase: 

@@ -28,7 +28,7 @@ MonoBehaviour:
   isFleeting: 1
   options:
   - cases:
-    - resultEvent: {fileID: 11400000, guid: 04e59023b7deaaa488e866281f89f7da, type: 2}
+    - resultEvent: {fileID: 11400000, guid: 844d22fc59fd6fe4fb7ae673bb2f3a71, type: 2}
       durabilityDamage: 0
       rewardItem:
         slotItem: {fileID: 11400000, guid: 77d75f85848e7f443ba52d5ee3478323, type: 2}
@@ -40,5 +40,8 @@ MonoBehaviour:
         \uC815\uB9D0 \uC815\uC758\uB86D\uAD6C\uB098. \uC55E\uC73C\uB85C\uB3C4 \uBCFC
         \uC218 \uC788\uC73C\uBA74 \uC88B\uACA0\uAD70!\""
       linkedEventName: 
+      linkedEventName1: 
+      linkedEventName2: 
+      linkedEventName3: 
     statConstraints: []
     constraintPerCase: 

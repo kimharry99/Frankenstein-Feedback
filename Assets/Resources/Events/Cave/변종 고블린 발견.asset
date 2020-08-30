@@ -49,7 +49,7 @@ MonoBehaviour:
     statConstraints: []
     constraintPerCase: 
   - cases:
-    - resultEvent: {fileID: 11400000, guid: 04e59023b7deaaa488e866281f89f7da, type: 2}
+    - resultEvent: {fileID: 11400000, guid: 844d22fc59fd6fe4fb7ae673bb2f3a71, type: 2}
       durabilityDamage: 0
       rewardItem:
         slotItem: {fileID: 0}

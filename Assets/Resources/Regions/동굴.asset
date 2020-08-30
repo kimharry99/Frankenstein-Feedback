@@ -69,4 +69,4 @@ MonoBehaviour:
   skipRandomEncounterEvent: {fileID: 11400000, guid: 5f2553271a48b1a40b22fcda412e0af0,
     type: 2}
   finishExplorationEvents:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 844d22fc59fd6fe4fb7ae673bb2f3a71, type: 2}
