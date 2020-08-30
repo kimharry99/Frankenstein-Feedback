@@ -1158,11 +1158,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6398524447368689288, guid: aca0d4922f165f4408bd20e42a2db695,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 88839431, guid: aca0d4922f165f4408bd20e42a2db695, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1517877307}
     - target: {fileID: 6398524447368689291, guid: aca0d4922f165f4408bd20e42a2db695,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1232,7 +1231,27 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 79899572}
+      objectReference: {fileID: 2015609951}
+    - target: {fileID: 8477198740150218742, guid: aca0d4922f165f4408bd20e42a2db695,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ButtonSettingClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 8477198740150218742, guid: aca0d4922f165f4408bd20e42a2db695,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8477198740150218742, guid: aca0d4922f165f4408bd20e42a2db695,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8477198740150218742, guid: aca0d4922f165f4408bd20e42a2db695,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8477198740898583849, guid: aca0d4922f165f4408bd20e42a2db695,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -1407,6 +1426,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8477198741573950184, guid: aca0d4922f165f4408bd20e42a2db695,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1517877307}
+    - target: {fileID: 8477198741573950184, guid: aca0d4922f165f4408bd20e42a2db695,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GameOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 8477198741573950184, guid: aca0d4922f165f4408bd20e42a2db695,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8477198741573950184, guid: aca0d4922f165f4408bd20e42a2db695,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8477198741573950184, guid: aca0d4922f165f4408bd20e42a2db695,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8477198741740941484, guid: aca0d4922f165f4408bd20e42a2db695,
         type: 3}
@@ -3387,6 +3431,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928098139}
   m_CullTransparentMesh: 0
+--- !u!114 &2015609951 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8477198741248839899, guid: aca0d4922f165f4408bd20e42a2db695,
+    type: 3}
+  m_PrefabInstance: {fileID: 1052998426}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbeddaec176028f419798523a4fe7a94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2018948367
 GameObject:
   m_ObjectHideFlags: 0
