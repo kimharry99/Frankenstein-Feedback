@@ -114,4 +114,161 @@ public class Research : SingletonBehaviour<Research>
         }
         return bonusCoef;
     }
+
+    public int GetStatBonus(Status.StatName statName)
+    {
+        switch(statName)
+        {
+            case Status.StatName.Atk:
+                return GetAtkBonus();
+            case Status.StatName.Def:
+                return GetDefBonus();
+            case Status.StatName.Dex:
+                return GetDexBonus();
+            case Status.StatName.Mana:
+                return GetManaBonus();
+            case Status.StatName.Endurance:
+                return 0;
+            default:
+                return 0;
+        }
+    }
+
+    private int GetAtkBonus()
+    {
+        int atkBonus = 0;
+        switch (OakLevel)
+        {
+            case 1:
+                break;
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+                atkBonus += 5 * Player.Inst.equippedBodyPart.GetCntOfBodyPart(Race.Oak);
+                break;
+            case 7:
+            case 8:
+                atkBonus += 10 * Player.Inst.equippedBodyPart.GetCntOfBodyPart(Race.Oak);
+                break;
+            case 9:
+            case 10:
+                atkBonus += 10 * Player.Inst.equippedBodyPart.GetCntOfBodyPart(Race.Oak);
+                atkBonus += 20;
+                break;
+        }
+        if (ElfLevel >= 10)
+        {
+            atkBonus += (int)(Player.Inst.Mana * 0.3f);
+        }
+        else if (ElfLevel >= 4)
+        {
+            atkBonus += (int)(Player.Inst.Mana * 0.1f);
+        }
+        return atkBonus;
+    }
+
+    private int GetDefBonus()
+    {
+        int defBonus = 0;
+        switch (OakLevel)
+        {
+            case 1:
+                break;
+            case 2:
+            case 3:
+                defBonus += 5 * Player.Inst.equippedBodyPart.GetCntOfBodyPart(Race.Oak);
+                break;
+            case 4:
+            case 5:
+            case 6:
+                defBonus += 5 * Player.Inst.equippedBodyPart.GetCntOfBodyPart(Race.Oak);
+                defBonus += 10;
+                break;
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+                defBonus += 10 * Player.Inst.equippedBodyPart.GetCntOfBodyPart(Race.Oak);
+                break;
+        }
+        if (ElfLevel >= 10)
+        {
+            defBonus += (int)(Player.Inst.Mana * 0.3f);
+        }
+        else if (ElfLevel >= 4)
+        {
+            defBonus += (int)(Player.Inst.Mana * 0.1f);
+        }
+        return defBonus;
+    }
+    
+    private int GetDexBonus()
+    {
+        int dexBonus = 0;
+        switch (GoblinLevel)
+        {
+            case 1:
+                break;
+            case 2:
+            case 3:
+                dexBonus += 2 * Player.Inst.equippedBodyPart.GetCntOfBodyPart(Race.Goblin);
+                break;
+            case 4:
+            case 5:
+                dexBonus += 4 * Player.Inst.equippedBodyPart.GetCntOfBodyPart(Race.Goblin);
+                break;
+            case 6:
+                dexBonus += 4 * Player.Inst.equippedBodyPart.GetCntOfBodyPart(Race.Goblin);
+                dexBonus += 5;
+                break;
+            case 7:
+            case 8:
+                dexBonus += 6 * Player.Inst.equippedBodyPart.GetCntOfBodyPart(Race.Goblin);
+                dexBonus += 5;
+                break;
+            case 9:
+                dexBonus += 6 * Player.Inst.equippedBodyPart.GetCntOfBodyPart(Race.Goblin);
+                dexBonus += 10;
+                break;
+            case 10:
+                dexBonus += 20 * Player.Inst.equippedBodyPart.GetCntOfBodyPart(Race.Goblin);
+                dexBonus += 10;
+                break;
+        }
+        return dexBonus;
+    }
+
+    private int GetManaBonus()
+    {
+        int manaBonus = 0;
+        switch (GoblinLevel)
+        {
+            case 1:
+                break;
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                manaBonus += 3 * Player.Inst.equippedBodyPart.GetCntOfBodyPart(Race.Elf);
+                break;
+            case 6:
+                manaBonus += 3 * Player.Inst.equippedBodyPart.GetCntOfBodyPart(Race.Elf);
+                manaBonus += 10;
+                break;
+            case 7:
+            case 8:
+                manaBonus += 10 * Player.Inst.equippedBodyPart.GetCntOfBodyPart(Race.Elf);
+                manaBonus += 10;
+                break;
+            case 9:
+            case 10:
+                manaBonus += 10 * Player.Inst.equippedBodyPart.GetCntOfBodyPart(Race.Elf);
+                manaBonus += 20;
+                break;
+        }
+        return manaBonus;
+    }
+
 }

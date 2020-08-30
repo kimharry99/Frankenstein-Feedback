@@ -195,6 +195,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         panelHome.SetActive(false);
         panelResearch.SetActive(true);
+        UpdateResearchPanel();
     }
 
     public void ButtonDisassembleClicked()
@@ -674,6 +675,10 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public GameObject panelResearchProgress;
     private int _selectedIndex = -1;
     #region ResearchPanel methods
+    public void UpdateResearchPanel()
+    {
+
+    }
     public void ResearchIconClick(int index)
     {
         panelResearchProgress.SetActive(true);

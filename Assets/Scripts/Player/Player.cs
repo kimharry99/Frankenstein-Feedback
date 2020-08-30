@@ -91,21 +91,21 @@ public class Player : SingletonBehaviour<Player>
     {
         get
         {
-            return toolStat.atk + _bodyPartStat.atk;
+            return toolStat.atk + _bodyPartStat.atk + GameManager.Inst.research.GetStatBonus(Status.StatName.Atk);
         }
     }
     public int Def
     {
         get
         {
-            return toolStat.def + _bodyPartStat.def;
+            return toolStat.def + _bodyPartStat.def + GameManager.Inst.research.GetStatBonus(Status.StatName.Def);
         }
     }
     public int Dex
     {
         get
         {
-            return toolStat.dex + _bodyPartStat.dex;
+            return toolStat.dex + _bodyPartStat.dex + GameManager.Inst.research.GetStatBonus(Status.StatName.Dex);
         }
     }
     public int Mana
@@ -113,15 +113,15 @@ public class Player : SingletonBehaviour<Player>
         get
         {
             if(_bodyPartStat.darkMagic)
-                return toolStat.mana + _bodyPartStat.mana + 500;
-            return toolStat.mana + _bodyPartStat.mana;
+                return toolStat.mana + _bodyPartStat.mana + GameManager.Inst.research.GetStatBonus(Status.StatName.Mana) + 500;
+            return toolStat.mana + _bodyPartStat.mana + GameManager.Inst.research.GetStatBonus(Status.StatName.Atk);
         }
     }
     public int Endurance
     {
         get
         {
-            return toolStat.endurance + _bodyPartStat.endurance;
+            return toolStat.endurance + _bodyPartStat.endurance + GameManager.Inst.research.GetStatBonus(Status.StatName.Endurance);
         }
     }
 
