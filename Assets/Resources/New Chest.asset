@@ -20,27 +20,27 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fed1200ff7f999d418d4e600cb431231, type: 2}
   - {fileID: 11400000, guid: 6c2fa154e61e9a446b32923643b518a3, type: 2}
   - {fileID: 11400000, guid: 2e3921dbf567fe6419a94bce9bdc642b, type: 2}
-  - {fileID: 11400000, guid: 62245c6705ecda14f9e255824f3aa56d, type: 2}
-  - {fileID: 11400000, guid: 1edac494c2cbeef40b51958056a0cf65, type: 2}
-  - {fileID: 11400000, guid: 94a71b1d5a9867440b5a3f30be8c4688, type: 2}
-  - {fileID: 11400000, guid: bf3c74fe68236ba4e9bcda07aa8c7896, type: 2}
-  - {fileID: 11400000, guid: 059beb8366ba1c746b9836176da64254, type: 2}
-  - {fileID: 11400000, guid: bf3c74fe68236ba4e9bcda07aa8c7896, type: 2}
-  - {fileID: 11400000, guid: bf3c74fe68236ba4e9bcda07aa8c7896, type: 2}
-  - {fileID: 11400000, guid: bf3c74fe68236ba4e9bcda07aa8c7896, type: 2}
-  - {fileID: 11400000, guid: bf3c74fe68236ba4e9bcda07aa8c7896, type: 2}
-  - {fileID: 11400000, guid: bf3c74fe68236ba4e9bcda07aa8c7896, type: 2}
-  - {fileID: 11400000, guid: 1edac494c2cbeef40b51958056a0cf65, type: 2}
-  - {fileID: 11400000, guid: 1edac494c2cbeef40b51958056a0cf65, type: 2}
-  - {fileID: 11400000, guid: bf3c74fe68236ba4e9bcda07aa8c7896, type: 2}
-  - {fileID: 11400000, guid: bf3c74fe68236ba4e9bcda07aa8c7896, type: 2}
-  - {fileID: 11400000, guid: bf3c74fe68236ba4e9bcda07aa8c7896, type: 2}
-  - {fileID: 11400000, guid: bf3c74fe68236ba4e9bcda07aa8c7896, type: 2}
-  - {fileID: 11400000, guid: bf3c74fe68236ba4e9bcda07aa8c7896, type: 2}
-  - {fileID: 11400000, guid: bf3c74fe68236ba4e9bcda07aa8c7896, type: 2}
-  - {fileID: 11400000, guid: 059beb8366ba1c746b9836176da64254, type: 2}
-  - {fileID: 11400000, guid: 059beb8366ba1c746b9836176da64254, type: 2}
-  - {fileID: 11400000, guid: bf3c74fe68236ba4e9bcda07aa8c7896, type: 2}
-  - {fileID: 11400000, guid: 733c1b99ba5f3f449839a17a53552538, type: 2}
-  - {fileID: 11400000, guid: 74bf7538549802d48886536f42faddd9, type: 2}
-  slotItemNumber: 77000000fe000000bc0000005d00000041000000010000000a0000000a000000080000000a0000000200000007000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  - {fileID: 11400000, guid: 85cc1997657012c44ad6fb63c859c45c, type: 2}
+  - {fileID: 11400000, guid: 5dda863d365bcb54bb6939419be3d447, type: 2}
+  - {fileID: 11400000, guid: 2b2d0987166a9fa4bbf9bdee1718b7d7, type: 2}
+  - {fileID: 11400000, guid: 1442cb0d7fad4034bb19032508db7713, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  slotItemNumber: 77000000fe000000bc0000005d0000004100000001000000010000000100000001000000010000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
