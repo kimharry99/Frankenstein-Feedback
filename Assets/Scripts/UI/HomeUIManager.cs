@@ -687,11 +687,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     /// <summary>
     /// 수면에 대한 에너지 변화를 안내한다.
     /// </summary>
-    public void NoticeEnergyChange(int time, float penaltyPerTime, int energy, int durablity)
+    public void NoticeEnergyChange(int time, float penaltyPerTime, int energy, float durablity)
     {
         Debug.Log("안내 패널 출력");
         panelNotice.SetActive(true);
-        textNotice.text = "에너지를 " + energy + "소모하여 내구도를 " + durablity + "%\n 회복했습니다.";
+        textNotice.text = "에너지를 " + energy + "소모하여 내구도를 " + Mathf.Ceil(durablity*10)/10 + "." + Mathf.Ceil(durablity * 10) % 10 + "%\n 회복했습니다.";
         if (time != 0)
         {
             textNotice.text += "\n\n수면시간이 " + time + "시간 부족하여 내구도가 " + (int)(time * penaltyPerTime) + "% 감소되었습니다.";
@@ -736,7 +736,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
     private bool _isBlackOut = false;
     private float _blackOutTime = 3.0f;
-    public IEnumerator PutToSleep(int time, float penaltyPerTime, int spendEnergy, int regenedDurability)
+    public IEnumerator PutToSleep(int time, float penaltyPerTime, int spendEnergy, float regenedDurability)
     {
         Debug.Log("black out start");
         panelBlackOut.SetActive(true);

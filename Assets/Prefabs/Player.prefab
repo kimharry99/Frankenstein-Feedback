@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6083c0755203424a91943fbf3d533b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: {fileID: 11400000, guid: 6580257239b0a354db5f697e862bdc9d, type: 2}
+  durability: {fileID: 11400000, guid: e52e9b02206ca904abf70b1c271d2685, type: 2}
   inventory: {fileID: 11400000, guid: 29bd155a658128a48881d6b34a6f79c7, type: 2}
   equippedBodyPart: {fileID: 11400000, guid: f200f60ddd578224e8a401f83ea95480, type: 2}
   _upgradeLevels: 000000000000000000000000000000000000000000000000

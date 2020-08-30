@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Player : SingletonBehaviour<Player>
 {
-    public IntVariable durability;
-    public int Durability
+    //public IntVariable durabilityI;
+    public FloatVariable durability;
+    public float Durability
     {
         get
         {
@@ -15,7 +16,7 @@ public class Player : SingletonBehaviour<Player>
         {
             durability.value = value;
             if (value > 100)
-                durability.value = 100;
+                durability.value = 100.0f;
             if (durability.value <= 0)
             {
                 KillPlayer();
