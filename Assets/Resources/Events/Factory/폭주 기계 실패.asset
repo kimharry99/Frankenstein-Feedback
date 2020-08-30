@@ -47,7 +47,10 @@ MonoBehaviour:
         \uD734\uBA38\uB178\uC774\uB4DC\uC640 \uB8E8\uD53C\uC544\uAC00 \uBCF4\uC778\uB2E4.
         \uC798 \uD55C\uAC70\uACA0\uC9C0\u2026 "
       linkedEventName: 
-    - resultEvent: {fileID: 11400000, guid: 5229ab64803d639478608696ad0292a5, type: 2}
+      linkedEventName1: 
+      linkedEventName2: 
+      linkedEventName3: 
+    - resultEvent: {fileID: 11400000, guid: c98962032579e8b4391d07b1c666982c, type: 2}
       durabilityDamage: 0
       rewardItem:
         slotItem: {fileID: 0}
@@ -60,7 +63,10 @@ MonoBehaviour:
         \uBAA8\uB4E0 \uAC83\uC774 \uC7A0\uC7A0\uD574\uC84C\uB2E4. \uBAB8\uC744 \uAC00\uB20C
         \uC218\uAC00 \uC5C6\uB2E4. \uAC10\uACA8\uC624\uB294 \uB208\uAEBC\uD480 \uC0AC\uC774\uB85C
         \uC4F0\uB7EC\uC9C4 \uB8E8\uD53C\uC544\uAC00 \uBCF4\uC778\uB2E4\u2026 "
-      linkedEventName: 
+      linkedEventName: "\uACF5\uC7A5\uC758 \uC4F8\uB9CC\uD55C \uBB3C\uAC741"
+      linkedEventName1: "\uACF5\uC7A5\uC758 \uC4F8\uB9CC\uD55C \uBB3C\uAC742"
+      linkedEventName2: "\uACF5\uC7A5\uC758 \uC4F8\uB9CC\uD55C \uBB3C\uAC743"
+      linkedEventName3: "\uC544\uBB34 \uC77C\uB3C4 \uC5C6\uC5C8\uB2E4_\uACF5\uC7A5"
     - resultEvent: {fileID: 11400000, guid: 5229ab64803d639478608696ad0292a5, type: 2}
       durabilityDamage: 100
       rewardItem:
@@ -74,6 +80,9 @@ MonoBehaviour:
         \uBCF8 \uAC83\uC740 \uB098\uB97C \uB36E\uCCD0\uC624\uB294 \uBCF4\uB77C\uC0C9
         \uD654\uC5FC\uC774\uC5C8\uB2E4. "
       linkedEventName: 
+      linkedEventName1: 
+      linkedEventName2: 
+      linkedEventName3: 
     statConstraints:
     - moreOrLess: 1
       constraintName: 0

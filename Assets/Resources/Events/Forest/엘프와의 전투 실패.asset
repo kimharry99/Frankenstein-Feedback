@@ -22,9 +22,9 @@ MonoBehaviour:
     \uC138\uC0C1\uC774 \uC774 \uAF34\uC774 \uB0AC\uC9C0.\" "
   content: "\"\uB09C \uB108\uD76C \uC778\uAC04\uC774 \uB108\uBB34 \uC5ED\uACA8\uC6CC.
     \uB108\uD76C\uB294 \uC8FD\uC5B4\uC11C \uAC70\uB984\uC774 \uB418\uB294 \uAC83\uC774
-    \uC790\uC5F0\uC5D0\uAC8C \uC774\uB85C\uC6B8 \uAC70\uB2E4.\" \uC5D8\uD504\uB294
-    \uC4F0\uB7EC\uC9C4 \uB098\uC758 \uB4A4\uD1B5\uC218\uC5D0 \uC9C0\uD321\uC774\uB97C
-    \uAC70\uCE60\uAC8C \uAC16\uB2E4\uB304\uB2E4. "
+    \uC790\uC5F0\uC5D0\uAC8C \uC774\uB85C\uC6B8 \uAC70\uB2E4.\" \uC4F0\uB7EC\uC9C4
+    \uB0B4 \uAC00\uC2B4\uD30D\uC5D0 \uC9C0\uD321\uC774\uB97C \uB0B4\uB9AC\uAF42\uC73C\uBA74\uC11C
+    \uD55C \uB9D0\uC774\uB2E4..."
   basicEnable: 0
   optionTexts:
   - "\uC73C\uC73D\u2026 "
@@ -34,17 +34,14 @@ MonoBehaviour:
   options:
   - cases:
     - resultEvent: {fileID: 11400000, guid: 2c4b71434c49ad345b5253235a6835c4, type: 2}
-      durabilityDamage: 0
+      durabilityDamage: 10
       rewardItem:
         slotItem: {fileID: 0}
         slotItemNumber: 0
       consumedItem:
         slotItem: {fileID: 0}
         slotItemNumber: 0
-      resultString: "\uBAB8\uC5D0 \uB118\uCE58\uB358 \uB9C8\uB825\uC774 \uC9C0\uD321\uC774\uB97C
-        \uD1B5\uD574 \uBE60\uC838\uB098\uAC00\uB354\uB2C8, \uB2E4\uC2DC \uACF5\uAE30\uB85C
-        \uD769\uC5B4\uC9C4\uB2E4. \"\uADF8 \uD798\uC774 \uC5C6\uB294 \uB108\uB294
-        \uC5BC\uB9C8\uB098 \uB098\uC57D\uD55C\uC9C0 \uBC18\uC131\uD558\uBA74\uC11C
+      resultString: "\"\uB124\uAC00 \uC5BC\uB9C8\uB098 \uB098\uC57D\uD55C\uC9C0 \uBC18\uC131\uD558\uBA74\uC11C
         \uC8FD\uB3C4\uB85D \uD574\uB77C.\" "
       linkedEventName: "\uC544\uBB34 \uC77C\uB3C4 \uC5C6\uC5C8\uB2E42_\uC232"
     statConstraints: []
