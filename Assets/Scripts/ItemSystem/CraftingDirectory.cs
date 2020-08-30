@@ -33,7 +33,7 @@ public class CraftingDirectory : MonoBehaviour
     public Dictionary<string, Item> dicItemRecipie = new Dictionary<string, Item>();
     public List<Recipie> _recipies;
 
-    public CraftingDirectory()
+    public void Start()
     {
         //for debugging
         //_recipies = new List<Recipie>();
@@ -58,6 +58,7 @@ public class CraftingDirectory : MonoBehaviour
     /// <returns></returns>
     public Item FindItem(string ingredientItemIDs)
     {
+        Debug.Log(ingredientItemIDs);
         if(dicItemRecipie.ContainsKey(ingredientItemIDs))
         {
             Debug.Log(dicItemRecipie.ContainsKey(ingredientItemIDs));
@@ -84,6 +85,7 @@ public class CraftingDirectory : MonoBehaviour
         {
             int itemId = r.resultItemId;
             Item item = FindItemByID(itemId);
+            Debug.Log(r.ingredientItemIds +" "+ r.itemName);
             if (!_itemRecipie.ContainsKey(r.ingredientItemIds))
                 _itemRecipie.Add(r.ingredientItemIds, item);
             else

@@ -158,6 +158,12 @@ public class Player : SingletonBehaviour<Player>
         GeneralUIManager.Inst.NoticeGameOver();
     }
 
+    public void HealPlayer()
+    {
+        Durability = 100.0f;
+        GeneralUIManager.Inst.UpdateTextDurability();
+    }
+
     #region Body decay
 
     private int decayRateExploration = 5;

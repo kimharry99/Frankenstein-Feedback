@@ -44,7 +44,7 @@ public class CraftingTable : MonoBehaviour
     /// <param name="chestSlot"></param>
     public void SetIndexUsingChest(int usingIndex, int chestIndex)
     {
-        if(chestIndex > 0)
+        if(chestIndex >= 0)
         {
             IndexingUsingAndChest(usingIndex, chestIndex);
         }

@@ -15,15 +15,13 @@ MonoBehaviour:
   id: 114125
   eventName: "\uACF5\uC7A5 \uBC1C\uACACx"
   phase: 0
-  type: 1
   encounterProbabilty: 11
-  isFleeting: 0
   titleText: "\uC774\uACF3\uC800\uACF3 \uC5F4\uC2EC\uD788 \uB4E4\uC464\uC154\uBD24\uC9C0\uB9CC
     \uC4F8\uB9CC\uD55C \uAC83\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC5C8\uB2E4."
   content: 
   basicEnable: 1
-  linkedEventName: 
   optionTexts:
   - "\uC5D0\uC789..."
-  optionResultTexts: []
+  optionResultTexts:
+  - 
   foundItem: {fileID: 0}
