@@ -32,5 +32,7 @@ public class Status : ScriptableObject
         dex = 0;
         mana = 0;
         endurance = 0;
+        nightVision = false;
+        magic = false;
     }
 }
