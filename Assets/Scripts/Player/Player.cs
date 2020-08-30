@@ -44,43 +44,32 @@ public class Player : SingletonBehaviour<Player>
     [SerializeField]
     private Status _bodyPartStat = null;
 
-    private bool _darkMagic = false;
     public bool DarkMagic
     {
         get
         {
-            return _darkMagic;
+            return _bodyPartStat.darkMagic || toolStat.darkMagic;
         }
-        set
-        {
-            _darkMagic = value;
-        }
-
     }
-    private bool _magic = false;
+
     public bool Magic
     {
         get
         {
-            return _magic;
-        }
-        set
-        {
-            _magic = value;
+            if (DarkMagic)
+                return true;
+            return _bodyPartStat.magic ||  toolStat.magic;
         }
     }
-    private bool _nightVision = false;
+
     public bool NightVision
     {
         get
         {
-            return _nightVision;
-        }
-        set
-        {
-            _nightVision = value;
+            return _bodyPartStat.nightVision || toolStat.nightVision;
         }
     }
+
     public void ResetBodyAffinity()
     {
         _raceAffinity[(int)Race.All] = 1;
@@ -114,6 +103,8 @@ public class Player : SingletonBehaviour<Player>
     {
         get
         {
+            if(_bodyPartStat.darkMagic)
+                return toolStat.mana + _bodyPartStat.mana + 500;
             return toolStat.mana + _bodyPartStat.mana;
         }
     }
