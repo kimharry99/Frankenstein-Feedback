@@ -73,6 +73,13 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
                 NoticeEventItemImage(itemDiscoveryEvent.foundItem.itemImage);
         }
         NoticeEventText(@event.content);
+        if (@event.name == "최초 탐사 시작" || @event.id == 100000)
+        {
+            NoticeEventText(" ");
+            NoticeEventText(" ");
+            NoticeEventText(" ");
+            NoticeEventText(" ");
+        }
         NoticeOptions(@event);
     }
 
@@ -175,6 +182,7 @@ public class ExplorationUIManager : SingletonBehaviour<ExplorationUIManager>
     /// </summary>
     private void AddResultEventsToButton(ExplorationEvent @event)
     {
+        Debug.Log(@event.name);
         if (@event.OptionNumber >= 0)
         {
             buttonOptions[0].onClick.AddListener(@event.Option0);

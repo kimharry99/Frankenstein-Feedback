@@ -11,6 +11,8 @@ public class MachinePart : Consumable
     public int dexValue;
     public int manaValue;
 
+    public bool nightVision;
+
     public override bool IsConsumeEnable()
     {
         EquippedBodyPart equippedBodyPart = Player.Inst.equippedBodyPart;

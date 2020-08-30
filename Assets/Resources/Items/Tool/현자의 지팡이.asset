@@ -24,3 +24,5 @@ MonoBehaviour:
   dex: 0
   mana: 10
   endurance: 0
+  _nightVision: 0
+  _magic: 1

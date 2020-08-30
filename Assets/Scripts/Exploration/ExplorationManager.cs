@@ -32,38 +32,45 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
     private int explorationCnt = 0;
     private List<Region> allRegions;
     private List<Region> unlockedRegions = new List<Region>();
+    [SerializeField]
     private Region _currentRegion;
+    public FinishExplorationEvent startingEvent;
 
     private void Start()
     {
         allRegions = Resources.LoadAll<Region>("Regions").ToList();
-        unlockedRegions.Add(allRegions.Find(x => x.regionName == "도시"));
+        //unlockedRegions.Add(allRegions.Find(x => x.regionName == "도시"));
         //ChangeRegion(null, "도시");
+        //unlockedRegions.Add(allRegions.Find(x => x.regionName == "더미지역"));
+
         // for debugging
-        unlockedRegions.Add(allRegions.Find(x => x.regionName == "더미지역"));
-        ChangeRegion(null, "동굴");
-        // for debugging
-        SelectEvent();
-        SkipInterval();
+        //ChangeRegion(_currentRegion);
+        //SelectEvent();
+        //SkipInterval();
     }
 
     public void InitializeExploration()
     {
         Debug.Log("탐사 초기화");
-        phaseState = PhaseState.ItemDiscovery1;
-        AppearEvent(_itemDiscoveryEvents[1]);
+        phaseState = PhaseState.FinishingExploration;
+        ChangeRegion(null, "도시");
+        SelectEvent(startingEvent);
+        AppearEvent(_currentEvent);
     }
 
     private float _time = 0.0f;
     private void Update()
     {
-        if (objectState == ObjectState.SearchNextEvent)
+        if (!GameManager.Inst.IsHome)
         {
-            _time += UnityEngine.Time.deltaTime;
-            if (_time > _timeInterval)
+            if (objectState == ObjectState.SearchNextEvent)
             {
-                AppearEvent(_currentEvent);
-                _time = 0.0f;
+                _time += UnityEngine.Time.deltaTime;
+                if (_time > _timeInterval)
+                {
+                    AppearEvent(_currentEvent);
+                    _time = 0.0f;
+                }
             }
         }
     }
@@ -138,7 +145,6 @@ public class ExplorationManager : SingletonBehaviour<ExplorationManager>
         }
         if (phaseState == PhaseState.FinishingExploration)
         {
-            Debug.LogError("wrong case");
             _currentEvent = _currentRegion.finishExplorationEvents[0];
         }
         else if (phaseState == PhaseState.ItemDiscovery1 || phaseState == PhaseState.ItemDiscovery2)

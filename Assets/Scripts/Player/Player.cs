@@ -14,6 +14,8 @@ public class Player : SingletonBehaviour<Player>
         set
         {
             durability.value = value;
+            if (value > 100)
+                durability.value = 100;
             if (durability.value <= 0)
             {
                 KillPlayer();
@@ -49,38 +51,33 @@ public class Player : SingletonBehaviour<Player>
     {
         get
         {
-            return _darkMagic;
+            return _bodyPartStat.darkMagic || toolStat.darkMagic;
         }
         set
         {
-            _darkMagic = value;
+            _bodyPartStat.darkMagic = value;
+            UpdateAllBodyStat(_bodyPartStat, equippedBodyPart.bodyParts);
         }
-
     }
-    private bool _magic = false;
+
     public bool Magic
     {
         get
         {
-            return _magic;
-        }
-        set
-        {
-            _magic = value;
+            if (DarkMagic)
+                return true;
+            return _bodyPartStat.magic ||  toolStat.magic;
         }
     }
-    private bool _nightVision = false;
+
     public bool NightVision
     {
         get
         {
-            return _nightVision;
-        }
-        set
-        {
-            _nightVision = value;
+            return _bodyPartStat.nightVision || toolStat.nightVision;
         }
     }
+
     public void ResetBodyAffinity()
     {
         _raceAffinity[(int)Race.All] = 1;
@@ -114,6 +111,8 @@ public class Player : SingletonBehaviour<Player>
     {
         get
         {
+            if(_bodyPartStat.darkMagic)
+                return toolStat.mana + _bodyPartStat.mana + 500;
             return toolStat.mana + _bodyPartStat.mana;
         }
     }
@@ -451,6 +450,8 @@ public class Player : SingletonBehaviour<Player>
                 bodyPartStatus.def += playerBodyPart.Def;
                 bodyPartStatus.dex += playerBodyPart.Dex;
                 bodyPartStatus.mana += playerBodyPart.Mana;
+                if (playerBodyPart.bodyPartType == BodyPartType.Head)
+                    bodyPartStatus.nightVision = false;
             }
             else
             {
@@ -459,6 +460,8 @@ public class Player : SingletonBehaviour<Player>
                 bodyPartStatus.def += machine.Def;
                 bodyPartStatus.dex += machine.Dex;
                 bodyPartStatus.mana += machine.Mana;
+                if (playerBodyPart.bodyPartType == BodyPartType.Head)
+                    bodyPartStatus.nightVision = machine.nightVision;
             }
 
             bodyPartStatus.endurance += playerBodyPart.Endurance;

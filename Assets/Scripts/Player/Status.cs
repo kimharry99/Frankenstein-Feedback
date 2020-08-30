@@ -20,6 +20,10 @@ public class Status : ScriptableObject
     public int mana;
     public int endurance;
 
+    public bool nightVision = false;
+    public bool magic = false;
+    public bool darkMagic = false;
+
     //public int durability;
     public void ResetStatus()
     {
@@ -28,5 +32,7 @@ public class Status : ScriptableObject
         dex = 0;
         mana = 0;
         endurance = 0;
+        nightVision = false;
+        magic = false;
     }
 }

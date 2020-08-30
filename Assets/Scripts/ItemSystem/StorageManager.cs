@@ -350,6 +350,8 @@ public class StorageManager : SingletonBehaviour<StorageManager>
                 toolStat.dex = Math.Max(tool.Dex * Player.Inst.GetRaceAffinity(tool.race), toolStat.dex);
                 toolStat.mana = Math.Max(tool.Mana * Player.Inst.GetRaceAffinity(tool.race), toolStat.mana);
                 toolStat.endurance = Math.Max(tool.Endurance * Player.Inst.GetRaceAffinity(tool.race), toolStat.endurance);
+                toolStat.nightVision = tool.nightVision || toolStat.nightVision;
+                toolStat.magic = tool.magic || toolStat.magic;
             }
         }
     }
