@@ -230,11 +230,11 @@ public class Research : SingletonBehaviour<Research>
                 break;
             case 9:
                 dexBonus += 6 * Player.Inst.equippedBodyPart.GetCntOfBodyPart(Race.Goblin);
-                dexBonus += 10;
+                dexBonus += 15;
                 break;
             case 10:
                 dexBonus += 20 * Player.Inst.equippedBodyPart.GetCntOfBodyPart(Race.Goblin);
-                dexBonus += 10;
+                dexBonus += 15;
                 break;
         }
         return dexBonus;
@@ -265,7 +265,7 @@ public class Research : SingletonBehaviour<Research>
             case 9:
             case 10:
                 manaBonus += 10 * Player.Inst.equippedBodyPart.GetCntOfBodyPart(Race.Elf);
-                manaBonus += 20;
+                manaBonus += 30;
                 break;
         }
         return manaBonus;
