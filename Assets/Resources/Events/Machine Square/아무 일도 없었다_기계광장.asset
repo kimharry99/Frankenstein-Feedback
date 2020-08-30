@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 0
   eventName: 
   phase: 0
-  encounterProbabilty: 100
+  encounterProbabilty: 0
   titleText: 
   content: 
   basicEnable: 0
