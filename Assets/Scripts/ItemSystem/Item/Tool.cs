@@ -12,6 +12,13 @@ public class Tool : Item
     public int mana;
     public int endurance;
 
+    [SerializeField]
+    private bool _nightVision;
+    public bool nightVision { get { return _nightVision; } }
+    [SerializeField]
+    private bool _magic;
+    public bool magic { get { return _magic; } }
+
     public int Atk { get { return atk; } }
     public int Def { get { return def; } }
     public int Dex { get { return dex; } }

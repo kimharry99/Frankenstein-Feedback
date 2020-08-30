@@ -44,11 +44,17 @@ public class Player : SingletonBehaviour<Player>
     [SerializeField]
     private Status _bodyPartStat = null;
 
+    private bool _darkMagic = false;
     public bool DarkMagic
     {
         get
         {
             return _bodyPartStat.darkMagic || toolStat.darkMagic;
+        }
+        set
+        {
+            _bodyPartStat.darkMagic = value;
+            UpdateAllBodyStat(_bodyPartStat, equippedBodyPart.bodyParts);
         }
     }
 
