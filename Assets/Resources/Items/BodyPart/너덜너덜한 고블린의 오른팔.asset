@@ -27,4 +27,4 @@ MonoBehaviour:
   endurance: 0
   bodyPartType: 3
   grade: 4
-  bodyPartSprite: {fileID: 21300000, guid: 3bf8551a27587453a94a416a09ef5b54, type: 3}
+  bodyPartSprite: {fileID: 21300000, guid: 811c50e46cf024886bba71d9968eeaeb, type: 3}
