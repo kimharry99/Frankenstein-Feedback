@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af24c13c5e4524f4aade68d57e80baff, type: 3}
-  m_Name: "\uAE30\uACC4\uAD11\uC7A5\uC73C\uB85C"
+  m_Name: "\uD559\uAD50 \uBC1C\uACAC"
   m_EditorClassIdentifier: 
-  id: 999999
-  eventName: "\uAE30\uACC4 \uAD11\uC7A5\uC73C\uB85C"
+  id: 0
+  eventName: "\uD559\uAD50 \uBC1C\uACAC"
   phase: 2
   encounterProbabilty: 0
-  titleText: "\uCCAB \uC644\uC804\uC778\uACF5\uC9C0\uB2A5\uC740 \uD734\uBA38\uB178\uC774\uB4DC\uAC00
-    \uC544\uB2C8\uC5C8\uB2E4. "
+  titleText: "\uC5F4\uB9B0 \uBB38 \uC548\uC73C\uB85C \uBCF4\uC774\uB294 \uD559\uAD50
+    \uBCF5\uB3C4\uB294 \uC218\uB9CE\uC740 \uAD34\uB2F4\uC744 \uB5A0\uC62C\uB9AC\uAC8C
+    \uD55C\uB2E4. "
   content: 
-  basicEnable: 1
-  linkedEventName: 
+  basicEnable: 0
   optionTexts:
-  - "\uAE30\uACC4 \uAD11\uC7A5\uC744 \uD0D0\uC0AC\uD55C\uB2E4 "
-  - "\uB3C4\uC2DC\uB97C \uB2E4\uC2DC \uD0D0\uC0AC\uD55C\uB2E4 "
+  - "\uD559\uAD50\uB97C \uD0D0\uC0AC\uD55C\uB2E4 "
+  - "\uB3C4\uC2DC\uB97C \uB2E4\uC2DC \uD0D0\uC0AC\uD55C\uB2E4"
   - "\uC5F0\uAD6C\uC2E4\uB85C \uB3CC\uC544\uAC04\uB2E4 "
   optionResultTexts:
   - 
   - 
   - 
   linkedRegions:
-  - {fileID: 11400000, guid: cbe6f2c6ad96bee46b34d7fc7afce2a8, type: 2}
+  - {fileID: 11400000, guid: 4d619907d1deb65419cba29e27846de5, type: 2}
   - {fileID: 11400000, guid: 59c76976c9db2e14e9e7e70fddcb2136, type: 2}
   - {fileID: 0}

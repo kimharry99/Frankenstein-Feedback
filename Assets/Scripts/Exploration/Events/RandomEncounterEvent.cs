@@ -50,6 +50,9 @@ public class RandomEncounterEvent : ExplorationEvent
         public Slot consumedItem;
         public string resultString;
         public string linkedEventName;
+        public string linkedEventName1;
+        public string linkedEventName2;
+        public string linkedEventName3;
     }
 
     [System.Serializable]

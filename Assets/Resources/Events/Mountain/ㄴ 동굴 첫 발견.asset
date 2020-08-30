@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1564c065bac2eab4585b0cd500196910, type: 3}
-  m_Name: "\uD654\uC0B018 \uC6B0\uB77D\uBD80\uB77D\uD55C \uC624\uD06C\uC758 \uC624\uB978\uB2E4\uB9AC
-    \uD68D\uB4DD"
+  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
+  m_Name: "\u3134 \uB3D9\uAD74 \uCCAB \uBC1C\uACAC"
   m_EditorClassIdentifier: 
   id: 0
   eventName: 
@@ -22,4 +21,5 @@ MonoBehaviour:
   basicEnable: 0
   optionTexts: []
   optionResultTexts: []
-  foundItem: {fileID: 0}
+  isFleeting: 0
+  options: []
