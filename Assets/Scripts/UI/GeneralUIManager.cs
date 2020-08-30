@@ -81,8 +81,9 @@ public class GeneralUIManager : SingletonBehaviour<GeneralUIManager>
         {
             if (StorageManager.Inst.chest.slotItem[i] == null)
                 break;
-            if (_item.type != Type.BodyPart && _item == StorageManager.Inst.chest.slotItem[i])
-                break;
+            if(_item != null)
+                if (_item.type != Type.BodyPart && _item == StorageManager.Inst.chest.slotItem[i])
+                    break;
             if (i == Chest.CAPACITY - 1)
                 return;
         }
