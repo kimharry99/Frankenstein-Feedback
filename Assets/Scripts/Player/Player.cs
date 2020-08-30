@@ -383,16 +383,24 @@ public class Player : SingletonBehaviour<Player>
                 case BodyPartType.Head:
                 case BodyPartType.Body:
                     raceAffinity[(int)playerBodyPart.race] += 3;
+                    raceAffinity[(int)playerBodyPart.race] += GameManager.Inst.research.GetBonusAffinity(playerBodyPart.race, playerBodyPart.bodyPartType);
                     if (returnedBodyPart != null)
+                    {
                         raceAffinity[(int)returnedBodyPart.race] -= 3;
+                        raceAffinity[(int)returnedBodyPart.race] -= GameManager.Inst.research.GetBonusAffinity(playerBodyPart.race, playerBodyPart.bodyPartType);
+                    }
                     break;
                 case BodyPartType.LeftArm:
                 case BodyPartType.RightArm:
                 case BodyPartType.LeftLeg:
                 case BodyPartType.RightLeg:
                     raceAffinity[(int)playerBodyPart.race] += 1;
+                    raceAffinity[(int)playerBodyPart.race] += GameManager.Inst.research.GetBonusAffinity(playerBodyPart.race, playerBodyPart.bodyPartType);
                     if (returnedBodyPart != null)
+                    {
                         raceAffinity[(int)returnedBodyPart.race] -= 1;
+                        raceAffinity[(int)returnedBodyPart.race] -= GameManager.Inst.research.GetBonusAffinity(playerBodyPart.race, playerBodyPart.bodyPartType);
+                    }
                     break;
                 default:
                     Debug.Log("wrong item type");
@@ -415,12 +423,14 @@ public class Player : SingletonBehaviour<Player>
                     case BodyPartType.Head:
                     case BodyPartType.Body:
                         raceAffinity[(int)returnedBodyPart.race] -= 3;
+                        raceAffinity[(int)returnedBodyPart.race] -= GameManager.Inst.research.GetBonusAffinity(playerBodyPart.race, playerBodyPart.bodyPartType);
                         break;
                     case BodyPartType.LeftArm:
                     case BodyPartType.RightArm:
                     case BodyPartType.LeftLeg:
                     case BodyPartType.RightLeg:
                         raceAffinity[(int)returnedBodyPart.race] -= 1;
+                        raceAffinity[(int)returnedBodyPart.race] -= GameManager.Inst.research.GetBonusAffinity(playerBodyPart.race, playerBodyPart.bodyPartType);
                         break;
                     default:
                         Debug.Log("wrong item type");

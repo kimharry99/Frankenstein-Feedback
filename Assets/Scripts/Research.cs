@@ -37,6 +37,7 @@ public class Research : SingletonBehaviour<Research>
                 break;
         }
     }
+    
     public int ResearchCost(int raceIndex)
     {
         switch (raceIndex)
@@ -295,5 +296,25 @@ public class Research : SingletonBehaviour<Research>
             default:
                 return 0;
         }
+    }
+
+    public int GetBonusAffinity(Race race, BodyPartType bodyPartType)
+    {
+        if (race == Race.Oak)
+        {
+            if (bodyPartType == BodyPartType.Head || bodyPartType == BodyPartType.Body)
+            {
+                if (OakLevel == 10)
+                {
+                    return 3;
+                }
+            }
+            else
+            {
+                if (OakLevel >= 6)
+                    return 1;
+            }
+        }
+        return 0;
     }
 }
