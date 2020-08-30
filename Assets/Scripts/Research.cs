@@ -271,4 +271,29 @@ public class Research : SingletonBehaviour<Research>
         return manaBonus;
     }
 
+    public int GetBonusLimit()
+    {
+        switch(MachineLevel)
+        {
+            case 1:
+                return 0;
+            case 2:
+            case 3:
+                return 5;
+            case 4:
+            case 5:
+                return 15;
+            case 6:
+                return 30;
+            case 7:
+            case 8:
+                return 50;
+            case 9:
+                return 75;
+            case 10:
+                return 100;
+            default:
+                return 0;
+        }
+    }
 }
