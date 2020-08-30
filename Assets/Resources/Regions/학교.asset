@@ -15,10 +15,32 @@ MonoBehaviour:
   regionId: 11
   regionName: "\uD559\uAD50"
   possibleItemDiscoveryEvents:
-  - {fileID: 11400000, guid: 82999f3124e870e4c9c079cbc7b00e3b, type: 2}
-  - {fileID: 11400000, guid: 96c19feebd6c2f3429d28769c7b9aec1, type: 2}
+  - {fileID: 11400000, guid: eacc107e30860b7429463239b597d5f8, type: 2}
+  - {fileID: 11400000, guid: 741528d50bc729f498e337704221011f, type: 2}
+  - {fileID: 11400000, guid: bfb802de8c1d3e04baf802efeaa7a0f1, type: 2}
+  - {fileID: 11400000, guid: 1ef7264ee46fc354089f4f063df1d69e, type: 2}
+  - {fileID: 11400000, guid: 50a0956b17dbafb4296b4e9def5ed556, type: 2}
+  - {fileID: 11400000, guid: b656efbd171d7ec4bbec9af156cecc0d, type: 2}
+  - {fileID: 11400000, guid: f41fd0bcf18ddad40978ef012333fd00, type: 2}
+  - {fileID: 11400000, guid: daa1284cbcc52054e93a7b9fcd23707f, type: 2}
+  - {fileID: 11400000, guid: e9813d95222d09b4ca05275f6f40dceb, type: 2}
+  - {fileID: 11400000, guid: 0310c19912a18984fa6ce549a925b1af, type: 2}
+  - {fileID: 11400000, guid: 3cda9d8da9f81bb44a120b92c67fd5aa, type: 2}
+  - {fileID: 11400000, guid: 48e216adf531c9242bf7dfd9aa1f6256, type: 2}
+  - {fileID: 11400000, guid: 61425ddf05e20664486fa72a01940406, type: 2}
+  - {fileID: 11400000, guid: 6217775af6eb4db449c52977c8a5d128, type: 2}
+  - {fileID: 11400000, guid: 707809e7a1911a245a9c797502e3963b, type: 2}
+  - {fileID: 11400000, guid: f56cb34bc20b3ac4d966863c62e3bf23, type: 2}
+  - {fileID: 11400000, guid: 3e19e139c7bde6d4ea50072f6046319e, type: 2}
+  - {fileID: 11400000, guid: 9a7adc37651e5e640aef96990400b8bc, type: 2}
+  - {fileID: 11400000, guid: d7643f545b6bea144996306c21804945, type: 2}
+  - {fileID: 11400000, guid: 0460ccb5a6fb6284f819b0c6009c6bfe, type: 2}
+  - {fileID: 11400000, guid: 0a198c15b8b61894d83ae55b27060096, type: 2}
   possibleRandomEncounterEvents:
+  - {fileID: 11400000, guid: 0632b2c99a9474246b71b238a778e4c2, type: 2}
+  - {fileID: 11400000, guid: 5626152003df5554cb2ac6945f9a4218, type: 2}
   - {fileID: 11400000, guid: 3ec4c2a2d6622a648a205c55ebc98628, type: 2}
+  - {fileID: 11400000, guid: 051ea2daa5ddc314f8316c96a873da6a, type: 2}
   skipRandomEncounterEvent: {fileID: 11400000, guid: 0632b2c99a9474246b71b238a778e4c2,
     type: 2}
   finishExplorationEvents:
