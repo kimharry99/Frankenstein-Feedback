@@ -25,4 +25,4 @@ MonoBehaviour:
   optionResultTexts:
   - 
   linkedRegions:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 041f19c1002c5b64a82d39e1c9921396, type: 2}
