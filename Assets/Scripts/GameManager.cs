@@ -59,7 +59,7 @@ public class GameManager : SingletonBehaviour<GameManager>
             IsHome = true;
         }
         //for debugging
-        energy.value = 500;
+        //energy.value = 500;
     }
 
     // 탐사를 시작할 때 호출하는 함수이다.

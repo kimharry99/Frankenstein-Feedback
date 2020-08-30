@@ -116,6 +116,18 @@ public class EquippedBodyPart : ScriptableObject
             }
         }
     }
+
+    public int GetCntOfBodyPart(Race race)
+    {
+        int cnt = 0;
+        for(int i=0;i<bodyParts.Length;i++)
+        {
+            if (bodyParts[i] != null)
+                if (bodyParts[i].race == race)
+                    cnt++;
+        }
+        return cnt;
+    }
     #endregion
     
 }

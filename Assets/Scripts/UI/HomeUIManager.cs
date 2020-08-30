@@ -672,15 +672,23 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     #endregion
 
     public GameObject panelResearchProgress;
+    private int _selectedIndex = -1;
     #region ResearchPanel methods
     public void ResearchIconClick(int index)
     {
-        panelResearchProgress.SetActive(true);   
+        panelResearchProgress.SetActive(true);
+        _selectedIndex = index;
     }
 
     public void ResearchProcessClicked()
     {
-
+        Research research = GameManager.Inst.research;
+        if (GameManager.Inst.energy.value >= research.ResearchCost(_selectedIndex))
+        {
+            Debug.Log("연구 성공");
+            GameManager.Inst.research.ResearchRace(_selectedIndex);
+        }
+        panelResearchProgress.SetActive(false);
     }
     #endregion
 

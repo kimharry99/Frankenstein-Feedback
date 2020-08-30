@@ -147,7 +147,7 @@ public class Player : SingletonBehaviour<Player>
 
     public void InitPlayer()
     {
-        BodyRegenerationRate = 0;
+        //BodyRegenerationRate = 0;
         UpdateAllPlayerBodyStatus(_raceAffinity, equippedBodyPart.bodyParts, _bodyPartStat);
         UpdateAllPlayerSprites();
     }
@@ -161,8 +161,15 @@ public class Player : SingletonBehaviour<Player>
 
     private int decayRateExploration = 5;
     private int decayRateHome = 3;
-    public int BodyRegenerationRate {get; private set;}
-    private int BodyDecayRate
+    public float BodyRegenerationRate 
+    {
+        get
+        {
+            return GameManager.Inst.research.GetRegenBonus();
+        }
+    }
+
+    private float BodyDecayRate
     {
         get
         {
@@ -176,7 +183,7 @@ public class Player : SingletonBehaviour<Player>
                 else
                 {
                     Debug.Log("decayRateHome - BodyRegenerationRate");
-                    return decayRateHome - BodyRegenerationRate; ;
+                    return decayRateHome - BodyRegenerationRate;
                 }
             }
             else
