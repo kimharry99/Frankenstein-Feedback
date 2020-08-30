@@ -22,7 +22,7 @@ MonoBehaviour:
     \uAC19\uB358\uB370, \uC774\uAC74 \uC6B0\uB9AC\uD55C\uD14C \uB118\uAE30\uACE0,
     \uC6B0\uB9B4 \uC880 \uB3C4\uC640\uC8FC\uC9C0 \uC54A\uACA0\uB098? \uC131\uACF5\uD558\uBA74
     \uC774 \uACE0\uAE43\uB369\uC5B4\uB9AC\uBCF4\uB2E4 \uC88B\uC740 \uAC78 \uC8FC\uC9C0.\" "
-  basicEnable: 1
+  basicEnable: 0
   optionTexts:
   - "\uD611\uC870\uD55C\uB2E4"
   - "\uAC70\uC808\uD55C\uB2E4"
@@ -43,6 +43,9 @@ MonoBehaviour:
       resultString: "\uAF64\uB098 \uC704\uD611\uC801\uC774\uB2E4\u2026 \uC548 \uB3C4\uC640\uC8FC\uBA74
         \uB0A0 \uC8FD\uC77C\uC9C0\uB3C4 \uBAB0\uB77C."
       linkedEventName: 
+      linkedEventName1: 
+      linkedEventName2: 
+      linkedEventName3: 
     statConstraints: []
     constraintPerCase: 
   - cases:
@@ -57,5 +60,8 @@ MonoBehaviour:
       resultString: "\"\uCAC4\uBCF4\uC600\uAD6C\uB9CC. \uC5B4\uCA0C\uB4E0 \uC774\uAC74
         \uC6B0\uB9AC\uAC00 \uAC00\uC838\uAC00\uACA0\uB2E4. \uD558\uD558\uD558!\""
       linkedEventName: 
+      linkedEventName1: 
+      linkedEventName2: 
+      linkedEventName3: 
     statConstraints: []
     constraintPerCase: 

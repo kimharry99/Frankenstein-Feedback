@@ -12,13 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af24c13c5e4524f4aade68d57e80baff, type: 3}
   m_Name: "\uC0B0 \uD0D0\uC0AC \uC885\uB8CC"
   m_EditorClassIdentifier: 
-  id: 0
-  eventName: 
+  id: 320000
+  eventName: "\uC0B0 \uD0D0\uC0AC \uC885\uB8CC"
   phase: 0
   encounterProbabilty: 0
-  titleText: 
+  titleText: "\uC0B0\uC744 \uB0B4\uB824\uC624\uC790 \uADDC\uBAA8\uAC00 \uAF64 \uC791\uC544\uC9C4
+    \uC232\uC774 \uBCF4\uC778\uB2E4."
   content: 
   basicEnable: 0
-  optionTexts: []
-  optionResultTexts: []
-  linkedRegions: []
+  optionTexts:
+  - "\uC232\uC744 \uD0D0\uC0AC\uD55C\uB2E4"
+  - "\uC0B0\uC744 \uB2E4\uC2DC \uD0D0\uC0AC\uD55C\uB2E4"
+  - "\uC5F0\uAD6C\uC2E4\uB85C \uB3CC\uC544\uAC04\uB2E4"
+  optionResultTexts:
+  - 
+  - 
+  - 
+  linkedRegions:
+  - {fileID: 0}
+  - {fileID: 11400000, guid: e8db668d35f15ab4ba770dbbddd2d994, type: 2}
+  - {fileID: 0}

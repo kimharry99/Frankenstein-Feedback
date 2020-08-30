@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af24c13c5e4524f4aade68d57e80baff, type: 3}
   m_Name: "\uACF5\uC7A5 \uAE30\uACC4 \uD3ED\uC8FC \uC885\uB8CC"
   m_EditorClassIdentifier: 
-  id: 0
-  eventName: 
-  phase: 0
+  id: 314004
+  eventName: "\uACF5\uC7A5 \uAE30\uACC4 \uD3ED\uC8FC \uC885\uB8CC"
+  phase: 2
   encounterProbabilty: 0
   titleText: "\"\uC774\uACF3\uC744 \uC9C0\uCF1C\uC8FC\uC154\uC11C \uAC10\uC0AC\uD569\uB2C8\uB2E4.
     \uB354 \uC774\uC0C1 \uB418\uB3CC\uB9B4 \uAC83\uB3C4 \uC5C6\uC9C0\uB9CC\u2026

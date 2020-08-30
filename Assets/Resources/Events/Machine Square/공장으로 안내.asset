@@ -9,27 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c63875adf5989504e8c51fe0f8acb114, type: 3}
+  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
   m_Name: "\uACF5\uC7A5\uC73C\uB85C \uC548\uB0B4"
   m_EditorClassIdentifier: 
-  id: 212110
-  eventName: "\uACF5\uC7A5\uC73C\uB85C \uC548\uB0B4"
-  phase: 1
+  id: 0
+  eventName: 
+  phase: 0
   encounterProbabilty: 0
-  titleText: "\uAC10\uC815\uC774\uB77C\uACE4 \uB290\uAEF4\uC9C0\uC9C0 \uC54A\uB294,
-    \uB0C9\uB7AD\uD55C \uB9D0\uD22C\uB85C \uB8E8\uD53C\uC544\uAC00 \uBB3B\uB294\uB2E4. "
-  content: "\"\uACF5\uC7A5\uC73C\uB85C \uAC00\uC2DC\uACA0\uC2B5\uB2C8\uAE4C? \uC548\uB0B4\uD574\uB4DC\uB9AC\uACA0\uC2B5\uB2C8\uB2E4.\" "
+  titleText: 
+  content: 
   basicEnable: 0
-  linkedEventName: 
-  optionTexts:
-  - "\uC5B4, \uACE0\uB9C8\uC6CC. "
-  - "\uC544\uB2C8, \uAD1C\uCC2E\uC544. "
-  optionResultTexts:
-  - 
-  - 
-  type: 4
+  optionTexts: []
+  optionResultTexts: []
   isFleeting: 0
-  resultEvent:
-  - {fileID: 0}
-  - {fileID: 0}
-  option0CaseResult: []
+  options: []
