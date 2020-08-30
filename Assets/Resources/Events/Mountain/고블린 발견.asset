@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53988ec856b5f5428fb3bcce10d5fde, type: 3}
+  m_Name: "\uACE0\uBE14\uB9B0 \uBC1C\uACAC"
+  m_EditorClassIdentifier: 
+  id: 220210
+  eventName: "\uACE0\uBE14\uB9B0 \uBC1C\uACAC"
+  phase: 1
+  encounterProbabilty: 100
+  titleText: "\uB4F1 \uB4A4\uC5D0\uC11C \uC2DC\uC120\uC774 \uB290\uAEF4\uC9C4\uB2E4.
+    \uD639\uC2DC \uC0AC\uB78C\u2026?  "
+  content: "\uD719 \uB3CC\uC544\uBCF4\uB2C8 \uBB34\uC5B8\uAC00\uC640 \uB208\uC774
+    \uB9C8\uC8FC\uCCE4\uB2E4. \uACE0\uBE14\uB9B0\uC778\uAC00\u2026? \uC557, \uB3C4\uB9DD\uAC04\uB2E4!  "
+  basicEnable: 1
+  optionTexts:
+  - "\uCAD3\uC544\uAC04\uB2E4"
+  - "\uAC00\uB358 \uAE38\uC744 \uAC04\uB2E4"
+  optionResultTexts:
+  - 
+  - 
+  isFleeting: 1
+  options:
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: d428d256763464ff39579ba3919011a0, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uBD84\uBA85 \uACE0\uBE14\uB9B0\uC774\uC5C8\uC5B4! \uC774\uCABD\uC73C\uB85C
+        \uAC04 \uAC83 \uAC19\uC740\uB370\u2026"
+      linkedEventName: 
+      linkedEventName1: 
+      linkedEventName2: 
+      linkedEventName3: 
+    - resultEvent: {fileID: 11400000, guid: f7a733a26fcaba6449110f6897c7e26f, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uD5C9\uD5C9\u2026 \uC5B4\uB514\uAC14\uC9C0? \uB193\uCE58\uACE0
+        \uB9D0\uC558\uB2E4..."
+      linkedEventName: "\uACE0\uBE14\uB9B0 \uBC1C\uACAC"
+      linkedEventName1: 
+      linkedEventName2: 
+      linkedEventName3: 
+    statConstraints:
+    - moreOrLess: 1
+      constraintName: 2
+      statConstraint: 5
+    constraintPerCase: 0100000000000000
+  - cases:
+    - resultEvent: {fileID: 11400000, guid: f7a733a26fcaba6449110f6897c7e26f, type: 2}
+      durabilityDamage: 0
+      rewardItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      consumedItem:
+        slotItem: {fileID: 0}
+        slotItemNumber: 0
+      resultString: "\uBB50, \uC9C0\uB098\uAC00\uB294 \uD1A0\uB07C\uC600\uACA0\uC9C0."
+      linkedEventName: "\uACE0\uBE14\uB9B0 \uBC1C\uACAC"
+      linkedEventName1: 
+      linkedEventName2: 
+      linkedEventName3: 
+    statConstraints: []
+    constraintPerCase: 
