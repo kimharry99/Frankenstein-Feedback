@@ -39,7 +39,13 @@ public class GeneralUIManager : SingletonBehaviour<GeneralUIManager>
         UpdateEnergy();
     }
     #endregion
-    
+
+    public GameObject gameOverPanel;
+    public void NoticeGameOver()
+    {
+        gameOverPanel.SetActive(true);
+    }
+
     public void UpdateTextTime()
     {
         textDay.text = "Day" + time.runtimeDay.ToString();

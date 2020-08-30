@@ -207,4 +207,10 @@ public class GameManager : SingletonBehaviour<GameManager>
                 break;
         }
     }
+
+    public void GameOver()
+    {
+        Debug.Log("game over");
+        Application.Quit();
+    }
 }

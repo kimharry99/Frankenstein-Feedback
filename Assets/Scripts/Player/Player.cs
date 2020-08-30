@@ -155,6 +155,7 @@ public class Player : SingletonBehaviour<Player>
     public void KillPlayer()
     {
         Debug.Log("Game Over");
+        GeneralUIManager.Inst.NoticeGameOver();
     }
 
     #region Body decay
