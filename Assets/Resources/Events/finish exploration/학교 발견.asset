@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af24c13c5e4524f4aade68d57e80baff, type: 3}
   m_Name: "\uD559\uAD50 \uBC1C\uACAC"
   m_EditorClassIdentifier: 
-  id: 310001
+  id: 0
   eventName: "\uD559\uAD50 \uBC1C\uACAC"
   phase: 2
   encounterProbabilty: 0

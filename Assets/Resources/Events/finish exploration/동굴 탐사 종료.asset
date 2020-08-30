@@ -12,22 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af24c13c5e4524f4aade68d57e80baff, type: 3}
   m_Name: "\uB3D9\uAD74 \uD0D0\uC0AC \uC885\uB8CC"
   m_EditorClassIdentifier: 
-  id: 321000
-  eventName: "\uB3D9\uAD74 \uD0D0\uC0AC \uC885\uB8CC"
-  phase: 2
+  id: 0
+  eventName: 
+  phase: 0
   encounterProbabilty: 0
-  titleText: "\uB0B4 \uBC1C\uC18C\uB9AC\uAC00 \uB3D9\uAD74\uC5D0 \uC6B8\uB9B0\uB2E4."
+  titleText: 
   content: 
-  basicEnable: 1
-  optionTexts:
-  - "\uB3D9\uAD74\uC744 \uB2E4\uC2DC \uD0D0\uC0AC\uD55C\uB2E4"
-  - "\uC0B0\uC744 \uD0D0\uC0AC\uD55C\uB2E4"
-  - "\uC5F0\uAD6C\uC2E4\uB85C \uB3CC\uC544\uAC04\uB2E4"
-  optionResultTexts:
-  - 
-  - 
-  - 
-  linkedRegions:
-  - {fileID: 11400000, guid: 8e6c6b69fea9e9846b1b99f18a5b506f, type: 2}
-  - {fileID: 11400000, guid: e8db668d35f15ab4ba770dbbddd2d994, type: 2}
-  - {fileID: 0}
+  basicEnable: 0
+  optionTexts: []
+  optionResultTexts: []
+  linkedRegions: []

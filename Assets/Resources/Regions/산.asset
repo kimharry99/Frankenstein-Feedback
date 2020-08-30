@@ -16,6 +16,5 @@ MonoBehaviour:
   regionName: 
   possibleItemDiscoveryEvents: []
   possibleRandomEncounterEvents: []
-  skipRandomEncounterEvent: {fileID: 11400000, guid: f45d1422c1088b2458709a582b55ee44,
-    type: 2}
+  skipRandomEncounterEvent: {fileID: 0}
   finishExplorationEvents: []

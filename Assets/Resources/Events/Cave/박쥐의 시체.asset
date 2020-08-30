@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 0
   eventName: "\uBC15\uC950\uC758 \uC2DC\uCCB4"
   phase: 1
-  encounterProbabilty: 45
+  encounterProbabilty: 50
   titleText: "\uADFC\uCC98\uC5D0\uC11C \uD53C\uBE44\uB9B0\uB0B4\uAC00 \uB09C\uB2E4."
   content: "\uBC15\uC950 \uB0A0\uAC1C\u2026? \uB300\uCCB4 \uB204\uAC00 \uBC15\uC950\uB97C
     \uBA39\uB294 \uAC70\uC9C0? "
@@ -39,9 +39,6 @@ MonoBehaviour:
         slotItemNumber: 0
       resultString: "\uACE0\uBE14\uB9B0\uB4E4\uC774 \uBC15\uC950\uB3C4 \uB72F\uC5B4\uBA39\uB098?"
       linkedEventName: 
-      linkedEventName1: 
-      linkedEventName2: 
-      linkedEventName3: 
     statConstraints: []
     constraintPerCase: 
   - cases:
@@ -55,8 +52,5 @@ MonoBehaviour:
         slotItemNumber: 0
       resultString: "\uBC15\uC950\uC640 \uAC19\uC740 \uAF34\uC774 \uB418\uAE34 \uC2EB\uB2E4."
       linkedEventName: "\uBC15\uC950\uC758 \uC2DC\uCCB4"
-      linkedEventName1: 
-      linkedEventName2: 
-      linkedEventName3: 
     statConstraints: []
     constraintPerCase: 

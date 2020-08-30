@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af24c13c5e4524f4aade68d57e80baff, type: 3}
   m_Name: "\uACF5\uC7A5 \uAE30\uACC4 \uD3ED\uC8FC \uC885\uB8CC2"
   m_EditorClassIdentifier: 
-  id: 314005
-  eventName: "\uACF5\uC7A5 \uAE30\uACC4 \uD3ED\uC8FC \uC885\uB8CC2"
+  id: 0
+  eventName: 
   phase: 2
   encounterProbabilty: 0
   titleText: "\"\uAD1C\uCC2E\uC73C\uC2ED\uB2C8\uAE4C?\" \uC73C\u2026 \uB8E8\uD53C\uC544?
