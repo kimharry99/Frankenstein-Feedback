@@ -25,6 +25,8 @@ MonoBehaviour:
   dex: 0
   mana: 2
   endurance: 0
+  _nightVision: 1
+  _magic: 0
   bodyPartType: 0
   grade: 3
   bodyPartSprite: {fileID: 21300000, guid: 1d2c1339eb49d47f0b71a48dce73bf17, type: 3}

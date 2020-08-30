@@ -448,6 +448,8 @@ public class Player : SingletonBehaviour<Player>
                 bodyPartStatus.def += playerBodyPart.Def;
                 bodyPartStatus.dex += playerBodyPart.Dex;
                 bodyPartStatus.mana += playerBodyPart.Mana;
+                if (playerBodyPart.bodyPartType == BodyPartType.Head)
+                    bodyPartStatus.nightVision = false;
             }
             else
             {
@@ -456,6 +458,8 @@ public class Player : SingletonBehaviour<Player>
                 bodyPartStatus.def += machine.Def;
                 bodyPartStatus.dex += machine.Dex;
                 bodyPartStatus.mana += machine.Mana;
+                if (playerBodyPart.bodyPartType == BodyPartType.Head)
+                    bodyPartStatus.nightVision = machine.nightVision;
             }
 
             bodyPartStatus.endurance += playerBodyPart.Endurance;
