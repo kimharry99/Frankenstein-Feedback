@@ -671,6 +671,19 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
     #endregion
 
+    public GameObject panelResearchProgress;
+    #region ResearchPanel methods
+    public void ResearchIconClick(int index)
+    {
+        panelResearchProgress.SetActive(true);   
+    }
+
+    public void ResearchProcessClicked()
+    {
+
+    }
+    #endregion
+
     /// <summary>
     /// 수면에 대한 에너지 변화를 안내한다.
     /// </summary>
