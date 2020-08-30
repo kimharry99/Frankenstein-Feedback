@@ -128,6 +128,21 @@ public class RandomEncounterEvent : ExplorationEvent
             ExplorationManager.Inst.UnlockLinkedEvent(_selectedCase.linkedEventName);
             Debug.Log("Unlock " + _selectedCase.linkedEventName);
         }
+        if (_selectedCase.linkedEventName1 != "")
+        {
+            ExplorationManager.Inst.UnlockLinkedEvent(_selectedCase.linkedEventName1);
+            Debug.Log("Unlock " + _selectedCase.linkedEventName);
+        }
+        if (_selectedCase.linkedEventName2 != "")
+        {
+            ExplorationManager.Inst.UnlockLinkedEvent(_selectedCase.linkedEventName2);
+            Debug.Log("Unlock " + _selectedCase.linkedEventName);
+        }
+        if (_selectedCase.linkedEventName3 != "")
+        {
+            ExplorationManager.Inst.UnlockLinkedEvent(_selectedCase.linkedEventName3);
+            Debug.Log("Unlock " + _selectedCase.linkedEventName);
+        }
     }
 
     protected override bool GetIsEnabled()
