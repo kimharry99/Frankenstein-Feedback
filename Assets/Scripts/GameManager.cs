@@ -110,7 +110,9 @@ public class GameManager : SingletonBehaviour<GameManager>
             Debug.Log("now sleeping...");
             int spendEnergy = 0;
             float regenDurability = 0.0f;
-            RegenBody(time, ref spendEnergy, ref regenDurability);
+            //RegenBody(time, ref spendEnergy, ref regenDurability);
+            spendEnergy = CalEnergyCostForRegen(time);
+            regenDurability = CalRegenedDurability(time);
             if (_time.runtimeTime < 8)
                 _time.SetTime(8);
             StartCoroutine(HomeUIManager.Inst.PutToSleep(time, penaltyPerTime, spendEnergy, regenDurability));
@@ -156,6 +158,65 @@ public class GameManager : SingletonBehaviour<GameManager>
             Debug.Log("비수면 페널티 : " + (int)(penaltyPerTime * time));
         }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="time">수면 시작 시각</param>
+    /// <returns>수면에 사용한 에너지</returns>
+    private int CalEnergyCostForRegen(int time)
+    {
+        // 에너지를 통한 힐
+        //int cost = Mathf.CeilToInt((100 - durabilityI.value) / 100.0f * GetEnergyCost(_time.runtimeDay));
+        int cost = Mathf.CeilToInt((100 - durability.value) / 100.0f * GetEnergyCost(_time.runtimeDay));
+        if (cost <= energy.value)
+        {
+            energy.value -= cost;
+            return cost;
+        }
+        else
+        {
+            cost = energy.value;
+            energy.value = 0;
+            return cost;
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="time">수면 시작 시각</param>
+    /// <returns>수면으로 회복한 에너지</returns>
+    private float CalRegenedDurability(int time)
+    {
+        // 에너지를 통한 힐
+        //int cost = Mathf.CeilToInt((100 - durabilityI.value) / 100.0f * GetEnergyCost(_time.runtimeDay));
+        int cost = Mathf.CeilToInt((100 - durability.value) / 100.0f * GetEnergyCost(_time.runtimeDay));
+        float regenedDurability = 0.0f;
+        if (cost <= energy.value)
+        {
+            regenedDurability = 100 - durability.value;
+            //durabilityI.value = 100;
+            durability.value = 100.0f;
+        }
+        else
+        {
+            cost = GetEnergyCost(_time.runtimeDay);
+            Debug.Log("내구도 일부 회복\n소모한 에너지 : " + energy.value + "\n회복한 내구도 : " + 100.0f * energy.value / cost);
+            regenedDurability = 100.0f * energy.value / cost;
+            //durabilityI.value += Mathf.CeilToInt(100.0f * energy.value / cost);
+            durability.value += regenedDurability;
+            energy.value = 0;
+        }
+        // 비수면 페널티
+        if (time > 0)
+        {
+            durability.value -= penaltyPerTime * time;
+            Debug.Log("비수면 페널티 : " + (int)(penaltyPerTime * time));
+        }
+        return regenedDurability;
+    }
+
     private int GetEnergyCost(int day)
     {
         return 5000 + 200 * (day - 1);
