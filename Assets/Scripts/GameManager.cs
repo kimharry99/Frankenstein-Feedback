@@ -90,12 +90,9 @@ public class GameManager : SingletonBehaviour<GameManager>
         Player.Inst.DecayBody(turn);
         GeneralUIManager.Inst.UpdateTextDurability();
         GeneralUIManager.Inst.UpdateTextTime();
-
-        if(_time.isNight && IsHome)
-        {
-            SendToSleep(_time.runtimeTime);
-        }
+        SendToSleep(_time.runtimeTime);
     }
+
     public void SendTime(int turn)
     {
         _time.SetTime(_time.runtimeTime+turn);
@@ -108,13 +105,16 @@ public class GameManager : SingletonBehaviour<GameManager>
     /// <param name="time">잠이 든 시각</param>
     public void SendToSleep(int time)
     {
-        Debug.Log("now sleeping...");
-        int spendEnergy = 0;
-        float regenDurability = 0.0f;
-        RegenBody(time, ref spendEnergy, ref regenDurability);
-        if(_time.runtimeTime < 8)
-            _time.SetTime(8);
-        StartCoroutine(HomeUIManager.Inst.PutToSleep(time, penaltyPerTime, spendEnergy, regenDurability));
+        if (_time.isNight && IsHome)
+        {
+            Debug.Log("now sleeping...");
+            int spendEnergy = 0;
+            float regenDurability = 0.0f;
+            RegenBody(time, ref spendEnergy, ref regenDurability);
+            if (_time.runtimeTime < 8)
+                _time.SetTime(8);
+            StartCoroutine(HomeUIManager.Inst.PutToSleep(time, penaltyPerTime, spendEnergy, regenDurability));
+        }
     }
 
     /// <summary>
