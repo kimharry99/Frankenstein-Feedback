@@ -129,7 +129,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     {
         // 에너지를 통한 힐
         //int cost = Mathf.CeilToInt((100 - durabilityI.value) / 100.0f * GetEnergyCost(_time.runtimeDay));
-        int cost = Mathf.CeilToInt((100 - durability.value) / 100.0f * GetEnergyCost(_time.runtimeDay));
+        int cost = Mathf.CeilToInt((100 - durability.value) / 100.0f * GetEnergyCostByDay());
         if (cost <= energy.value)
         {
             energy.value -= cost;
@@ -142,7 +142,7 @@ public class GameManager : SingletonBehaviour<GameManager>
         }
         else
         {
-            cost = GetEnergyCost(_time.runtimeDay);
+            cost = GetEnergyCostByDay();
             Debug.Log("내구도 일부 회복\n소모한 에너지 : " + energy.value + "\n회복한 내구도 : " + 100.0f * energy.value / cost);
             spendEnergy = energy.value;
             regenDurability = 100.0f * energy.value / cost;
@@ -168,7 +168,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     {
         // 에너지를 통한 힐
         //int cost = Mathf.CeilToInt((100 - durabilityI.value) / 100.0f * GetEnergyCost(_time.runtimeDay));
-        int cost = Mathf.CeilToInt((100 - durability.value) / 100.0f * GetEnergyCost(_time.runtimeDay));
+        int cost = GetEnergyCostFull();
         if (cost <= energy.value)
         {
             energy.value -= cost;
@@ -190,21 +190,16 @@ public class GameManager : SingletonBehaviour<GameManager>
     private float CalRegenedDurability(int time)
     {
         // 에너지를 통한 힐
-        //int cost = Mathf.CeilToInt((100 - durabilityI.value) / 100.0f * GetEnergyCost(_time.runtimeDay));
-        int cost = Mathf.CeilToInt((100 - durability.value) / 100.0f * GetEnergyCost(_time.runtimeDay));
+        int cost = GetEnergyCostFull();
         float regenedDurability = 0.0f;
         if (cost <= energy.value)
         {
             regenedDurability = 100 - durability.value;
-            //durabilityI.value = 100;
             durability.value = 100.0f;
         }
         else
         {
-            cost = GetEnergyCost(_time.runtimeDay);
-            Debug.Log("내구도 일부 회복\n소모한 에너지 : " + energy.value + "\n회복한 내구도 : " + 100.0f * energy.value / cost);
-            regenedDurability = 100.0f * energy.value / cost;
-            //durabilityI.value += Mathf.CeilToInt(100.0f * energy.value / cost);
+            regenedDurability = 100.0f * energy.value / GetEnergyCostByDay();
             durability.value += regenedDurability;
             energy.value = 0;
         }
@@ -217,9 +212,22 @@ public class GameManager : SingletonBehaviour<GameManager>
         return regenedDurability;
     }
 
-    private int GetEnergyCost(int day)
+    /// <summary>
+    /// 내구도를 100으로 만드는데 소모되는 에너지 비용을 계산한다.
+    /// </summary>
+    /// <returns></returns>
+    private int GetEnergyCostFull()
     {
-        return 5000 + 200 * (day - 1);
+        return Mathf.CeilToInt((100 - durability.value) / 100.0f * GetEnergyCostByDay());
+    }
+
+    /// <summary>
+    /// 현재 날짜에서 현재 내구도와 상관없이 내구도를 100으로 만드는데 소모되는 비용을 계산한다.
+    /// </summary>
+    /// <returns></returns>
+    private int GetEnergyCostByDay()
+    {
+        return 5000 + 200 * (_time.runtimeDay - 1);
     }
 
     //public void DisassembleItem(/* some parameters */)
