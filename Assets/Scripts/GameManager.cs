@@ -108,16 +108,14 @@ public class GameManager : SingletonBehaviour<GameManager>
         if (_time.isNight && IsHome)
         {
             Debug.Log("now sleeping...");
-            int spendEnergy = 0;
-            float regenDurability = 0.0f;
-            float overworkPenalty = 0.0f;
             //RegenBody(time, ref spendEnergy, ref regenDurability);
-            spendEnergy = CalEnergyCostForRegen(time);
-            regenDurability = CalRegenedDurability(time);
-            overworkPenalty = CalOverworkPenalty(time);
+            int spendEnergy = CalEnergyCostForRegen(time);
+            float regenDurability = CalRegenedDurability(time);
+            float overworkPenalty = CalOverworkPenalty(time);
+            bool isOverwork = IsOverwork(time);
             if (_time.runtimeTime < 8)
                 _time.SetTime(8);
-            StartCoroutine(HomeUIManager.Inst.PutToSleep(time, PENALTY_PER_TIME, spendEnergy, regenDurability));
+            StartCoroutine(HomeUIManager.Inst.PutToSleep(time, spendEnergy, regenDurability, overworkPenalty, isOverwork));
         }
     }
 
