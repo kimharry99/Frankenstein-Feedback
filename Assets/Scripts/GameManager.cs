@@ -98,7 +98,7 @@ public class GameManager : SingletonBehaviour<GameManager>
         _time.SetTime(_time.runtimeTime+turn);
     }
 
-    private float penaltyPerTime = 5.0f;
+    private const float PENALTY_PER_TIME = 5.0f;
     /// <summary>
     /// 플레이어가 잠을 잘 때 호출, 
     /// </summary>'
@@ -115,7 +115,7 @@ public class GameManager : SingletonBehaviour<GameManager>
             regenDurability = CalRegenedDurability(time);
             if (_time.runtimeTime < 8)
                 _time.SetTime(8);
-            StartCoroutine(HomeUIManager.Inst.PutToSleep(time, penaltyPerTime, spendEnergy, regenDurability));
+            StartCoroutine(HomeUIManager.Inst.PutToSleep(time, PENALTY_PER_TIME, spendEnergy, regenDurability));
         }
     }
 
@@ -154,8 +154,8 @@ public class GameManager : SingletonBehaviour<GameManager>
         if(time > 0)
         {
             //durabilityI.value -= (int)(penaltyPerTime * time);
-            durability.value -= penaltyPerTime * time;
-            Debug.Log("비수면 페널티 : " + (int)(penaltyPerTime * time));
+            durability.value -= PENALTY_PER_TIME * time;
+            Debug.Log("비수면 페널티 : " + (int)(PENALTY_PER_TIME * time));
         }
     }
 
@@ -201,13 +201,12 @@ public class GameManager : SingletonBehaviour<GameManager>
         {
             regenedDurability = 100.0f * energy.value / GetEnergyCostByDay();
             durability.value += regenedDurability;
-            energy.value = 0;
         }
         // 비수면 페널티
         if (time > 0)
         {
-            durability.value -= penaltyPerTime * time;
-            Debug.Log("비수면 페널티 : " + (int)(penaltyPerTime * time));
+            durability.value -= PENALTY_PER_TIME * time;
+            Debug.Log("비수면 페널티 : " + (int)(PENALTY_PER_TIME * time));
         }
         return regenedDurability;
     }
@@ -229,6 +228,8 @@ public class GameManager : SingletonBehaviour<GameManager>
     {
         return 5000 + 200 * (_time.runtimeDay - 1);
     }
+
+
 
     //public void DisassembleItem(/* some parameters */)
     //{
