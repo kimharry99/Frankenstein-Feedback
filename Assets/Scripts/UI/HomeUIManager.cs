@@ -762,6 +762,10 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
     private bool _isBlackOut = false;
     private float _blackOutTime = 3.0f;
+    /// <summary>
+    /// 수면에 대한 UI효과와 알림을 출력한다.
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator PutToSleep(int time, int spendEnergy, float regenedDurability, float overworkPenalty, bool isOverwork = false)
     {
         Debug.Log("black out start");
