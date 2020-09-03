@@ -110,9 +110,11 @@ public class GameManager : SingletonBehaviour<GameManager>
             Debug.Log("now sleeping...");
             int spendEnergy = 0;
             float regenDurability = 0.0f;
+            float overworkPenalty = 0.0f;
             //RegenBody(time, ref spendEnergy, ref regenDurability);
             spendEnergy = CalEnergyCostForRegen(time);
             regenDurability = CalRegenedDurability(time);
+            overworkPenalty = CalOverworkPenalty(time);
             if (_time.runtimeTime < 8)
                 _time.SetTime(8);
             StartCoroutine(HomeUIManager.Inst.PutToSleep(time, PENALTY_PER_TIME, spendEnergy, regenDurability));
@@ -202,13 +204,26 @@ public class GameManager : SingletonBehaviour<GameManager>
             regenedDurability = 100.0f * energy.value / GetEnergyCostByDay();
             durability.value += regenedDurability;
         }
-        // 비수면 페널티
-        if (time > 0)
+        return regenedDurability;
+    }
+
+    private float CalOverworkPenalty(int time)
+    {
+        float penalty = 0.0f;
+        if(IsOverwork(time))
         {
             durability.value -= PENALTY_PER_TIME * time;
-            Debug.Log("비수면 페널티 : " + (int)(PENALTY_PER_TIME * time));
+            penalty = PENALTY_PER_TIME * time;
         }
-        return regenedDurability;
+        return penalty;
+    }
+
+    private bool IsOverwork(int time)
+    {
+        if (time > 0)
+            return true;
+        else
+            return false;
     }
 
     /// <summary>
