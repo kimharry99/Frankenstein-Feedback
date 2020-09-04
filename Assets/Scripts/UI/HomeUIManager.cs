@@ -103,27 +103,35 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     }
 
     private Type _currentChestType = Type.All;
+
     public void ButtonChestCategoryClicked(int intItemType)
     {
         _currentChestType = (Type)intItemType;
         HighlightCategoryButton();
         UpdateChest();
-
     }
+    
     public void ButtonChestSlotClidked(int uiSlot)
     {
         int itemSlot = StorageManager.Inst.GetIndexTable(_currentChestType, uiSlot);
-        Item _item = chest.slotItem[itemSlot];
-        for(int i = 0; i < 5; i++)
+        Item item = chest.slotItem[itemSlot];
+        if(CanMoveItemToInven(item))
+            StorageManager.Inst.MoveItemToInven(itemSlot);
+    }
+
+    private bool CanMoveItemToInven(Item item)
+    {
+        Inventory inven = StorageManager.Inst.inventory;
+
+        if (inven.GetFirstEmptySlot() >= 0)
+            return true;
+
+        for (int i = 0; i < 5; i++)
         {
-            if (StorageManager.Inst.inventory.slotItem[i] == null)
-                break;
-            if (_item.type != Type.BodyPart && _item == StorageManager.Inst.inventory.slotItem[i])
-                break;
-            if (i == 4)
-                return;
+            if (item.CanOverlap() && item.id == inven.slotItem[i].id)
+                return true;
         }
-        StorageManager.Inst.MoveItemToInven(itemSlot);
+        return false;
     }
 
     //public void InitialUpdateChest()
