@@ -143,10 +143,10 @@ public class StorageManager : SingletonBehaviour<StorageManager>
     public Item DeleteFromChest(int slotNumber)
     {
         Item item = DeleteItem(slotNumber, chest);
-        if(item == null)
-        {
-            Debug.Log("item is null, slotNumber = " + slotNumber);
-        }
+        //if(item == null)
+        //{
+        //    Debug.Log("item is null, slotNumber = " + slotNumber);
+        //}
         SortChestItem();
         UpdateChestIndexes();
         if (HomeUIManager.Inst.panelChest)

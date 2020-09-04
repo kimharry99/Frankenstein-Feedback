@@ -115,23 +115,9 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         int itemSlot = StorageManager.Inst.GetIndexTable(_currentChestType, uiSlot);
         Item item = chest.slotItem[itemSlot];
-        if(CanMoveItemToInven(item))
-            StorageManager.Inst.MoveItemToInven(itemSlot);
-    }
-
-    private bool CanMoveItemToInven(Item item)
-    {
         Inventory inven = StorageManager.Inst.inventory;
-
-        if (inven.GetFirstEmptySlot() >= 0)
-            return true;
-
-        for (int i = 0; i < 5; i++)
-        {
-            if (item.CanOverlap() && item.id == inven.slotItem[i].id)
-                return true;
-        }
-        return false;
+        if(inven.CanMoveItemToStorage(item))
+            StorageManager.Inst.MoveItemToInven(itemSlot);
     }
 
     //public void InitialUpdateChest()
