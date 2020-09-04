@@ -6,6 +6,31 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : SingletonBehaviour<GameManager>
 {
+    public struct SleepResultInfo
+    {
+        public int SpendEnergy { get; private set; }
+        public float RegenedDurabilty { get; private set; }
+        public SleepResultInfo(int spendEnergy, float regenedDurability)
+        {
+            SpendEnergy = spendEnergy;
+            RegenedDurabilty = regenedDurability;
+        }
+    }
+
+    public struct OverworkResultInfo
+    {
+        public int Time { get; private set; }
+        public float OverworkPenalty { get; private set; }
+        public bool IsOverwork { get; private set; }
+        
+        public OverworkResultInfo(int time, float overworkPenalty, bool isOverwork)
+        {
+            Time = time;
+            OverworkPenalty = overworkPenalty;
+            IsOverwork = isOverwork;
+        }
+    }
+
     public int Day { get; private set; }
     [SerializeField]
     private Time _time;
@@ -110,12 +135,18 @@ public class GameManager : SingletonBehaviour<GameManager>
             Debug.Log("now sleeping...");
             //RegenBody(time, ref spendEnergy, ref regenDurability);
             int spendEnergy = CalEnergyCostForRegen(time);
-            float regenDurability = CalRegenedDurability(time);
+            float regenedDurability = CalRegenedDurability(time);
+            SleepResultInfo sleepResultInfo = new SleepResultInfo(spendEnergy, regenedDurability);
+
             float overworkPenalty = CalOverworkPenalty(time);
             bool isOverwork = IsOverwork(time);
+            OverworkResultInfo overworkResultInfo = new OverworkResultInfo(time, overworkPenalty, isOverwork);
+
             if (_time.runtimeTime < 8)
                 _time.SetTime(8);
-            StartCoroutine(HomeUIManager.Inst.PutToSleep(time, spendEnergy, regenDurability, overworkPenalty, isOverwork));
+
+            HomeUIManager hm = HomeUIManager.Inst;
+            StartCoroutine(hm.PutToSleep(sleepResultInfo, overworkResultInfo));
         }
     }
 
@@ -157,6 +188,32 @@ public class GameManager : SingletonBehaviour<GameManager>
             durability.value -= PENALTY_PER_TIME * time;
             Debug.Log("비수면 페널티 : " + (int)(PENALTY_PER_TIME * time));
         }
+    }
+
+    /// <summary>
+    /// 내구도를 100으로 만드는데 소모되는 에너지 비용을 계산한다.
+    /// </summary>
+    /// <returns></returns>
+    private int GetEnergyCostFull()
+    {
+        return Mathf.CeilToInt((100 - durability.value) / 100.0f * GetEnergyCostByDay());
+    }
+
+    /// <summary>
+    /// 현재 날짜에서 현재 내구도와 상관없이 내구도를 100으로 만드는데 소모되는 비용을 계산한다.
+    /// </summary>
+    /// <returns></returns>
+    private int GetEnergyCostByDay()
+    {
+        return 5000 + 200 * (_time.runtimeDay - 1);
+    }
+
+    private bool IsOverwork(int time)
+    {
+        if (time > 0)
+            return true;
+        else
+            return false;
     }
 
     /// <summary>
@@ -215,33 +272,6 @@ public class GameManager : SingletonBehaviour<GameManager>
         }
         return penalty;
     }
-
-    private bool IsOverwork(int time)
-    {
-        if (time > 0)
-            return true;
-        else
-            return false;
-    }
-
-    /// <summary>
-    /// 내구도를 100으로 만드는데 소모되는 에너지 비용을 계산한다.
-    /// </summary>
-    /// <returns></returns>
-    private int GetEnergyCostFull()
-    {
-        return Mathf.CeilToInt((100 - durability.value) / 100.0f * GetEnergyCostByDay());
-    }
-
-    /// <summary>
-    /// 현재 날짜에서 현재 내구도와 상관없이 내구도를 100으로 만드는데 소모되는 비용을 계산한다.
-    /// </summary>
-    /// <returns></returns>
-    private int GetEnergyCostByDay()
-    {
-        return 5000 + 200 * (_time.runtimeDay - 1);
-    }
-
 
 
     //public void DisassembleItem(/* some parameters */)

@@ -713,14 +713,17 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     /// <summary>
     /// 수면에 대한 에너지 변화를 안내한다.
     /// </summary>
-    public void NoticeEnergyChange(int time, int energy, float durablity, float overworkPenalty, bool isOverwork = false)
+    public void RecordResultsForSleep(GameManager.SleepResultInfo sleepResultInfo)
     {
-        Debug.Log("안내 패널 출력");
-        panelNotice.SetActive(true);
-        textNotice.text = "에너지를 " + energy + "소모하여 내구도를 " + Mathf.Ceil(durablity*10)/10 + "." + Mathf.Ceil(durablity * 10) % 10 + "%\n 회복했습니다.";
-        if (isOverwork)
+        textNotice.text = "에너지를 " + sleepResultInfo.SpendEnergy + "소모하여 내구도를 " + Mathf.Ceil(sleepResultInfo.RegenedDurabilty*10)/10 
+            + "." + Mathf.Ceil(sleepResultInfo.RegenedDurabilty * 10) % 10 + "%\n 회복했습니다.";
+    }
+
+    public void RecordResultsForOverwork(GameManager.OverworkResultInfo overworkResultInfo)
+    {
+        if (overworkResultInfo.IsOverwork)
         {
-            textNotice.text += "\n\n수면시간이 " + time + "시간 부족하여 내구도가 " + Mathf.Ceil(overworkPenalty) / 10 + "% 감소되었습니다.";
+            textNotice.text += "\n\n수면시간이 " + overworkResultInfo.Time + "시간 부족하여 내구도가 " + Mathf.Ceil(overworkResultInfo.OverworkPenalty) / 10 + "% 감소되었습니다.";
         }
     }
 
@@ -766,16 +769,22 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     /// 수면에 대한 UI효과와 알림을 출력한다.
     /// </summary>
     /// <returns></returns>
-    public IEnumerator PutToSleep(int time, int spendEnergy, float regenedDurability, float overworkPenalty, bool isOverwork = false)
+    public IEnumerator PutToSleep(GameManager.SleepResultInfo sleepResultInfo, GameManager.OverworkResultInfo overworkResultInfo)
     {
         Debug.Log("black out start");
         panelBlackOut.SetActive(true);
         _isBlackOut = true;
         yield return new WaitForSeconds(_blackOutTime + 0.5f);
+
         GeneralUIManager.Inst.UpdateTextDurability();
         GeneralUIManager.Inst.UpdateTextTime();
         GeneralUIManager.Inst.UpdateEnergy();
-        NoticeEnergyChange(time, spendEnergy, regenedDurability, overworkPenalty, isOverwork);
+        
+        Debug.Log("안내 패널 출력");
+        panelNotice.SetActive(true);
+        RecordResultsForSleep(sleepResultInfo);
+        RecordResultsForOverwork(overworkResultInfo);
+
         _isBlackOut = false;
         panelBlackOut.GetComponent<Image>().color = new Color(0, 0, 0, 0);
         panelBlackOut.SetActive(false);
