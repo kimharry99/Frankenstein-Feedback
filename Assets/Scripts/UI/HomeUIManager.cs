@@ -77,17 +77,29 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         for (int i = 0; i < imageChestSlot.Length; i++)
         {
-            int indexItem = StorageManager.Inst.GetIndexTable(_currentChestType, i);
-            if (indexItem != -1)
-            {
-                if (chest.slotItem[indexItem] != null)
-                {
-                    imageChestSlot[i].image.sprite = chest.slotItem[indexItem].itemImage;
-                    continue;
-                }
-            }
-            imageChestSlot[i].image.sprite = null;
+            UpdateChestSlotImage(i);
         }
+    }
+
+    private void UpdateChestSlotImage(int iImageChestSlot)
+    {
+        int indexItem = StorageManager.Inst.GetIndexTable(_currentChestType, iImageChestSlot);
+        if (IsChestSlotNull(indexItem))
+            imageChestSlot[iImageChestSlot].image.sprite = chest.slotItem[indexItem].itemImage;
+        else
+            imageChestSlot[iImageChestSlot].image.sprite = null;
+    }
+
+    private bool IsChestSlotNull(int indexItem)
+    {
+        if(indexItem >= 0 && indexItem < Chest.CAPACITY)
+        {
+            if(chest.slotItem[indexItem] != null)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private Type _currentChestType = Type.All;
