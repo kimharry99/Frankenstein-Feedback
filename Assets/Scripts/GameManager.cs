@@ -208,6 +208,14 @@ public class GameManager : SingletonBehaviour<GameManager>
         return 5000 + 200 * (_time.runtimeDay - 1);
     }
 
+    private bool IsEnoughEnergy()
+    {
+        if (GetEnergyCostFull() <= energy.value)
+            return true;
+        else
+            return false;
+    }
+
     private bool IsOverwork(int time)
     {
         if (time > 0)
@@ -224,19 +232,17 @@ public class GameManager : SingletonBehaviour<GameManager>
     private int CalEnergyCostForRegen(int time)
     {
         // 에너지를 통한 힐
-        //int cost = Mathf.CeilToInt((100 - durabilityI.value) / 100.0f * GetEnergyCost(_time.runtimeDay));
-        int cost = GetEnergyCostFull();
-        if (cost <= energy.value)
+        int cost = 0;
+        if (IsEnoughEnergy())
         {
-            energy.value -= cost;
-            return cost;
+            cost = GetEnergyCostFull();
         }
         else
         {
             cost = energy.value;
-            energy.value = 0;
-            return cost;
         }
+        energy.value -= cost;
+        return cost;
     }
 
     /// <summary>
@@ -247,18 +253,16 @@ public class GameManager : SingletonBehaviour<GameManager>
     private float CalRegenedDurability(int time)
     {
         // 에너지를 통한 힐
-        int cost = GetEnergyCostFull();
         float regenedDurability = 0.0f;
-        if (cost <= energy.value)
+        if (IsEnoughEnergy())
         {
             regenedDurability = 100 - durability.value;
-            durability.value = 100.0f;
         }
         else
         {
             regenedDurability = 100.0f * energy.value / GetEnergyCostByDay();
-            durability.value += regenedDurability;
         }
+        durability.value += regenedDurability;
         return regenedDurability;
     }
 
