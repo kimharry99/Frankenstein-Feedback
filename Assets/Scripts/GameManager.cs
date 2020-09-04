@@ -115,7 +115,7 @@ public class GameManager : SingletonBehaviour<GameManager>
         Player.Inst.DecayBody(turn);
         GeneralUIManager.Inst.UpdateTextDurability();
         GeneralUIManager.Inst.UpdateTextTime();
-        SendToSleep(_time.runtimeTime);
+        SendToSleep();
     }
 
     public void SendTime(int turn)
@@ -128,21 +128,22 @@ public class GameManager : SingletonBehaviour<GameManager>
     /// 플레이어가 잠을 잘 때 호출, 
     /// </summary>'
     /// <param name="time">잠이 든 시각</param>
-    public void SendToSleep(int time)
+    public void SendToSleep()
     {
         if (_time.isNight && IsHome)
         {
+            int time = _time.runtimeTime;
             Debug.Log("now sleeping...");
             //RegenBody(time, ref spendEnergy, ref regenDurability);
-            int spendEnergy = CalEnergyCostForRegen(time);
-            float regenedDurability = CalRegenedDurability(time);
+            int spendEnergy = CalEnergyCostForRegen();
+            float regenedDurability = CalRegenedDurability();
             SleepResultInfo sleepResultInfo = new SleepResultInfo(spendEnergy, regenedDurability);
 
-            float overworkPenalty = CalOverworkPenalty(time);
-            bool isOverwork = IsOverwork(time);
+            float overworkPenalty = CalOverworkPenalty();
+            bool isOverwork = IsOverwork();
             OverworkResultInfo overworkResultInfo = new OverworkResultInfo(time, overworkPenalty, isOverwork);
 
-            if (_time.runtimeTime < 8)
+            if (time < 8)
                 _time.SetTime(8);
 
             HomeUIManager hm = HomeUIManager.Inst;
@@ -156,39 +157,39 @@ public class GameManager : SingletonBehaviour<GameManager>
     /// <param name="time">잠이 든 시각</param>
     /// <param name="energy">수면에 사용한 에너지</param>
     /// <param name="durability">수면으로 회복한 내구도</param>
-    public void RegenBody(int time, ref int spendEnergy, ref float regenDurability)
-    {
-        // 에너지를 통한 힐
-        //int cost = Mathf.CeilToInt((100 - durabilityI.value) / 100.0f * GetEnergyCost(_time.runtimeDay));
-        int cost = Mathf.CeilToInt((100 - durability.value) / 100.0f * GetEnergyCostByDay());
-        if (cost <= energy.value)
-        {
-            energy.value -= cost;
-            spendEnergy = cost;
-            //regenDurability = 100 - durabilityI.value;
-            regenDurability = 100 - durability.value;
-            //durabilityI.value = 100;
-            durability.value = 100.0f;
-            Debug.Log("내구도 전부 회복, 소모한 에너지 : " + cost);
-        }
-        else
-        {
-            cost = GetEnergyCostByDay();
-            Debug.Log("내구도 일부 회복\n소모한 에너지 : " + energy.value + "\n회복한 내구도 : " + 100.0f * energy.value / cost);
-            spendEnergy = energy.value;
-            regenDurability = 100.0f * energy.value / cost;
-            //durabilityI.value += Mathf.CeilToInt(100.0f * energy.value / cost);
-            durability.value += 100.0f * energy.value / cost;
-            energy.value = 0;
-        }
-        // 비수면 페널티
-        if(time > 0)
-        {
-            //durabilityI.value -= (int)(penaltyPerTime * time);
-            durability.value -= PENALTY_PER_TIME * time;
-            Debug.Log("비수면 페널티 : " + (int)(PENALTY_PER_TIME * time));
-        }
-    }
+    //public void RegenBody(int time, ref int spendEnergy, ref float regenDurability)
+    //{
+    //    // 에너지를 통한 힐
+    //    //int cost = Mathf.CeilToInt((100 - durabilityI.value) / 100.0f * GetEnergyCost(_time.runtimeDay));
+    //    int cost = Mathf.CeilToInt((100 - durability.value) / 100.0f * GetEnergyCostByDay());
+    //    if (cost <= energy.value)
+    //    {
+    //        energy.value -= cost;
+    //        spendEnergy = cost;
+    //        //regenDurability = 100 - durabilityI.value;
+    //        regenDurability = 100 - durability.value;
+    //        //durabilityI.value = 100;
+    //        durability.value = 100.0f;
+    //        Debug.Log("내구도 전부 회복, 소모한 에너지 : " + cost);
+    //    }
+    //    else
+    //    {
+    //        cost = GetEnergyCostByDay();
+    //        Debug.Log("내구도 일부 회복\n소모한 에너지 : " + energy.value + "\n회복한 내구도 : " + 100.0f * energy.value / cost);
+    //        spendEnergy = energy.value;
+    //        regenDurability = 100.0f * energy.value / cost;
+    //        //durabilityI.value += Mathf.CeilToInt(100.0f * energy.value / cost);
+    //        durability.value += 100.0f * energy.value / cost;
+    //        energy.value = 0;
+    //    }
+    //    // 비수면 페널티
+    //    if(time > 0)
+    //    {
+    //        //durabilityI.value -= (int)(penaltyPerTime * time);
+    //        durability.value -= PENALTY_PER_TIME * time;
+    //        Debug.Log("비수면 페널티 : " + (int)(PENALTY_PER_TIME * time));
+    //    }
+    //}
 
     /// <summary>
     /// 내구도를 100으로 만드는데 소모되는 에너지 비용을 계산한다.
@@ -216,8 +217,9 @@ public class GameManager : SingletonBehaviour<GameManager>
             return false;
     }
 
-    private bool IsOverwork(int time)
+    private bool IsOverwork()
     {
+        int time = _time.runtimeTime;
         if (time > 0)
             return true;
         else
@@ -229,10 +231,10 @@ public class GameManager : SingletonBehaviour<GameManager>
     /// </summary>
     /// <param name="time">수면 시작 시각</param>
     /// <returns>수면에 사용한 에너지</returns>
-    private int CalEnergyCostForRegen(int time)
+    private int CalEnergyCostForRegen()
     {
         // 에너지를 통한 힐
-        int cost = 0;
+        int cost;
         if (IsEnoughEnergy())
         {
             cost = GetEnergyCostFull();
@@ -250,10 +252,10 @@ public class GameManager : SingletonBehaviour<GameManager>
     /// </summary>
     /// <param name="time">수면 시작 시각</param>
     /// <returns>수면으로 회복한 에너지</returns>
-    private float CalRegenedDurability(int time)
+    private float CalRegenedDurability()
     {
         // 에너지를 통한 힐
-        float regenedDurability = 0.0f;
+        float regenedDurability;
         if (IsEnoughEnergy())
         {
             regenedDurability = 100 - durability.value;
@@ -266,14 +268,15 @@ public class GameManager : SingletonBehaviour<GameManager>
         return regenedDurability;
     }
 
-    private float CalOverworkPenalty(int time)
+    private float CalOverworkPenalty()
     {
+        int time = _time.runtimeTime;
         float penalty = 0.0f;
-        if(IsOverwork(time))
+        if(IsOverwork())
         {
-            durability.value -= PENALTY_PER_TIME * time;
             penalty = PENALTY_PER_TIME * time;
         }
+        durability.value -= penalty;
         return penalty;
     }
 
