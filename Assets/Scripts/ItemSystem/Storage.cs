@@ -55,6 +55,18 @@ public class Storage : ScriptableObject
         return false;
     }
 
+    public bool IsChestSlotNull(int indexItem)
+    {
+        if (indexItem >= 0 && indexItem < Chest.CAPACITY)
+        {
+            if (slotItem[indexItem] != null)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     //public virtual bool AddItem(Item item)
     //{
     //    for (int i = 0; i < slotItem.Length; i++)

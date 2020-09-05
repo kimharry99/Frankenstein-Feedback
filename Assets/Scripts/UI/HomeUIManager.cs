@@ -84,22 +84,10 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     private void UpdateChestSlotImage(int iImageChestSlot)
     {
         int indexItem = StorageManager.Inst.GetIndexTable(_currentChestType, iImageChestSlot);
-        if (IsChestSlotNull(indexItem))
+        if (chest.IsChestSlotNull(indexItem))
             imageChestSlot[iImageChestSlot].image.sprite = chest.slotItem[indexItem].itemImage;
         else
             imageChestSlot[iImageChestSlot].image.sprite = null;
-    }
-
-    private bool IsChestSlotNull(int indexItem)
-    {
-        if(indexItem >= 0 && indexItem < Chest.CAPACITY)
-        {
-            if(chest.slotItem[indexItem] != null)
-            {
-                return true;
-            }
-        }
-        return false;
     }
 
     private Type _currentChestType = Type.All;
@@ -244,13 +232,14 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public int disassembleEnergy = 0;
     public void UpdateDisassemble()
     {
-        int indexHoldingItem = 0;
+        int indexHoldingItem;
         indexHoldingItem = UpdateImageBodyPart();
         ResetRemainingSlots(indexHoldingItem);
 
         disassembleEnergy = 0;
         textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
     }
+
     private int UpdateImageBodyPart()
     {
         int indexItem = 0, indexHoldingItem = 0;
@@ -261,7 +250,6 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
             {
                 imageDisassembleHolding[indexHoldingItem].sprite = chest.slotItem[indexItem].itemImage; // Update Corpse at the jth Holding Slot
                 indexHoldingChest[indexHoldingItem] = indexItem; // Record the Index of Corpse (Holding Slot to Chest Slot)
-
                 imageCheck[indexHoldingItem].SetActive(false);
 
                 if (indexHoldingItem < 6) // Reset the jth Using Slot
