@@ -120,28 +120,6 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
             StorageManager.Inst.MoveItemToInven(itemSlot);
     }
 
-    //public void InitialUpdateChest()
-    //{
-    //    chest = StorageManager.Inst.chests[0];
-    //    for (int i = 0; i < chest.slotItem.Length; i++)
-    //    {
-    //        if (chest.slotItem[i] != null)
-    //            imageChestSlot[i].image.sprite = chest.slotItem[i].itemImage;
-    //        else
-    //            imageChestSlot[i].image.sprite = emptyImage;
-    //    }
-    //}
-    //public void SortItem(int num)
-    //{
-    //    chest = StorageManager.Inst.chests[num];
-    //    for (int i = 0; i < chest.slotItem.Length; i++)
-    //    {
-    //        if (chest.slotItem[i] != null)
-    //            imageChestSlot[i].image.sprite = chest.slotItem[i].itemImage;
-    //        else
-    //            imageChestSlot[i].image.sprite = emptyImage;
-    //    }
-    //}
     // 승윤 TODO : 메소드 구현, chest mehtods region안에 옮겨놓기
     /// <summary>
     /// 창고의 아이템 개수를 Update한다.
@@ -150,9 +128,11 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         Text txt;
 
-        for(int i = 0; i < Chest.CAPACITY; i++)
+        for(int i = 0; i < chest.Capacity; i++)
         {
-            txt = panelChest.transform.GetChild(2).GetChild(0).GetChild(i).GetChild(0).GetChild(0).GetComponent<Text>();
+            Transform chestSlot = GetChestSlotTransform(i);
+            Transform slotButton = chestSlot.GetChild(0);
+            txt = slotButton.GetChild(0).GetComponent<Text>();
             int indexItem = StorageManager.Inst.GetIndexTable(_currentChestType, i);
             if (indexItem != -1)
             {
@@ -171,6 +151,12 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
                 txt.text = "";
             }
         }
+    }
+
+    private Transform GetChestSlotTransform(int index)
+    {
+        Transform viewPort = panelChest.transform.GetChild(2);
+        return viewPort.GetChild(0).GetChild(index);
     }
 
     // 승윤 TODO : 메소드 구현, chest methods region안에 옮겨놓기
