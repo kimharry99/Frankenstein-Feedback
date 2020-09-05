@@ -84,7 +84,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     private void UpdateChestSlotImage(int iImageChestSlot)
     {
         int indexItem = StorageManager.Inst.GetIndexTable(_currentChestType, iImageChestSlot);
-        if (chest.IsChestSlotNull(indexItem))
+        if (chest.IsSotrageSlotNull(indexItem))
             imageChestSlot[iImageChestSlot].image.sprite = chest.slotItem[indexItem].itemImage;
         else
             imageChestSlot[iImageChestSlot].image.sprite = null;
@@ -121,23 +121,12 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
             Transform chestSlot = GetChestSlotTransform(i);
             Transform slotButton = chestSlot.GetChild(0);
             txt = slotButton.GetChild(0).GetComponent<Text>();
+
             int indexItem = StorageManager.Inst.GetIndexTable(_currentChestType, i);
-            if (indexItem != -1)
-            {
-                if (chest.slotItem[indexItem] != null)
-                { 
-                    txt.text = chest.slotItemNumber[indexItem].ToString();
-                    
-                }
-                else
-                {
-                    txt.text = "";
-                }
-            }
+            if (chest.IsSotrageSlotNull(indexItem))
+                txt.text = chest.slotItemNumber[indexItem].ToString();
             else
-            {
                 txt.text = "";
-            }
         }
     }
 
