@@ -16,7 +16,7 @@ public class BodyAssembly : MonoBehaviour
     {
         for (int i = 0; i < Chest.CAPACITY; i++)
         {
-            _index[i] = StorageManager.Inst.GetIndexTable(Type.BodyPart, i);
+            _index[i] = StorageManager.Inst.GetIndexFromTable(Type.BodyPart, i);
             if (_index[i] != -1)
             {
                 _holdingBodyParts[i] = (BodyPart)StorageManager.Inst.chest.slotItem[_index[i]];

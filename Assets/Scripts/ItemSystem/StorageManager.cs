@@ -23,7 +23,14 @@ public class StorageManager : SingletonBehaviour<StorageManager>
     private int[] _indexTableConsumable = new int[Chest.CAPACITY];
     private int[] _indexTableTool = new int[Chest.CAPACITY];
     private int[] _indexTableIngredient = new int[Chest.CAPACITY];
-    public int GetIndexTable(Type itemType, int uiIndex)
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="itemType">UI에 띄워져있는 아이템의 type</param>
+    /// <param name="uiIndex"></param>
+    /// <returns>uiIndex와 연결되는 chest의 item index</returns>
+    public int GetIndexFromTable(Type itemType, int uiIndex)
     {
         switch (itemType)
         {
@@ -42,6 +49,7 @@ public class StorageManager : SingletonBehaviour<StorageManager>
                 return -1;
         }
     }
+
     private void UpdateChestIndexes()
     {
         int indexBodyPart = 0, indexConsumable = 0, indexTool = 0, indexIngredient = 0;

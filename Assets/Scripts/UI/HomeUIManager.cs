@@ -83,7 +83,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
     private void UpdateChestSlotImage(int iImageChestSlot)
     {
-        int indexItem = StorageManager.Inst.GetIndexTable(_currentChestType, iImageChestSlot);
+        int indexItem = StorageManager.Inst.GetIndexFromTable(_currentChestType, iImageChestSlot);
         if (chest.IsSotrageSlotNull(indexItem))
             imageChestSlot[iImageChestSlot].image.sprite = chest.slotItem[indexItem].itemImage;
         else
@@ -101,7 +101,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     
     public void ButtonChestSlotClidked(int uiSlot)
     {
-        int itemSlot = StorageManager.Inst.GetIndexTable(_currentChestType, uiSlot);
+        int itemSlot = StorageManager.Inst.GetIndexFromTable(_currentChestType, uiSlot);
         Item item = chest.slotItem[itemSlot];
         Inventory inven = StorageManager.Inst.inventory;
         if(inven.CanMoveItemToStorage(item))
@@ -122,7 +122,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
             Transform slotButton = chestSlot.GetChild(0);
             txt = slotButton.GetChild(0).GetComponent<Text>();
 
-            int indexItem = StorageManager.Inst.GetIndexTable(_currentChestType, i);
+            int indexItem = StorageManager.Inst.GetIndexFromTable(_currentChestType, i);
             if (chest.IsSotrageSlotNull(indexItem))
                 txt.text = chest.slotItemNumber[indexItem].ToString();
             else
@@ -231,13 +231,14 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
 
     private int UpdateImageBodyPart()
     {
+        UpdateDasmHoldImage();
         int indexItem = 0, indexHoldingItem = 0;
 
         for (; indexItem < chest.slotItem.Length; indexItem++)
         {
             if (chest.slotItem[indexItem] != null && chest.slotItem[indexItem].type == Type.BodyPart)
             {
-                imageDisassembleHolding[indexHoldingItem].sprite = chest.slotItem[indexItem].itemImage; // Update Corpse at the jth Holding Slot
+                //imageDisassembleHolding[indexHoldingItem].sprite = chest.slotItem[indexItem].itemImage; // Update Corpse at the jth Holding Slot
                 indexHoldingChest[indexHoldingItem] = indexItem; // Record the Index of Corpse (Holding Slot to Chest Slot)
                 imageCheck[indexHoldingItem].SetActive(false);
 
@@ -253,7 +254,23 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
             if (indexHoldingItem >= Chest.CAPACITY) // Prevent the Overflow (Now It's not Needed)
                 break;
         }
+
         return indexHoldingItem;
+    }
+
+    private void UpdateDasmHoldImage()
+    {
+        int indexHoldingItem = 0;
+        int indexItem = 0;
+        for (; indexItem < chest.Capacity; indexItem++)
+        {
+            if(chest.IsSotrageSlotNull(indexItem))
+            {
+                Item item = chest.slotItem[indexItem];
+                if(item.type == Type.BodyPart)
+                    imageDisassembleHolding[indexHoldingItem++].sprite = item.itemImage;
+            }
+        }
     }
 
     private void ResetRemainingSlots(int indexHoldingItem)
@@ -585,7 +602,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         for (int i = 0; i < Chest.CAPACITY; i++)
         {
-            int indexItem = StorageManager.Inst.GetIndexTable(Type.BodyPart, i);
+            int indexItem = StorageManager.Inst.GetIndexFromTable(Type.BodyPart, i);
             Image imageAssembleHolding = buttonAssembleHolding[i].transform.GetChild(0).GetComponent<Image>();
             if (indexItem != -1)
             {
