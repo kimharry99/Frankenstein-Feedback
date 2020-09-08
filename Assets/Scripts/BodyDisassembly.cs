@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BodyDisassembly : MonoBehaviour
 {
+    public const int ITEM_CAPACITY = 6;
     /// <summary>
     /// 0: 가죽, 1: 고철, 2: 금가루, 3: 자연의 정수, 4: 질긴 가죽, 5: 기계 부품
     /// </summary>
