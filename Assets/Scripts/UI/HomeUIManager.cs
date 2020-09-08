@@ -315,8 +315,8 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         imageCheck[slotHoldingNum].SetActive(true); // Mark the Selected Slot
 
         int indexItem = StorageManager.Inst.GetIndexFromTable(Type.BodyPart, slotHoldingNum);
-        Item clickedItem = chest.slotItem[indexItem];
 
+        Item clickedItem = chest.slotItem[indexItem];
         imageDisassembleUsing[slotUsingNum].sprite = clickedItem.itemImage; // Update Corpse at the Using Slot
         indexUsingHolding[slotUsingNum] = slotHoldingNum; // Record the Index of Corpse (Using Slot to Holding Slot)
 
