@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BodyDisassembly : MonoBehaviour
 {
+    public const int ITEM_CAPACITY = 6;
     /// <summary>
     /// 0: 가죽, 1: 고철, 2: 금가루, 3: 자연의 정수, 4: 질긴 가죽, 5: 기계 부품
     /// </summary>
@@ -13,7 +14,7 @@ public class BodyDisassembly : MonoBehaviour
     public void DisassembleItem(/* some parameters */)
     {
         int count = 0;
-
+        StorageManager sm = StorageManager.Inst;
         ResetBonusItemNum();
 
         for (int i = 29; i >= 0; i--)
@@ -21,9 +22,10 @@ public class BodyDisassembly : MonoBehaviour
             if (HomeUIManager.Inst.imageCheck[i].activeSelf == true)
             {
                 count++;
-                int slotNumber = HomeUIManager.Inst.indexHoldingChest[i];
+                //int slotNumber = HomeUIManager.Inst.indexHoldingChest[i];
+                int slotNumber = sm.GetIndexFromTable(Type.BodyPart, i);
                 // TODO : dest를 StorageManager로 수정
-                BodyPart dissassembled = (BodyPart)StorageManager.Inst.DeleteFromChest(slotNumber);
+                BodyPart dissassembled = (BodyPart)sm.DeleteFromChest(slotNumber);
                 if(dissassembled == null)
                 {
                     Debug.LogError("dissassembled is null");

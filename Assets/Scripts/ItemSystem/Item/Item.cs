@@ -34,4 +34,18 @@ public class Item : ScriptableObject
     public Type type;
     public Race race;
     public int energyPotential;
+
+    public bool CanOverlap()
+    {
+        switch (type)
+        {
+            case Type.BodyPart:
+            case Type.Tool:
+                return false;
+            case Type.Consumable:
+            case Type.Ingredient:
+                return true;
+        }
+        return true;
+    }
 }

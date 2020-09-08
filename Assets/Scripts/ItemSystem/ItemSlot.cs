@@ -17,7 +17,7 @@ public class ItemSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log(eventData.position);
+        //Debug.Log(eventData.position);
         mouse_over = true;
         if (inventory.slotItem[indexInventory] != null && !panelDiscard.activeSelf)
         {

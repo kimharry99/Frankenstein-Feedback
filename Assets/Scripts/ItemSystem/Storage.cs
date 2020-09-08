@@ -14,6 +14,8 @@ public class Storage : ScriptableObject
     public Item[] slotItem;
     public int[] slotItemNumber;
 
+    public virtual int Capacity { get { return -1; } }
+
     public virtual int GetFirstEmptySlot()
     {
         for (int i = 0; i < slotItem.Length; i++)
@@ -25,6 +27,7 @@ public class Storage : ScriptableObject
         }
         return -1;
     }
+
     public virtual int GetLastEmptySlot()
     {
         for (int i = slotItem.Length - 1; i >= 0; i--)
@@ -35,6 +38,33 @@ public class Storage : ScriptableObject
             }
         }
         return -1;
+    }
+
+    public bool CanMoveItemToStorage(Item item)
+    {
+        //Debug.Log(Capacity);
+        if (GetFirstEmptySlot() >= 0)
+            return true;
+
+        for (int i = 0; i < Capacity; i++)
+        {
+            if (item.CanOverlap() && item.id == slotItem[i].id)
+                return true;
+        }
+
+        return false;
+    }
+
+    public bool IsSotrageSlotNotNull(int indexItem)
+    {
+        if (indexItem >= 0 && indexItem < Chest.CAPACITY)
+        {
+            if (slotItem[indexItem] != null)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     //public virtual bool AddItem(Item item)

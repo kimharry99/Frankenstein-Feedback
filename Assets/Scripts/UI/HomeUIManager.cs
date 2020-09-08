@@ -32,7 +32,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     public Text textDisassembleEnergy;
     public Scrollbar scrollbarDisassemble;
     public int[] indexHoldingChest = new int[Chest.CAPACITY];
-    public int[] indexUsingHolding = new int[6];
+    public int[] indexUsingHolding = new int[BodyDisassembly.ITEM_CAPACITY];
 
     [Header("Crafting UI")]
     public GameObject[] buttonCraftUsing;
@@ -77,65 +77,37 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         for (int i = 0; i < imageChestSlot.Length; i++)
         {
-            int indexItem = StorageManager.Inst.GetIndexTable(_currentChestType, i);
-            if (indexItem != -1)
-            {
-                if (chest.slotItem[indexItem] != null)
-                {
-                    imageChestSlot[i].image.sprite = chest.slotItem[indexItem].itemImage;
-                    continue;
-                }
-            }
-            imageChestSlot[i].image.sprite = null;
+            UpdateChestSlotImage(i);
         }
     }
 
+    private void UpdateChestSlotImage(int iImageChestSlot)
+    {
+        int indexItem = StorageManager.Inst.GetIndexFromTable(_currentChestType, iImageChestSlot);
+        if (chest.IsSotrageSlotNotNull(indexItem))
+            imageChestSlot[iImageChestSlot].image.sprite = chest.slotItem[indexItem].itemImage;
+        else
+            imageChestSlot[iImageChestSlot].image.sprite = null;
+    }
+
     private Type _currentChestType = Type.All;
+
     public void ButtonChestCategoryClicked(int intItemType)
     {
         _currentChestType = (Type)intItemType;
         HighlightCategoryButton();
         UpdateChest();
-
     }
+    
     public void ButtonChestSlotClidked(int uiSlot)
     {
-        int itemSlot = StorageManager.Inst.GetIndexTable(_currentChestType, uiSlot);
-        Item _item = chest.slotItem[itemSlot];
-        for(int i = 0; i < 5; i++)
-        {
-            if (StorageManager.Inst.inventory.slotItem[i] == null)
-                break;
-            if (_item.type != Type.BodyPart && _item == StorageManager.Inst.inventory.slotItem[i])
-                break;
-            if (i == 4)
-                return;
-        }
-        StorageManager.Inst.MoveItemToInven(itemSlot);
+        int itemSlot = StorageManager.Inst.GetIndexFromTable(_currentChestType, uiSlot);
+        Item item = chest.slotItem[itemSlot];
+        Inventory inven = StorageManager.Inst.inventory;
+        if(inven.CanMoveItemToStorage(item))
+            StorageManager.Inst.MoveItemToInven(itemSlot);
     }
 
-    //public void InitialUpdateChest()
-    //{
-    //    chest = StorageManager.Inst.chests[0];
-    //    for (int i = 0; i < chest.slotItem.Length; i++)
-    //    {
-    //        if (chest.slotItem[i] != null)
-    //            imageChestSlot[i].image.sprite = chest.slotItem[i].itemImage;
-    //        else
-    //            imageChestSlot[i].image.sprite = emptyImage;
-    //    }
-    //}
-    //public void SortItem(int num)
-    //{
-    //    chest = StorageManager.Inst.chests[num];
-    //    for (int i = 0; i < chest.slotItem.Length; i++)
-    //    {
-    //        if (chest.slotItem[i] != null)
-    //            imageChestSlot[i].image.sprite = chest.slotItem[i].itemImage;
-    //        else
-    //            imageChestSlot[i].image.sprite = emptyImage;
-    //    }
-    //}
     // 승윤 TODO : 메소드 구현, chest mehtods region안에 옮겨놓기
     /// <summary>
     /// 창고의 아이템 개수를 Update한다.
@@ -144,27 +116,24 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         Text txt;
 
-        for(int i = 0; i < Chest.CAPACITY; i++)
+        for(int i = 0; i < chest.Capacity; i++)
         {
-            txt = panelChest.transform.GetChild(2).GetChild(0).GetChild(i).GetChild(0).GetChild(0).GetComponent<Text>();
-            int indexItem = StorageManager.Inst.GetIndexTable(_currentChestType, i);
-            if (indexItem != -1)
-            {
-                if (chest.slotItem[indexItem] != null)
-                { 
-                    txt.text = chest.slotItemNumber[indexItem].ToString();
-                    
-                }
-                else
-                {
-                    txt.text = "";
-                }
-            }
+            Transform chestSlot = GetChestSlotTransform(i);
+            Transform slotButton = chestSlot.GetChild(0);
+            txt = slotButton.GetChild(0).GetComponent<Text>();
+
+            int indexItem = StorageManager.Inst.GetIndexFromTable(_currentChestType, i);
+            if (chest.IsSotrageSlotNotNull(indexItem))
+                txt.text = chest.slotItemNumber[indexItem].ToString();
             else
-            {
                 txt.text = "";
-            }
         }
+    }
+
+    private Transform GetChestSlotTransform(int index)
+    {
+        Transform viewPort = panelChest.transform.GetChild(2);
+        return viewPort.GetChild(0).GetChild(index);
     }
 
     // 승윤 TODO : 메소드 구현, chest methods region안에 옮겨놓기
@@ -247,118 +216,162 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         panelNotice.SetActive(false);
     }
 
-    #region DisassemblePanel methods
-
-    public int disassembleEnergy = 0;
-    public void UpdateDisassemble()
-    {
-        int indexHoldingItem = 0;
-        indexHoldingItem = UpdateImageBodyPart();
-        ResetRemainingSlots(indexHoldingItem);
-
-        disassembleEnergy = 0;
-        textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
-    }
-    private int UpdateImageBodyPart()
+    private void UpdateImageHoldingPanel(Image[] imageHolding, Type holdingType)
     {
         int indexItem = 0, indexHoldingItem = 0;
 
-        for (; indexItem < chest.slotItem.Length; indexItem++)
+        for (; indexItem < chest.Capacity; indexItem++)
         {
-            if (chest.slotItem[indexItem] != null && chest.slotItem[indexItem].type == Type.BodyPart)
+            if (indexItem < StorageManager.Inst.GetNumOfItemsByType(holdingType))
             {
-                imageDisassembleHolding[indexHoldingItem].sprite = chest.slotItem[indexItem].itemImage; // Update Corpse at the jth Holding Slot
-                indexHoldingChest[indexHoldingItem] = indexItem; // Record the Index of Corpse (Holding Slot to Chest Slot)
-
-                imageCheck[indexHoldingItem].SetActive(false);
-
-                if (indexHoldingItem < 6) // Reset the jth Using Slot
+                if (chest.IsSotrageSlotNotNull(indexItem))
                 {
-                    imageDisassembleUsing[indexHoldingItem].sprite = emptyImage;
-                    indexUsingHolding[indexHoldingItem] = -1;
+                    Item item = chest.slotItem[indexItem];
+                    if (item.type == holdingType)
+                    {
+                        imageHolding[indexHoldingItem++].sprite = item.itemImage;
+                    }
                 }
-
-                indexHoldingItem++;
             }
-
-            if (indexHoldingItem >= Chest.CAPACITY) // Prevent the Overflow (Now It's not Needed)
-                break;
-        }
-        return indexHoldingItem;
-    }
-
-    private void ResetRemainingSlots(int indexHoldingItem)
-    {
-        while (indexHoldingItem < chest.slotItem.Length) // Reset the Remaining Slots
-        {
-            imageDisassembleHolding[indexHoldingItem].sprite = emptyImage;
-            indexHoldingChest[indexHoldingItem] = -1;
-
-            imageCheck[indexHoldingItem].SetActive(false);
-
-            if (indexHoldingItem < 6)
+            else
             {
-                imageDisassembleUsing[indexHoldingItem].sprite = emptyImage;
-                indexUsingHolding[indexHoldingItem] = -1;
+                imageHolding[indexHoldingItem++].sprite = emptyImage;
             }
-
-            indexHoldingItem++;
         }
     }
 
+    #region DisassemblePanel methods
 
-    public void DisassembleButtonHoldingClicked(int slotNumber)
+    public int disassembleEnergy = 0;
+    /// <summary>
+    /// 분해 패널에 창고의 사체 아이템을 업데이트 한다.
+    /// </summary>
+    public void UpdateDisassemble()
     {
-        if (imageCheck[slotNumber].activeSelf == false && imageDisassembleHolding[slotNumber].sprite != emptyImage) // The Case that Slot not been Selected Before
+        DisableAllCheckImages();
+        UpdateImageBodyPart();
+        ResetUsingPanel();
+
+        disassembleEnergy = 0;
+        UpdateDiasmEnergyTxt(textDisassembleEnergy, disassembleEnergy);
+    }
+
+    /// <summary>
+    /// holding panel에 창고의 모든 사체이미지를 업데이트 한다.
+    /// </summary>
+    private void UpdateImageBodyPart()
+    {
+        UpdateImageHoldingPanel(imageDisassembleHolding, Type.BodyPart);
+    }
+
+    private void DisableAllCheckImages()
+    {
+        for(int i=0;i<imageCheck.Length;i++)
         {
-            int i = 0;
-            while (i < 6 && imageDisassembleUsing[i].sprite != emptyImage) // Find Empty Slot in 'Panel Using Items'
-                i++;
+            imageCheck[i].SetActive(false);
+        }
+    }
 
-            if (i < 6)
+    /// <summary>
+    /// holding panel의 아이템이 업로드 되지 않은 slot을 초기화 한다.
+    /// </summary>
+    /// <param name="indexHoldingItem">holding된 아이템의 개수</param>
+    private void ResetUsingPanel()
+    {
+        for(int i=0;i< BodyDisassembly.ITEM_CAPACITY;i++)
+        {
+            imageDisassembleUsing[i].sprite = emptyImage;
+            indexUsingHolding[i] = -1;
+        }
+    }
+
+    private void UpdateDiasmEnergyTxt(Text energyRewardText, int energy)
+    {
+        energyRewardText.text = "추출 에너지 [ " + energy.ToString() + " ]";
+    }
+
+    public void DisassembleButtonHoldingClicked(int slotHoldingNum)
+    {
+        if (imageDisassembleHolding[slotHoldingNum].sprite == emptyImage)
+            return;
+
+        if (imageCheck[slotHoldingNum].activeSelf == false) // The Case that Slot not been Selected Before
+        {
+            int slotUsingNum = GetEmptyUsingSlot();
+            
+            if (slotUsingNum != -1)
             {
-                imageCheck[slotNumber].SetActive(true); // Mark the Selected Slot
-
-                imageDisassembleUsing[i].sprite = chest.slotItem[indexHoldingChest[slotNumber]].itemImage; // Update Corpse at the Using Slot
-                indexUsingHolding[i] = slotNumber; // Record the Index of Corpse (Using Slot to Holding Slot)
-
-                disassembleEnergy += chest.slotItem[indexHoldingChest[slotNumber]].energyPotential;
-                textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
-
-                Debug.Log(slotNumber + "select;" +
-                          "    +" + chest.slotItem[indexHoldingChest[slotNumber]].energyPotential + "energy" + "" +
-                          "\ntotal:" + disassembleEnergy.ToString());
+                EnableHoldingItem(slotHoldingNum, slotUsingNum);
             }
-
             else
             {
                 panelNotice.SetActive(true);
                 textNotice.text = "분해 슬롯이 가득 찼습니다.";
             }
         }
-
-        else if (imageCheck[slotNumber].activeSelf == true) // The Case that Slot has been Selected Before
+        else // The Case that Slot has been Selected Before
         {
-            imageCheck[slotNumber].SetActive(false); // Unmark the Selected Slot
-
-
-            int i = 0;
-            for (; i < 6; i++) // Find the Corpse's Index in Using Slot
-            {
-                if (indexUsingHolding[i] == slotNumber)
-                    break;
-            }
-
-            imageDisassembleUsing[i].sprite = emptyImage; // Remove Corpse in the Using Slot
-            indexUsingHolding[i] = -1; // Initialize
-
-            disassembleEnergy -= chest.slotItem[indexHoldingChest[slotNumber]].energyPotential;
-            textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
-
-            Debug.Log(slotNumber + "select cancel;" +
-                      "    -" + chest.slotItem[indexHoldingChest[slotNumber]].energyPotential + "energy" +
-                      "\ntotal:" + disassembleEnergy.ToString());
+            DisableHoldingItem(slotHoldingNum);
         }
+    }
+
+    private void EnableHoldingItem(int slotHoldingNum, int slotUsingNum)
+    {
+        imageCheck[slotHoldingNum].SetActive(true); // Mark the Selected Slot
+
+        int indexItem = StorageManager.Inst.GetIndexFromTable(Type.BodyPart, slotHoldingNum);
+
+        Item clickedItem = chest.slotItem[indexItem];
+        imageDisassembleUsing[slotUsingNum].sprite = clickedItem.itemImage; // Update Corpse at the Using Slot
+        indexUsingHolding[slotUsingNum] = slotHoldingNum; // Record the Index of Corpse (Using Slot to Holding Slot)
+
+        disassembleEnergy += clickedItem.energyPotential;
+        UpdateDiasmEnergyTxt(textDisassembleEnergy, disassembleEnergy);
+
+        Debug.Log(slotHoldingNum + "select;" +
+                  "    +" + clickedItem.energyPotential + "energy" + "" +
+                  "\ntotal:" + disassembleEnergy.ToString());
+    }
+
+    private int GetEmptyUsingSlot()
+    {
+        int i = 0;
+        while (i < 6 && imageDisassembleUsing[i].sprite != emptyImage) // Find Empty Slot in 'Panel Using Items'
+            i++;
+        if (i < 6)
+            return i;
+        else
+            return -1;
+    }
+
+    private void DisableHoldingItem(int slotHoldingNum)
+    {
+        imageCheck[slotHoldingNum].SetActive(false); // Unmark the Selected Slot
+
+        int slotUsingNum = GetIndexFromUsingPanel(slotHoldingNum);
+
+        imageDisassembleUsing[slotUsingNum].sprite = emptyImage; // Remove Corpse in the Using Slot
+        indexUsingHolding[slotUsingNum] = -1; // Initialize
+
+        int indexItem = StorageManager.Inst.GetIndexFromTable(Type.BodyPart, slotHoldingNum);
+        Item clickedItem = chest.slotItem[indexItem];
+        disassembleEnergy -= clickedItem.energyPotential;
+        UpdateDiasmEnergyTxt(textDisassembleEnergy, disassembleEnergy);
+
+        Debug.Log(slotHoldingNum + "select cancel;" +
+                  "    -" + chest.slotItem[indexItem].energyPotential + "energy" +
+                  "\ntotal:" + disassembleEnergy.ToString());
+    }
+
+    private int GetIndexFromUsingPanel(int slotHoldingNum)
+    {
+        int i = 0;
+        for (; i < 6; i++) // Find the Corpse's Index in Using Slot
+        {
+            if (indexUsingHolding[i] == slotHoldingNum)
+                break;
+        }
+        return i;
     }
 
     public void DisassembleButtonUsingClicked(int slotNumber)
@@ -372,7 +385,8 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
             imageDisassembleUsing[slotNumber].sprite = emptyImage; // Remove Corpse in the Using Slot
             indexUsingHolding[slotNumber] = -1; // Initialize
 
-            disassembleEnergy -= chest.slotItem[indexHoldingChest[indexHolding]].energyPotential;
+            int indexItem = StorageManager.Inst.GetIndexFromTable(Type.BodyPart, indexHolding);
+            disassembleEnergy -= chest.slotItem[indexItem].energyPotential;
             textDisassembleEnergy.text = "추출 에너지 [ " + disassembleEnergy.ToString() + " ]";
         }
     }
@@ -406,29 +420,34 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     /// <returns></returns>
     private int UpdateImageItem()
     {
+        Image[] imageCraftHoldings = new Image[buttonCraftHolding.Length];
+        for(int i=0;i< imageCraftHoldings.Length;i++)
+        {
+            imageCraftHoldings[i] = buttonCraftHolding[i].transform.GetChild(0).GetComponent<Image>();
+        }
+        UpdateImageHoldingPanel(imageCraftHoldings, Type.Ingredient);
+
         int indexItem = 0, indexHoldingItem = 0;
 
-        for (; indexItem < chest.slotItem.Length; indexItem++)
+        for (; indexItem < chest.Capacity; indexItem++)
         {
-            if (chest.slotItem[indexItem] != null && chest.slotItem[indexItem].type == Type.Ingredient)
+            if (chest.IsSotrageSlotNotNull(indexItem))
             {
-                Image imageCraftHolding = buttonCraftHolding[indexHoldingItem].transform.GetChild(0).GetComponent<Image>();
-                imageCraftHolding.sprite = chest.slotItem[indexItem].itemImage; // Update Item
-                indexHoldingChest[indexHoldingItem] = indexItem; // Record the Index of Item (Holding Slot to Chest Slot)
-
-                if (indexHoldingItem < 6) // Reset the Using Slot
+                Item item = chest.slotItem[indexItem];
+                if (item.type == Type.Ingredient)
                 {
-                    Image imageCraftUsing = buttonCraftUsing[indexHoldingItem].transform.GetChild(0).GetComponent<Image>();
-                    imageCraftUsing.sprite = emptyImage;
-                    indexUsingHolding[indexHoldingItem] = -1;
-                    GameManager.Inst.craftingTable.SetIndexUsingChest(indexHoldingItem, -1);
+                    indexHoldingChest[indexHoldingItem] = indexItem; // Record the Index of Item (Holding Slot to Chest Slot)
+
+                    if (indexHoldingItem < 6) // Reset the Using Slot
+                    {
+                        Image imageCraftUsing = buttonCraftUsing[indexHoldingItem].transform.GetChild(0).GetComponent<Image>();
+                        imageCraftUsing.sprite = emptyImage;
+                        indexUsingHolding[indexHoldingItem] = -1;
+                        GameManager.Inst.craftingTable.SetIndexUsingChest(indexHoldingItem, -1);
+                    }
+                    indexHoldingItem++;
                 }
-
-                indexHoldingItem++;
             }
-
-            if (indexHoldingItem >= Chest.CAPACITY) // Prevent the Overflow (Now It's not Needed)
-                break;
         }
         return indexHoldingItem;
     }
@@ -616,7 +635,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     {
         for (int i = 0; i < Chest.CAPACITY; i++)
         {
-            int indexItem = StorageManager.Inst.GetIndexTable(Type.BodyPart, i);
+            int indexItem = StorageManager.Inst.GetIndexFromTable(Type.BodyPart, i);
             Image imageAssembleHolding = buttonAssembleHolding[i].transform.GetChild(0).GetComponent<Image>();
             if (indexItem != -1)
             {

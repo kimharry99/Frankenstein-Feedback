@@ -96,12 +96,12 @@ public class GeneralUIManager : SingletonBehaviour<GeneralUIManager>
         }
         if (HomeUIManager.Inst.panelChest.activeSelf)
         {
-            Debug.Log("chest");
+            //Debug.Log("chest");
             StorageManager.Inst.MoveItemToChest(slotNumber);
         }
         else
         {
-            Debug.Log("nothing");
+            //Debug.Log("nothing");
         }
     }
     #endregion
