@@ -55,7 +55,7 @@ public class Storage : ScriptableObject
         return false;
     }
 
-    public bool IsSotrageSlotNull(int indexItem)
+    public bool IsSotrageSlotNotNull(int indexItem)
     {
         if (indexItem >= 0 && indexItem < Chest.CAPACITY)
         {
