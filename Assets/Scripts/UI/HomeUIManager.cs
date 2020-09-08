@@ -216,6 +216,30 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
         panelNotice.SetActive(false);
     }
 
+    private void UpdateImageHoldingPanel(Image[] imageHolding, Type holdingType)
+    {
+        int indexItem = 0, indexHoldingItem = 0;
+
+        for (; indexItem < chest.Capacity; indexItem++)
+        {
+            if (indexItem < StorageManager.Inst.GetNumOfItemsByType(holdingType))
+            {
+                if (chest.IsSotrageSlotNotNull(indexItem))
+                {
+                    Item item = chest.slotItem[indexItem];
+                    if (item.type == holdingType)
+                    {
+                        imageHolding[indexHoldingItem++].sprite = item.itemImage;
+                    }
+                }
+            }
+            else
+            {
+                imageHolding[indexHoldingItem++].sprite = emptyImage;
+            }
+        }
+    }
+
     #region DisassemblePanel methods
 
     public int disassembleEnergy = 0;
@@ -237,26 +261,7 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     /// </summary>
     private void UpdateImageBodyPart()
     {
-        int indexItem = 0, indexHoldingItem = 0;
-
-        for (; indexItem < chest.Capacity; indexItem++)
-        {
-            if (indexItem < StorageManager.Inst.GetNumOfItemsByType(Type.BodyPart))
-            {
-                if (chest.IsSotrageSlotNotNull(indexItem))
-                {
-                    Item item = chest.slotItem[indexItem];
-                    if (item.type == Type.BodyPart)
-                    {
-                        imageDisassembleHolding[indexHoldingItem++].sprite = item.itemImage;
-                    }
-                }
-            }
-            else
-            {
-                imageDisassembleHolding[indexHoldingItem++].sprite = emptyImage;
-            }
-        }
+        UpdateImageHoldingPanel(imageDisassembleHolding, Type.BodyPart);
     }
 
     private void DisableAllCheckImages()
@@ -415,29 +420,34 @@ public class HomeUIManager : SingletonBehaviour<HomeUIManager>
     /// <returns></returns>
     private int UpdateImageItem()
     {
+        Image[] imageCraftHoldings = new Image[buttonCraftHolding.Length];
+        for(int i=0;i< imageCraftHoldings.Length;i++)
+        {
+            imageCraftHoldings[i] = buttonCraftHolding[i].transform.GetChild(0).GetComponent<Image>();
+        }
+        UpdateImageHoldingPanel(imageCraftHoldings, Type.Ingredient);
+
         int indexItem = 0, indexHoldingItem = 0;
 
-        for (; indexItem < chest.slotItem.Length; indexItem++)
+        for (; indexItem < chest.Capacity; indexItem++)
         {
-            if (chest.slotItem[indexItem] != null && chest.slotItem[indexItem].type == Type.Ingredient)
+            if (chest.IsSotrageSlotNotNull(indexItem))
             {
-                Image imageCraftHolding = buttonCraftHolding[indexHoldingItem].transform.GetChild(0).GetComponent<Image>();
-                imageCraftHolding.sprite = chest.slotItem[indexItem].itemImage; // Update Item
-                indexHoldingChest[indexHoldingItem] = indexItem; // Record the Index of Item (Holding Slot to Chest Slot)
-
-                if (indexHoldingItem < 6) // Reset the Using Slot
+                Item item = chest.slotItem[indexItem];
+                if (item.type == Type.Ingredient)
                 {
-                    Image imageCraftUsing = buttonCraftUsing[indexHoldingItem].transform.GetChild(0).GetComponent<Image>();
-                    imageCraftUsing.sprite = emptyImage;
-                    indexUsingHolding[indexHoldingItem] = -1;
-                    GameManager.Inst.craftingTable.SetIndexUsingChest(indexHoldingItem, -1);
+                    indexHoldingChest[indexHoldingItem] = indexItem; // Record the Index of Item (Holding Slot to Chest Slot)
+
+                    if (indexHoldingItem < 6) // Reset the Using Slot
+                    {
+                        Image imageCraftUsing = buttonCraftUsing[indexHoldingItem].transform.GetChild(0).GetComponent<Image>();
+                        imageCraftUsing.sprite = emptyImage;
+                        indexUsingHolding[indexHoldingItem] = -1;
+                        GameManager.Inst.craftingTable.SetIndexUsingChest(indexHoldingItem, -1);
+                    }
+                    indexHoldingItem++;
                 }
-
-                indexHoldingItem++;
             }
-
-            if (indexHoldingItem >= Chest.CAPACITY) // Prevent the Overflow (Now It's not Needed)
-                break;
         }
         return indexHoldingItem;
     }
