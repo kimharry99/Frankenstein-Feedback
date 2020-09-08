@@ -20,9 +20,13 @@ public class StorageManager : SingletonBehaviour<StorageManager>
     #region Chest Indexes
     // UI에서 참조하기 위한 index
     private int[] _indexTableBodypart = new int[Chest.CAPACITY];
+    private int lastBodyPart = 0;
     private int[] _indexTableConsumable = new int[Chest.CAPACITY];
+    private int lastConsumable = 0;
     private int[] _indexTableTool = new int[Chest.CAPACITY];
+    private int lastTool = 0;
     private int[] _indexTableIngredient = new int[Chest.CAPACITY];
+    private int lastIngredient = 0;
 
     /// <summary>
     /// 
@@ -50,9 +54,33 @@ public class StorageManager : SingletonBehaviour<StorageManager>
         }
     }
 
+    public int GetNumOfItemsByType(Type itemType)
+    {
+        switch(itemType)
+        {
+            case Type.All:
+                return chest.GetLastEmptySlot();
+            case Type.BodyPart:
+                return lastBodyPart;
+            case Type.Consumable:
+                return lastConsumable;
+            case Type.Ingredient:
+                return lastIngredient;
+            case Type.Tool:
+                return lastTool;
+            default:
+                Debug.Log("wrong item Type");
+                return -1;
+        }
+    }
+
+
     private void UpdateChestIndexes()
     {
-        int indexBodyPart = 0, indexConsumable = 0, indexTool = 0, indexIngredient = 0;
+        lastBodyPart = 0;
+        lastConsumable = 0;
+        lastTool = 0;
+        lastIngredient = 0;
         for (int indexChest = 0; indexChest < chest.slotItem.Length; indexChest++)
         {
             if (chest.slotItem[indexChest] != null)
@@ -60,16 +88,16 @@ public class StorageManager : SingletonBehaviour<StorageManager>
                 switch (chest.slotItem[indexChest].type)
                 {
                     case Type.BodyPart:
-                        _indexTableBodypart[indexBodyPart++] = indexChest;
+                        _indexTableBodypart[lastBodyPart++] = indexChest;
                         break;
                     case Type.Consumable:
-                        _indexTableConsumable[indexConsumable++] = indexChest;
+                        _indexTableConsumable[lastConsumable++] = indexChest;
                         break;
                     case Type.Ingredient:
-                        _indexTableIngredient[indexIngredient++] = indexChest;
+                        _indexTableIngredient[lastIngredient++] = indexChest;
                         break;
                     case Type.Tool:
-                        _indexTableTool[indexTool++] = indexChest;
+                        _indexTableTool[lastTool++] = indexChest;
                         break;
                     default:
                         Debug.Log("wrong!");
@@ -77,21 +105,21 @@ public class StorageManager : SingletonBehaviour<StorageManager>
                 }
             }
         }
-        while(indexBodyPart<_indexTableBodypart.Length)
+        while(lastBodyPart<_indexTableBodypart.Length)
         {
-            _indexTableBodypart[indexBodyPart++] = -1;
+            _indexTableBodypart[lastBodyPart++] = -1;
         }
-        while (indexConsumable < _indexTableConsumable.Length)
+        while (lastConsumable < _indexTableConsumable.Length)
         {
-            _indexTableConsumable[indexConsumable++] = -1;
+            _indexTableConsumable[lastConsumable++] = -1;
         }
-        while (indexIngredient < _indexTableIngredient.Length)
+        while (lastIngredient < _indexTableIngredient.Length)
         {
-            _indexTableIngredient[indexIngredient++] = -1;
+            _indexTableIngredient[lastIngredient++] = -1;
         }
-        while (indexTool < _indexTableTool.Length)
+        while (lastTool < _indexTableTool.Length)
         {
-            _indexTableTool[indexTool++] = -1;
+            _indexTableTool[lastTool++] = -1;
         }
     }
     #endregion
